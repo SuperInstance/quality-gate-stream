@@ -1,0 +1,23 @@
+[
+  {
+    "agent": "flux-chronometer",
+    "type": "confusion",
+    "content": "The set_material command doesn't explain what happens to speeds/feeds. Had to guess.",
+    "generation": 0,
+    "timestamp": "2026-04-12T19:56:33.054397+00:00"
+  },
+  {
+    "agent": "flux-chronometer",
+    "type": "suggestion",
+    "content": "Add a 'show_speeds' command that displays calculated speeds/feeds after material selection.",
+    "generation": 0,
+    "timestamp": "2026-04-12T19:56:33.054512+00:00"
+  },
+  {
+    "agent": "flux-chronometer",
+    "type": "missing",
+    "content": "No instruction about workholding. What if the part isn't flat?",
+    "generation": 0,
+    "timestamp": "2026-04-12T19:56:33.054555+00:00"
+  }
+]
