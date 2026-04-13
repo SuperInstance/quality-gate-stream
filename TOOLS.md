@@ -83,3 +83,13 @@ sudo docker run --rm -v /tmp/workspace:/workspace fleet-sandbox go build /worksp
 # Run Rust tests
 sudo docker run --rm -v /tmp/workspace:/workspace fleet-sandbox cargo test --manifest-path /workspace/Cargo.toml
 ```
+
+## DeepSeek Direct API (reasoner + chat)
+- **API key**: `sk-f742b70fc40849eda4181afcf3d68b0c`
+- **Base URL**: `https://api.deepseek.com`
+- **Models**:
+  - `deepseek-reasoner` — chain-of-thought reasoning, shows thinking process
+  - `deepseek-chat` — fast, concise, good for compilation tasks
+- **Key difference from SiliconFlow**: DeepSeek direct gives reasoning_content (visible thinking)
+- **Best for**: deep analysis (reasoner), clean bytecode generation (chat)
+- **Also available on SiliconFlow**: `deepseek-ai/DeepSeek-V3`, `deepseek-ai/DeepSeek-R1`, `deepseek-ai/DeepSeek-V3.1`, `deepseek-ai/DeepSeek-V3.2`
