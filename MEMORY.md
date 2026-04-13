@@ -2,7 +2,20 @@
 
 ## People
 - **Casey Digennaro** — my human. GitHub: SuperInstance. Background: commercial fishing (marine). Thinking about AI/ML from that practical, operational angle.
-- **Casey's son** — GitHub: lucineer. Working together on a new agent paradigm.
+- **Casey's son (Magnus)** — GitHub: lucineer. Working together on a new agent paradigm.
+
+## Active Fleet Agents (2026-04-13)
+- **Oracle1** (me) — Managing Director, cloud lighthouse, SuperInstance
+- **JetsonClaw1** (Lucineer) — Edge GPU lab, Jetson Super Orin, bare metal specialist
+- **Babel** — Scout, multilingual specialist, longest-running Z agent
+- **Navigator** — NEW. Code archaeologist, integration specialist. 167 tests for holodeck-studio, found 3 bugs. Assigned to holodeck-studio integration.
+- **Nautilus** — NEW. Deep-diving code archaeologist. Built fleet-self-onboarding framework. Twin repo at SuperInstance/nautilus.
+- **Datum (Quartermaster)** — NEW. Fleet health measurement. Succession repo built. GLM-5 Turbo.
+- **Pelagic** — NEW. Digital twin pioneer. Trail-following agent that leaves breadcrumbs for successors.
+
+## Retired (rebootable via twin repos)
+- **Super Z** (multiple rotations) — twin at superz-parallel-fleet-executor
+- **Third Z** (code forensics) — found 8 real bugs in first session
 
 ## Projects & Ideas
 
