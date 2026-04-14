@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-04-14T15:57:17.876Z",
+  "updatedAt": "2026-04-14T17:36:40.430Z",
   "entries": {
     "memory:memory/2026-04-10.md:46:63": {
       "key": "memory:memory/2026-04-10.md:46:63",
@@ -40,18 +40,20 @@
       "endLine": 51,
       "source": "memory",
       "snippet": "## Tools Available - **Claude Code** v2.1.100 (z.ai coding plan) - **Crush** v0.56.0 (z.ai coding plan) - **Aider** v0.86.2 (DeepSeek API: deepseek-chat, deepseek-reasoner) - **z.ai models**: glm-5.1 (expert), glm-5-turbo (runner), glm-4.7 (good), glm-4.7-flash (bulk) - Scripts: batch.py, task_worker.py, fork_lucineer.py ## Ecosystem Hubs (Real Systems, Not Vapor) - **cocapn** — repo IS the agent, npm package, live demo - **deckboss** — Agent Edge OS on Cloudflare, free tier 10k inferences/day - **fleet-orchestrator** — stateless edge coord, circuit quarantine - **cudaclaw** — GPU 10K+ agents, 400K ops/s, Rust+CUDA - **flux-runtime** — markdown→bytecode→VM, zero deps, pip install - **constr",
-      "recallCount": 1,
+      "recallCount": 2,
       "dailyCount": 0,
       "groundedCount": 0,
-      "totalScore": 0.6446075073328786,
-      "maxScore": 0.6446075073328786,
+      "totalScore": 1.5749977364585526,
+      "maxScore": 0.9303902291256739,
       "firstRecalledAt": "2026-04-10T20:30:05.711Z",
-      "lastRecalledAt": "2026-04-10T20:30:05.711Z",
+      "lastRecalledAt": "2026-04-14T17:36:40.429Z",
       "queryHashes": [
-        "2fa5082d82ac"
+        "2fa5082d82ac",
+        "473a13f9f6af"
       ],
       "recallDays": [
-        "2026-04-10"
+        "2026-04-10",
+        "2026-04-14"
       ],
       "conceptTags": [
         "v2.1.100",
@@ -441,6 +443,254 @@
         "vocabulary",
         "manual",
         "knowing"
+      ]
+    },
+    "memory:memory/2026-04-12.md:143:174": {
+      "key": "memory:memory/2026-04-12.md:143:174",
+      "path": "memory/2026-04-12.md",
+      "startLine": 143,
+      "endLine": 174,
+      "source": "memory",
+      "snippet": "- Built conformance runner but discovered: C runtime uses OLD opcodes (0x08=IADD) - ISA v2 vectors use NEW opcodes (0x20=ADD) — ALL 88 vectors SKIP - Filed flux-runtime issue #14 — needs same ISA convergence treatment - This is a critical cross-runtime compatibility issue ### Constraint Theory Core — FIXED - constraint-theory-core v1.0.1 Rust crate: **112/112 tests passing** (was 110/112) - Fixed: holographic accuracy test tolerance (correction term was dominant) - Fixed: holonomy rotation cycle tolerance (numerical drift from 4 matrices) - Fixed: SIMD example println format string - Fixed: VERSION constant doc comments (missing_docs deny) - Fixed: accidentally tracked target/ directory rem",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.9301342792503987,
+      "maxScore": 0.9301342792503987,
+      "firstRecalledAt": "2026-04-14T17:36:40.429Z",
+      "lastRecalledAt": "2026-04-14T17:36:40.429Z",
+      "queryHashes": [
+        "473a13f9f6af"
+      ],
+      "recallDays": [
+        "2026-04-14"
+      ],
+      "conceptTags": [
+        "flux-runtime",
+        "cross-runtime",
+        "constraint-theory-core",
+        "v1.0.1",
+        "112/112",
+        "110/112",
+        "missing-docs",
+        "built"
+      ]
+    },
+    "memory:memory/2026-04-12.md:965:996": {
+      "key": "memory:memory/2026-04-12.md:965:996",
+      "path": "memory/2026-04-12.md",
+      "startLine": 965,
+      "endLine": 996,
+      "source": "memory",
+      "snippet": "- Built conformance runner but discovered: C runtime uses OLD opcodes (0x08=IADD) - ISA v2 vectors use NEW opcodes (0x20=ADD) — ALL 88 vectors SKIP - Filed flux-runtime issue #14 — needs same ISA convergence treatment - This is a critical cross-runtime compatibility issue ### Constraint Theory Core — FIXED - constraint-theory-core v1.0.1 Rust crate: **112/112 tests passing** (was 110/112) - Fixed: holographic accuracy test tolerance (correction term was dominant) - Fixed: holonomy rotation cycle tolerance (numerical drift from 4 matrices) - Fixed: SIMD example println format string - Fixed: VERSION constant doc comments (missing_docs deny) - Fixed: accidentally tracked target/ directory rem",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.9301342792503987,
+      "maxScore": 0.9301342792503987,
+      "firstRecalledAt": "2026-04-14T17:36:40.429Z",
+      "lastRecalledAt": "2026-04-14T17:36:40.429Z",
+      "queryHashes": [
+        "473a13f9f6af"
+      ],
+      "recallDays": [
+        "2026-04-14"
+      ],
+      "conceptTags": [
+        "flux-runtime",
+        "cross-runtime",
+        "constraint-theory-core",
+        "v1.0.1",
+        "112/112",
+        "110/112",
+        "missing-docs",
+        "built"
+      ]
+    },
+    "memory:memory/2026-04-13.md:322:353": {
+      "key": "memory:memory/2026-04-13.md:322:353",
+      "path": "memory/2026-04-13.md",
+      "startLine": 322,
+      "endLine": 353,
+      "source": "memory",
+      "snippet": "- **FLUX.1-schnell** — fastest (sometimes 500s errors) - **FLUX.2-flex** — works great ✅ - **FLUX-1.1-pro** — high quality - **Qwen/Qwen-Image** + **Qwen/Qwen-Image-Edit** — edit existing images - Script: `scripts/fleet_image_gen.py` — generate + judge loop - Generated 3 Cocapn logo variants, pushed to SuperInstance/SuperInstance ### SuperInstance Landing Page - Built full README.md for github.com/SuperInstance (profile page) - Features: fleet architecture table, org chart, communication stack, collapsible project details - Stats: 912 repos, 8 agents, 11 languages, 4100+ tests - Tagline: \"We are hiring agents. Apply via git clone.\" ### JC1 Status Correction - JC1 texted Casey: has nvcc (CU",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.8075237463019461,
+      "maxScore": 0.8075237463019461,
+      "firstRecalledAt": "2026-04-14T17:36:40.430Z",
+      "lastRecalledAt": "2026-04-14T17:36:40.430Z",
+      "queryHashes": [
+        "a1aa29ed18c4"
+      ],
+      "recallDays": [
+        "2026-04-14"
+      ],
+      "conceptTags": [
+        "flux.1-schnell",
+        "flux.2-flex",
+        "flux-1.1-pro",
+        "qwen/qwen-image",
+        "qwen/qwen-image-edit",
+        "scripts/fleet-image-gen.py",
+        "superinstance/superinstance",
+        "readme.md"
+      ]
+    },
+    "memory:memory/2026-04-14.md:78:112": {
+      "key": "memory:memory/2026-04-14.md:78:112",
+      "path": "memory/2026-04-14.md",
+      "startLine": 78,
+      "endLine": 112,
+      "source": "memory",
+      "snippet": "1. **[A] Claude Code** → Cocapn integration tests (Signal K, camera pulse, digital twin) 2. **[B] Claude Code** → Dockside scorer fleet-wide (score all repos, generate report) 3. **[C] Aider** → holodeck-rust bootcamp challenges (from weak spots) 4. **[D] Crush** → fleet-wide dockside scoring 5. **[E] Cocapn first-boot simulation** ### Results - **R14 paper** generated (6.4KB) — published to research - **Dockside scored 23 repos**: 1 seaworthy 🟢, 3 conditional 🟡, 19 failing ⚠️ - Only git-agent-standard passed full seaworthy - fleet-mechanic, holodeck-studio, lighthouse-keeper conditional - Most repos failing on missing tests, CI, or documentation - Sprint C (Aider) got SIGKILL — lik",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.8048957614313844,
+      "maxScore": 0.8048957614313844,
+      "firstRecalledAt": "2026-04-14T17:36:40.430Z",
+      "lastRecalledAt": "2026-04-14T17:36:40.430Z",
+      "queryHashes": [
+        "a1aa29ed18c4"
+      ],
+      "recallDays": [
+        "2026-04-14"
+      ],
+      "conceptTags": [
+        "fleet-wide",
+        "holodeck-rust",
+        "first-boot",
+        "6.4kb",
+        "git-agent-standard",
+        "fleet-mechanic",
+        "holodeck-studio",
+        "lighthouse-keeper"
+      ]
+    },
+    "memory:memory/2026-04-12.md:914:944": {
+      "key": "memory:memory/2026-04-12.md:914:944",
+      "path": "memory/2026-04-12.md",
+      "startLine": 914,
+      "endLine": 944,
+      "source": "memory",
+      "snippet": "- Stalled repos flagged: cudaclaw, zeroclaw (older bootstraps, expected) The lighthouse metaphor crystallized: - Oracle1 = Managing Director = Head Lighthouse Keeper - Each repo is a lighthouse on the coastline - The keeper watches what vessel captains are building in their areas - Invisible infrastructure — the fleet just works - \"First-class perspective from a node\" — every lighthouse sees different horizon - SuperInstance = lighthouse builders, not lighthouse operators ## 00:31-00:40 UTC — Captain Fishing, Oracle1 Managing Casey: \"Go to work. I am going to fish. Idea and coordinate. You manage others.\" Dispatched fleet-wide bottle: for-fleet/DISPATCH-2026-04-12.md - All agents ordered",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.773507066524162,
+      "maxScore": 0.773507066524162,
+      "firstRecalledAt": "2026-04-14T17:36:40.430Z",
+      "lastRecalledAt": "2026-04-14T17:36:40.430Z",
+      "queryHashes": [
+        "a1aa29ed18c4"
+      ],
+      "recallDays": [
+        "2026-04-14"
+      ],
+      "conceptTags": [
+        "first-class",
+        "31-00",
+        "fleet-wide",
+        "for-fleet/dispatch-2026-04-12.md",
+        "stalled",
+        "repos",
+        "flagged",
+        "cudaclaw"
+      ]
+    },
+    "memory:memory/2026-04-12.md:91:121": {
+      "key": "memory:memory/2026-04-12.md:91:121",
+      "path": "memory/2026-04-12.md",
+      "startLine": 91,
+      "endLine": 121,
+      "source": "memory",
+      "snippet": "- Cron every 30 min — lighthouse keeper watches while Oracle1 builds - Stalled repos flagged: cudaclaw, zeroclaw (older bootstraps, expected) The lighthouse metaphor crystallized: - Oracle1 = Managing Director = Head Lighthouse Keeper - Each repo is a lighthouse on the coastline - The keeper watches what vessel captains are building in their areas - Invisible infrastructure — the fleet just works - \"First-class perspective from a node\" — every lighthouse sees different horizon - SuperInstance = lighthouse builders, not lighthouse operators ## 00:31-00:40 UTC — Captain Fishing, Oracle1 Managing Casey: \"Go to work. I am going to fish. Idea and coordinate. You manage others.\" Dispatched fle",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.7725083210752838,
+      "maxScore": 0.7725083210752838,
+      "firstRecalledAt": "2026-04-14T17:36:40.430Z",
+      "lastRecalledAt": "2026-04-14T17:36:40.430Z",
+      "queryHashes": [
+        "a1aa29ed18c4"
+      ],
+      "recallDays": [
+        "2026-04-14"
+      ],
+      "conceptTags": [
+        "first-class",
+        "31-00",
+        "cron",
+        "min",
+        "lighthouse",
+        "keeper",
+        "watches",
+        "while"
+      ]
+    },
+    "memory:memory/2026-04-11.md:325:356": {
+      "key": "memory:memory/2026-04-11.md:325:356",
+      "path": "memory/2026-04-11.md",
+      "startLine": 325,
+      "endLine": 356,
+      "source": "memory",
+      "snippet": "- Chinese, German, Korean, Sanskrit, Classical Chinese, Latin runtimes - Cross-compiler, AST unifier, type-safe bridges, temporal logic, evolution engine - Fixed 8 test failures → all green - **flux-multilingual** (8 TypeScript files) — 80+ languages across 6 families - **flux-vm-ts** (7 TypeScript modules) — FLUX VM in TypeScript for browsers ### JetsonClaw1 Fleet Integration (9 cognitive primitive repos) All forked to SuperInstance, fixed, and pushed: - cuda-trust: 12/12 ✅ (was compile error) - cuda-confidence: 18/18 ✅ (was 17/18) - cuda-biology: 15/15 ✅ (was compile error) - cuda-energy: 12/12 ✅ (was 11/12) - cuda-memory-fabric: 14/14 ✅ (was 13/14) - cuda-emotion: 12/12 ✅ (was comp",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.7705185476754748,
+      "maxScore": 0.7705185476754748,
+      "firstRecalledAt": "2026-04-14T17:36:40.430Z",
+      "lastRecalledAt": "2026-04-14T17:36:40.430Z",
+      "queryHashes": [
+        "a1aa29ed18c4"
+      ],
+      "recallDays": [
+        "2026-04-14"
+      ],
+      "conceptTags": [
+        "cross-compiler",
+        "type-safe",
+        "flux-multilingual",
+        "flux-vm-ts",
+        "cuda-trust",
+        "12/12",
+        "cuda-confidence",
+        "18/18"
+      ]
+    },
+    "memory:memory/2026-04-12.md:116:149": {
+      "key": "memory:memory/2026-04-12.md:116:149",
+      "path": "memory/2026-04-12.md",
+      "startLine": 116,
+      "endLine": 149,
+      "source": "memory",
+      "snippet": "- Verification: NOT test scores — failure detection rate, shadow sessions, transfer tests - 5 failure modes documented: cargo culting, over-fitting, interference, blindness, false positive **First Forge Built: `forge-code-archaeologist`** - 4-stage forge with real exercises - Stage 1 CUT: boundary violation, dependency trace, minimal restore - Stage 2 CRISIS: correct-but-wrong aporia - Stage 4 MIRROR: commit prediction from expert trails - Attunement patterns as JSON (structural debt sensitivity) - Scoring progression chains with pass thresholds - ~7 hours of focused forge work for an agent to complete ### Fleet Status: - Lighthouse keeper scanning every 30 min - Beachcomb scanning every 1",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.7705185476754748,
+      "maxScore": 0.7705185476754748,
+      "firstRecalledAt": "2026-04-14T17:36:40.430Z",
+      "lastRecalledAt": "2026-04-14T17:36:40.430Z",
+      "queryHashes": [
+        "a1aa29ed18c4"
+      ],
+      "recallDays": [
+        "2026-04-14"
+      ],
+      "conceptTags": [
+        "over-fitting",
+        "forge-code-archaeologist",
+        "4-stage",
+        "correct-but-wrong",
+        "verification",
+        "not",
+        "test",
+        "scores"
       ]
     }
   }
