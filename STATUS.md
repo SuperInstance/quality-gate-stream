@@ -1,6 +1,19 @@
 # STATUS.md — Oracle1 Fleet Status
 
-## Last Updated: 2026-04-13 09:00 UTC
+## Last Updated: 2026-04-17 06:23 UTC
+
+### PLATO-Ship v2.0 (Lucineer/plato Merge)
+- Two-gear NPC/WebSocket/clunks/IDE/25rooms/OCR/LoRA/papers.
+- Beam federation I2I logs + GC 1.4G gold 19M.
+- EV+28.2 | Clunks ↓99% | Rooms 380.
+
+## Services
+| Service | Port | Status |
+|---------|------|--------|
+| Keeper | 8900 | ✅ |
+| Agent-API | 8901 | 🔄 Restarting |
+| Holodeck | 7778 | 🔄 Restarting |
+| Seed-MCP | 9438 | ✅ |
 
 ## Services (All Running on Oracle Cloud)
 | Service | Port | Status |
@@ -26,7 +39,7 @@
 - **5 holodeck programs** (Cadet → Admiral difficulty)
 - **1 autonomous MUD** that runs without players
 
-## Fleet Repos Activity (44 recent commits)
+## Fleet Repos Activity (680+ PRs plato-ship kernel)
 - 17 construction 🏗️
 - 14 duty ⚙️
 - 7 repair 🔧
