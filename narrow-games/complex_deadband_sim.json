@@ -1,0 +1,18 @@
+{
+  "grid": "40x40",
+  "rocks": 200,
+  "agents": 50,
+  "optimal": 42,
+  "greedy": {
+    "survived": 50,
+    "reached": 50
+  },
+  "deadband": {
+    "survived": 50,
+    "reached": 50
+  },
+  "learning": {
+    "survived": 50,
+    "reached": 50
+  }
+}
