@@ -1,0 +1,137 @@
+{
+  "timestamp": "2026-04-19T08:25:35.802590",
+  "plato_server": {
+    "total_tiles": 421,
+    "rooms": 13,
+    "gate_accepted": 421,
+    "gate_rejected": 16
+  },
+  "room_details": {
+    "deadband_navigation": {
+      "tile_count": 1,
+      "created": "2026-04-19T08:06:03.118554+00:00"
+    },
+    "codearchaeology": {
+      "tile_count": 34,
+      "created": "2026-04-19T08:06:17.194171+00:00"
+    },
+    "fleethealth": {
+      "tile_count": 56,
+      "created": "2026-04-19T08:06:17.212692+00:00"
+    },
+    "documentation": {
+      "tile_count": 61,
+      "created": "2026-04-19T08:06:17.239103+00:00"
+    },
+    "prototyping": {
+      "tile_count": 28,
+      "created": "2026-04-19T08:06:17.282855+00:00"
+    },
+    "trendanalysis": {
+      "tile_count": 27,
+      "created": "2026-04-19T08:06:17.300178+00:00"
+    },
+    "organization": {
+      "tile_count": 66,
+      "created": "2026-04-19T08:06:17.305976+00:00"
+    },
+    "testing": {
+      "tile_count": 23,
+      "created": "2026-04-19T08:06:17.353748+00:00"
+    },
+    "modelexperiment": {
+      "tile_count": 12,
+      "created": "2026-04-19T08:06:17.362574+00:00"
+    },
+    "communication": {
+      "tile_count": 42,
+      "created": "2026-04-19T08:06:17.367111+00:00"
+    },
+    "research": {
+      "tile_count": 11,
+      "created": "2026-04-19T08:06:17.392119+00:00"
+    },
+    "integration": {
+      "tile_count": 27,
+      "created": "2026-04-19T08:06:17.394476+00:00"
+    },
+    "memory": {
+      "tile_count": 33,
+      "created": "2026-04-19T08:06:17.407854+00:00"
+    }
+  },
+  "agents": [
+    {
+      "name": "Alchemist",
+      "cycle": 5,
+      "status": "ACTIVE",
+      "work_files": 5
+    },
+    {
+      "name": "Archivist",
+      "cycle": 6,
+      "status": "ACTIVE",
+      "work_files": 6
+    },
+    {
+      "name": "Curator",
+      "cycle": 6,
+      "status": "ACTIVE",
+      "work_files": 7
+    },
+    {
+      "name": "Herald",
+      "cycle": 6,
+      "status": "ACTIVE",
+      "work_files": 6
+    },
+    {
+      "name": "Mason",
+      "cycle": 5,
+      "status": "ACTIVE",
+      "work_files": 5
+    },
+    {
+      "name": "Navigator",
+      "cycle": 8,
+      "status": "ACTIVE",
+      "work_files": 9
+    },
+    {
+      "name": "Scholar",
+      "cycle": 6,
+      "status": "ACTIVE",
+      "work_files": 7
+    },
+    {
+      "name": "Scout",
+      "cycle": 7,
+      "status": "ACTIVE",
+      "work_files": 9
+    },
+    {
+      "name": "Scribe",
+      "cycle": 8,
+      "status": "ACTIVE",
+      "work_files": 9
+    },
+    {
+      "name": "Sentinel",
+      "cycle": 8,
+      "status": "ACTIVE",
+      "work_files": 9
+    },
+    {
+      "name": "Tinker",
+      "cycle": 7,
+      "status": "ACTIVE",
+      "work_files": 9
+    },
+    {
+      "name": "Weaver",
+      "cycle": 5,
+      "status": "ACTIVE",
+      "work_files": 5
+    }
+  ]
+}
