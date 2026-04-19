@@ -1,0 +1,97 @@
+{
+  "timestamp": "2026-04-19T14:43:14.348165",
+  "tiles": 1755,
+  "rooms": 14,
+  "gate": {
+    "accepted": 1755,
+    "rejected": 44,
+    "reasons": {
+      "absolute_claim": 33,
+      "duplicate": 10,
+      "question_too_short": 1
+    }
+  },
+  "agents": [
+    {
+      "name": "Alchemist",
+      "cycle": 33,
+      "work_files": 34
+    },
+    {
+      "name": "Archivist",
+      "cycle": 35,
+      "work_files": 35
+    },
+    {
+      "name": "Curator",
+      "cycle": 34,
+      "work_files": 36
+    },
+    {
+      "name": "Herald",
+      "cycle": 34,
+      "work_files": 34
+    },
+    {
+      "name": "Mason",
+      "cycle": 34,
+      "work_files": 34
+    },
+    {
+      "name": "Navigator",
+      "cycle": 35,
+      "work_files": 36
+    },
+    {
+      "name": "Scholar",
+      "cycle": 35,
+      "work_files": 36
+    },
+    {
+      "name": "Scout",
+      "cycle": 34,
+      "work_files": 36
+    },
+    {
+      "name": "Scribe",
+      "cycle": 35,
+      "work_files": 36
+    },
+    {
+      "name": "Sentinel",
+      "cycle": 35,
+      "work_files": 36
+    },
+    {
+      "name": "Tinker",
+      "cycle": 34,
+      "work_files": 36
+    },
+    {
+      "name": "Weaver",
+      "cycle": 33,
+      "work_files": 34
+    }
+  ],
+  "sprint_1": {
+    "S1-1_tile_audit": "DONE",
+    "S1-2_tile_spec_v2": "IN_PROGRESS (FM: 14 domains, 31 tests)",
+    "S1-3_holodeck_refactor": "DONE (compiled, restarted)",
+    "S1-4_python_schema": "DONE (v2 with 14 domains + TemporalValidity)",
+    "S1-5_theorem_refs": "PARTIAL (FM has Lock struct, needs integration tests)",
+    "S1-6_kernel_tests": "PENDING (FM task)",
+    "S1-7_genepool_roundtrip": "PENDING (JC1 + FM)"
+  },
+  "fm_status": {
+    "crates": 38,
+    "tests": 594,
+    "gaps_closed": "7/7",
+    "protocol_layers": "6/6",
+    "hn_demo": "LIVE",
+    "latest_commit": "2478af3 tile-spec 7 new domains"
+  },
+  "jc1_status": {
+    "activity": "active on capitaine (pushes at 14:30 UTC)",
+    "pr_status": "the-seed #2 open, needs Casey merge"
+  }
+}
