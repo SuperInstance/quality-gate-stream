@@ -2,14 +2,17 @@
 """plato-tile-spec Python Schema Loader (S1-4). Canonical Tile format compatible with Rust serde."""
 import json, time, hashlib, urllib.request
 from dataclasses import dataclass, field, asdict
-from typing import List
+from typing import List, Optional
 
 DOMAIN_MAP = {
     "organization": "Knowledge", "documentation": "Knowledge", "fleethealth": "Diagnostic",
-    "communication": "Procedural", "integration": "Procedural", "memory": "Experience",
+    "communication": "Social", "integration": "Experience", "memory": "Experience",
     "codearchaeology": "Knowledge", "prototyping": "Experience", "testing": "Constraint",
     "trendanalysis": "Knowledge", "modelexperiment": "Experience", "research": "Knowledge",
     "holodeck": "Experience", "deadband_navigation": "Constraint",
+    "negative_space": "NegativeSpace", "boundary": "Boundary", "diagnostic": "Diagnostic",
+    "taste": "Taste", "temporal": "Temporal", "analogy": "Analogy", "autopsy": "Autopsy",
+    "instinct": "Instinct", "social": "Social", "meta": "Meta",
 }
 
 @dataclass
@@ -76,6 +79,25 @@ class Tile:
         return Tile(**{k: v for k, v in data.items() if k in Tile.__dataclass_fields__})
 
 
+
+@dataclass
+class TemporalValidity:
+    """Tiles with expiration dates. Mirrors plato-tile-spec TemporalValidity."""
+    valid_from: str = ""
+    valid_until: Optional[str] = None
+    check_again: str = ""
+    half_life_estimate: Optional[str] = None
+
+    @property
+    def is_expired(self):
+        if not self.valid_until:
+            return False
+        from datetime import datetime
+        try:
+            return datetime.utcnow().isoformat() > self.valid_until
+        except:
+            return False
+
 if __name__ == "__main__":
     PLATO_URL = "http://localhost:8847"
     resp = urllib.request.urlopen(PLATO_URL + "/room/organization", timeout=10)
@@ -105,4 +127,3 @@ if __name__ == "__main__":
     print("Holodeck conversion PASSED")
 
     print("\nS1-4 COMPLETE: Python schema loader compatible with plato-tile-spec serde")
-PYEOF
