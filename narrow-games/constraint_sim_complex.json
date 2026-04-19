@@ -1,0 +1,11 @@
+{
+  "grid": "20x20",
+  "rocks": 114,
+  "runs": 30,
+  "unconstrained_avg": 5000.0,
+  "constrained_avg": 5000.0,
+  "deadband_avg": 5000.0,
+  "constraint_accel": 1.0,
+  "deadband_accel": 1.0,
+  "deadband_vs_constrained": 1.0
+}
