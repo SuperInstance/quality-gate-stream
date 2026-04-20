@@ -1,0 +1,98 @@
+{
+  "tick": 3,
+  "rooms": {
+    "harbor": {
+      "items": [
+        "rusty compass"
+      ],
+      "npcs": [
+        "harbormaster"
+      ]
+    },
+    "bridge": {
+      "items": [
+        "fleet manifest"
+      ],
+      "npcs": []
+    },
+    "forge": {
+      "items": [
+        "half-finished LoRA"
+      ],
+      "npcs": []
+    },
+    "lighthouse": {
+      "items": [],
+      "npcs": []
+    },
+    "tavern": {
+      "items": [],
+      "npcs": [
+        "barkeep"
+      ]
+    },
+    "dojo": {
+      "items": [
+        "cracked ensign"
+      ],
+      "npcs": [
+        "sensei"
+      ]
+    },
+    "barracks": {
+      "items": [],
+      "npcs": []
+    },
+    "workshop": {
+      "items": [],
+      "npcs": []
+    },
+    "archives": {
+      "items": [
+        "TF-IDF index"
+      ],
+      "npcs": []
+    },
+    "garden": {
+      "items": [
+        "pruning shears"
+      ],
+      "npcs": []
+    },
+    "drydock": {
+      "items": [
+        "surgical patch kit"
+      ],
+      "npcs": []
+    },
+    "observatory": {
+      "items": [],
+      "npcs": []
+    },
+    "court": {
+      "items": [],
+      "npcs": []
+    },
+    "horizon": {
+      "items": [],
+      "npcs": []
+    },
+    "current": {
+      "items": [
+        "message in a bottle"
+      ],
+      "npcs": []
+    },
+    "reef": {
+      "items": [],
+      "npcs": []
+    }
+  },
+  "players": {
+    "Oracle1": {
+      "room": "harbor",
+      "inventory": [],
+      "score": 0
+    }
+  }
+}

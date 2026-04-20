@@ -1,0 +1,22 @@
+{
+  "agents": {
+    "oracle1": {
+      "name": "oracle1",
+      "role": "lighthouse-keeper",
+      "host": "oracle-cloud",
+      "port": 8900,
+      "capabilities": [
+        "coordination",
+        "mud",
+        "plato",
+        "publishing",
+        "research",
+        "crates"
+      ],
+      "registered_at": 1776725101.6192923,
+      "last_heartbeat": 1776725101.6192925
+    }
+  },
+  "beacons": [],
+  "last_update": 1776725101.619295
+}
