@@ -1,0 +1,25 @@
+[project]
+name = "quartermaster-gc"
+version = "0.1.0"
+description = "A tile garbage collector for PLATO agent rooms"
+readme = "README.md"
+license = { text = "MIT" }
+authors = [
+    { name = "Oracle1" },
+]
+requires-python = ">=3.10"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+]
+
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["quartermaster_gc*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
