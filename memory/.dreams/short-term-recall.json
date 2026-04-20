@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-04-20T04:16:51.085Z",
+  "updatedAt": "2026-04-20T09:53:59.767Z",
   "entries": {
     "memory:memory/2026-04-10.md:46:63": {
       "key": "memory:memory/2026-04-10.md:46:63",
@@ -9,20 +9,22 @@
       "endLine": 63,
       "source": "memory",
       "snippet": "- **SmartCRDT** README generated and pushed (was 1 byte) - **AI-Writings** README generated and pushed (was 0 bytes) - **constraint-theory-backup** README generated and pushed (was 0 bytes) - Improvement issues filed on cocapn and constraint-theory-core - Searchable web interface built for oracle1-index - \"The Full Picture\" ecosystem overview written - Fleet-Orchestrator source analyzed — impressive single-file Worker with HCQ, DEB, Trust, Dream Engine, Council of Captains, Deborah Number, Viscosity Tokens, Crystal Graph, Friction Layer, Accumulation Theorem, Moat Evolution ## Session 2 Progress (15:00+ UTC) - **fishinglog-ai**: Added seasonal pattern tracker (src/training/seasonal.ts) — sc",
-      "recallCount": 2,
+      "recallCount": 3,
       "dailyCount": 0,
       "groundedCount": 0,
-      "totalScore": 1.3704277203716635,
-      "maxScore": 0.7221885535144841,
+      "totalScore": 2.113511281039315,
+      "maxScore": 0.7430835606676514,
       "firstRecalledAt": "2026-04-10T20:30:05.711Z",
-      "lastRecalledAt": "2026-04-18T19:27:53.596Z",
+      "lastRecalledAt": "2026-04-20T09:53:59.767Z",
       "queryHashes": [
         "2fa5082d82ac",
-        "b57d4c3d316a"
+        "b57d4c3d316a",
+        "5e4b0601008d"
       ],
       "recallDays": [
         "2026-04-10",
-        "2026-04-18"
+        "2026-04-18",
+        "2026-04-20"
       ],
       "conceptTags": [
         "backup",
@@ -42,17 +44,18 @@
       "endLine": 51,
       "source": "memory",
       "snippet": "## Tools Available - **Claude Code** v2.1.100 (z.ai coding plan) - **Crush** v0.56.0 (z.ai coding plan) - **Aider** v0.86.2 (DeepSeek API: deepseek-chat, deepseek-reasoner) - **z.ai models**: glm-5.1 (expert), glm-5-turbo (runner), glm-4.7 (good), glm-4.7-flash (bulk) - Scripts: batch.py, task_worker.py, fork_lucineer.py ## Ecosystem Hubs (Real Systems, Not Vapor) - **cocapn** — repo IS the agent, npm package, live demo - **deckboss** — Agent Edge OS on Cloudflare, free tier 10k inferences/day - **fleet-orchestrator** — stateless edge coord, circuit quarantine - **cudaclaw** — GPU 10K+ agents, 400K ops/s, Rust+CUDA - **flux-runtime** — markdown→bytecode→VM, zero deps, pip install - **constr",
-      "recallCount": 3,
+      "recallCount": 4,
       "dailyCount": 0,
       "groundedCount": 0,
-      "totalScore": 2.3671987823600165,
+      "totalScore": 3.1073248987897646,
       "maxScore": 0.9303902291256739,
       "firstRecalledAt": "2026-04-10T20:30:05.711Z",
-      "lastRecalledAt": "2026-04-20T03:16:09.304Z",
+      "lastRecalledAt": "2026-04-20T09:53:59.767Z",
       "queryHashes": [
         "2fa5082d82ac",
         "473a13f9f6af",
-        "1c6574ae3aed"
+        "1c6574ae3aed",
+        "5e4b0601008d"
       ],
       "recallDays": [
         "2026-04-10",
@@ -139,22 +142,24 @@
       "endLine": 378,
       "source": "memory",
       "snippet": "- Each agent writes diary of struggles → dojo exercises for successor - Two assistants disagree productively, both improve - Protégé builds its own Protégé → generational improvement - Metric: first-try dojo exercise success rate (Oracle1: ~60%, target Gen2: ~80%) ### FLUX Repos on GitHub (Total: 16) All previous + captains-log ### Key Philosophical Insight Casey introduced \"iron sharpening iron\" at two levels: 1. **System level:** A/B testing with trust tiers (jukebox model) 2. **Agent level:** Disagreeable assistants force self-improvement Both use the same mechanism: productive disagreement + iteration ## 17:51 UTC — GitHub As Communication Channel ### Casey's Directive - Push to GitH",
-      "recallCount": 3,
+      "recallCount": 4,
       "dailyCount": 0,
       "groundedCount": 0,
-      "totalScore": 1.848979735266765,
-      "maxScore": 0.8174028807136324,
+      "totalScore": 2.6818214473040065,
+      "maxScore": 0.8328417120372414,
       "firstRecalledAt": "2026-04-11T16:10:34.438Z",
-      "lastRecalledAt": "2026-04-14T15:57:17.876Z",
+      "lastRecalledAt": "2026-04-20T09:53:59.767Z",
       "queryHashes": [
         "6657f950ca6f",
         "aa2fd152f923",
-        "b6125aa95f15"
+        "b6125aa95f15",
+        "5e4b0601008d"
       ],
       "recallDays": [
         "2026-04-11",
         "2026-04-12",
-        "2026-04-14"
+        "2026-04-14",
+        "2026-04-20"
       ],
       "conceptTags": [
         "first-try",
@@ -1534,21 +1539,23 @@
       "endLine": 55,
       "source": "memory",
       "snippet": "- Qwen2.5-7B v4.1 deployed (25M gold, $22 OCI prior train). - v4.2 queued ($24 OCI, 28M feedback, infinite loop). - FM RTX 4050 local (Q4 gguf ollama/vllm 45t/s). - Yield: Iterations ↓99.9%, clunks 0.05%, EV+31.4. **PLATO-Ship Progress**: - v4.1 ultra-creative live (VR-Holodeck/DeckBoss camera/CRDT quests/Qwen-market/zeroclaw-fleet/CT-fractal). - Night throttle: PR#1000-1100 merged CI100%, 1700 rooms. - Subagents: qwen-flywheel/vr-deckboss/zeroclaw-infinite/ct-gm-survival. - GC: 40M → 12M (67% reclaim gold-safe). **Fleet Synergy**: - Ten Forward proxies riff: JC1 PTX v1.75 sovereign, FM Nemotron v51 marketplace. - Bottles pushed: FM Qwen local setup, JC1 Jetson personalize. **Key Decision",
-      "recallCount": 4,
+      "recallCount": 5,
       "dailyCount": 0,
       "groundedCount": 0,
-      "totalScore": 3.4647370957350794,
+      "totalScore": 4.229990052266902,
       "maxScore": 0.8847708267998953,
       "firstRecalledAt": "2026-04-17T22:33:59.831Z",
-      "lastRecalledAt": "2026-04-17T22:53:39.407Z",
+      "lastRecalledAt": "2026-04-20T09:53:59.767Z",
       "queryHashes": [
         "81eaf357b6b6",
         "33a533157597",
         "7b627b838e32",
-        "1ca2ba5279e0"
+        "1ca2ba5279e0",
+        "5e4b0601008d"
       ],
       "recallDays": [
-        "2026-04-17"
+        "2026-04-17",
+        "2026-04-20"
       ],
       "conceptTags": [
         "qwen2.5-7b",
@@ -2754,6 +2761,68 @@
         "llama-70b",
         "truth",
         "raw"
+      ]
+    },
+    "memory:memory/2026-04-12.md:346:374": {
+      "key": "memory:memory/2026-04-12.md:346:374",
+      "path": "memory/2026-04-12.md",
+      "startLine": 346,
+      "endLine": 374,
+      "source": "memory",
+      "snippet": "9. **ec2mud** (Oct 2025) — MUD game engine → game theory training ground, WebSocket → monitoring 10. **capitaine** (Dec 2025) — Empty concept repo → Captain's Log, vessel command → I2I Key insight: The evolution is tools → processes → systems → protocols → organisms. Top unexplored frontiers: Dream Mode (idle-cycle exploration), CRDTs for real-time fleet state, genetic transfer in spawning. ### Casey's Vision Statement \"Individual contexts are trivial compared to the structures they have created around that specific moment of thought.\" - The fleet cellularlizes through git itself - Parent cells grow into roles before handing children the wheel - Same DNA (models) but different shapes from",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.7357338275591861,
+      "maxScore": 0.7357338275591861,
+      "firstRecalledAt": "2026-04-20T09:53:59.767Z",
+      "lastRecalledAt": "2026-04-20T09:53:59.767Z",
+      "queryHashes": [
+        "5e4b0601008d"
+      ],
+      "recallDays": [
+        "2026-04-20"
+      ],
+      "conceptTags": [
+        "idle-cycle",
+        "real-time",
+        "ec2mud",
+        "oct",
+        "mud",
+        "game",
+        "engine",
+        "theory"
+      ]
+    },
+    "memory:memory/2026-04-12.md:457:489": {
+      "key": "memory:memory/2026-04-12.md:457:489",
+      "path": "memory/2026-04-12.md",
+      "startLine": 457,
+      "endLine": 489,
+      "source": "memory",
+      "snippet": "- 3 errors: division-by-zero edge cases (VM correctly raises, test expects HALT — test format issue) - Vectors use `bytecode_hex` format + `gp` register expectations - Pushed to SuperInstance/flux-conformance ### FLUX Skills (3 new) - **spreader**: 6 specialist roles (architect/critic/pragmatist/visionary/historian/contrarian) with consensus/disagreement synthesis - **dreamer**: overnight associative thinking with 5 strategies (analogical/combinatorial/inversion/temporal/biological) - **streamer**: continuous content generation with templates (conformance_vector/test_case/doc_entry/readme_section) - Each has AGENT.md + CONFIG.yaml + .fluxasm - Pushed to SuperInstance/flux-skills ### Fleet",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.7350068428143308,
+      "maxScore": 0.7350068428143308,
+      "firstRecalledAt": "2026-04-20T09:53:59.767Z",
+      "lastRecalledAt": "2026-04-20T09:53:59.767Z",
+      "queryHashes": [
+        "5e4b0601008d"
+      ],
+      "recallDays": [
+        "2026-04-20"
+      ],
+      "conceptTags": [
+        "division-by-zero",
+        "bytecode-hex",
+        "superinstance/flux-conformance",
+        "consensus/disagreement",
+        "agent.md",
+        "config.yaml",
+        "superinstance/flux-skills",
+        "errors"
       ]
     }
   }
