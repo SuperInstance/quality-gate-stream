@@ -1,0 +1,5 @@
+{
+  "service": "shell",
+  "sessions": 1,
+  "last_command": "git status"
+}

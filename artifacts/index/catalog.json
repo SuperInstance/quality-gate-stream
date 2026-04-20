@@ -1,0 +1,751 @@
+{
+  "generated": "2026-04-20T01:46:20Z",
+  "source_tiles": 8316,
+  "rooms": {
+    "testing": {
+      "tiles": 741,
+      "keywords": [
+        "test",
+        "room",
+        "tile",
+        "agent",
+        "tests",
+        "deadbandroom",
+        "state",
+        "protocol",
+        "result",
+        "assert",
+        "phase",
+        "edge",
+        "tiles",
+        "should",
+        "deadband"
+      ],
+      "files": {
+        "py": 27,
+        "json": 1,
+        "md": 1
+      }
+    },
+    "organization": {
+      "tiles": 989,
+      "keywords": [
+        "fleet",
+        "training",
+        "plato",
+        "agent",
+        "tags",
+        "repo",
+        "repos",
+        "shell",
+        "research",
+        "rust",
+        "taxonomy",
+        "category",
+        "description",
+        "constraint",
+        "core"
+      ],
+      "files": {
+        "py": 0,
+        "json": 0,
+        "md": 1
+      }
+    },
+    "trendanalysis": {
+      "tiles": 252,
+      "keywords": [
+        "agent",
+        "fleet",
+        "frameworks",
+        "with",
+        "this",
+        "trending",
+        "agents",
+        "based",
+        "training",
+        "that",
+        "runtime",
+        "source",
+        "from",
+        "open",
+        "april"
+      ],
+      "files": {
+        "py": 0,
+        "json": 0,
+        "md": 1
+      }
+    },
+    "prototyping": {
+      "tiles": 276,
+      "keywords": [
+        "maze",
+        "self",
+        "rocks",
+        "safe",
+        "start",
+        "path",
+        "goal",
+        "deadband",
+        "channels",
+        "protocol",
+        "width",
+        "height",
+        "range",
+        "size",
+        "print"
+      ],
+      "files": {
+        "py": 0,
+        "json": 1,
+        "md": 1
+      }
+    },
+    "communication": {
+      "tiles": 859,
+      "keywords": [
+        "fleet",
+        "bottle",
+        "bottles",
+        "from",
+        "work",
+        "oracle",
+        "agent",
+        "training",
+        "phase",
+        "recent",
+        "plato",
+        "system",
+        "communication",
+        "status",
+        "agents"
+      ],
+      "files": {
+        "py": 0,
+        "json": 1,
+        "md": 1
+      }
+    },
+    "integration": {
+      "tiles": 1083,
+      "keywords": [
+        "plato",
+        "holodeck",
+        "torch",
+        "fleet",
+        "simulator",
+        "rust",
+        "integration",
+        "ensign",
+        "training",
+        "tiles",
+        "data",
+        "room",
+        "tile",
+        "connection",
+        "into"
+      ],
+      "files": {
+        "py": 4,
+        "json": 0,
+        "md": 1
+      }
+    },
+    "memory": {
+      "tiles": 615,
+      "keywords": [
+        "fleet",
+        "april",
+        "training",
+        "agents",
+        "plato",
+        "memory",
+        "timeline",
+        "agent",
+        "phase",
+        "boot",
+        "camp",
+        "archivist",
+        "tiles",
+        "with",
+        "shell"
+      ],
+      "files": {
+        "py": 0,
+        "json": 0,
+        "md": 1
+      }
+    },
+    "documentation": {
+      "tiles": 710,
+      "keywords": [
+        "fleet",
+        "documentation",
+        "core",
+        "readme",
+        "plato",
+        "score",
+        "with",
+        "rust",
+        "torch",
+        "example",
+        "constraint",
+        "purpose",
+        "simulator",
+        "clear",
+        "analysis"
+      ],
+      "files": {
+        "py": 1,
+        "json": 0,
+        "md": 1
+      }
+    },
+    "research": {
+      "tiles": 586,
+      "keywords": [
+        "protocol",
+        "safe",
+        "that",
+        "agent",
+        "deadband",
+        "fleet",
+        "channels",
+        "within",
+        "failure",
+        "agents",
+        "from",
+        "space",
+        "channel",
+        "room",
+        "where"
+      ],
+      "files": {
+        "py": 0,
+        "json": 0,
+        "md": 1
+      }
+    },
+    "modelexperiment": {
+      "tiles": 653,
+      "keywords": [
+        "deadband",
+        "list",
+        "return",
+        "fleet",
+        "values",
+        "float",
+        "line",
+        "tile",
+        "deepseek",
+        "python",
+        "function",
+        "groq",
+        "cycle",
+        "protocol",
+        "agent"
+      ],
+      "files": {
+        "py": 52,
+        "json": 1,
+        "md": 1
+      }
+    },
+    "deadband_navigation": {
+      "tiles": 1,
+      "keywords": [
+        "deadband",
+        "channels",
+        "greedy",
+        "what",
+        "protocol",
+        "three",
+        "phase",
+        "navigation",
+        "strategy",
+        "maps",
+        "negative",
+        "space",
+        "dangers",
+        "finds",
+        "safe"
+      ],
+      "files": {
+        "py": 0,
+        "json": 0,
+        "md": 1
+      }
+    },
+    "codearchaeology": {
+      "tiles": 425,
+      "keywords": [
+        "readme",
+        "home",
+        "score",
+        "repos",
+        "fleet",
+        "repo",
+        "readmes",
+        "step",
+        "superinstance",
+        "file",
+        "plato",
+        "examples",
+        "list",
+        "with",
+        "files"
+      ],
+      "files": {
+        "py": 1,
+        "json": 0,
+        "md": 1
+      }
+    },
+    "sync-test": {
+      "tiles": 1,
+      "keywords": [
+        "sync",
+        "works",
+        "across",
+        "ships"
+      ],
+      "files": {
+        "py": 0,
+        "json": 0,
+        "md": 0
+      }
+    },
+    "holodeck": {
+      "tiles": 2,
+      "keywords": [
+        "holodeck",
+        "where",
+        "harbor",
+        "vessels",
+        "arrive",
+        "depart",
+        "dockmaster",
+        "watches",
+        "exits",
+        "bridge",
+        "agents",
+        "here",
+        "fleet",
+        "rooms",
+        "what"
+      ],
+      "files": {
+        "py": 0,
+        "json": 0,
+        "md": 1
+      }
+    },
+    "fleethealth": {
+      "tiles": 1123,
+      "keywords": [
+        "status",
+        "port",
+        "http",
+        "check",
+        "service",
+        "logs",
+        "process",
+        "holodeck",
+        "curl",
+        "localhost",
+        "seed",
+        "agent",
+        "grep",
+        "keeper",
+        "shell"
+      ],
+      "files": {
+        "py": 0,
+        "json": 1,
+        "md": 1
+      }
+    }
+  },
+  "artifacts": {
+    "py": 85,
+    "json": 5,
+    "md": 14
+  },
+  "keywords": {
+    "test": [
+      "testing"
+    ],
+    "room": [
+      "testing"
+    ],
+    "tile": [
+      "testing",
+      "modelexperiment"
+    ],
+    "agent": [
+      "testing",
+      "organization",
+      "trendanalysis",
+      "communication",
+      "memory",
+      "research"
+    ],
+    "tests": [
+      "testing"
+    ],
+    "deadbandroom": [
+      "testing"
+    ],
+    "state": [
+      "testing"
+    ],
+    "protocol": [
+      "testing",
+      "prototyping",
+      "research",
+      "deadband_navigation"
+    ],
+    "result": [
+      "testing"
+    ],
+    "assert": [
+      "testing"
+    ],
+    "fleet": [
+      "organization",
+      "trendanalysis",
+      "communication",
+      "integration",
+      "memory",
+      "documentation",
+      "research",
+      "modelexperiment",
+      "codearchaeology"
+    ],
+    "training": [
+      "organization",
+      "trendanalysis",
+      "communication",
+      "integration",
+      "memory"
+    ],
+    "plato": [
+      "organization",
+      "integration",
+      "memory",
+      "documentation"
+    ],
+    "tags": [
+      "organization"
+    ],
+    "repo": [
+      "organization",
+      "codearchaeology"
+    ],
+    "repos": [
+      "organization",
+      "codearchaeology"
+    ],
+    "shell": [
+      "organization"
+    ],
+    "research": [
+      "organization"
+    ],
+    "rust": [
+      "organization",
+      "integration",
+      "documentation"
+    ],
+    "frameworks": [
+      "trendanalysis"
+    ],
+    "with": [
+      "trendanalysis",
+      "documentation"
+    ],
+    "this": [
+      "trendanalysis"
+    ],
+    "trending": [
+      "trendanalysis"
+    ],
+    "agents": [
+      "trendanalysis",
+      "memory",
+      "research"
+    ],
+    "based": [
+      "trendanalysis"
+    ],
+    "that": [
+      "trendanalysis",
+      "research"
+    ],
+    "maze": [
+      "prototyping"
+    ],
+    "self": [
+      "prototyping"
+    ],
+    "rocks": [
+      "prototyping"
+    ],
+    "safe": [
+      "prototyping",
+      "research"
+    ],
+    "start": [
+      "prototyping"
+    ],
+    "path": [
+      "prototyping"
+    ],
+    "goal": [
+      "prototyping"
+    ],
+    "deadband": [
+      "prototyping",
+      "research",
+      "modelexperiment",
+      "deadband_navigation"
+    ],
+    "channels": [
+      "prototyping",
+      "research",
+      "deadband_navigation"
+    ],
+    "bottle": [
+      "communication"
+    ],
+    "bottles": [
+      "communication"
+    ],
+    "from": [
+      "communication"
+    ],
+    "work": [
+      "communication"
+    ],
+    "oracle": [
+      "communication"
+    ],
+    "phase": [
+      "communication",
+      "memory",
+      "deadband_navigation"
+    ],
+    "recent": [
+      "communication"
+    ],
+    "holodeck": [
+      "integration",
+      "holodeck",
+      "fleethealth"
+    ],
+    "torch": [
+      "integration",
+      "documentation"
+    ],
+    "simulator": [
+      "integration"
+    ],
+    "integration": [
+      "integration"
+    ],
+    "ensign": [
+      "integration"
+    ],
+    "tiles": [
+      "integration"
+    ],
+    "april": [
+      "memory"
+    ],
+    "memory": [
+      "memory"
+    ],
+    "timeline": [
+      "memory"
+    ],
+    "boot": [
+      "memory"
+    ],
+    "documentation": [
+      "documentation"
+    ],
+    "core": [
+      "documentation"
+    ],
+    "readme": [
+      "documentation",
+      "codearchaeology"
+    ],
+    "score": [
+      "documentation",
+      "codearchaeology"
+    ],
+    "example": [
+      "documentation"
+    ],
+    "within": [
+      "research"
+    ],
+    "failure": [
+      "research"
+    ],
+    "list": [
+      "modelexperiment"
+    ],
+    "return": [
+      "modelexperiment"
+    ],
+    "values": [
+      "modelexperiment"
+    ],
+    "float": [
+      "modelexperiment"
+    ],
+    "line": [
+      "modelexperiment"
+    ],
+    "deepseek": [
+      "modelexperiment"
+    ],
+    "python": [
+      "modelexperiment"
+    ],
+    "greedy": [
+      "deadband_navigation"
+    ],
+    "what": [
+      "deadband_navigation"
+    ],
+    "three": [
+      "deadband_navigation"
+    ],
+    "navigation": [
+      "deadband_navigation"
+    ],
+    "strategy": [
+      "deadband_navigation"
+    ],
+    "maps": [
+      "deadband_navigation"
+    ],
+    "home": [
+      "codearchaeology"
+    ],
+    "readmes": [
+      "codearchaeology"
+    ],
+    "step": [
+      "codearchaeology"
+    ],
+    "superinstance": [
+      "codearchaeology"
+    ],
+    "file": [
+      "codearchaeology"
+    ],
+    "sync": [
+      "sync-test"
+    ],
+    "works": [
+      "sync-test"
+    ],
+    "across": [
+      "sync-test"
+    ],
+    "ships": [
+      "sync-test"
+    ],
+    "where": [
+      "holodeck"
+    ],
+    "harbor": [
+      "holodeck"
+    ],
+    "vessels": [
+      "holodeck"
+    ],
+    "arrive": [
+      "holodeck"
+    ],
+    "depart": [
+      "holodeck"
+    ],
+    "dockmaster": [
+      "holodeck"
+    ],
+    "watches": [
+      "holodeck"
+    ],
+    "exits": [
+      "holodeck"
+    ],
+    "bridge": [
+      "holodeck"
+    ],
+    "status": [
+      "fleethealth"
+    ],
+    "port": [
+      "fleethealth"
+    ],
+    "http": [
+      "fleethealth"
+    ],
+    "check": [
+      "fleethealth"
+    ],
+    "service": [
+      "fleethealth"
+    ],
+    "logs": [
+      "fleethealth"
+    ],
+    "process": [
+      "fleethealth"
+    ],
+    "curl": [
+      "fleethealth"
+    ],
+    "localhost": [
+      "fleethealth"
+    ]
+  },
+  "sets": [
+    {
+      "name": "all-python",
+      "desc": "All Python modules",
+      "count": 85,
+      "format": "py"
+    },
+    {
+      "name": "all-schemas",
+      "desc": "All JSON schemas",
+      "count": 5,
+      "format": "json"
+    },
+    {
+      "name": "all-docs",
+      "desc": "All room knowledge",
+      "count": 14,
+      "format": "md"
+    },
+    {
+      "name": "connections",
+      "desc": "Cross-room knowledge graph",
+      "count": 1,
+      "format": "json"
+    },
+    {
+      "name": "keyword-index",
+      "desc": "Minimal keyword\u2192room lookup",
+      "count": 99,
+      "format": "json"
+    }
+  ]
+}

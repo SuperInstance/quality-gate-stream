@@ -1,0 +1,10 @@
+{
+  "optimal": 21,
+  "rocks": 64,
+  "unconstrained_success": 33,
+  "constrained_success": 0,
+  "deadband_success": 50,
+  "unconstrained_avg": 2320.9,
+  "constrained_avg": 0,
+  "deadband_avg": 21.0
+}

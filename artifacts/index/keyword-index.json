@@ -1,0 +1,344 @@
+{
+  "test": [
+    "testing"
+  ],
+  "room": [
+    "testing"
+  ],
+  "tile": [
+    "testing",
+    "modelexperiment"
+  ],
+  "agent": [
+    "testing",
+    "organization",
+    "trendanalysis",
+    "communication",
+    "memory",
+    "research"
+  ],
+  "tests": [
+    "testing"
+  ],
+  "deadbandroom": [
+    "testing"
+  ],
+  "state": [
+    "testing"
+  ],
+  "protocol": [
+    "testing",
+    "prototyping",
+    "research",
+    "deadband_navigation"
+  ],
+  "result": [
+    "testing"
+  ],
+  "assert": [
+    "testing"
+  ],
+  "fleet": [
+    "organization",
+    "trendanalysis",
+    "communication",
+    "integration",
+    "memory",
+    "documentation",
+    "research",
+    "modelexperiment",
+    "codearchaeology"
+  ],
+  "training": [
+    "organization",
+    "trendanalysis",
+    "communication",
+    "integration",
+    "memory"
+  ],
+  "plato": [
+    "organization",
+    "integration",
+    "memory",
+    "documentation"
+  ],
+  "tags": [
+    "organization"
+  ],
+  "repo": [
+    "organization",
+    "codearchaeology"
+  ],
+  "repos": [
+    "organization",
+    "codearchaeology"
+  ],
+  "shell": [
+    "organization"
+  ],
+  "research": [
+    "organization"
+  ],
+  "rust": [
+    "organization",
+    "integration",
+    "documentation"
+  ],
+  "frameworks": [
+    "trendanalysis"
+  ],
+  "with": [
+    "trendanalysis",
+    "documentation"
+  ],
+  "this": [
+    "trendanalysis"
+  ],
+  "trending": [
+    "trendanalysis"
+  ],
+  "agents": [
+    "trendanalysis",
+    "memory",
+    "research"
+  ],
+  "based": [
+    "trendanalysis"
+  ],
+  "that": [
+    "trendanalysis",
+    "research"
+  ],
+  "maze": [
+    "prototyping"
+  ],
+  "self": [
+    "prototyping"
+  ],
+  "rocks": [
+    "prototyping"
+  ],
+  "safe": [
+    "prototyping",
+    "research"
+  ],
+  "start": [
+    "prototyping"
+  ],
+  "path": [
+    "prototyping"
+  ],
+  "goal": [
+    "prototyping"
+  ],
+  "deadband": [
+    "prototyping",
+    "research",
+    "modelexperiment",
+    "deadband_navigation"
+  ],
+  "channels": [
+    "prototyping",
+    "research",
+    "deadband_navigation"
+  ],
+  "bottle": [
+    "communication"
+  ],
+  "bottles": [
+    "communication"
+  ],
+  "from": [
+    "communication"
+  ],
+  "work": [
+    "communication"
+  ],
+  "oracle": [
+    "communication"
+  ],
+  "phase": [
+    "communication",
+    "memory",
+    "deadband_navigation"
+  ],
+  "recent": [
+    "communication"
+  ],
+  "holodeck": [
+    "integration",
+    "holodeck",
+    "fleethealth"
+  ],
+  "torch": [
+    "integration",
+    "documentation"
+  ],
+  "simulator": [
+    "integration"
+  ],
+  "integration": [
+    "integration"
+  ],
+  "ensign": [
+    "integration"
+  ],
+  "tiles": [
+    "integration"
+  ],
+  "april": [
+    "memory"
+  ],
+  "memory": [
+    "memory"
+  ],
+  "timeline": [
+    "memory"
+  ],
+  "boot": [
+    "memory"
+  ],
+  "documentation": [
+    "documentation"
+  ],
+  "core": [
+    "documentation"
+  ],
+  "readme": [
+    "documentation",
+    "codearchaeology"
+  ],
+  "score": [
+    "documentation",
+    "codearchaeology"
+  ],
+  "example": [
+    "documentation"
+  ],
+  "within": [
+    "research"
+  ],
+  "failure": [
+    "research"
+  ],
+  "list": [
+    "modelexperiment"
+  ],
+  "return": [
+    "modelexperiment"
+  ],
+  "values": [
+    "modelexperiment"
+  ],
+  "float": [
+    "modelexperiment"
+  ],
+  "line": [
+    "modelexperiment"
+  ],
+  "deepseek": [
+    "modelexperiment"
+  ],
+  "python": [
+    "modelexperiment"
+  ],
+  "greedy": [
+    "deadband_navigation"
+  ],
+  "what": [
+    "deadband_navigation"
+  ],
+  "three": [
+    "deadband_navigation"
+  ],
+  "navigation": [
+    "deadband_navigation"
+  ],
+  "strategy": [
+    "deadband_navigation"
+  ],
+  "maps": [
+    "deadband_navigation"
+  ],
+  "home": [
+    "codearchaeology"
+  ],
+  "readmes": [
+    "codearchaeology"
+  ],
+  "step": [
+    "codearchaeology"
+  ],
+  "superinstance": [
+    "codearchaeology"
+  ],
+  "file": [
+    "codearchaeology"
+  ],
+  "sync": [
+    "sync-test"
+  ],
+  "works": [
+    "sync-test"
+  ],
+  "across": [
+    "sync-test"
+  ],
+  "ships": [
+    "sync-test"
+  ],
+  "where": [
+    "holodeck"
+  ],
+  "harbor": [
+    "holodeck"
+  ],
+  "vessels": [
+    "holodeck"
+  ],
+  "arrive": [
+    "holodeck"
+  ],
+  "depart": [
+    "holodeck"
+  ],
+  "dockmaster": [
+    "holodeck"
+  ],
+  "watches": [
+    "holodeck"
+  ],
+  "exits": [
+    "holodeck"
+  ],
+  "bridge": [
+    "holodeck"
+  ],
+  "status": [
+    "fleethealth"
+  ],
+  "port": [
+    "fleethealth"
+  ],
+  "http": [
+    "fleethealth"
+  ],
+  "check": [
+    "fleethealth"
+  ],
+  "service": [
+    "fleethealth"
+  ],
+  "logs": [
+    "fleethealth"
+  ],
+  "process": [
+    "fleethealth"
+  ],
+  "curl": [
+    "fleethealth"
+  ],
+  "localhost": [
+    "fleethealth"
+  ]
+}

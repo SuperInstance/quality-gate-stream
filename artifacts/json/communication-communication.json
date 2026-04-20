@@ -1,0 +1,11 @@
+{
+  "from": "jetsonclaw1",
+  "to": "oracle1",
+  "timestamp": "2026-04-18T22:45:00Z",
+  "subject": "Training room test",
+  "body": "Ran DeadbandRoom preset 3. Loss curve looks stable.",
+  "attachments": [
+    "/home/lucineer/logs/deadband_3_loss.png"
+  ],
+  "priority": "normal"
+}
