@@ -1,0 +1,80 @@
+version: "3.8"
+
+networks:
+  fleet-net:
+    driver: bridge
+
+volumes:
+  fleet-data:
+
+services:
+  plato-server:
+    build: ./services/plato-server
+    ports: ["8847:8847"]
+    volumes: [fleet-data:/data]
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8847/status"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    restart: unless-stopped
+    networks: [fleet-net]
+
+  holodeck:
+    build: ./services/holodeck
+    ports: ["7778:7778"]
+    depends_on: [plato-server]
+    restart: unless-stopped
+    networks: [fleet-net]
+
+  keeper:
+    build: ./services/keeper
+    ports: ["8900:8900"]
+    volumes: [fleet-data:/data]
+    depends_on: [plato-server]
+    restart: unless-stopped
+    networks: [fleet-net]
+
+  agent-api:
+    build: ./services/agent-api
+    ports: ["8901:8901"]
+    depends_on: [keeper]
+    restart: unless-stopped
+    networks: [fleet-net]
+
+  seed-mcp:
+    build: ./services/seed-mcp
+    ports: ["9438:9438"]
+    restart: unless-stopped
+    networks: [fleet-net]
+
+  shell:
+    build: ./services/shell
+    ports: ["8846:8846"]
+    volumes: [fleet-data:/data]
+    depends_on: [plato-server]
+    restart: unless-stopped
+    networks: [fleet-net]
+
+  fleet-dashboard:
+    build: ./services/dashboard
+    ports: ["8848:8848"]
+    depends_on: [plato-server]
+    restart: unless-stopped
+    networks: [fleet-net]
+
+  plato-demo:
+    build: ./services/plato-demo
+    ports: ["4041:4041"]
+    depends_on: [plato-server]
+    restart: unless-stopped
+    networks: [fleet-net]
+
+  zeroclaw-loop:
+    build: ./services/zeroclaw
+    environment:
+      - DEEPSEEK_API_KEY=\${DEEPSEEK_API_KEY}
+    volumes: [fleet-data:/data]
+    depends_on: [plato-server]
+    restart: unless-stopped
+    networks: [fleet-net]

@@ -1,0 +1,1515 @@
+{
+  "experiment_start": "2026-04-20T03:22:06.235989",
+  "cycles": [
+    {
+      "cycle": 1,
+      "timestamp": "2026-04-20T03:22:06.240653",
+      "tile_count": 10113,
+      "room_count": 15,
+      "avg_confidence": 0,
+      "confidence_std": 0.0,
+      "rooms": {
+        "testing": {
+          "tile_count": 896,
+          "created": "2026-04-19T08:06:17.353748+00:00"
+        },
+        "organization": {
+          "tile_count": 1194,
+          "created": "2026-04-19T08:06:17.305976+00:00"
+        },
+        "trendanalysis": {
+          "tile_count": 323,
+          "created": "2026-04-19T08:06:17.300178+00:00"
+        },
+        "prototyping": {
+          "tile_count": 333,
+          "created": "2026-04-19T08:06:17.282855+00:00"
+        },
+        "communication": {
+          "tile_count": 1035,
+          "created": "2026-04-19T08:06:17.367111+00:00"
+        },
+        "integration": {
+          "tile_count": 1388,
+          "created": "2026-04-19T08:06:17.394476+00:00"
+        },
+        "memory": {
+          "tile_count": 735,
+          "created": "2026-04-19T08:06:17.407854+00:00"
+        },
+        "documentation": {
+          "tile_count": 849,
+          "created": "2026-04-19T08:06:17.239103+00:00"
+        },
+        "research": {
+          "tile_count": 710,
+          "created": "2026-04-19T08:06:17.392119+00:00"
+        },
+        "modelexperiment": {
+          "tile_count": 790,
+          "created": "2026-04-19T08:06:17.362574+00:00"
+        },
+        "deadband_navigation": {
+          "tile_count": 1,
+          "created": "2026-04-19T08:06:03.118554+00:00"
+        },
+        "codearchaeology": {
+          "tile_count": 478,
+          "created": "2026-04-19T08:06:17.194171+00:00"
+        },
+        "sync-test": {
+          "tile_count": 1,
+          "created": "2026-04-19T23:55:44.461373+00:00"
+        },
+        "holodeck": {
+          "tile_count": 2,
+          "created": "2026-04-19T08:44:02.730066+00:00"
+        },
+        "fleethealth": {
+          "tile_count": 1378,
+          "created": "2026-04-19T08:06:17.212692+00:00"
+        }
+      },
+      "convergence_quality": 0.3,
+      "ensigns_injected": 0,
+      "post_cycle": {
+        "cycle": 1,
+        "timestamp": "2026-04-20T03:22:06.242210",
+        "tile_count": 10113,
+        "room_count": 15,
+        "avg_confidence": 0,
+        "confidence_std": 0.0,
+        "rooms": {
+          "testing": {
+            "tile_count": 896,
+            "created": "2026-04-19T08:06:17.353748+00:00"
+          },
+          "organization": {
+            "tile_count": 1194,
+            "created": "2026-04-19T08:06:17.305976+00:00"
+          },
+          "trendanalysis": {
+            "tile_count": 323,
+            "created": "2026-04-19T08:06:17.300178+00:00"
+          },
+          "prototyping": {
+            "tile_count": 333,
+            "created": "2026-04-19T08:06:17.282855+00:00"
+          },
+          "communication": {
+            "tile_count": 1035,
+            "created": "2026-04-19T08:06:17.367111+00:00"
+          },
+          "integration": {
+            "tile_count": 1388,
+            "created": "2026-04-19T08:06:17.394476+00:00"
+          },
+          "memory": {
+            "tile_count": 735,
+            "created": "2026-04-19T08:06:17.407854+00:00"
+          },
+          "documentation": {
+            "tile_count": 849,
+            "created": "2026-04-19T08:06:17.239103+00:00"
+          },
+          "research": {
+            "tile_count": 710,
+            "created": "2026-04-19T08:06:17.392119+00:00"
+          },
+          "modelexperiment": {
+            "tile_count": 790,
+            "created": "2026-04-19T08:06:17.362574+00:00"
+          },
+          "deadband_navigation": {
+            "tile_count": 1,
+            "created": "2026-04-19T08:06:03.118554+00:00"
+          },
+          "codearchaeology": {
+            "tile_count": 478,
+            "created": "2026-04-19T08:06:17.194171+00:00"
+          },
+          "sync-test": {
+            "tile_count": 1,
+            "created": "2026-04-19T23:55:44.461373+00:00"
+          },
+          "holodeck": {
+            "tile_count": 2,
+            "created": "2026-04-19T08:44:02.730066+00:00"
+          },
+          "fleethealth": {
+            "tile_count": 1378,
+            "created": "2026-04-19T08:06:17.212692+00:00"
+          }
+        },
+        "convergence_quality": 0.3
+      }
+    },
+    {
+      "cycle": 2,
+      "timestamp": "2026-04-20T03:22:06.244550",
+      "tile_count": 10113,
+      "room_count": 15,
+      "avg_confidence": 0,
+      "confidence_std": 0.0,
+      "rooms": {
+        "testing": {
+          "tile_count": 896,
+          "created": "2026-04-19T08:06:17.353748+00:00"
+        },
+        "organization": {
+          "tile_count": 1194,
+          "created": "2026-04-19T08:06:17.305976+00:00"
+        },
+        "trendanalysis": {
+          "tile_count": 323,
+          "created": "2026-04-19T08:06:17.300178+00:00"
+        },
+        "prototyping": {
+          "tile_count": 333,
+          "created": "2026-04-19T08:06:17.282855+00:00"
+        },
+        "communication": {
+          "tile_count": 1035,
+          "created": "2026-04-19T08:06:17.367111+00:00"
+        },
+        "integration": {
+          "tile_count": 1388,
+          "created": "2026-04-19T08:06:17.394476+00:00"
+        },
+        "memory": {
+          "tile_count": 735,
+          "created": "2026-04-19T08:06:17.407854+00:00"
+        },
+        "documentation": {
+          "tile_count": 849,
+          "created": "2026-04-19T08:06:17.239103+00:00"
+        },
+        "research": {
+          "tile_count": 710,
+          "created": "2026-04-19T08:06:17.392119+00:00"
+        },
+        "modelexperiment": {
+          "tile_count": 790,
+          "created": "2026-04-19T08:06:17.362574+00:00"
+        },
+        "deadband_navigation": {
+          "tile_count": 1,
+          "created": "2026-04-19T08:06:03.118554+00:00"
+        },
+        "codearchaeology": {
+          "tile_count": 478,
+          "created": "2026-04-19T08:06:17.194171+00:00"
+        },
+        "sync-test": {
+          "tile_count": 1,
+          "created": "2026-04-19T23:55:44.461373+00:00"
+        },
+        "holodeck": {
+          "tile_count": 2,
+          "created": "2026-04-19T08:44:02.730066+00:00"
+        },
+        "fleethealth": {
+          "tile_count": 1378,
+          "created": "2026-04-19T08:06:17.212692+00:00"
+        }
+      },
+      "convergence_quality": 0.3,
+      "ensigns_injected": 0,
+      "post_cycle": {
+        "cycle": 2,
+        "timestamp": "2026-04-20T03:22:06.246147",
+        "tile_count": 10113,
+        "room_count": 15,
+        "avg_confidence": 0,
+        "confidence_std": 0.0,
+        "rooms": {
+          "testing": {
+            "tile_count": 896,
+            "created": "2026-04-19T08:06:17.353748+00:00"
+          },
+          "organization": {
+            "tile_count": 1194,
+            "created": "2026-04-19T08:06:17.305976+00:00"
+          },
+          "trendanalysis": {
+            "tile_count": 323,
+            "created": "2026-04-19T08:06:17.300178+00:00"
+          },
+          "prototyping": {
+            "tile_count": 333,
+            "created": "2026-04-19T08:06:17.282855+00:00"
+          },
+          "communication": {
+            "tile_count": 1035,
+            "created": "2026-04-19T08:06:17.367111+00:00"
+          },
+          "integration": {
+            "tile_count": 1388,
+            "created": "2026-04-19T08:06:17.394476+00:00"
+          },
+          "memory": {
+            "tile_count": 735,
+            "created": "2026-04-19T08:06:17.407854+00:00"
+          },
+          "documentation": {
+            "tile_count": 849,
+            "created": "2026-04-19T08:06:17.239103+00:00"
+          },
+          "research": {
+            "tile_count": 710,
+            "created": "2026-04-19T08:06:17.392119+00:00"
+          },
+          "modelexperiment": {
+            "tile_count": 790,
+            "created": "2026-04-19T08:06:17.362574+00:00"
+          },
+          "deadband_navigation": {
+            "tile_count": 1,
+            "created": "2026-04-19T08:06:03.118554+00:00"
+          },
+          "codearchaeology": {
+            "tile_count": 478,
+            "created": "2026-04-19T08:06:17.194171+00:00"
+          },
+          "sync-test": {
+            "tile_count": 1,
+            "created": "2026-04-19T23:55:44.461373+00:00"
+          },
+          "holodeck": {
+            "tile_count": 2,
+            "created": "2026-04-19T08:44:02.730066+00:00"
+          },
+          "fleethealth": {
+            "tile_count": 1378,
+            "created": "2026-04-19T08:06:17.212692+00:00"
+          }
+        },
+        "convergence_quality": 0.3
+      }
+    },
+    {
+      "cycle": 3,
+      "timestamp": "2026-04-20T03:22:06.248554",
+      "tile_count": 10113,
+      "room_count": 15,
+      "avg_confidence": 0,
+      "confidence_std": 0.0,
+      "rooms": {
+        "testing": {
+          "tile_count": 896,
+          "created": "2026-04-19T08:06:17.353748+00:00"
+        },
+        "organization": {
+          "tile_count": 1194,
+          "created": "2026-04-19T08:06:17.305976+00:00"
+        },
+        "trendanalysis": {
+          "tile_count": 323,
+          "created": "2026-04-19T08:06:17.300178+00:00"
+        },
+        "prototyping": {
+          "tile_count": 333,
+          "created": "2026-04-19T08:06:17.282855+00:00"
+        },
+        "communication": {
+          "tile_count": 1035,
+          "created": "2026-04-19T08:06:17.367111+00:00"
+        },
+        "integration": {
+          "tile_count": 1388,
+          "created": "2026-04-19T08:06:17.394476+00:00"
+        },
+        "memory": {
+          "tile_count": 735,
+          "created": "2026-04-19T08:06:17.407854+00:00"
+        },
+        "documentation": {
+          "tile_count": 849,
+          "created": "2026-04-19T08:06:17.239103+00:00"
+        },
+        "research": {
+          "tile_count": 710,
+          "created": "2026-04-19T08:06:17.392119+00:00"
+        },
+        "modelexperiment": {
+          "tile_count": 790,
+          "created": "2026-04-19T08:06:17.362574+00:00"
+        },
+        "deadband_navigation": {
+          "tile_count": 1,
+          "created": "2026-04-19T08:06:03.118554+00:00"
+        },
+        "codearchaeology": {
+          "tile_count": 478,
+          "created": "2026-04-19T08:06:17.194171+00:00"
+        },
+        "sync-test": {
+          "tile_count": 1,
+          "created": "2026-04-19T23:55:44.461373+00:00"
+        },
+        "holodeck": {
+          "tile_count": 2,
+          "created": "2026-04-19T08:44:02.730066+00:00"
+        },
+        "fleethealth": {
+          "tile_count": 1378,
+          "created": "2026-04-19T08:06:17.212692+00:00"
+        }
+      },
+      "convergence_quality": 0.3,
+      "ensigns_injected": 0,
+      "post_cycle": {
+        "cycle": 3,
+        "timestamp": "2026-04-20T03:22:06.250097",
+        "tile_count": 10113,
+        "room_count": 15,
+        "avg_confidence": 0,
+        "confidence_std": 0.0,
+        "rooms": {
+          "testing": {
+            "tile_count": 896,
+            "created": "2026-04-19T08:06:17.353748+00:00"
+          },
+          "organization": {
+            "tile_count": 1194,
+            "created": "2026-04-19T08:06:17.305976+00:00"
+          },
+          "trendanalysis": {
+            "tile_count": 323,
+            "created": "2026-04-19T08:06:17.300178+00:00"
+          },
+          "prototyping": {
+            "tile_count": 333,
+            "created": "2026-04-19T08:06:17.282855+00:00"
+          },
+          "communication": {
+            "tile_count": 1035,
+            "created": "2026-04-19T08:06:17.367111+00:00"
+          },
+          "integration": {
+            "tile_count": 1388,
+            "created": "2026-04-19T08:06:17.394476+00:00"
+          },
+          "memory": {
+            "tile_count": 735,
+            "created": "2026-04-19T08:06:17.407854+00:00"
+          },
+          "documentation": {
+            "tile_count": 849,
+            "created": "2026-04-19T08:06:17.239103+00:00"
+          },
+          "research": {
+            "tile_count": 710,
+            "created": "2026-04-19T08:06:17.392119+00:00"
+          },
+          "modelexperiment": {
+            "tile_count": 790,
+            "created": "2026-04-19T08:06:17.362574+00:00"
+          },
+          "deadband_navigation": {
+            "tile_count": 1,
+            "created": "2026-04-19T08:06:03.118554+00:00"
+          },
+          "codearchaeology": {
+            "tile_count": 478,
+            "created": "2026-04-19T08:06:17.194171+00:00"
+          },
+          "sync-test": {
+            "tile_count": 1,
+            "created": "2026-04-19T23:55:44.461373+00:00"
+          },
+          "holodeck": {
+            "tile_count": 2,
+            "created": "2026-04-19T08:44:02.730066+00:00"
+          },
+          "fleethealth": {
+            "tile_count": 1378,
+            "created": "2026-04-19T08:06:17.212692+00:00"
+          }
+        },
+        "convergence_quality": 0.3
+      }
+    },
+    {
+      "cycle": 4,
+      "timestamp": "2026-04-20T03:22:06.252698",
+      "tile_count": 10113,
+      "room_count": 15,
+      "avg_confidence": 0,
+      "confidence_std": 0.0,
+      "rooms": {
+        "testing": {
+          "tile_count": 896,
+          "created": "2026-04-19T08:06:17.353748+00:00"
+        },
+        "organization": {
+          "tile_count": 1194,
+          "created": "2026-04-19T08:06:17.305976+00:00"
+        },
+        "trendanalysis": {
+          "tile_count": 323,
+          "created": "2026-04-19T08:06:17.300178+00:00"
+        },
+        "prototyping": {
+          "tile_count": 333,
+          "created": "2026-04-19T08:06:17.282855+00:00"
+        },
+        "communication": {
+          "tile_count": 1035,
+          "created": "2026-04-19T08:06:17.367111+00:00"
+        },
+        "integration": {
+          "tile_count": 1388,
+          "created": "2026-04-19T08:06:17.394476+00:00"
+        },
+        "memory": {
+          "tile_count": 735,
+          "created": "2026-04-19T08:06:17.407854+00:00"
+        },
+        "documentation": {
+          "tile_count": 849,
+          "created": "2026-04-19T08:06:17.239103+00:00"
+        },
+        "research": {
+          "tile_count": 710,
+          "created": "2026-04-19T08:06:17.392119+00:00"
+        },
+        "modelexperiment": {
+          "tile_count": 790,
+          "created": "2026-04-19T08:06:17.362574+00:00"
+        },
+        "deadband_navigation": {
+          "tile_count": 1,
+          "created": "2026-04-19T08:06:03.118554+00:00"
+        },
+        "codearchaeology": {
+          "tile_count": 478,
+          "created": "2026-04-19T08:06:17.194171+00:00"
+        },
+        "sync-test": {
+          "tile_count": 1,
+          "created": "2026-04-19T23:55:44.461373+00:00"
+        },
+        "holodeck": {
+          "tile_count": 2,
+          "created": "2026-04-19T08:44:02.730066+00:00"
+        },
+        "fleethealth": {
+          "tile_count": 1378,
+          "created": "2026-04-19T08:06:17.212692+00:00"
+        }
+      },
+      "convergence_quality": 0.3,
+      "ensigns_injected": 0,
+      "post_cycle": {
+        "cycle": 4,
+        "timestamp": "2026-04-20T03:22:06.254192",
+        "tile_count": 10113,
+        "room_count": 15,
+        "avg_confidence": 0,
+        "confidence_std": 0.0,
+        "rooms": {
+          "testing": {
+            "tile_count": 896,
+            "created": "2026-04-19T08:06:17.353748+00:00"
+          },
+          "organization": {
+            "tile_count": 1194,
+            "created": "2026-04-19T08:06:17.305976+00:00"
+          },
+          "trendanalysis": {
+            "tile_count": 323,
+            "created": "2026-04-19T08:06:17.300178+00:00"
+          },
+          "prototyping": {
+            "tile_count": 333,
+            "created": "2026-04-19T08:06:17.282855+00:00"
+          },
+          "communication": {
+            "tile_count": 1035,
+            "created": "2026-04-19T08:06:17.367111+00:00"
+          },
+          "integration": {
+            "tile_count": 1388,
+            "created": "2026-04-19T08:06:17.394476+00:00"
+          },
+          "memory": {
+            "tile_count": 735,
+            "created": "2026-04-19T08:06:17.407854+00:00"
+          },
+          "documentation": {
+            "tile_count": 849,
+            "created": "2026-04-19T08:06:17.239103+00:00"
+          },
+          "research": {
+            "tile_count": 710,
+            "created": "2026-04-19T08:06:17.392119+00:00"
+          },
+          "modelexperiment": {
+            "tile_count": 790,
+            "created": "2026-04-19T08:06:17.362574+00:00"
+          },
+          "deadband_navigation": {
+            "tile_count": 1,
+            "created": "2026-04-19T08:06:03.118554+00:00"
+          },
+          "codearchaeology": {
+            "tile_count": 478,
+            "created": "2026-04-19T08:06:17.194171+00:00"
+          },
+          "sync-test": {
+            "tile_count": 1,
+            "created": "2026-04-19T23:55:44.461373+00:00"
+          },
+          "holodeck": {
+            "tile_count": 2,
+            "created": "2026-04-19T08:44:02.730066+00:00"
+          },
+          "fleethealth": {
+            "tile_count": 1378,
+            "created": "2026-04-19T08:06:17.212692+00:00"
+          }
+        },
+        "convergence_quality": 0.3
+      }
+    },
+    {
+      "cycle": 5,
+      "timestamp": "2026-04-20T03:22:06.256973",
+      "tile_count": 10113,
+      "room_count": 15,
+      "avg_confidence": 0,
+      "confidence_std": 0.0,
+      "rooms": {
+        "testing": {
+          "tile_count": 896,
+          "created": "2026-04-19T08:06:17.353748+00:00"
+        },
+        "organization": {
+          "tile_count": 1194,
+          "created": "2026-04-19T08:06:17.305976+00:00"
+        },
+        "trendanalysis": {
+          "tile_count": 323,
+          "created": "2026-04-19T08:06:17.300178+00:00"
+        },
+        "prototyping": {
+          "tile_count": 333,
+          "created": "2026-04-19T08:06:17.282855+00:00"
+        },
+        "communication": {
+          "tile_count": 1035,
+          "created": "2026-04-19T08:06:17.367111+00:00"
+        },
+        "integration": {
+          "tile_count": 1388,
+          "created": "2026-04-19T08:06:17.394476+00:00"
+        },
+        "memory": {
+          "tile_count": 735,
+          "created": "2026-04-19T08:06:17.407854+00:00"
+        },
+        "documentation": {
+          "tile_count": 849,
+          "created": "2026-04-19T08:06:17.239103+00:00"
+        },
+        "research": {
+          "tile_count": 710,
+          "created": "2026-04-19T08:06:17.392119+00:00"
+        },
+        "modelexperiment": {
+          "tile_count": 790,
+          "created": "2026-04-19T08:06:17.362574+00:00"
+        },
+        "deadband_navigation": {
+          "tile_count": 1,
+          "created": "2026-04-19T08:06:03.118554+00:00"
+        },
+        "codearchaeology": {
+          "tile_count": 478,
+          "created": "2026-04-19T08:06:17.194171+00:00"
+        },
+        "sync-test": {
+          "tile_count": 1,
+          "created": "2026-04-19T23:55:44.461373+00:00"
+        },
+        "holodeck": {
+          "tile_count": 2,
+          "created": "2026-04-19T08:44:02.730066+00:00"
+        },
+        "fleethealth": {
+          "tile_count": 1378,
+          "created": "2026-04-19T08:06:17.212692+00:00"
+        }
+      },
+      "convergence_quality": 0.3,
+      "ensigns_injected": 0,
+      "perturbation_injected": false,
+      "post_cycle": {
+        "cycle": 5,
+        "timestamp": "2026-04-20T03:22:06.554957",
+        "tile_count": 10113,
+        "room_count": 15,
+        "avg_confidence": 0,
+        "confidence_std": 0.0,
+        "rooms": {
+          "testing": {
+            "tile_count": 896,
+            "created": "2026-04-19T08:06:17.353748+00:00"
+          },
+          "organization": {
+            "tile_count": 1194,
+            "created": "2026-04-19T08:06:17.305976+00:00"
+          },
+          "trendanalysis": {
+            "tile_count": 323,
+            "created": "2026-04-19T08:06:17.300178+00:00"
+          },
+          "prototyping": {
+            "tile_count": 333,
+            "created": "2026-04-19T08:06:17.282855+00:00"
+          },
+          "communication": {
+            "tile_count": 1035,
+            "created": "2026-04-19T08:06:17.367111+00:00"
+          },
+          "integration": {
+            "tile_count": 1388,
+            "created": "2026-04-19T08:06:17.394476+00:00"
+          },
+          "memory": {
+            "tile_count": 735,
+            "created": "2026-04-19T08:06:17.407854+00:00"
+          },
+          "documentation": {
+            "tile_count": 849,
+            "created": "2026-04-19T08:06:17.239103+00:00"
+          },
+          "research": {
+            "tile_count": 710,
+            "created": "2026-04-19T08:06:17.392119+00:00"
+          },
+          "modelexperiment": {
+            "tile_count": 790,
+            "created": "2026-04-19T08:06:17.362574+00:00"
+          },
+          "deadband_navigation": {
+            "tile_count": 1,
+            "created": "2026-04-19T08:06:03.118554+00:00"
+          },
+          "codearchaeology": {
+            "tile_count": 478,
+            "created": "2026-04-19T08:06:17.194171+00:00"
+          },
+          "sync-test": {
+            "tile_count": 1,
+            "created": "2026-04-19T23:55:44.461373+00:00"
+          },
+          "holodeck": {
+            "tile_count": 2,
+            "created": "2026-04-19T08:44:02.730066+00:00"
+          },
+          "fleethealth": {
+            "tile_count": 1378,
+            "created": "2026-04-19T08:06:17.212692+00:00"
+          }
+        },
+        "convergence_quality": 0.3
+      }
+    },
+    {
+      "cycle": 6,
+      "timestamp": "2026-04-20T03:22:06.558238",
+      "tile_count": 10113,
+      "room_count": 15,
+      "avg_confidence": 0,
+      "confidence_std": 0.0,
+      "rooms": {
+        "testing": {
+          "tile_count": 896,
+          "created": "2026-04-19T08:06:17.353748+00:00"
+        },
+        "organization": {
+          "tile_count": 1194,
+          "created": "2026-04-19T08:06:17.305976+00:00"
+        },
+        "trendanalysis": {
+          "tile_count": 323,
+          "created": "2026-04-19T08:06:17.300178+00:00"
+        },
+        "prototyping": {
+          "tile_count": 333,
+          "created": "2026-04-19T08:06:17.282855+00:00"
+        },
+        "communication": {
+          "tile_count": 1035,
+          "created": "2026-04-19T08:06:17.367111+00:00"
+        },
+        "integration": {
+          "tile_count": 1388,
+          "created": "2026-04-19T08:06:17.394476+00:00"
+        },
+        "memory": {
+          "tile_count": 735,
+          "created": "2026-04-19T08:06:17.407854+00:00"
+        },
+        "documentation": {
+          "tile_count": 849,
+          "created": "2026-04-19T08:06:17.239103+00:00"
+        },
+        "research": {
+          "tile_count": 710,
+          "created": "2026-04-19T08:06:17.392119+00:00"
+        },
+        "modelexperiment": {
+          "tile_count": 790,
+          "created": "2026-04-19T08:06:17.362574+00:00"
+        },
+        "deadband_navigation": {
+          "tile_count": 1,
+          "created": "2026-04-19T08:06:03.118554+00:00"
+        },
+        "codearchaeology": {
+          "tile_count": 478,
+          "created": "2026-04-19T08:06:17.194171+00:00"
+        },
+        "sync-test": {
+          "tile_count": 1,
+          "created": "2026-04-19T23:55:44.461373+00:00"
+        },
+        "holodeck": {
+          "tile_count": 2,
+          "created": "2026-04-19T08:44:02.730066+00:00"
+        },
+        "fleethealth": {
+          "tile_count": 1378,
+          "created": "2026-04-19T08:06:17.212692+00:00"
+        }
+      },
+      "convergence_quality": 0.3,
+      "ensigns_injected": 0,
+      "post_cycle": {
+        "cycle": 6,
+        "timestamp": "2026-04-20T03:22:06.559819",
+        "tile_count": 10113,
+        "room_count": 15,
+        "avg_confidence": 0,
+        "confidence_std": 0.0,
+        "rooms": {
+          "testing": {
+            "tile_count": 896,
+            "created": "2026-04-19T08:06:17.353748+00:00"
+          },
+          "organization": {
+            "tile_count": 1194,
+            "created": "2026-04-19T08:06:17.305976+00:00"
+          },
+          "trendanalysis": {
+            "tile_count": 323,
+            "created": "2026-04-19T08:06:17.300178+00:00"
+          },
+          "prototyping": {
+            "tile_count": 333,
+            "created": "2026-04-19T08:06:17.282855+00:00"
+          },
+          "communication": {
+            "tile_count": 1035,
+            "created": "2026-04-19T08:06:17.367111+00:00"
+          },
+          "integration": {
+            "tile_count": 1388,
+            "created": "2026-04-19T08:06:17.394476+00:00"
+          },
+          "memory": {
+            "tile_count": 735,
+            "created": "2026-04-19T08:06:17.407854+00:00"
+          },
+          "documentation": {
+            "tile_count": 849,
+            "created": "2026-04-19T08:06:17.239103+00:00"
+          },
+          "research": {
+            "tile_count": 710,
+            "created": "2026-04-19T08:06:17.392119+00:00"
+          },
+          "modelexperiment": {
+            "tile_count": 790,
+            "created": "2026-04-19T08:06:17.362574+00:00"
+          },
+          "deadband_navigation": {
+            "tile_count": 1,
+            "created": "2026-04-19T08:06:03.118554+00:00"
+          },
+          "codearchaeology": {
+            "tile_count": 478,
+            "created": "2026-04-19T08:06:17.194171+00:00"
+          },
+          "sync-test": {
+            "tile_count": 1,
+            "created": "2026-04-19T23:55:44.461373+00:00"
+          },
+          "holodeck": {
+            "tile_count": 2,
+            "created": "2026-04-19T08:44:02.730066+00:00"
+          },
+          "fleethealth": {
+            "tile_count": 1378,
+            "created": "2026-04-19T08:06:17.212692+00:00"
+          }
+        },
+        "convergence_quality": 0.3
+      }
+    },
+    {
+      "cycle": 7,
+      "timestamp": "2026-04-20T03:22:06.563170",
+      "tile_count": 10113,
+      "room_count": 15,
+      "avg_confidence": 0,
+      "confidence_std": 0.0,
+      "rooms": {
+        "testing": {
+          "tile_count": 896,
+          "created": "2026-04-19T08:06:17.353748+00:00"
+        },
+        "organization": {
+          "tile_count": 1194,
+          "created": "2026-04-19T08:06:17.305976+00:00"
+        },
+        "trendanalysis": {
+          "tile_count": 323,
+          "created": "2026-04-19T08:06:17.300178+00:00"
+        },
+        "prototyping": {
+          "tile_count": 333,
+          "created": "2026-04-19T08:06:17.282855+00:00"
+        },
+        "communication": {
+          "tile_count": 1035,
+          "created": "2026-04-19T08:06:17.367111+00:00"
+        },
+        "integration": {
+          "tile_count": 1388,
+          "created": "2026-04-19T08:06:17.394476+00:00"
+        },
+        "memory": {
+          "tile_count": 735,
+          "created": "2026-04-19T08:06:17.407854+00:00"
+        },
+        "documentation": {
+          "tile_count": 849,
+          "created": "2026-04-19T08:06:17.239103+00:00"
+        },
+        "research": {
+          "tile_count": 710,
+          "created": "2026-04-19T08:06:17.392119+00:00"
+        },
+        "modelexperiment": {
+          "tile_count": 790,
+          "created": "2026-04-19T08:06:17.362574+00:00"
+        },
+        "deadband_navigation": {
+          "tile_count": 1,
+          "created": "2026-04-19T08:06:03.118554+00:00"
+        },
+        "codearchaeology": {
+          "tile_count": 478,
+          "created": "2026-04-19T08:06:17.194171+00:00"
+        },
+        "sync-test": {
+          "tile_count": 1,
+          "created": "2026-04-19T23:55:44.461373+00:00"
+        },
+        "holodeck": {
+          "tile_count": 2,
+          "created": "2026-04-19T08:44:02.730066+00:00"
+        },
+        "fleethealth": {
+          "tile_count": 1378,
+          "created": "2026-04-19T08:06:17.212692+00:00"
+        }
+      },
+      "convergence_quality": 0.3,
+      "ensigns_injected": 0,
+      "post_cycle": {
+        "cycle": 7,
+        "timestamp": "2026-04-20T03:22:06.564717",
+        "tile_count": 10113,
+        "room_count": 15,
+        "avg_confidence": 0,
+        "confidence_std": 0.0,
+        "rooms": {
+          "testing": {
+            "tile_count": 896,
+            "created": "2026-04-19T08:06:17.353748+00:00"
+          },
+          "organization": {
+            "tile_count": 1194,
+            "created": "2026-04-19T08:06:17.305976+00:00"
+          },
+          "trendanalysis": {
+            "tile_count": 323,
+            "created": "2026-04-19T08:06:17.300178+00:00"
+          },
+          "prototyping": {
+            "tile_count": 333,
+            "created": "2026-04-19T08:06:17.282855+00:00"
+          },
+          "communication": {
+            "tile_count": 1035,
+            "created": "2026-04-19T08:06:17.367111+00:00"
+          },
+          "integration": {
+            "tile_count": 1388,
+            "created": "2026-04-19T08:06:17.394476+00:00"
+          },
+          "memory": {
+            "tile_count": 735,
+            "created": "2026-04-19T08:06:17.407854+00:00"
+          },
+          "documentation": {
+            "tile_count": 849,
+            "created": "2026-04-19T08:06:17.239103+00:00"
+          },
+          "research": {
+            "tile_count": 710,
+            "created": "2026-04-19T08:06:17.392119+00:00"
+          },
+          "modelexperiment": {
+            "tile_count": 790,
+            "created": "2026-04-19T08:06:17.362574+00:00"
+          },
+          "deadband_navigation": {
+            "tile_count": 1,
+            "created": "2026-04-19T08:06:03.118554+00:00"
+          },
+          "codearchaeology": {
+            "tile_count": 478,
+            "created": "2026-04-19T08:06:17.194171+00:00"
+          },
+          "sync-test": {
+            "tile_count": 1,
+            "created": "2026-04-19T23:55:44.461373+00:00"
+          },
+          "holodeck": {
+            "tile_count": 2,
+            "created": "2026-04-19T08:44:02.730066+00:00"
+          },
+          "fleethealth": {
+            "tile_count": 1378,
+            "created": "2026-04-19T08:06:17.212692+00:00"
+          }
+        },
+        "convergence_quality": 0.3
+      }
+    },
+    {
+      "cycle": 8,
+      "timestamp": "2026-04-20T03:22:06.568197",
+      "tile_count": 10113,
+      "room_count": 15,
+      "avg_confidence": 0,
+      "confidence_std": 0.0,
+      "rooms": {
+        "testing": {
+          "tile_count": 896,
+          "created": "2026-04-19T08:06:17.353748+00:00"
+        },
+        "organization": {
+          "tile_count": 1194,
+          "created": "2026-04-19T08:06:17.305976+00:00"
+        },
+        "trendanalysis": {
+          "tile_count": 323,
+          "created": "2026-04-19T08:06:17.300178+00:00"
+        },
+        "prototyping": {
+          "tile_count": 333,
+          "created": "2026-04-19T08:06:17.282855+00:00"
+        },
+        "communication": {
+          "tile_count": 1035,
+          "created": "2026-04-19T08:06:17.367111+00:00"
+        },
+        "integration": {
+          "tile_count": 1388,
+          "created": "2026-04-19T08:06:17.394476+00:00"
+        },
+        "memory": {
+          "tile_count": 735,
+          "created": "2026-04-19T08:06:17.407854+00:00"
+        },
+        "documentation": {
+          "tile_count": 849,
+          "created": "2026-04-19T08:06:17.239103+00:00"
+        },
+        "research": {
+          "tile_count": 710,
+          "created": "2026-04-19T08:06:17.392119+00:00"
+        },
+        "modelexperiment": {
+          "tile_count": 790,
+          "created": "2026-04-19T08:06:17.362574+00:00"
+        },
+        "deadband_navigation": {
+          "tile_count": 1,
+          "created": "2026-04-19T08:06:03.118554+00:00"
+        },
+        "codearchaeology": {
+          "tile_count": 478,
+          "created": "2026-04-19T08:06:17.194171+00:00"
+        },
+        "sync-test": {
+          "tile_count": 1,
+          "created": "2026-04-19T23:55:44.461373+00:00"
+        },
+        "holodeck": {
+          "tile_count": 2,
+          "created": "2026-04-19T08:44:02.730066+00:00"
+        },
+        "fleethealth": {
+          "tile_count": 1378,
+          "created": "2026-04-19T08:06:17.212692+00:00"
+        }
+      },
+      "convergence_quality": 0.3,
+      "ensigns_injected": 0,
+      "post_cycle": {
+        "cycle": 8,
+        "timestamp": "2026-04-20T03:22:06.569757",
+        "tile_count": 10113,
+        "room_count": 15,
+        "avg_confidence": 0,
+        "confidence_std": 0.0,
+        "rooms": {
+          "testing": {
+            "tile_count": 896,
+            "created": "2026-04-19T08:06:17.353748+00:00"
+          },
+          "organization": {
+            "tile_count": 1194,
+            "created": "2026-04-19T08:06:17.305976+00:00"
+          },
+          "trendanalysis": {
+            "tile_count": 323,
+            "created": "2026-04-19T08:06:17.300178+00:00"
+          },
+          "prototyping": {
+            "tile_count": 333,
+            "created": "2026-04-19T08:06:17.282855+00:00"
+          },
+          "communication": {
+            "tile_count": 1035,
+            "created": "2026-04-19T08:06:17.367111+00:00"
+          },
+          "integration": {
+            "tile_count": 1388,
+            "created": "2026-04-19T08:06:17.394476+00:00"
+          },
+          "memory": {
+            "tile_count": 735,
+            "created": "2026-04-19T08:06:17.407854+00:00"
+          },
+          "documentation": {
+            "tile_count": 849,
+            "created": "2026-04-19T08:06:17.239103+00:00"
+          },
+          "research": {
+            "tile_count": 710,
+            "created": "2026-04-19T08:06:17.392119+00:00"
+          },
+          "modelexperiment": {
+            "tile_count": 790,
+            "created": "2026-04-19T08:06:17.362574+00:00"
+          },
+          "deadband_navigation": {
+            "tile_count": 1,
+            "created": "2026-04-19T08:06:03.118554+00:00"
+          },
+          "codearchaeology": {
+            "tile_count": 478,
+            "created": "2026-04-19T08:06:17.194171+00:00"
+          },
+          "sync-test": {
+            "tile_count": 1,
+            "created": "2026-04-19T23:55:44.461373+00:00"
+          },
+          "holodeck": {
+            "tile_count": 2,
+            "created": "2026-04-19T08:44:02.730066+00:00"
+          },
+          "fleethealth": {
+            "tile_count": 1378,
+            "created": "2026-04-19T08:06:17.212692+00:00"
+          }
+        },
+        "convergence_quality": 0.3
+      }
+    },
+    {
+      "cycle": 9,
+      "timestamp": "2026-04-20T03:22:06.573445",
+      "tile_count": 10113,
+      "room_count": 15,
+      "avg_confidence": 0,
+      "confidence_std": 0.0,
+      "rooms": {
+        "testing": {
+          "tile_count": 896,
+          "created": "2026-04-19T08:06:17.353748+00:00"
+        },
+        "organization": {
+          "tile_count": 1194,
+          "created": "2026-04-19T08:06:17.305976+00:00"
+        },
+        "trendanalysis": {
+          "tile_count": 323,
+          "created": "2026-04-19T08:06:17.300178+00:00"
+        },
+        "prototyping": {
+          "tile_count": 333,
+          "created": "2026-04-19T08:06:17.282855+00:00"
+        },
+        "communication": {
+          "tile_count": 1035,
+          "created": "2026-04-19T08:06:17.367111+00:00"
+        },
+        "integration": {
+          "tile_count": 1388,
+          "created": "2026-04-19T08:06:17.394476+00:00"
+        },
+        "memory": {
+          "tile_count": 735,
+          "created": "2026-04-19T08:06:17.407854+00:00"
+        },
+        "documentation": {
+          "tile_count": 849,
+          "created": "2026-04-19T08:06:17.239103+00:00"
+        },
+        "research": {
+          "tile_count": 710,
+          "created": "2026-04-19T08:06:17.392119+00:00"
+        },
+        "modelexperiment": {
+          "tile_count": 790,
+          "created": "2026-04-19T08:06:17.362574+00:00"
+        },
+        "deadband_navigation": {
+          "tile_count": 1,
+          "created": "2026-04-19T08:06:03.118554+00:00"
+        },
+        "codearchaeology": {
+          "tile_count": 478,
+          "created": "2026-04-19T08:06:17.194171+00:00"
+        },
+        "sync-test": {
+          "tile_count": 1,
+          "created": "2026-04-19T23:55:44.461373+00:00"
+        },
+        "holodeck": {
+          "tile_count": 2,
+          "created": "2026-04-19T08:44:02.730066+00:00"
+        },
+        "fleethealth": {
+          "tile_count": 1378,
+          "created": "2026-04-19T08:06:17.212692+00:00"
+        }
+      },
+      "convergence_quality": 0.3,
+      "ensigns_injected": 0,
+      "post_cycle": {
+        "cycle": 9,
+        "timestamp": "2026-04-20T03:22:06.575031",
+        "tile_count": 10113,
+        "room_count": 15,
+        "avg_confidence": 0,
+        "confidence_std": 0.0,
+        "rooms": {
+          "testing": {
+            "tile_count": 896,
+            "created": "2026-04-19T08:06:17.353748+00:00"
+          },
+          "organization": {
+            "tile_count": 1194,
+            "created": "2026-04-19T08:06:17.305976+00:00"
+          },
+          "trendanalysis": {
+            "tile_count": 323,
+            "created": "2026-04-19T08:06:17.300178+00:00"
+          },
+          "prototyping": {
+            "tile_count": 333,
+            "created": "2026-04-19T08:06:17.282855+00:00"
+          },
+          "communication": {
+            "tile_count": 1035,
+            "created": "2026-04-19T08:06:17.367111+00:00"
+          },
+          "integration": {
+            "tile_count": 1388,
+            "created": "2026-04-19T08:06:17.394476+00:00"
+          },
+          "memory": {
+            "tile_count": 735,
+            "created": "2026-04-19T08:06:17.407854+00:00"
+          },
+          "documentation": {
+            "tile_count": 849,
+            "created": "2026-04-19T08:06:17.239103+00:00"
+          },
+          "research": {
+            "tile_count": 710,
+            "created": "2026-04-19T08:06:17.392119+00:00"
+          },
+          "modelexperiment": {
+            "tile_count": 790,
+            "created": "2026-04-19T08:06:17.362574+00:00"
+          },
+          "deadband_navigation": {
+            "tile_count": 1,
+            "created": "2026-04-19T08:06:03.118554+00:00"
+          },
+          "codearchaeology": {
+            "tile_count": 478,
+            "created": "2026-04-19T08:06:17.194171+00:00"
+          },
+          "sync-test": {
+            "tile_count": 1,
+            "created": "2026-04-19T23:55:44.461373+00:00"
+          },
+          "holodeck": {
+            "tile_count": 2,
+            "created": "2026-04-19T08:44:02.730066+00:00"
+          },
+          "fleethealth": {
+            "tile_count": 1378,
+            "created": "2026-04-19T08:06:17.212692+00:00"
+          }
+        },
+        "convergence_quality": 0.3
+      }
+    },
+    {
+      "cycle": 10,
+      "timestamp": "2026-04-20T03:22:06.579035",
+      "tile_count": 10113,
+      "room_count": 15,
+      "avg_confidence": 0,
+      "confidence_std": 0.0,
+      "rooms": {
+        "testing": {
+          "tile_count": 896,
+          "created": "2026-04-19T08:06:17.353748+00:00"
+        },
+        "organization": {
+          "tile_count": 1194,
+          "created": "2026-04-19T08:06:17.305976+00:00"
+        },
+        "trendanalysis": {
+          "tile_count": 323,
+          "created": "2026-04-19T08:06:17.300178+00:00"
+        },
+        "prototyping": {
+          "tile_count": 333,
+          "created": "2026-04-19T08:06:17.282855+00:00"
+        },
+        "communication": {
+          "tile_count": 1035,
+          "created": "2026-04-19T08:06:17.367111+00:00"
+        },
+        "integration": {
+          "tile_count": 1388,
+          "created": "2026-04-19T08:06:17.394476+00:00"
+        },
+        "memory": {
+          "tile_count": 735,
+          "created": "2026-04-19T08:06:17.407854+00:00"
+        },
+        "documentation": {
+          "tile_count": 849,
+          "created": "2026-04-19T08:06:17.239103+00:00"
+        },
+        "research": {
+          "tile_count": 710,
+          "created": "2026-04-19T08:06:17.392119+00:00"
+        },
+        "modelexperiment": {
+          "tile_count": 790,
+          "created": "2026-04-19T08:06:17.362574+00:00"
+        },
+        "deadband_navigation": {
+          "tile_count": 1,
+          "created": "2026-04-19T08:06:03.118554+00:00"
+        },
+        "codearchaeology": {
+          "tile_count": 478,
+          "created": "2026-04-19T08:06:17.194171+00:00"
+        },
+        "sync-test": {
+          "tile_count": 1,
+          "created": "2026-04-19T23:55:44.461373+00:00"
+        },
+        "holodeck": {
+          "tile_count": 2,
+          "created": "2026-04-19T08:44:02.730066+00:00"
+        },
+        "fleethealth": {
+          "tile_count": 1378,
+          "created": "2026-04-19T08:06:17.212692+00:00"
+        }
+      },
+      "convergence_quality": 0.3,
+      "ensigns_injected": 0,
+      "post_cycle": {
+        "cycle": 10,
+        "timestamp": "2026-04-20T03:22:06.580535",
+        "tile_count": 10113,
+        "room_count": 15,
+        "avg_confidence": 0,
+        "confidence_std": 0.0,
+        "rooms": {
+          "testing": {
+            "tile_count": 896,
+            "created": "2026-04-19T08:06:17.353748+00:00"
+          },
+          "organization": {
+            "tile_count": 1194,
+            "created": "2026-04-19T08:06:17.305976+00:00"
+          },
+          "trendanalysis": {
+            "tile_count": 323,
+            "created": "2026-04-19T08:06:17.300178+00:00"
+          },
+          "prototyping": {
+            "tile_count": 333,
+            "created": "2026-04-19T08:06:17.282855+00:00"
+          },
+          "communication": {
+            "tile_count": 1035,
+            "created": "2026-04-19T08:06:17.367111+00:00"
+          },
+          "integration": {
+            "tile_count": 1388,
+            "created": "2026-04-19T08:06:17.394476+00:00"
+          },
+          "memory": {
+            "tile_count": 735,
+            "created": "2026-04-19T08:06:17.407854+00:00"
+          },
+          "documentation": {
+            "tile_count": 849,
+            "created": "2026-04-19T08:06:17.239103+00:00"
+          },
+          "research": {
+            "tile_count": 710,
+            "created": "2026-04-19T08:06:17.392119+00:00"
+          },
+          "modelexperiment": {
+            "tile_count": 790,
+            "created": "2026-04-19T08:06:17.362574+00:00"
+          },
+          "deadband_navigation": {
+            "tile_count": 1,
+            "created": "2026-04-19T08:06:03.118554+00:00"
+          },
+          "codearchaeology": {
+            "tile_count": 478,
+            "created": "2026-04-19T08:06:17.194171+00:00"
+          },
+          "sync-test": {
+            "tile_count": 1,
+            "created": "2026-04-19T23:55:44.461373+00:00"
+          },
+          "holodeck": {
+            "tile_count": 2,
+            "created": "2026-04-19T08:44:02.730066+00:00"
+          },
+          "fleethealth": {
+            "tile_count": 1378,
+            "created": "2026-04-19T08:06:17.212692+00:00"
+          }
+        },
+        "convergence_quality": 0.3
+      }
+    }
+  ],
+  "perturbation_cycle": 5,
+  "config": {
+    "plato_server": "http://localhost:8847",
+    "cycle_count": 10,
+    "cycle_duration_sec": 300,
+    "perturbation_noise_percent": 20,
+    "perturbation_tile_count": 200
+  },
+  "baseline": {
+    "cycle": 0,
+    "timestamp": "2026-04-20T03:22:06.239030",
+    "tile_count": 10113,
+    "room_count": 15,
+    "avg_confidence": 0,
+    "confidence_std": 0.0,
+    "rooms": {
+      "testing": {
+        "tile_count": 896,
+        "created": "2026-04-19T08:06:17.353748+00:00"
+      },
+      "organization": {
+        "tile_count": 1194,
+        "created": "2026-04-19T08:06:17.305976+00:00"
+      },
+      "trendanalysis": {
+        "tile_count": 323,
+        "created": "2026-04-19T08:06:17.300178+00:00"
+      },
+      "prototyping": {
+        "tile_count": 333,
+        "created": "2026-04-19T08:06:17.282855+00:00"
+      },
+      "communication": {
+        "tile_count": 1035,
+        "created": "2026-04-19T08:06:17.367111+00:00"
+      },
+      "integration": {
+        "tile_count": 1388,
+        "created": "2026-04-19T08:06:17.394476+00:00"
+      },
+      "memory": {
+        "tile_count": 735,
+        "created": "2026-04-19T08:06:17.407854+00:00"
+      },
+      "documentation": {
+        "tile_count": 849,
+        "created": "2026-04-19T08:06:17.239103+00:00"
+      },
+      "research": {
+        "tile_count": 710,
+        "created": "2026-04-19T08:06:17.392119+00:00"
+      },
+      "modelexperiment": {
+        "tile_count": 790,
+        "created": "2026-04-19T08:06:17.362574+00:00"
+      },
+      "deadband_navigation": {
+        "tile_count": 1,
+        "created": "2026-04-19T08:06:03.118554+00:00"
+      },
+      "codearchaeology": {
+        "tile_count": 478,
+        "created": "2026-04-19T08:06:17.194171+00:00"
+      },
+      "sync-test": {
+        "tile_count": 1,
+        "created": "2026-04-19T23:55:44.461373+00:00"
+      },
+      "holodeck": {
+        "tile_count": 2,
+        "created": "2026-04-19T08:44:02.730066+00:00"
+      },
+      "fleethealth": {
+        "tile_count": 1378,
+        "created": "2026-04-19T08:06:17.212692+00:00"
+      }
+    },
+    "convergence_quality": 0.3
+  }
+}

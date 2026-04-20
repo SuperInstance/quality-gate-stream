@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flywheel Convergence Dashboard</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: #e4e4e7;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .dashboard {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .header {
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            background: linear-gradient(90deg, #60a5fa, #a78bfa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .header .subtitle {
+            color: #a1a1aa;
+            font-size: 1rem;
+        }
+
+        .status-bar {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .status-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 20px;
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .status-card .label {
+            color: #a1a1aa;
+            font-size: 0.875rem;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .status-card .value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #e4e4e7;
+        }
+
+        .status-card .trend {
+            font-size: 0.875rem;
+            margin-top: 8px;
+        }
+
+        .trend.up { color: #4ade80; }
+        .trend.down { color: #f87171; }
+        .trend.stable { color: #fbbf24; }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(600px, 1fr));
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            padding: 24px;
+        }
+
+        .card h2 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: #e4e4e7;
+        }
+
+        .chart-container {
+            position: relative;
+            height: 300px;
+            margin-bottom: 20px;
+        }
+
+        canvas {
+            width: 100% !important;
+            height: 100% !important;
+        }
+
+        .gauge-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 200px;
+        }
+
+        .gauge {
+            position: relative;
+            width: 180px;
+            height: 180px;
+        }
+
+        .gauge-bg {
+            fill: none;
+            stroke: rgba(255, 255, 255, 0.1);
+            stroke-width: 12;
+        }
+
+        .gauge-fill {
+            fill: none;
+            stroke: url(#gaugeGradient);
+            stroke-width: 12;
+            stroke-linecap: round;
+            transform: rotate(-90deg);
+            transform-origin: center;
+            transition: stroke-dashoffset 0.5s ease;
+        }
+
+        .gauge-value {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+        }
+
+        .gauge-value .number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #e4e4e7;
+        }
+
+        .gauge-value .label {
+            font-size: 0.75rem;
+            color: #a1a1aa;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .heatmap {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+            gap: 8px;
+        }
+
+        .heatmap-cell {
+            aspect-ratio: 1;
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 10px;
+            font-size: 0.75rem;
+            transition: transform 0.2s ease;
+            cursor: pointer;
+        }
+
+        .heatmap-cell:hover {
+            transform: scale(1.05);
+        }
+
+        .heatmap-cell .room-name {
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .heatmap-cell .tile-count {
+            font-size: 0.688rem;
+            opacity: 0.8;
+        }
+
+        .legend {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+            justify-content: center;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.875rem;
+            color: #a1a1aa;
+        }
+
+        .legend-color {
+            width: 16px;
+            height: 16px;
+            border-radius: 4px;
+        }
+
+        .last-update {
+            text-align: center;
+            color: #71717a;
+            font-size: 0.875rem;
+            margin-top: 20px;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: #a1a1aa;
+        }
+
+        .error {
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            border-radius: 12px;
+            padding: 20px;
+            color: #fca5a5;
+            text-align: center;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .loading {
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        .convergence-badge {
+            display: inline-block;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-left: 10px;
+        }
+
+        .convergence-badge.excellent { background: rgba(74, 222, 128, 0.2); color: #4ade80; }
+        .convergence-badge.good { background: rgba(96, 165, 250, 0.2); color: #60a5fa; }
+        .convergence-badge.partial { background: rgba(251, 191, 36, 0.2); color: #fbbf24; }
+        .convergence-badge.poor { background: rgba(248, 113, 113, 0.2); color: #f87171; }
+    </style>
+</head>
+<body>
+    <div class="dashboard">
+        <div class="header">
+            <h1>Flywheel Convergence Dashboard</h1>
+            <div class="subtitle">Real-time monitoring of zeroclaw agent flywheel dynamics</div>
+        </div>
+
+        <div id="status-bar" class="status-bar">
+            <div class="status-card">
+                <div class="label">Total Tiles</div>
+                <div class="value" id="total-tiles">--</div>
+                <div class="trend" id="tiles-trend"></div>
+            </div>
+            <div class="status-card">
+                <div class="label">Active Rooms</div>
+                <div class="value" id="active-rooms">--</div>
+                <div class="trend" id="rooms-trend"></div>
+            </div>
+            <div class="status-card">
+                <div class="label">Avg Confidence</div>
+                <div class="value" id="avg-confidence">--</div>
+                <div class="trend" id="confidence-trend"></div>
+            </div>
+            <div class="status-card">
+                <div class="label">Current Cycle</div>
+                <div class="value" id="current-cycle">--</div>
+                <div class="trend">of <span id="max-cycle">10</span></div>
+            </div>
+        </div>
+
+        <div class="grid">
+            <div class="card">
+                <h2>
+                    Tiles Over Time
+                    <span class="convergence-badge" id="convergence-badge">--</span>
+                </h2>
+                <div class="chart-container">
+                    <canvas id="tiles-chart"></canvas>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>Convergence Quality</h2>
+                <div class="gauge-container">
+                    <svg class="gauge" viewBox="0 0 100 100">
+                        <defs>
+                            <linearGradient id="gaugeGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                                <stop offset="0%" style="stop-color:#ef4444" />
+                                <stop offset="50%" style="stop-color:#fbbf24" />
+                                <stop offset="100%" style="stop-color:#4ade80" />
+                            </linearGradient>
+                        </defs>
+                        <circle class="gauge-bg" cx="50" cy="50" r="40" />
+                        <circle class="gauge-fill" id="gauge-fill" cx="50" cy="50" r="40"
+                                stroke-dasharray="251.2" stroke-dashoffset="251.2" />
+                    </svg>
+                    <div class="gauge-value">
+                        <div class="number" id="gauge-value">--</div>
+                        <div class="label">Quality</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" style="grid-column: 1 / -1;">
+                <h2>Room Heatmap</h2>
+                <div class="heatmap" id="heatmap"></div>
+                <div class="legend">
+                    <div class="legend-item">
+                        <div class="legend-color" style="background: #4ade80"></div>
+                        <span>High Confidence (&gt;0.8)</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background: #fbbf24"></div>
+                        <span>Medium (0.6-0.8)</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background: #f87171"></div>
+                        <span>Low (&lt;0.6)</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="last-update">
+            Last updated: <span id="last-update">--</span> |
+            Auto-refreshing every 30s
+        </div>
+    </div>
+
+    <script>
+        // State
+        let metrics = null;
+        let previousMetrics = null;
+
+        // Utility functions
+        function formatNumber(num) {
+            return num.toLocaleString('en-US');
+        }
+
+        function getTrendClass(current, previous) {
+            if (previous === null) return 'stable';
+            if (current > previous * 1.05) return 'up';
+            if (current < previous * 0.95) return 'down';
+            return 'stable';
+        }
+
+        function getTrendIcon(trend) {
+            switch (trend) {
+                case 'up': return '↑';
+                case 'down': return '↓';
+                default: return '→';
+            }
+        }
+
+        function getConfidenceColor(confidence) {
+            if (confidence >= 0.8) return '#4ade80';
+            if (confidence >= 0.6) return '#fbbf24';
+            return '#f87171';
+        }
+
+        function getConvergenceBadge(convergence) {
+            if (convergence >= 0.8) return { class: 'excellent', text: 'Excellent' };
+            if (convergence >= 0.6) return { class: 'good', text: 'Good' };
+            if (convergence >= 0.4) return { class: 'partial', text: 'Partial' };
+            return { class: 'poor', text: 'Poor' };
+        }
+
+        // Chart drawing
+        function drawLineChart(canvas, data, labels, color = '#60a5fa') {
+            const ctx = canvas.getContext('2d');
+            const width = canvas.width = canvas.offsetWidth * 2;
+            const height = canvas.height = canvas.offsetHeight * 2;
+            const padding = 60;
+
+            ctx.clearRect(0, 0, width, height);
+
+            if (data.length < 2) return;
+
+            const maxValue = Math.max(...data) * 1.1;
+            const minValue = Math.min(...data) * 0.9;
+            const range = maxValue - minValue;
+
+            // Draw grid
+            ctx.strokeStyle = 'rgba(255, 255, 255, 0.1)';
+            ctx.lineWidth = 1;
+
+            for (let i = 0; i <= 5; i++) {
+                const y = padding + (height - 2 * padding) * (i / 5);
+                ctx.beginPath();
+                ctx.moveTo(padding, y);
+                ctx.lineTo(width - padding, y);
+                ctx.stroke();
+
+                // Y-axis labels
+                const value = maxValue - (range * (i / 5));
+                ctx.fillStyle = '#a1a1aa';
+                ctx.font = '24px sans-serif';
+                ctx.textAlign = 'right';
+                ctx.fillText(value.toFixed(0), padding - 10, y + 8);
+            }
+
+            // Draw perturbation line at cycle 5
+            if (data.length > 5) {
+                const x5 = padding + (width - 2 * padding) * (4 / (data.length - 1));
+                ctx.strokeStyle = 'rgba(239, 68, 68, 0.5)';
+                ctx.lineWidth = 2;
+                ctx.setLineDash([10, 5]);
+                ctx.beginPath();
+                ctx.moveTo(x5, padding);
+                ctx.lineTo(x5, height - padding);
+                ctx.stroke();
+                ctx.setLineDash([]);
+
+                // Label
+                ctx.fillStyle = '#f87171';
+                ctx.font = 'bold 20px sans-serif';
+                ctx.textAlign = 'center';
+                ctx.fillText('Perturbation', x5, padding - 20);
+            }
+
+            // Draw line
+            ctx.strokeStyle = color;
+            ctx.lineWidth = 4;
+            ctx.lineCap = 'round';
+            ctx.lineJoin = 'round';
+            ctx.beginPath();
+
+            data.forEach((value, i) => {
+                const x = padding + (width - 2 * padding) * (i / (data.length - 1));
+                const y = padding + (height - 2 * padding) * (1 - (value - minValue) / range);
+
+                if (i === 0) {
+                    ctx.moveTo(x, y);
+                } else {
+                    ctx.lineTo(x, y);
+                }
+            });
+
+            ctx.stroke();
+
+            // Draw points
+            data.forEach((value, i) => {
+                const x = padding + (width - 2 * padding) * (i / (data.length - 1));
+                const y = padding + (height - 2 * padding) * (1 - (value - minValue) / range);
+
+                ctx.fillStyle = color;
+                ctx.beginPath();
+                ctx.arc(x, y, 8, 0, Math.PI * 2);
+                ctx.fill();
+
+                // Point labels
+                ctx.fillStyle = '#e4e4e7';
+                ctx.font = '24px sans-serif';
+                ctx.textAlign = 'center';
+                ctx.fillText(labels[i], x, height - padding + 40);
+            });
+        }
+
+        // Update dashboard
+        function updateDashboard(data) {
+            if (!data || !data.cycles || data.cycles.length === 0) {
+                document.getElementById('status-bar').innerHTML =
+                    '<div class="error">No data available. Start the experiment first.</div>';
+                return;
+            }
+
+            const cycles = data.cycles;
+            const latestCycle = cycles[cycles.length - 1];
+            const baseline = data.baseline || cycles[0];
+
+            // Update status cards
+            const totalTiles = latestCycle.tile_count || 0;
+            const activeRooms = latestCycle.room_count || 0;
+            const avgConfidence = latestCycle.avg_confidence || 0;
+            const currentCycle = latestCycle.cycle || 0;
+
+            document.getElementById('total-tiles').textContent = formatNumber(totalTiles);
+            document.getElementById('active-rooms').textContent = activeRooms;
+            document.getElementById('avg-confidence').textContent = (avgConfidence * 100).toFixed(1) + '%';
+            document.getElementById('current-cycle').textContent = currentCycle;
+            document.getElementById('max-cycle').textContent = data.config?.cycle_count || 10;
+
+            // Trends
+            if (previousMetrics && previousMetrics.cycles && previousMetrics.cycles.length > 0) {
+                const prevCycle = previousMetrics.cycles[previousMetrics.cycles.length - 1];
+
+                const tilesTrend = getTrendClass(totalTiles, prevCycle.tile_count);
+                const roomsTrend = getTrendClass(activeRooms, prevCycle.room_count);
+                const confTrend = getTrendClass(avgConfidence, prevCycle.avg_confidence);
+
+                document.getElementById('tiles-trend').innerHTML =
+                    `<span class="${tilesTrend}">${getTrendIcon(tilesTrend)} ${((totalTiles / prevCycle.tile_count - 1) * 100).toFixed(1)}%</span>`;
+                document.getElementById('rooms-trend').innerHTML =
+                    `<span class="${roomsTrend}">${getTrendIcon(roomsTrend)} ${activeRooms - prevCycle.room_count}</span>`;
+                document.getElementById('confidence-trend').innerHTML =
+                    `<span class="${confTrend}">${getTrendIcon(confTrend)} ${((avgConfidence - prevCycle.avg_confidence) * 100).toFixed(1)}pp</span>`;
+            }
+
+            // Draw tiles chart
+            const tileCounts = cycles.map(c => c.tile_count || 0);
+            const cycleLabels = cycles.map(c => `C${c.cycle}`);
+            drawLineChart(
+                document.getElementById('tiles-chart'),
+                tileCounts,
+                cycleLabels,
+                '#60a5fa'
+            );
+
+            // Update gauge
+            const convergence = latestCycle.convergence_quality || 0;
+            const gaugeFill = document.getElementById('gauge-fill');
+            const circumference = 251.2;
+            const offset = circumference * (1 - convergence);
+            gaugeFill.style.strokeDashoffset = offset;
+            document.getElementById('gauge-value').textContent = (convergence * 100).toFixed(0) + '%';
+
+            // Update convergence badge
+            const badge = getConvergenceBadge(convergence);
+            const badgeEl = document.getElementById('convergence-badge');
+            badgeEl.textContent = badge.text;
+            badgeEl.className = `convergence-badge ${badge.class}`;
+
+            // Update heatmap
+            const heatmapContainer = document.getElementById('heatmap');
+            const rooms = latestCycle.rooms || {};
+            heatmapContainer.innerHTML = '';
+
+            Object.entries(rooms).forEach(([roomName, roomData]) => {
+                const confidence = roomData.avg_confidence || 0;
+                const tileCount = roomData.tile_count || 0;
+                const color = getConfidenceColor(confidence);
+
+                const cell = document.createElement('div');
+                cell.className = 'heatmap-cell';
+                cell.style.background = `${color}22`;
+                cell.style.border = `2px solid ${color}`;
+                cell.innerHTML = `
+                    <div class="room-name">${roomName}</div>
+                    <div class="tile-count">${tileCount} tiles</div>
+                `;
+                cell.title = `${roomName}: ${tileCount} tiles, ${(confidence * 100).toFixed(1)}% confidence`;
+                heatmapContainer.appendChild(cell);
+            });
+
+            // Update last update time
+            document.getElementById('last-update').textContent = new Date().toLocaleTimeString();
+        }
+
+        // Fetch metrics
+        async function fetchMetrics() {
+            try {
+                const response = await fetch('/tmp/sprints/flywheel-metrics.json?' + Date.now());
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}`);
+                }
+                const data = await response.json();
+                previousMetrics = metrics;
+                metrics = data;
+                updateDashboard(data);
+            } catch (error) {
+                console.error('Failed to fetch metrics:', error);
+                document.getElementById('status-bar').innerHTML =
+                    `<div class="error">Failed to load metrics: ${error.message}</div>`;
+            }
+        }
+
+        // Initialize
+        fetchMetrics();
+        setInterval(fetchMetrics, 30000); // Refresh every 30 seconds
+    </script>
+</body>
+</html>

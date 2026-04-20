@@ -1,0 +1,94 @@
+{
+  "experiment_summary": {
+    "start_time": "2026-04-20T03:22:06.235989",
+    "end_time": "2026-04-20T03:22:06.583106",
+    "total_cycles": 10,
+    "perturbation_cycle": 5
+  },
+  "baseline": {
+    "cycle": 0,
+    "timestamp": "2026-04-20T03:22:06.239030",
+    "tile_count": 10113,
+    "room_count": 15,
+    "avg_confidence": 0,
+    "confidence_std": 0.0,
+    "rooms": {
+      "testing": {
+        "tile_count": 896,
+        "created": "2026-04-19T08:06:17.353748+00:00"
+      },
+      "organization": {
+        "tile_count": 1194,
+        "created": "2026-04-19T08:06:17.305976+00:00"
+      },
+      "trendanalysis": {
+        "tile_count": 323,
+        "created": "2026-04-19T08:06:17.300178+00:00"
+      },
+      "prototyping": {
+        "tile_count": 333,
+        "created": "2026-04-19T08:06:17.282855+00:00"
+      },
+      "communication": {
+        "tile_count": 1035,
+        "created": "2026-04-19T08:06:17.367111+00:00"
+      },
+      "integration": {
+        "tile_count": 1388,
+        "created": "2026-04-19T08:06:17.394476+00:00"
+      },
+      "memory": {
+        "tile_count": 735,
+        "created": "2026-04-19T08:06:17.407854+00:00"
+      },
+      "documentation": {
+        "tile_count": 849,
+        "created": "2026-04-19T08:06:17.239103+00:00"
+      },
+      "research": {
+        "tile_count": 710,
+        "created": "2026-04-19T08:06:17.392119+00:00"
+      },
+      "modelexperiment": {
+        "tile_count": 790,
+        "created": "2026-04-19T08:06:17.362574+00:00"
+      },
+      "deadband_navigation": {
+        "tile_count": 1,
+        "created": "2026-04-19T08:06:03.118554+00:00"
+      },
+      "codearchaeology": {
+        "tile_count": 478,
+        "created": "2026-04-19T08:06:17.194171+00:00"
+      },
+      "sync-test": {
+        "tile_count": 1,
+        "created": "2026-04-19T23:55:44.461373+00:00"
+      },
+      "holodeck": {
+        "tile_count": 2,
+        "created": "2026-04-19T08:44:02.730066+00:00"
+      },
+      "fleethealth": {
+        "tile_count": 1378,
+        "created": "2026-04-19T08:06:17.212692+00:00"
+      }
+    },
+    "convergence_quality": 0.3
+  },
+  "pre_perturbation": {
+    "avg_convergence": 0.3,
+    "convergence_trend": "stable"
+  },
+  "post_perturbation": {
+    "avg_convergence": 0.3,
+    "recovery_rate": 0.0,
+    "convergence_trend": "stable"
+  },
+  "convergence_assessment": {
+    "status": "partial_convergence",
+    "confidence": 0.24,
+    "recovered": true,
+    "stability_score": 1.0
+  }
+}

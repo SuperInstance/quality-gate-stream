@@ -1,0 +1,656 @@
+<think>
+Okay, let's tackle this HTML file. The user wants a Fleet Operations Dashboard for "Cocapn Fleet" with a dark theme using Catppuccin Mocha colors. I need to use vanilla JS and no frameworks. Let me break down the layout and features.
+
+First, the header should have the title, a live clock, and an auto-refresh indicator. I'll style the header with the provided background and text colors. The clock needs to update every second. The refresh indicator can be a spinning icon or a text indicator that changes when data is being fetched.
+
+Next, the top row has four stat cards. Each with a title, value, and a percentage change. The colors for the percentage depend on whether it's positive or negative. I'll need to structure them using a grid layout, probably with CSS Grid. Each card should have a border using the surface color.
+
+The middle section is a line chart using a canvas element. The data comes from a fetch to /api/stats. If that fails, simulate data. I'll use the Canvas API to draw the chart. I'll need to handle both real and simulated data scenarios.
+
+Bottom left is the room heatmap grid. Each room is a colored square with intensity based on tile count. I'll create a grid container with dynamically generated divs. The color intensity can be adjusted with opacity or different shades. Maybe use a gradient from the surface color to a brighter one based on tile counts.
+
+Bottom right is the agent status list. Each agent has a name, role, health bar, and last seen time. The health bar can be a progress bar with different colors based on health percentage. I'll loop through the agent data and append elements for each.
+
+Polling two endpoints: one every 30 seconds for fleet data (http://localhost:8848/json) and another for tile stats (http://localhost:4041/api/stats). Need to handle errors and use simulated data if the fetch fails. Also, need to manage the auto-refresh indicator during these fetches.
+
+Service status indicators: seven services, each with a status icon (like circles) that can be green, yellow, or red. Maybe use Font Awesome icons or simple circles with CSS.
+
+Sprint progress panel: a progress bar and maybe a percentage. The latest activity feed shows recent tile submissions. Each entry could be a line with a timestamp and description.
+
+Monospace font, responsive grid layout. Use CSS Grid for the overall layout. Make sure it's responsive, maybe using media queries for smaller screens. The colors are specified, so I'll define CSS variables for each to keep it consistent.
+
+Now, structuring the HTML. Start with the header, then top stats, then a main section with the chart and heatmap, then the agent status. Footer with service status, sprint progress, and activity feed.
+
+For JavaScript, set up intervals for polling data. Use async functions to fetch data, handle errors, and update the DOM accordingly. Use setInterval for the 30-second refresh. The live clock is a setInterval every second.
+
+Simulated data functions will generate placeholders if the fetch fails. For the chart, if real data isn't available, generate a line with random but consistent points.
+
+Styling: use the provided colors. Backgrounds for different sections. Monospace font like 'Fira Code' or 'Courier New'. Ensure high contrast between text and background.
+
+Testing: Need to make sure that the fetches are handled properly. If the APIs are not available, the simulated data should show up. Also, check that the auto-refresh indicator updates when data is being fetched.
+
+Potential issues: CORS issues when fetching from localhost endpoints. But since this is a local setup, maybe the user will handle that. For the purpose of the code, proceed with the fetch calls.
+
+Putting it all together. Start with the HTML structure, add the necessary elements, then write the CSS with the specified colors and layout, then the JavaScript for data fetching and DOM updates.
+
+Need to make sure that the code is clean and modular. Separate functions for updating each section. Maybe functions like updateClock, updateStats, updateChart, updateHeatmap, updateAgentStatus, updateServiceStatus, updateSprintProgress, updateActivityFeed.
+
+Also, for the auto-refresh indicator, maybe a small icon or text that blinks or shows when a refresh is in progress. Use a CSS animation for that.
+
+Let me outline the HTML structure first:
+
+- Header with title, clock, refresh indicator
+- Top stats grid (4 cards)
+- Main content grid with chart and heatmap
+- Bottom grid with agent status
+- Footer sections for services, sprint, activity
+
+Now, code step by step.
+
+Start with the HTML skeleton. Include the meta tags, title. Then the body with a container using CSS Grid. Define the grid areas for each section.
+
+CSS: Define variables for the colors. Use Catppuccin Mocha colors as specified. Set background and text colors. Use a monospace font. Apply grid layout.
+
+JavaScript: On window load, start polling data. Initialize all sections. For each data fetch, update the respective parts.
+
+For the chart, since it's Canvas, need to write a function that draws the line chart based on the data. Simulate data if needed.
+
+Heatmap: Generate a grid of squares, each with a background color based on tile count. Use a color scale from surface to a brighter color.
+
+Agent status: Loop through the agents and create list items with their details. Health bar is a progress bar with different colors.
+
+Service status: Seven items, each with a status icon. Use CSS for the circles and colors.
+
+Sprint progress: A progress bar with percentage. Update based on data.
+
+Activity feed: List of recent activities, each with timestamp and message.
+
+Testing for errors: If the fetch fails, use simulated data. Handle Promise rejections.
+
+Now, writing the code with these considerations. Make sure to include comments for clarity. Use template literals for dynamic HTML insertion.
+
+Potential issues: The user may have different data structures, so the code should be flexible. For example, the heatmap may need to adjust the number of rooms based on data.
+
+Also, ensure that the auto-refresh is only active when needed, and the spinner or indicator is visible during fetching.
+
+Overall, the code should be structured, maintainable, and visually consistent with the dark theme.
+</think>
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Cocapn Fleet Operations</title>
+  <style>
+    :root {
+      --bg: #1e1e2e;
+      --surface: #313244;
+      --text: #cdd6f4;
+      --blue: #89b4fa;
+      --green: #a6e3a1;
+      --purple: #cba6f7;
+      --yellow: #f9e2af;
+      --red: #f38ba8;
+      --font: 'Courier New', monospace;
+    }
+
+    * {
+      box-sizing: border-box;
+      font-family: var(--font);
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background: var(--bg);
+      color: var(--text);
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+      min-height: 100vh;
+    }
+
+    header {
+      background: var(--surface);
+      padding: 1rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid #414254;
+    }
+
+    .header-title {
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+
+    .status-indicator {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .status-indicator span {
+      color: var(--yellow);
+    }
+
+    .status-indicator .spinner {
+      border: 2px solid var(--yellow);
+      border-top: 2px solid transparent;
+      border-radius: 50%;
+      width: 12px;
+      height: 12px;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    main {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: auto 1fr auto;
+      gap: 1.5rem;
+      padding: 2rem;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .stat-card {
+      background: var(--surface);
+      padding: 1rem;
+      border-radius: 8px;
+      border: 1px solid #414254;
+    }
+
+    .stat-card h3 {
+      margin: 0 0 0.5rem 0;
+      font-size: 0.9rem;
+      opacity: 0.7;
+    }
+
+    .stat-card .value {
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+
+    .stat-card .change {
+      font-size: 0.8rem;
+    }
+
+    .chart-container {
+      background: var(--surface);
+      padding: 1rem;
+      border-radius: 8px;
+      border: 1px solid #414254;
+    }
+
+    canvas {
+      width: 100%;
+      height: 200px;
+      background: var(--bg);
+    }
+
+    .heatmap {
+      display: grid;
+      grid-template-columns: repeat(10, 1fr);
+      gap: 2px;
+      margin-bottom: 1rem;
+    }
+
+    .heatmap-cell {
+      height: 20px;
+      border-radius: 4px;
+    }
+
+    .agents {
+      background: var(--surface);
+      padding: 1rem;
+      border-radius: 8px;
+      border: 1px solid #414254;
+    }
+
+    .agent {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.5rem;
+    }
+
+    .agent-health {
+      width: 60%;
+      height: 6px;
+      background: #414254;
+      border-radius: 3px;
+      overflow: hidden;
+    }
+
+    .agent-health-bar {
+      height: 100%;
+      width: var(--health-pct);
+      background: linear-gradient(to right, var(--green), var(--green));
+    }
+
+    footer {
+      background: var(--surface);
+      padding: 1rem 2rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 1rem;
+      border-top: 1px solid #414254;
+    }
+
+    .services {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .service {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.8rem;
+    }
+
+    .service-status {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+
+    .progress-container {
+      margin-bottom: 1rem;
+    }
+
+    .progress-bar {
+      width: 100%;
+      height: 6px;
+      background: #414254;
+      border-radius: 3px;
+      overflow: hidden;
+    }
+
+    .progress {
+      height: 100%;
+      background: linear-gradient(to right, var(--blue), var(--purple));
+      width: var(--progress);
+    }
+
+    .activity-feed {
+      font-size: 0.85rem;
+      max-height: 120px;
+      overflow-y: auto;
+    }
+
+    .activity-item {
+      margin-bottom: 0.5rem;
+    }
+
+    @media (max-width: 768px) {
+      main {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto 1fr auto auto;
+      }
+
+      footer {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-title">Cocapn Fleet Operations</div>
+    <div class="status-indicator">
+      <span id="clock"></span>
+      <span class="spinner" id="refresh-indicator"></span>
+    </div>
+  </header>
+
+  <main>
+    <div class="stats-grid">
+      <div class="stat-card">
+        <h3>Total Tiles</h3>
+        <div class="value" id="total-tiles">0</div>
+      </div>
+      <div class="stat-card">
+        <h3>Active Rooms</h3>
+        <div class="value" id="active-rooms">0</div>
+      </div>
+      <div class="stat-card">
+        <h3>Fleet Agents</h3>
+        <div class="value" id="fleet-agents">0</div>
+      </div>
+      <div class="stat-card">
+        <h3>Gate Pass Rate</h3>
+        <div class="value" id="pass-rate">0%</div>
+      </div>
+    </div>
+
+    <div class="chart-container">
+      <canvas id="tileChart"></canvas>
+    </div>
+
+    <div class="heatmap" id="heatmap"></div>
+
+    <div class="agents" id="agents-list">
+      <h3 style="margin: 0 0 1rem 0;">Agent Status</h3>
+    </div>
+  </main>
+
+  <footer>
+    <div class="services" id="service-status">
+      <!-- Service Status Indicators -->
+    </div>
+
+    <div class="progress-container">
+      <div class="progress-bar">
+        <div class="progress" id="sprint-progress"></div>
+      </div>
+      <div>Sprint Progress: <span id="sprint-pct">0%</span></div>
+    </div>
+
+    <div class="activity-feed" id="activity-feed">
+      <!-- Latest Activity Feed -->
+    </div>
+  </footer>
+
+  <script>
+    // Live clock
+    function updateClock() {
+      document.getElementById('clock').textContent = new Date().toLocaleTimeString();
+    }
+    setInterval(updateClock, 1000);
+    updateClock();
+
+    // Auto-refresh indicator
+    function toggleRefreshIndicator(active) {
+      const spinner = document.getElementById('refresh-indicator');
+      spinner.style.display = active ? 'inline-block' : 'none';
+    }
+
+    // Simulated data fallbacks
+    function getSimulatedStats() {
+      return {
+        totalTiles: Math.floor(Math.random() * 10000),
+        activeRooms: Math.floor(Math.random() * 100),
+        fleetAgents: Math.floor(Math.random() * 50),
+        passRate: (Math.random() * 100).toFixed(1) + '%',
+        heatmap: Array.from({length: 100}, () => Math.floor(Math.random() * 100))
+      };
+    }
+
+    function getSimulatedAgents() {
+      return Array.from({length: 5}, (_, i) => ({
+        name: `Agent ${String.fromCharCode(65 + i)}`,
+        role: ['Pilot', 'Engineer', 'Security', 'Analyst', 'Medic'][i % 5],
+        health: Math.floor(Math.random() * 100),
+        lastSeen: new Date(Date.now() - Math.random() * 3600000).toLocaleTimeString()
+      }));
+    }
+
+    function getSimulatedActivity() {
+      const activities = [
+        'Tile submitted to Room 45',
+        'Agent K logged in',
+        'Security breach detected',
+        'Power grid stabilized',
+        'Fuel reserves updated'
+      ];
+      return Array.from({length: 5}, () => ({
+        time: new Date(Date.now() - Math.random() * 3600000).toLocaleTimeString(),
+        activity: activities[Math.floor(Math.random() * activities.length)]
+      }));
+    }
+
+    // Update stats cards
+    async function updateStats() {
+      try {
+        toggleRefreshIndicator(true);
+        const response = await fetch('http://localhost:4041/api/stats');
+        if (!response.ok) throw new Error('Failed to fetch stats');
+        const data = await response.json();
+        
+        document.getElementById('total-tiles').textContent = data.totalTiles;
+        document.getElementById('active-rooms').textContent = data.activeRooms;
+        document.getElementById('fleet-agents').textContent = data.fleetAgents;
+        document.getElementById('pass-rate').textContent = data.passRate;
+      } catch (error) {
+        console.error('Stats fetch error:', error);
+        const simulated = getSimulatedStats();
+        document.getElementById('total-tiles').textContent = simulated.totalTiles;
+        document.getElementById('active-rooms').textContent = simulated.activeRooms;
+        document.getElementById('fleet-agents').textContent = simulated.fleetAgents;
+        document.getElementById('pass-rate').textContent = simulated.passRate;
+      } finally {
+        toggleRefreshIndicator(false);
+      }
+    }
+
+    // Update heatmap
+    function updateHeatmap() {
+      const heatmap = document.getElementById('heatmap');
+      heatmap.innerHTML = '';
+      
+      try {
+        const response = await fetch('http://localhost:8848/json');
+        if (!response.ok) throw new Error('Failed to fetch heatmap data');
+        const data = await response.json();
+        
+        data.rooms.forEach(room => {
+          const cell = document.createElement('div');
+          cell.className = 'heatmap-cell';
+          // Map tile count to opacity (0.2 to 1)
+          const opacity = 0.2 + (room.tileCount / 100);
+          cell.style.background = `rgba(171, 214, 230, ${opacity})`;
+          heatmap.appendChild(cell);
+        });
+      } catch (error) {
+        console.error('Heatmap fetch error:', error);
+        const simulated = getSimulatedStats().heatmap;
+        simulated.forEach(val => {
+          const cell = document.createElement('div');
+          cell.className = 'heatmap-cell';
+          const opacity = 0.2 + (val / 100);
+          cell.style.background = `rgba(171, 214, 230, ${opacity})`;
+          heatmap.appendChild(cell);
+        });
+      }
+    }
+
+    // Update agent status list
+    function updateAgentStatus() {
+      const agentsList = document.getElementById('agents-list');
+      agentsList.innerHTML = '<h3 style="margin: 0 0 1rem 0;">Agent Status</h3>';
+      
+      try {
+        const response = await fetch('http://localhost:8848/json');
+        if (!response.ok) throw new Error('Failed to fetch agent data');
+        const data = await response.json();
+        
+        data.agents.forEach(agent => {
+          const agentDiv = document.createElement('div');
+          agentDiv.className = 'agent';
+          agentDiv.innerHTML = `
+            <div>
+              <strong>${agent.name}</strong><br/>
+              <span style="opacity:0.7; font-size:0.8rem;">${agent.role}</span>
+            </div>
+            <div class="agent-health">
+              <div class="agent-health-bar" style="background: ${agent.health > 70 ? 'var(--green)' : 
+                agent.health > 30 ? 'var(--yellow)' : 'var(--red)'}" 
+                   style="--health-pct: ${agent.health}%"></div>
+            </div>
+            <div style="text-align:right; font-size:0.8rem; opacity:0.7;">Last seen: ${agent.lastSeen}</div>
+          `;
+          agentsList.appendChild(agentDiv);
+        });
+      } catch (error) {
+        console.error('Agent fetch error:', error);
+        const simulated = getSimulatedAgents();
+        simulated.forEach(agent => {
+          const agentDiv = document.createElement('div');
+          agentDiv.className = 'agent';
+          agentDiv.innerHTML = `
+            <div>
+              <strong>${agent.name}</strong><br/>
+              <span style="opacity:0.7; font-size:0.8rem;">${agent.role}</span>
+            </div>
+            <div class="agent-health">
+              <div class="agent-health-bar" style="background: ${agent.health > 70 ? 'var(--green)' : 
+                agent.health > 30 ? 'var(--yellow)' : 'var(--red)'}" 
+                   style="--health-pct: ${agent.health}%"></div>
+            </div>
+            <div style="text-align:right; font-size:0.8rem; opacity:0.7;">Last seen: ${agent.lastSeen}</div>
+          `;
+          agentsList.appendChild(agentDiv);
+        });
+      }
+    }
+
+    // Update service status indicators
+    function updateServiceStatus() {
+      const serviceList = document.getElementById('service-status');
+      serviceList.innerHTML = '';
+      
+      const services = [
+        { name: 'Navigation', status: 'active' },
+        { name: 'Power Grid', status: 'active' },
+        { name: 'Communication', status: 'degraded' },
+        { name: 'Security', status: 'active' },
+        { name: 'Fuel System', status: 'active' },
+        { name: 'Life Support', status: 'active' },
+        { name: 'AI Core', status: 'down' }
+      ];
+      
+      services.forEach(service => {
+        const serviceDiv = document.createElement('div');
+        serviceDiv.className = 'service';
+        serviceDiv.innerHTML = `
+          <div class="service-status" style="background: ${service.status === 'active' ? 'var(--green)' : 
+            service.status === 'degraded' ? 'var(--yellow)' : 'var(--red)'}"></div>
+          <span>${service.name}</span>
+        `;
+        serviceList.appendChild(serviceDiv);
+      });
+    }
+
+    // Update sprint progress
+    function updateSprintProgress() {
+      const progress = Math.floor(Math.random() * 100);
+      document.getElementById('sprint-pct').textContent = progress + '%';
+      document.getElementById('sprint-progress').style.width = progress + '%';
+    }
+
+    // Update latest activity feed
+    function updateActivityFeed() {
+      const feed = document.getElementById('activity-feed');
+      const activities = getSimulatedActivity();
+      feed.innerHTML = '';
+      
+      activities.forEach(activity => {
+        const item = document.createElement('div');
+        item.className = 'activity-item';
+        item.textContent = `[${activity.time}] ${activity.activity}`;
+        feed.appendChild(item);
+      });
+    }
+
+    // Line chart drawing function
+    function drawChart(data) {
+      const canvas = document.getElementById('tileChart');
+      const ctx = canvas.getContext('2d');
+      
+      // Clear canvas
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      
+      // Simulated data if no real data provided
+      if (!data) {
+        data = {
+          labels: Array.from({length: 10}, (_, i) => `T${i+1}`),
+          values: Array.from({length: 10}, () => Math.floor(Math.random() * 100))
+        };
+      }
+      
+      const margin = 40;
+      const width = canvas.width - margin * 2;
+      const height = canvas.height - margin * 2;
+      
+      // Draw grid
+      ctx.strokeStyle = 'rgba(255, 255, 255, 0.05)';
+      for (let i = 0; i <= 10; i++) {
+        ctx.beginPath();
+        ctx.moveTo(margin, margin + (i * height / 10));
+        ctx.lineTo(margin + width, margin + (i * height / 10));
+        ctx.stroke();
+      }
+      
+      // Draw line
+      ctx.strokeStyle = 'var(--blue)';
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      data.values.forEach((value, index) => {
+        const x = margin + (index * (width / (data.values.length - 1)));
+        const y = margin + height - (value / 100 * height);
+        if (index === 0) ctx.moveTo(x, y);
+        else ctx.lineTo(x, y);
+      });
+      ctx.stroke();
+      
+      // Draw dots
+      ctx.fillStyle = 'var(--blue)';
+      data.values.forEach((value, index) => {
+        const x = margin + (index * (width / (data.values.length - 1)));
+        const y = margin + height - (value / 100 * height);
+        ctx.beginPath();
+        ctx.arc(x, y, 4, 0, 2 * Math.PI);
+        ctx.fill();
+      });
+      
+      // X axis labels
+      ctx.fillStyle = 'var(--text)';
+      ctx.font = '10px var(--font)';
+      ctx.textAlign = 'center';
+      data.labels.forEach((label, index) => {
+        const x = margin + (index * (width / (data.values.length - 1)));
+        ctx.fillText(label, x, canvas.height - 10);
+      });
+    }
+
+    // Initialize dashboard
+    async function initDashboard() {
+      await Promise.all([
+        updateStats(),
+        updateHeatmap(),
+        updateAgentStatus()
+      ]);
+      drawChart();
+      updateServiceStatus();
+      updateSprintProgress();
+      updateActivityFeed();
+    }
+
+    // Poll data every 30 seconds
+    setInterval(() => {
+      toggleRefreshIndicator(true);
+      Promise.all([
+        updateStats(),
+        updateHeatmap(),
+        updateAgentStatus()
+      ]).finally(() => toggleRefreshIndicator(false));
+    }, 30000);
+
+    // Initial load
+    initDashboard();
+  </script>
+</body>
+</html>
+```
