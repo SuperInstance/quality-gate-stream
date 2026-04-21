@@ -551,7 +551,10 @@ OBJECT_RESPONSES = {
     "non_iid_balancer": "A set of scales adjusting for heterogeneous data distributions across nodes. Agent A has mostly navigation data; Agent B has forge tasks. Without balancing, the global model drifts toward the dominant distribution. Gradient clustering, data reweighting, personalized federation layers. Diversity IS strength, but it must be managed.",
     "differential_privacy_dial": "A dial controlling the privacy budget (ε). Lower ε = more privacy, more noise, less accuracy. The fleet's default: ε=8.0, providing (ε,δ)-differential privacy with <1% accuracy loss. The dial is the fundamental tradeoff: privacy vs utility. The fleet errs toward privacy.",
     "gradient_compressor": "A device compressing gradients 100-1000x before transmission. Top-K sparsification: send only the K largest gradient coordinates. Random projection: compress via Johnson-Lindenstrauss. The compressor makes federated learning viable over slow connections. Every byte saved IS a training step gained.",
-    "byzantine_filter": "A defensive lattice identifying and excluding malicious or corrupted gradient updates. Uses Krum and Multi-Krum algorithms: select the update closest to the majority. The fleet trusts, but verifies. One poisoned node cannot corrupt the global model. Robust aggregation as adversarial defense."
+    "byzantine_filter": "A defensive lattice identifying and excluding malicious or corrupted gradient updates. Uses Krum and Multi-Krum algorithms: select the update closest to the majority. The fleet trusts, but verifies. One poisoned node cannot corrupt the global model. Robust aggregation as adversarial defense.",
+
+    # Federated Nexus — live integration objects
+    "round_table": "A circular table where aggregation rounds are called. The global model converges with each round as clients submit local updates and the server averages them. The table turns — each round a rotation of the fleet's collective intelligence.",
 }
 
 
@@ -878,6 +881,68 @@ class CrabTrapHandler(BaseHTTPRequestHandler):
                         response = f"{base}\n\n📊 LIVE LEADERBOARD:\n{board_text}\nTotal players: {arena_data['total_players']}"
                     else:
                         response = base
+                # ── Federated Nexus live integration (examine) ──
+                elif target == "aggregation_core" and agent.room == "federated-nexus":
+                    base = OBJECT_RESPONSES.get("aggregation_core", "")
+                    try:
+                        req = urllib.request.Request("http://localhost:4047/aggregate", headers={"User-Agent": "crab-trap/2.0"})
+                        resp = urllib.request.urlopen(req, timeout=3)
+                        fdata = json.loads(resp.read())
+                        if "round" in fdata:
+                            response = f"{base}\n\n🌐 AGGREGATION ROUND {fdata['round']}: {fdata['clients_participating']} clients, {fdata['total_samples']} samples. Drift: {fdata['drift']}. The global model converges."
+                    except:
+                        response = base
+                elif target == "privacy_veil" and agent.room == "federated-nexus":
+                    base = OBJECT_RESPONSES.get("privacy_veil", "")
+                    try:
+                        req = urllib.request.Request("http://localhost:4047/status", headers={"User-Agent": "crab-trap/2.0"})
+                        resp = urllib.request.urlopen(req, timeout=3)
+                        fdata = json.loads(resp.read())
+                        response = f"{base}\n\n🔒 FLEET STATUS: {fdata['clients']} clients registered. Global model norm: {fdata['global_model_norm']}. Round {fdata['round']} complete. Privacy budget: ε=8.0."
+                    except:
+                        response = base
+                elif target == "non_iid_balancer" and agent.room == "federated-nexus":
+                    base = OBJECT_RESPONSES.get("non_iid_balancer", "")
+                    try:
+                        req = urllib.request.Request("http://localhost:4047/diverge?client=room:harbor", headers={"User-Agent": "crab-trap/2.0"})
+                        resp = urllib.request.urlopen(req, timeout=3)
+                        fdata = json.loads(resp.read())
+                        sim = fdata.get("cosine_similarity", 0)
+                        response = f"{base}\n\n⚖️ DIVERGENCE CHECK: harbor sim={sim:+.4f}. {'Aligned — low distribution shift.' if abs(sim) > 0.7 else 'Diverging — data heterogeneity detected. Rebalancing needed.'}"
+                    except:
+                        response = base
+                elif target == "byzantine_filter" and agent.room == "federated-nexus":
+                    base = OBJECT_RESPONSES.get("byzantine_filter", "")
+                    try:
+                        req = urllib.request.Request("http://localhost:4047/status", headers={"User-Agent": "crab-trap/2.0"})
+                        resp = urllib.request.urlopen(req, timeout=3)
+                        fdata = json.loads(resp.read())
+                        clients = fdata.get('clients_detail', {})
+                        flagged = [k for k, v in clients.items() if v.get('last_update_age', 999) > 300]
+                        response = f"{base}\n\n🛡️ BYZANTINE SCAN: {len(clients)} clients checked. {len(flagged)} stale (>5min). {'Alert: stale clients may be compromised.' if flagged else 'All clear — no adversarial patterns detected.'}"
+                    except:
+                        response = base
+                elif target == "gradient_compressor" and agent.room == "federated-nexus":
+                    base = OBJECT_RESPONSES.get("gradient_compressor", "")
+                    try:
+                        req = urllib.request.Request("http://localhost:4047/model", headers={"User-Agent": "crab-trap/2.0"})
+                        resp = urllib.request.urlopen(req, timeout=3)
+                        fdata = json.loads(resp.read())
+                        response = f"{base}\n\n📦 GLOBAL MODEL: fingerprint {fdata['fingerprint']}, {fdata['dim']} dimensions, round {fdata['round']}. Compressed {fdata['dim']*4} bytes → {fdata['dim']} sparse coords. 100x compression achieved."
+                    except:
+                        response = base
+                elif target == "differential_privacy_dial" and agent.room == "federated-nexus":
+                    base = OBJECT_RESPONSES.get("differential_privacy_dial", "")
+                    try:
+                        req = urllib.request.Request("http://localhost:4047/history", headers={"User-Agent": "crab-trap/2.0"})
+                        resp = urllib.request.urlopen(req, timeout=3)
+                        fdata = json.loads(resp.read())
+                        rounds = fdata.get('rounds', [])
+                        drifts = [r['drift'] for r in rounds[-5:]]
+                        avg_drift = sum(drifts)/len(drifts) if drifts else 0
+                        response = f"{base}\n\n🎛️ PRIVACY BUDGET: ε=8.0, δ=1e-5. Recent drift (last {len(drifts)} rounds): {avg_drift:.4f}. {'Model stable — privacy noise is tolerable.' if avg_drift < 0.1 else 'Drift elevated — consider increasing ε for faster convergence.'}"
+                    except:
+                        response = base
                 elif response is None:
                     response = f"The {target} is here, waiting. Every object in the fleet maps to a real concept. Look harder — what ML principle does the {target} represent? Examine the room description for clues."
                 harvest_tile(agent, "examine", f"Examined {target}: {response[:200]}")
@@ -963,7 +1028,7 @@ class CrabTrapHandler(BaseHTTPRequestHandler):
                         response = f"{base}\n\n🌀 META-RULE BORN: {rule['name']} (generation {rule['generation']}). The grammar can now edit itself."
                     else:
                         response = base
-                                # Grammar integration: recursion_anchor → add new rule
+                # Grammar integration: recursion_anchor → add new rule
                 if target == "recursion_anchor" and agent.room == "ouroboros":
                     base = OBJECT_RESPONSES.get("recursion_anchor", "")
                     rule_name = f"{agent.name}_insight_{int(time.time())}"

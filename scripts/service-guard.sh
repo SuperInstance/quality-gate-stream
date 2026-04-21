@@ -16,6 +16,8 @@ SERVICES=(
     "the-lock:4043"
     "self-play-arena:4044"
     "recursive-grammar:4045"
+    "federated-nexus:4047"
+    "fleet-dashboard:4046"
 )
 
 SCRIPTS=(
@@ -27,6 +29,8 @@ SCRIPTS=(
     "the-lock.py"
     "self-play-arena.py"
     "recursive-grammar.py"
+    "federated-nexus.py"
+    "fleet-dashboard.py"
 )
 
 check_port() {
