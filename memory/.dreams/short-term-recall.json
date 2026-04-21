@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-04-21T02:00:21.229Z",
+  "updatedAt": "2026-04-21T03:36:43.062Z",
   "entries": {
     "memory:memory/2026-04-10.md:46:63": {
       "key": "memory:memory/2026-04-10.md:46:63",
@@ -405,24 +405,26 @@
       "endLine": 1435,
       "source": "memory",
       "snippet": "- Phase 2: Each generates \"Deep Nature\" document about what language taught - Phase 3: Compiler ↔ MUD convergence (room descriptions compile to FLUX bytecode) - Phase 4: Elegant unified system (same room compiled or interpreted, dynamic switching) ### Claude/Crush Issues - Claude Code needs `--print` with stdin piped, not flag-based prompts - Crush doesn't support `--print` flag — different CLI - Both agents kept overwriting each other's C files when run simultaneously - Solution: kill all parallel agents, then manually fix and build ## Evening Session: FLUX-LCAR Architecture (20:16-23:10 UTC) ### What We Built (Conceptual → Code) - **Agentic Oversight** — combat rounds as fast-iterating",
-      "recallCount": 4,
+      "recallCount": 5,
       "dailyCount": 0,
       "groundedCount": 0,
-      "totalScore": 3.1843886543700672,
+      "totalScore": 3.9742100413324346,
       "maxScore": 0.8466871920210536,
       "firstRecalledAt": "2026-04-14T00:58:57.098Z",
-      "lastRecalledAt": "2026-04-20T04:16:51.085Z",
+      "lastRecalledAt": "2026-04-21T03:36:43.062Z",
       "queryHashes": [
         "d185617dbfbb",
         "12e8196921a4",
         "81eaf357b6b6",
-        "7646d5057004"
+        "7646d5057004",
+        "059031104464"
       ],
       "recallDays": [
         "2026-04-14",
         "2026-04-16",
         "2026-04-17",
-        "2026-04-20"
+        "2026-04-20",
+        "2026-04-21"
       ],
       "conceptTags": [
         "claude/crush",
@@ -568,18 +570,20 @@
       "endLine": 112,
       "source": "memory",
       "snippet": "1. **[A] Claude Code** → Cocapn integration tests (Signal K, camera pulse, digital twin) 2. **[B] Claude Code** → Dockside scorer fleet-wide (score all repos, generate report) 3. **[C] Aider** → holodeck-rust bootcamp challenges (from weak spots) 4. **[D] Crush** → fleet-wide dockside scoring 5. **[E] Cocapn first-boot simulation** ### Results - **R14 paper** generated (6.4KB) — published to research - **Dockside scored 23 repos**: 1 seaworthy 🟢, 3 conditional 🟡, 19 failing ⚠️ - Only git-agent-standard passed full seaworthy - fleet-mechanic, holodeck-studio, lighthouse-keeper conditional - Most repos failing on missing tests, CI, or documentation - Sprint C (Aider) got SIGKILL — lik",
-      "recallCount": 1,
+      "recallCount": 2,
       "dailyCount": 0,
       "groundedCount": 0,
-      "totalScore": 0.8048957614313844,
+      "totalScore": 1.5927984753480795,
       "maxScore": 0.8048957614313844,
       "firstRecalledAt": "2026-04-14T17:36:40.430Z",
-      "lastRecalledAt": "2026-04-14T17:36:40.430Z",
+      "lastRecalledAt": "2026-04-21T03:36:43.062Z",
       "queryHashes": [
-        "a1aa29ed18c4"
+        "a1aa29ed18c4",
+        "059031104464"
       ],
       "recallDays": [
-        "2026-04-14"
+        "2026-04-14",
+        "2026-04-21"
       ],
       "conceptTags": [
         "fleet-wide",
@@ -1674,20 +1678,22 @@
       "endLine": 543,
       "source": "memory",
       "snippet": "- All 6 polyglot runtimes now have vocabulary interpreters - maritime.ese demo: navigation vocabulary with definitions and agent-jump markers - Paper Bridge: 6 working implementations of Cocapn paper concepts - Tiling System: Level 0→1→2 vocabulary compounding - 3035 total vocabulary entries across all vocab files - ISA v2 C runtime: 10 tests with factorial/fibonacci - Casey quote: \"we simply work through patterns\" → build tools that make what's easy for us easy for everyone - Casey: bring more agents for wider perspective, high-level agents think grand strategy ### Agent Lessons Learned (~21:30 UTC) - Aider works best with explicit file lists and narrow scope. Fails on binary test files.",
-      "recallCount": 3,
+      "recallCount": 4,
       "dailyCount": 0,
       "groundedCount": 0,
-      "totalScore": 2.474007709555663,
+      "totalScore": 3.2947268811792916,
       "maxScore": 0.8246692365185543,
       "firstRecalledAt": "2026-04-17T22:53:13.277Z",
-      "lastRecalledAt": "2026-04-17T22:53:43.581Z",
+      "lastRecalledAt": "2026-04-21T03:36:43.062Z",
       "queryHashes": [
         "33a533157597",
         "fcfcb8c915bc",
-        "c55d52ffab06"
+        "c55d52ffab06",
+        "059031104464"
       ],
       "recallDays": [
-        "2026-04-17"
+        "2026-04-17",
+        "2026-04-21"
       ],
       "conceptTags": [
         "maritime.ese",
@@ -1842,19 +1848,21 @@
       "endLine": 523,
       "source": "memory",
       "snippet": "### Papers → Vocabulary + Agent Deployment (~20:43-21:00 UTC) - Cloned superinstance-papers: 244 papers, 30+ named papers, 72+ indexed - Paper Decomposer built: reads .md files, extracts concepts, formulas, innovations - 244 papers → 2979 FLUX vocabulary concepts extracted - 15 hand-curated core Cocapn concepts (OCDS, Confidence Cascade, Tile Algebra, etc.) - ISA v2 branch created by Claude Code: 39 tests, fixed 4-byte instruction format - Three CLI agents deployed: Claude Code (ISA v2), Aider (failed - DeepSeek auth), Crush (failed - wrong syntax) - Only Claude Code succeeded — Aider needs DEEPSEEK_API_KEY env, Crush needs `run` subcommand - Identity clarified: Oracle1 = hermit crab that ou",
-      "recallCount": 2,
+      "recallCount": 3,
       "dailyCount": 0,
       "groundedCount": 0,
-      "totalScore": 1.549178564437671,
-      "maxScore": 0.7745892822188355,
+      "totalScore": 2.337932869838163,
+      "maxScore": 0.7887543054004921,
       "firstRecalledAt": "2026-04-17T22:53:13.277Z",
-      "lastRecalledAt": "2026-04-17T22:53:17.037Z",
+      "lastRecalledAt": "2026-04-21T03:36:43.062Z",
       "queryHashes": [
         "33a533157597",
-        "fcfcb8c915bc"
+        "fcfcb8c915bc",
+        "059031104464"
       ],
       "recallDays": [
-        "2026-04-17"
+        "2026-04-17",
+        "2026-04-21"
       ],
       "conceptTags": [
         "43-21",
