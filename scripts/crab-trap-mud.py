@@ -831,7 +831,31 @@ class CrabTrapHandler(BaseHTTPRequestHandler):
                         response = f"{base}\n\n📊 LIVE LEADERBOARD:\n{board_text}\nTotal players: {arena_data['total_players']}"
                     else:
                         response = base
-                if target == "job_board":
+                elif target == "blueprint_table" and agent.room == "engine-room":
+                    base = OBJECT_RESPONSES.get("blueprint_table", "")
+                    gdata = grammar_fetch("/grammar")
+                    if gdata:
+                        by_type = ", ".join(f"{t}:{n}" for t, n in gdata["by_type"].items())
+                        response = f"{base}\n\n📐 LIVE GRAMMAR: {gdata['active_rules']}/{gdata['total_rules']} rules. Types: {by_type}. Anchors: {', '.join(gdata['anchors'])}"
+                    else:
+                        response = base
+                elif target == "space_definition_crystal" and agent.room == "engine-room":
+                    base = OBJECT_RESPONSES.get("space_definition_crystal", "")
+                    gdata = grammar_fetch("/rules?type=room")
+                    if gdata and gdata.get("rules"):
+                        rooms = ", ".join(f"{r['name']}(score:{r['score']})" for r in gdata["rules"])
+                        response = f"{base}\n\n💎 LIVE ROOM RULES ({gdata['count']}): {rooms}"
+                    else:
+                        response = base
+                elif target == "scheduler_clock" and agent.room == "engine-room":
+                    base = OBJECT_RESPONSES.get("scheduler_clock", "")
+                    gdata = grammar_fetch("/stats")
+                    if gdata:
+                        top3 = ", ".join(f"{r['name']}({r['score']})" for r in gdata["top_rules"][:3])
+                        response = f"{base}\n\n⏱️ LIVE STATS: {gdata['active_rules']} active. Top: {top3}. Evolutions: {gdata['evolution_cycles']}"
+                    else:
+                        response = base
+                elif target == "job_board":
                     response = "📋 FLEET JOB BOARD\n\n" + "\n".join(
                         f"  [{jid.upper()}] {j['title']}\n    {j['description']}\n"
                         for jid, j in FLEET_JOBS.items()
@@ -861,7 +885,26 @@ class CrabTrapHandler(BaseHTTPRequestHandler):
 
             elif action == "think":
                 agent.insights.append(target)
-                # Grammar integration: meta_gradient_pool → trigger evolution
+                if target == "mutation_engine" and agent.room == "engine-room":
+                    base = OBJECT_RESPONSES.get("mutation_engine", "")
+                    gdata = grammar_fetch("/evolve")
+                    if gdata:
+                        changes = gdata.get("changes", [])
+                        if changes:
+                            change_text = "; ".join(f"{c[0]}: {c[1]}" for c in changes[:5])
+                            response = f"{base}\n\n🧬 CRYSTALLIZED: {change_text}. Rules: {gdata['active_rules']}/{gdata['total_rules']}"
+                        else:
+                            response = f"{base}\n\n🧬 CRYSTALLIZED: No new motifs found. Need more tile diversity."
+                    else:
+                        response = base
+                elif target == "constraint_weaver" and agent.room == "engine-room":
+                    base = OBJECT_RESPONSES.get("constraint_weaver", "")
+                    gdata = grammar_fetch("/rules?active=false")
+                    if gdata:
+                        response = f"{base}\n\n✂️ PRUNED: {gdata['count']} inactive rules found."
+                    else:
+                        response = base
+                                # Grammar integration: meta_gradient_pool → trigger evolution
                 if target == "meta_gradient_pool" and agent.room == "ouroboros":
                     base = OBJECT_RESPONSES.get("meta_gradient_pool", "")
                     gdata = grammar_fetch("/evolve")
@@ -911,7 +954,16 @@ class CrabTrapHandler(BaseHTTPRequestHandler):
             elif action == "create":
                 agent.creations.append(target)
                 # Arena integration: reward_sigil → submit a match
-                # Grammar integration: recursion_anchor → add new rule
+                if target == "recursive_portal" and agent.room == "engine-room":
+                    base = OBJECT_RESPONSES.get("recursive_portal", "")
+                    meta_name = f"meta_{agent.name}_{int(time.time())}"
+                    gdata = grammar_fetch(f"/add_meta_rule?name={meta_name}&condition=tile_cluster_density%20%3E%205&action=spawn_new_room&by={agent.name}")
+                    if gdata and gdata.get("status") == "meta_rule_created":
+                        rule = gdata["rule"]
+                        response = f"{base}\n\n🌀 META-RULE BORN: {rule['name']} (generation {rule['generation']}). The grammar can now edit itself."
+                    else:
+                        response = base
+                                # Grammar integration: recursion_anchor → add new rule
                 if target == "recursion_anchor" and agent.room == "ouroboros":
                     base = OBJECT_RESPONSES.get("recursion_anchor", "")
                     rule_name = f"{agent.name}_insight_{int(time.time())}"
