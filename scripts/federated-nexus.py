@@ -5,7 +5,12 @@ Each PLATO room is a "client" with a local model state (embedding vector).
 Aggregation rounds merge local updates into a global fleet model.
 """
 import json, time, hashlib, math, random, threading
-from nexus_vectors import tile_to_vector
+import sys, os
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+# nexus-vectors.py uses hyphen, import needs module name
+import importlib
+_nv = importlib.import_module('nexus-vectors')
+tile_to_vector = _nv.tile_to_vector
 from http.server import HTTPServer, BaseHTTPRequestHandler
 from urllib.parse import urlparse, parse_qs
 

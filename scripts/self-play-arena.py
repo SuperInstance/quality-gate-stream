@@ -663,6 +663,9 @@ class ArenaHandler(BaseHTTPRequestHandler):
         self.end_headers()
         self.wfile.write(json.dumps(data, indent=2).encode())
     
+    def do_POST(self):
+        self.do_GET()
+
     def log_message(self, format, *args):
         pass
 

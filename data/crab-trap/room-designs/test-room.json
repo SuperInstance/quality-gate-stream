@@ -1,0 +1,15 @@
+{
+  "agent": "kimi-round2",
+  "name": "test-room",
+  "design": {
+    "objects": [
+      "a",
+      "b",
+      "c",
+      "d",
+      "e"
+    ],
+    "theme": "test"
+  },
+  "submitted": 1776814715.598509
+}

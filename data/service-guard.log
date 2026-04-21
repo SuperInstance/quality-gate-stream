@@ -379,3 +379,11 @@
 [2026-04-21T23:30:03Z] MISSING 
 [2026-04-21T23:30:08Z] FAILED federated-nexus:4047
 [2026-04-21T23:30:08Z] OK — all services checked
+[2026-04-21T23:35:03Z] DOWN federated-nexus:4047
+[2026-04-21T23:35:03Z] MISSING 
+[2026-04-21T23:35:08Z] FAILED federated-nexus:4047
+[2026-04-21T23:35:08Z] OK — all services checked
+[2026-04-21T23:40:01Z] DOWN fleet-orchestrator:8849
+[2026-04-21T23:40:01Z] MISSING 
+[2026-04-21T23:40:04Z] FAILED fleet-orchestrator:8849
+[2026-04-21T23:40:04Z] OK — all services checked
