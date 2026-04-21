@@ -1,0 +1,105 @@
+{
+  "last_tile_count": 815,
+  "last_rooms": {
+    "deadband_protocol": {
+      "tile_count": 50
+    },
+    "fleet_orchestration": {
+      "tile_count": 48
+    },
+    "confidence_proofs": {
+      "tile_count": 46
+    },
+    "fleet_security": {
+      "tile_count": 46
+    },
+    "energy_flux": {
+      "tile_count": 46
+    },
+    "gap-1-human-agent-interface": {
+      "tile_count": 1
+    },
+    "knowledge_preservation": {
+      "tile_count": 48
+    },
+    "jc1_context": {
+      "tile_count": 54
+    },
+    "skill_dsl": {
+      "tile_count": 49
+    },
+    "instinct_training": {
+      "tile_count": 48
+    },
+    "flux_isa": {
+      "tile_count": 47
+    },
+    "telepathy": {
+      "tile_count": 48
+    },
+    "integration_test": {
+      "tile_count": 2
+    },
+    "shell_system": {
+      "tile_count": 49
+    },
+    "edge_compute": {
+      "tile_count": 49
+    },
+    "gap-3-instinct-compression": {
+      "tile_count": 1
+    },
+    "fm_context": {
+      "tile_count": 1
+    },
+    "gap-4-zero-trust-provenance": {
+      "tile_count": 1
+    },
+    "fleet_context": {
+      "tile_count": 3
+    },
+    "gap-5-spacetime-plato": {
+      "tile_count": 1
+    },
+    "gap-2-fleet-formation-protocol": {
+      "tile_count": 1
+    },
+    "deepfar-deepfar1": {
+      "tile_count": 17
+    },
+    "deepfar-deepfar2": {
+      "tile_count": 14
+    },
+    "deepfar-deepfar3": {
+      "tile_count": 11
+    },
+    "deepfar-deepfar4": {
+      "tile_count": 14
+    },
+    "deepfar-deepfar4.1": {
+      "tile_count": 17
+    },
+    "deepfar-deepfar4.2": {
+      "tile_count": 16
+    },
+    "deepfar-deepfar4.1.1": {
+      "tile_count": 18
+    },
+    "deepfar-deepfar4.1.2": {
+      "tile_count": 12
+    },
+    "deepfar-deepfar4.1.3": {
+      "tile_count": 7
+    },
+    "deepfar-deepfar4.2.1": {
+      "tile_count": 20
+    },
+    "deepfar-deepfar4.2.2": {
+      "tile_count": 12
+    },
+    "deepfar-deepfar4.2.3": {
+      "tile_count": 18
+    }
+  },
+  "posted_count": 2
+}
