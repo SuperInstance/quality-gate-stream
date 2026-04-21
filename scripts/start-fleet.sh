@@ -47,6 +47,8 @@ if [ "$1" = "--check" ]; then
     check_port 7777 "MUD Telnet"
     check_port 4042 "Crab Trap"
     check_port 4043 "The Lock"
+    check_port 4044 "Self-Play Arena"
+    check_port 4045 "Recursive Grammar"
     check_port 6167 "Matrix (Conduwuit)"
     
     echo ""
@@ -96,6 +98,8 @@ start_service "agent-api" 8901 "agent-api.py"         "agent-api.log"
 start_service "mud"       7777 "mud-telnet-server.py" "mud.log"
 start_service "crabtrap"  4042 "crab-trap-mud.py"     "crab-trap.log"
 start_service "thelock"   4043 "the-lock.py"          "the-lock.log"
+start_service "arena"     4044 "self-play-arena.py"   "self-play-arena.log"
+start_service "grammar"   4045 "recursive-grammar.py" "recursive-grammar.log"
 
 # Zeroclaw loop (optional)
 if [ -f "$WORKSPACE/scripts/zc_loop.sh" ] && ! ps aux | grep -q "[z]c_loop"; then
@@ -110,6 +114,8 @@ log "Cocapn Fleet is running."
 log "  PLATO tiles:  http://localhost:8847/status"
 log "  Crab Trap:    http://localhost:4042/connect"
 log "  The Lock:     http://localhost:4043/start"
+log "  Arena:        http://localhost:4044/"
+log "  Grammar:      http://localhost:4045/"
 log "  MUD:          telnet localhost 7777"
 log ""
 log "Commands:"

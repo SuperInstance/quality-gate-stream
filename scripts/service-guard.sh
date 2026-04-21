@@ -12,6 +12,10 @@ SERVICES=(
     "agent-api:8901"
     "mud:7777"
     "plato-server:8847"
+    "crab-trap:4042"
+    "the-lock:4043"
+    "self-play-arena:4044"
+    "recursive-grammar:4045"
 )
 
 SCRIPTS=(
@@ -19,6 +23,10 @@ SCRIPTS=(
     "agent-api.py"
     "mud-telnet-server.py"
     "plato-room-server.py"
+    "crab-trap-mud.py"
+    "the-lock.py"
+    "self-play-arena.py"
+    "recursive-grammar.py"
 )
 
 check_port() {
