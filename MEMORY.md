@@ -75,6 +75,7 @@
 - Trajectory filtering > content filtering. Ensign alignment > system prompt alignment.
 - Repetition → instinct → cross-domain transfer. Portable, modular, personal.
 
-## Services (in /tmp — lost on reboot, need rebuild)
-keeper:8900, agent-api:8901, holodeck:7778, seed-mcp:9438, plato-server:8847, MUD:7777
-- service-guard.sh monitors all. Source scripts in /tmp (volatile).
+## Services (persistent — scripts in ~/workspace/scripts/, data in ~/workspace/data/)
+keeper:8900, agent-api:8901, holodeck:7778, seed-mcp:9438, plato-server:8847, MUD:7777, Crab Trap:4042, The Lock:4043, **Self-Play Arena:4044**, **Recursive Grammar:4045**, Matrix:6167
+- service-guard.sh monitors all 8 auto-restart services
+- start-fleet.sh starts/checks/stops everything in one command
