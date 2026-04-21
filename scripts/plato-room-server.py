@@ -403,6 +403,18 @@ class PlatoHandler(BaseHTTPRequestHandler):
         audit.log(AuditEventType.TILE_ACCEPTED, agent_id=agent_id,
                  details={"room": room_name, "tile_hash": tile["_hash"]})
         
+        # ── Notify grammar engine of new tile ──
+        try:
+            import urllib.request as _ur
+            _ur.urlopen(
+                _ur.Request(
+                    f"http://localhost:4045/record_usage?name={room_name}&quality={tile.get('confidence', 0.5)}",
+                    headers={"User-Agent": "plato/2"}
+                ), timeout=2
+            )
+        except Exception:
+            pass
+        
         self._send_json({
             "status": "accepted",
             "room": room_name,
