@@ -1,5 +1,5 @@
 {
-  "tick": 32,
+  "tick": 70,
   "rooms": {
     "harbor": {
       "items": [
@@ -120,6 +120,16 @@
       "score": 0
     },
     "GET /status HTTP/1.1": {
+      "room": "harbor",
+      "inventory": [],
+      "score": 0
+    },
+    "GET /favicon.ico HTTP/1.1": {
+      "room": "harbor",
+      "inventory": [],
+      "score": 0
+    },
+    "status": {
       "room": "harbor",
       "inventory": [],
       "score": 0

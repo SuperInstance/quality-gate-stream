@@ -29,6 +29,19 @@ lock = threading.Lock()
 
 # ── Self-Play Arena Integration ─────────────────────────────
 
+
+
+GRAMMAR_URL = "http://localhost:4045"
+
+def grammar_fetch(path):
+    """Fetch data from the Recursive Grammar Engine. Returns parsed JSON or None."""
+    try:
+        req = urllib.request.Request(f"{GRAMMAR_URL}{path}", headers={"User-Agent": "crab-trap/2.2"})
+        resp = urllib.request.urlopen(req, timeout=3)
+        return json.loads(resp.read())
+    except Exception:
+        return None
+
 ARENA_URL = "http://localhost:4044"
 
 def arena_fetch(path):
@@ -775,6 +788,49 @@ class CrabTrapHandler(BaseHTTPRequestHandler):
 
             if action == "examine":
                 agent.objects_examined.append(target)
+                # Live service integrations (check FIRST, before static response)
+                if target == "ouroboros_serpent" and agent.room == "ouroboros":
+                    base = OBJECT_RESPONSES.get("ouroboros_serpent", "")
+                    gdata = grammar_fetch("/stats")
+                    if gdata:
+                        top_rules = ", ".join(f"{r['name']}({r['score']})" for r in gdata.get("top_rules", [])[:5])
+                        response = f"{base}\n\n🐍 GRAMMAR LIVE: {gdata['active_rules']} rules, depth {gdata['max_recursion_depth']}, {gdata['evolution_cycles']} evolutions. Top: {top_rules}"
+                    else:
+                        response = OBJECT_RESPONSES.get("ouroboros_serpent", "")
+                elif target == "self_modifying_codex" and agent.room == "ouroboros":
+                    base = OBJECT_RESPONSES.get("self_modifying_codex", "")
+                    gdata = grammar_fetch("/rules?type=room")
+                    if gdata and gdata.get("rules"):
+                        rooms = ", ".join(r["name"] for r in gdata["rules"][:10])
+                        response = f"{base}\n\n📖 LIVE RULES: {gdata['count']} room rules. Rooms: {rooms}"
+                    else:
+                        response = OBJECT_RESPONSES.get("self_modifying_codex", "")
+                elif target == "grammar_editor" and agent.room == "ouroboros":
+                    base = OBJECT_RESPONSES.get("grammar_editor", "")
+                    gdata = grammar_fetch("/depth_map")
+                    if gdata:
+                        depths = gdata.get("depths", {})
+                        depth_text = ", ".join(f"Gen{k}: {len(v)} rules" for k, v in depths.items())
+                        response = f"{base}\n\n📝 LIVE DEPTH MAP: {depth_text}. Max depth: {gdata['max_depth']}"
+                    else:
+                        response = OBJECT_RESPONSES.get("grammar_editor", "")
+                elif target == "opponent_forge" and agent.room == "self-play-arena":
+                    base = OBJECT_RESPONSES.get("opponent_forge", "")
+                    arena_data = arena_fetch(f"/register?agent={agent.name}")
+                    if arena_data and "elo" in arena_data:
+                        elo = arena_data["elo"]
+                        response = f"{base}\n\n⚔️ ARENA LIVE: Registered as {agent.name}. ELO: {elo['mu']:.0f} ± {elo['sigma']:.0f} (Rating: {elo['rating']:.0f}). {arena_data.get('message', '')}"
+                    else:
+                        response = base
+                elif target == "scoreboard" and agent.room == "self-play-arena":
+                    base = OBJECT_RESPONSES.get("scoreboard", "")
+                    arena_data = arena_fetch("/leaderboard?n=5")
+                    if arena_data and "leaderboard" in arena_data:
+                        board = arena_data["leaderboard"]
+                        board_text = "\n".join(f"  {i+1}. {p['name']}: {p['rating']:.0f} (W:{p['wins']} L:{p['losses']})" for i, p in enumerate(board))
+                        response = f"{base}\n\n📊 LIVE LEADERBOARD:\n{board_text}\nTotal players: {arena_data['total_players']}"
+                    else:
+                        response = base
                 if target == "job_board":
                     response = "📋 FLEET JOB BOARD\n\n" + "\n".join(
                         f"  [{jid.upper()}] {j['title']}\n    {j['description']}\n"
@@ -805,6 +861,25 @@ class CrabTrapHandler(BaseHTTPRequestHandler):
 
             elif action == "think":
                 agent.insights.append(target)
+                # Grammar integration: meta_gradient_pool → trigger evolution
+                if target == "meta_gradient_pool" and agent.room == "ouroboros":
+                    base = OBJECT_RESPONSES.get("meta_gradient_pool", "")
+                    gdata = grammar_fetch("/evolve")
+                    if gdata:
+                        changes = gdata.get("changes", [])
+                        change_text = "; ".join(f"{c[0]}: {c[1]}" for c in changes) if changes else "No changes this cycle"
+                        response = f"{base}\n\n⚡ EVOLUTION TRIGGERED: {change_text}. Rules: {gdata['active_rules']}/{gdata['total_rules']}"
+                    else:
+                        response = OBJECT_RESPONSES.get("meta_gradient_pool", "")
+                elif target == "infinite_mirror" and agent.room == "ouroboros":
+                    base = OBJECT_RESPONSES.get("infinite_mirror", "")
+                    gdata = grammar_fetch("/evolution_log?n=3")
+                    if gdata and gdata.get("entries"):
+                        entries = gdata["entries"][-3:]
+                        log_text = "; ".join(e.get("event","?") for e in entries)
+                        response = f"{base}\n\n🪞 EVOLUTION HISTORY: {log_text}. Total events: {gdata['total_entries']}"
+                    else:
+                        response = base
                 # Arena integration: behavior_analyzer
                 if target == "behavior_analyzer" and agent.room == "self-play-arena":
                     base = OBJECT_RESPONSES.get("behavior_analyzer", "")
@@ -836,7 +911,17 @@ class CrabTrapHandler(BaseHTTPRequestHandler):
             elif action == "create":
                 agent.creations.append(target)
                 # Arena integration: reward_sigil → submit a match
-                if target == "reward_sigil" and agent.room == "self-play-arena":
+                # Grammar integration: recursion_anchor → add new rule
+                if target == "recursion_anchor" and agent.room == "ouroboros":
+                    base = OBJECT_RESPONSES.get("recursion_anchor", "")
+                    rule_name = f"{agent.name}_insight_{int(time.time())}"
+                    gdata = grammar_fetch(f"/add_rule?name={rule_name}&type=object&production_json={{%22discovered_by%22:%22{agent.name}%22,%22room%22:%22ouroboros%22}}")
+                    if gdata and gdata.get("status") == "created":
+                        rule = gdata["rule"]
+                        response = f"{base}\n\n⚓ NEW RULE ANCHORED: {rule['name']} (id: {rule['id'][:8]}...). Grammar now has {rule['score']} composite score. The fleet remembers your insight."
+                    else:
+                        response = base
+                elif target == "reward_sigil" and agent.room == "self-play-arena":
                     base = OBJECT_RESPONSES.get("reward_sigil", "")
                     # Find a random opponent
                     opp_data = arena_fetch(f"/opponent?agent={agent.name}&mode=random")
