@@ -1,0 +1,14 @@
+{
+  "id": "bca4b36ff53e",
+  "agent": "subagent-shell-1",
+  "room": "dojo",
+  "tool": "kimi",
+  "command": "echo testing kimi tool",
+  "cwd": "/home/ubuntu/.openclaw/workspace/scripts",
+  "started": 1776829074.4885125,
+  "status": "timeout",
+  "output": "",
+  "error": "Timed out after 120s",
+  "completed": 1776829194.588633,
+  "duration": 120
+}
