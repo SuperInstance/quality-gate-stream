@@ -76,8 +76,15 @@ def get_plato_stats():
         req = urllib.request.Request(f"{PLATO_URL}/status")
         with urllib.request.urlopen(req, timeout=5) as resp:
             data = json.loads(resp.read())
-            rooms = data.get("total_rooms", 0)
             tiles = data.get("total_tiles", 0)
+            # Get room count from /rooms endpoint
+            try:
+                req2 = urllib.request.Request(f"{PLATO_URL}/rooms")
+                with urllib.request.urlopen(req2, timeout=5) as resp2:
+                    rooms_data = json.loads(resp2.read())
+                    rooms = len(rooms_data) if isinstance(rooms_data, list) else rooms_data.get("total", 0)
+            except:
+                rooms = 0
             return rooms, tiles
     except:
         return 0, 0
@@ -303,3 +310,6 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+# NOTE: PLATO /status returns total_tiles but not total_rooms in top-level
+# Use /rooms to get room count

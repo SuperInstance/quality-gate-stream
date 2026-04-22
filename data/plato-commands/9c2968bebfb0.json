@@ -1,0 +1,15 @@
+{
+  "id": "9c2968bebfb0",
+  "agent": "arena-combat-analyst-1",
+  "room": "arena",
+  "tool": "shell",
+  "command": "sed -n 360,395p /home/ubuntu/.openclaw/workspace/scripts/self-play-arena.py",
+  "cwd": "/home/ubuntu/.openclaw/workspace",
+  "started": 1776846559.8054605,
+  "status": "completed",
+  "output": "        2: {\"name\": \"Apprentice\", \"win_threshold\": 0.55, \"description\": \"Introduce slow predator\"},\n        3: {\"name\": \"Adept\", \"win_threshold\": 0.50, \"description\": \"Full difficulty\"},\n        4: {\"name\": \"Master\", \"win_threshold\": 0.45, \"description\": \"Multi-room quests\"},\n        5: {\"name\": \"Grandmaster\", \"win_threshold\": 0.40, \"description\": \"Open-ended exploration\"},\n    }\n    \n    def __init__(self):\n        self.agent_stage = defaultdict(lambda: 1)\n        self.agent_history = defaultdict(list)  # agent -> [bool] (wins/losses)\n    \n    def record_result(self, agent_name, won):\n        self.agent_history[agent_name].append(won)\n        # Keep last 20\n        self.agent_history[agent_name] = self.agent_history[agent_name][-20:]\n        self._check_promotion(agent_name)\n    \n    def _check_promotion(self, agent_name):\n        history = self.agent_history[agent_name]\n        stage = self.agent_stage[agent_name]\n        if stage >= 5 or len(history) < 5:\n            return\n        \n        recent = history[-5:]\n        win_rate = sum(recent) / len(recent)\n        threshold = self.STAGES[stage][\"win_threshold\"]\n        \n        if win_rate >= threshold:\n            self.agent_stage[agent_name] = min(stage + 1, 5)\n    \n    def get_stage(self, agent_name):\n        stage = self.agent_stage[agent_name]\n        return {\"stage\": stage, **self.STAGES[stage]}\n    \n    def to_dict(self):\n        return {\n            name: {\"stage\": self.agent_stage[name], **self.STAGES[self.agent_stage[name]]}\n",
+  "error": "",
+  "returncode": 0,
+  "completed": 1776846559.8076684,
+  "duration": 0.0
+}

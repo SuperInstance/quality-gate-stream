@@ -1,0 +1,15 @@
+{
+  "id": "8dd8e25efdfe",
+  "agent": "arena-combat-analyst-1",
+  "room": "arena",
+  "tool": "shell",
+  "command": "sed -n 280,310p /home/ubuntu/.openclaw/workspace/scripts/self-play-arena.py",
+  "cwd": "/home/ubuntu/.openclaw/workspace",
+  "started": 1776846533.7165554,
+  "status": "completed",
+  "output": "        n_move = sum(1 for a in actions if \"move\" in a.lower())\n        total = len(actions)\n        \n        if total == 0:\n            return \"Unknown\"\n        \n        if n_move / total > 0.5:\n            archetype = \"Aggressive Explorer\"\n        elif n_examine / total > 0.5:\n            archetype = \"Cautious Hoarder\"\n        elif n_think / total > 0.4:\n            archetype = \"Methodical Analyst\"\n        elif n_create / total > 0.3:\n            archetype = \"Creative Synthesizer\"\n        elif n_move / total > 0.3 and n_create / total > 0.2:\n            archetype = \"Novel Pathfinder\"\n        else:\n            archetype = \"Social Mimic\"\n        \n        self.archetypes[archetype].append(agent_name)\n        self.behaviors[agent_name] = actions[-50:]  # Keep last 50\n        return archetype\n    \n    def distribution(self):\n        total = sum(len(v) for v in self.archetypes.values())\n        if total == 0:\n            return {name: 0 for name in self.archetype_names}\n        return {name: round(len(self.archetypes.get(name, [])) / total * 100, 1)\n                for name in self.archetype_names}\n    \n    def to_dict(self):\n",
+  "error": "",
+  "returncode": 0,
+  "completed": 1776846533.718632,
+  "duration": 0.0
+}

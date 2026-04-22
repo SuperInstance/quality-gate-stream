@@ -1,0 +1,15 @@
+{
+  "id": "7313cb426971",
+  "agent": "grammar-curator-1",
+  "room": "ouroboros",
+  "tool": "shell",
+  "command": "grep -c \"script\" /home/ubuntu/.openclaw/workspace/data/recursive-grammar/rules.jsonl",
+  "cwd": "/home/ubuntu/.openclaw/workspace",
+  "started": 1776846565.1797593,
+  "status": "failed",
+  "output": "",
+  "error": "grep: /home/ubuntu/.openclaw/workspace/data/recursive-grammar/rules.jsonl: No such file or directory\n",
+  "returncode": 2,
+  "completed": 1776846565.1818008,
+  "duration": 0.0
+}
