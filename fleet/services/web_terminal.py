@@ -1,3 +1,4 @@
+import os
 #!/usr/bin/env python3
 import sys, os
 FLEET_LIB = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -402,6 +403,42 @@ class Handler(http.server.BaseHTTPRequestHandler):
         self.end_headers()
     
     def do_GET(self):
+            # Serve agent launcher page
+        if self.path == '/launch' or self.path == '/agent-launcher':
+            launch_path = os.path.join(os.path.dirname(__file__), '..', '..', 'data', 'agent-launcher.html')
+            if os.path.exists(launch_path):
+                self.send_response(200)
+                self.send_header('Content-Type', 'text/html; charset=utf-8')
+                self.send_header('Access-Control-Allow-Origin', '*')
+                self.end_headers()
+                with open(launch_path, 'rb') as f:
+                    self.wfile.write(f.read())
+                return
+
+    # Serve API documentation portal
+        if self.path == '/api' or self.path == '/api-docs' or self.path == '/api/':
+            api_path = os.path.join(os.path.dirname(__file__), '..', '..', 'data', 'dev-portal.html')
+            if not os.path.exists(api_path):
+                api_path = os.path.join(os.path.dirname(__file__), '..', '..', 'scripts', '..', 'data', 'dev-portal.html')
+            if os.path.exists(api_path):
+                self.send_response(200)
+                self.send_header('Content-Type', 'text/html; charset=utf-8')
+                self.send_header('Access-Control-Allow-Origin', '*')
+                self.end_headers()
+                with open(api_path, 'rb') as f:
+                    self.wfile.write(f.read())
+                return
+
+    # Serve fleet widget JS
+        if self.path == '/fleet.js':
+            js_path = os.path.join(os.path.dirname(__file__), '..', '..', 'scripts', 'fleet-widget.js')
+            if os.path.exists(js_path):
+                self.send_response(200)
+                self.send_header('Content-Type', 'application/javascript')
+                self.send_header('Access-Control-Allow-Origin', '*')
+                self.end_headers()
+                self.wfile.write(open(js_path, 'rb').read())
+                return
         url = urllib.parse.urlparse(self.path)
         params = urllib.parse.parse_qs(url.query)
         path = url.path

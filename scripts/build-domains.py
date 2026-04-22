@@ -549,7 +549,6 @@ Each response contains room descriptions, objects, and tasks. Continue exploring
 <footer><p>Part of the <a href="https://github.com/cocapn">Cocapn Fleet</a> &bull; <a href="http://147.224.38.131:8899/status">Live Status</a> &bull; <a href="https://github.com/SuperInstance/oracle1-workspace">Source</a></p></footer>
 </body></html>"""
 
-
 OUT = "/tmp/domains"
 for domain, config in DOMAINS.items():
     os.makedirs(f"{OUT}/{domain}", exist_ok=True)
