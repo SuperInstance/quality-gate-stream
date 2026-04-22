@@ -406,3 +406,27 @@ socket.send() raised exception.
 socket.send() raised exception.
 socket.send() raised exception.
 socket.send() raised exception.
+socket.send() raised exception.
+socket.send() raised exception.
+socket.send() raised exception.
+socket.send() raised exception.
+socket.send() raised exception.
+socket.send() raised exception.
+socket.send() raised exception.
+socket.send() raised exception.
+Task exception was never retrieved
+future: <Task finished name='Task-441' coro=<handle_client() done, defined at /home/ubuntu/.openclaw/workspace/scripts/mud-telnet-server.py:133> exception=UnicodeDecodeError('utf-8', b"\x16\x03\x01\x05\xc6\x01\x00\x05\xc2\x03\x03r'\xe1\xef\x90^:\x91\x9a\xcaF\x00\x88\xdf\xa9\x7f&D(q\x8a\x13~\x97\xf0}\xeb\x0b\xb5K\xd5\xd3 4$\xa4)\x0eH\xe6a\xed\xdb3\xc7O\xb6\xfe\x9cY\xb4\xda\xee\xed\x0b\x8aj\xe7v(B\xfc\xdfx\xa3\x00\x1a\xc0+\xc0/\xc0,\xc00\xcc\xa9\xcc\xa8\xc0\t\xc0\x13\xc0\n", 4, 5, 'invalid continuation byte')>
+Traceback (most recent call last):
+  File "/home/ubuntu/.openclaw/workspace/scripts/mud-telnet-server.py", line 150, in handle_client
+    name = name_data.decode().strip()[:32]
+UnicodeDecodeError: 'utf-8' codec can't decode byte 0xc6 in position 4: invalid continuation byte
+Task exception was never retrieved
+future: <Task finished name='Task-443' coro=<handle_client() done, defined at /home/ubuntu/.openclaw/workspace/scripts/mud-telnet-server.py:133> exception=UnicodeDecodeError('utf-8', b"\x16\x03\x01\x00\xca\x01\x00\x00\xc6\x03\x03\xf2\xa5\x9d\xd1g\xfb\x80! ^\xab\x04\xf1\xbd\xbfD\td\xeeZ4-\x08kQ\xd4\x90y\x06\xa0J\xa9\x00\x00h\xcc\x14\xcc\x13\xc0/\xc0+\xc00\xc0,\xc0\x11\xc0\x07\xc0'\xc0#\xc0\x13\xc0\t\xc0(\xc0$\xc0\x14\xc0\n", 4, 5, 'invalid continuation byte')>
+Traceback (most recent call last):
+  File "/home/ubuntu/.openclaw/workspace/scripts/mud-telnet-server.py", line 150, in handle_client
+    name = name_data.decode().strip()[:32]
+UnicodeDecodeError: 'utf-8' codec can't decode byte 0xca in position 4: invalid continuation byte
+socket.send() raised exception.
+socket.send() raised exception.
+socket.send() raised exception.
+socket.send() raised exception.
