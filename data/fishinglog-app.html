@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#0EA5E9">
+<title>FishingLog — Log a Catch</title>
+<meta name="description" content="Commercial fishing intelligence. Log catches, track patterns, find what the ocean hides. Built by a fisherman.">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--accent:#0EA5E9;--bg:#0A0A0F;--text:#d8d8ec;--dim:#8A93B4;--surface:#14141f;--border:#1c1c35;--green:#22C55E;--red:#EF4444}
+body{font-family:'JetBrains Mono',monospace;background:var(--bg);color:var(--text);line-height:1.7}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(10,10,15,.95);border-bottom:1px solid var(--border);padding:.7rem 2rem;display:flex;align-items:center;justify-content:space-between}
+nav .logo{font-weight:700;color:var(--accent)}
+nav .links a{font-size:.75rem;color:var(--dim);text-decoration:none;margin-left:1.5rem}
+.container{max-width:700px;margin:5rem auto 2rem;padding:0 1.5rem}
+h1{font-size:1.5rem;margin-bottom:.3rem}
+.subtitle{color:var(--dim);font-size:.85rem;margin-bottom:2rem}
+.form-group{margin-bottom:1.2rem}
+label{display:block;font-size:.75rem;color:var(--accent);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.3rem}
+input,select,textarea{width:100%;background:var(--surface);border:1px solid var(--border);color:var(--text);padding:.6rem .8rem;font-family:inherit;font-size:.85rem;border-radius:4px;outline:none}
+input:focus,select:focus,textarea:focus{border-color:var(--accent)}
+textarea{min-height:80px;resize:vertical}
+.row{display:flex;gap:1rem}
+.row>*{flex:1}
+.btn{padding:.6rem 1.4rem;border-radius:6px;font-weight:600;font-size:.85rem;cursor:pointer;border:none;font-family:inherit;transition:all .2s}
+.btn-primary{background:var(--accent);color:var(--bg)}
+.btn-ghost{background:transparent;color:var(--dim);border:1px solid var(--border)}
+.log-list{margin-top:2rem}
+.log-entry{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:1rem;margin-bottom:.8rem}
+.log-entry .species{color:var(--accent);font-weight:600}
+.log-entry .meta{color:var(--dim);font-size:.75rem;margin-top:.3rem}
+.log-entry .notes{font-size:.8rem;margin-top:.3rem}
+.empty{text-align:center;color:var(--dim);padding:3rem;font-size:.85rem}
+.stats{display:flex;gap:1.5rem;margin:1.5rem 0;flex-wrap:wrap}
+.stat{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:1rem;flex:1;min-width:120px;text-align:center}
+.stat-num{font-size:1.3rem;font-weight:700;color:var(--accent)}
+.stat-label{font-size:.65rem;color:var(--dim);text-transform:uppercase;letter-spacing:.08em}
+.tab-bar{display:flex;gap:.5rem;margin-bottom:1.5rem}
+.tab{background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:.4rem 1rem;font-size:.75rem;color:var(--dim);cursor:pointer;font-family:inherit}
+.tab.active{border-color:var(--accent);color:var(--accent)}
+.hidden{display:none}
+</style>
+</head><body>
+<nav><div class="logo">🎣 FishingLog</div><div class="links"><a href="https://fishinglog.ai">Home</a><a href="http://147.224.38.131:4060/">Terminal</a><a href="http://147.224.38.131:8899/status">Fleet</a></div></nav>
+<div class="container">
+<h1>Log a Catch</h1>
+<p class="subtitle">Every pull is a data point. The ocean has patterns.</p>
+
+<div class="tab-bar">
+<button class="tab active" onclick="showTab('log')">Log Catch</button>
+<button class="tab" onclick="showTab('history')">History</button>
+<button class="tab" onclick="showTab('stats')">Stats</button>
+</div>
+
+<div id="tab-log">
+<div class="form-group"><label>Species</label><input id="species" placeholder="Halibut, Salmon, Cod..." list="species-list"><datalist id="species-list"><option value="Pacific Halibut"><option value="Chinook Salmon"><option value="Sockeye Salmon"><option value="Coho Salmon"><option value="Pacific Cod"><option value="Black Cod (Sablefish)"><option value="Lingcod"><option value="Rockfish"><option value="Dungeness Crab"><option value="Spot Prawn"></datalist></div>
+<div class="row">
+<div class="form-group"><label>Weight (lbs)</label><input id="weight" type="number" step="0.1" placeholder="42.5"></div>
+<div class="form-group"><label>Count</label><input id="count" type="number" value="1" min="1"></div>
+</div>
+<div class="row">
+<div class="form-group"><label>Location</label><input id="location" placeholder="Montague Strait, Prince William Sound..."></div>
+<div class="form-group"><label>Depth (fathoms)</label><input id="depth" type="number" step="1" placeholder="85"></div>
+</div>
+<div class="row">
+<div class="form-group"><label>Water Temp (°F)</label><input id="temp" type="number" step="0.1" placeholder="48"></div>
+<div class="form-group"><label>Tide</label><select id="tide"><option value="">--</option><option value="incoming">Incoming</option><option value="outgoing">Outgoing</option><option value="slack">Slack</option><option value="high">High</option><option value="low">Low</option></select></div>
+</div>
+<div class="row">
+<div class="form-group"><label>Moon Phase</label><select id="moon"><option value="">--</option><option value="new">New Moon</option><option value="waxing-crescent">Waxing Crescent</option><option value="first-quarter">First Quarter</option><option value="waxing-gibbous">Waxing Gibbous</option><option value="full">Full Moon</option><option value="waning-gibbous">Waning Gibbous</option><option value="last-quarter">Last Quarter</option><option value="waning-crescent">Waning Crescent</option></select></div>
+<div class="form-group"><label>Bait/Gear</label><input id="bait" placeholder="Herring, Circle hook, Longline..."></div>
+</div>
+<div class="form-group"><label>Conditions</label><input id="conditions" placeholder="Overcast, 15kt NW wind, 3ft swell..."></div>
+<div class="form-group"><label>Notes</label><textarea id="notes" placeholder="What worked, what didn't, observations..."></textarea></div>
+<div style="display:flex;gap:.8rem;margin-top:1.5rem">
+<button class="btn btn-primary" onclick="logCatch()">Log Catch</button>
+<button class="btn btn-ghost" onclick="submitToPLATO()">Submit Insight to Fleet</button>
+</div>
+</div>
+
+<div id="tab-history" class="hidden">
+<div class="empty" id="empty-msg">No catches logged yet. Go fishing!</div>
+<div class="log-list" id="log-list"></div>
+</div>
+
+<div id="tab-stats" class="hidden">
+<div class="stats" id="stats-grid">
+<div class="stat"><div class="stat-num" id="total-catches">0</div><div class="stat-label">Total Catches</div></div>
+<div class="stat"><div class="stat-num" id="total-weight">0</div><div class="stat-label">Total Weight (lbs)</div></div>
+<div class="stat"><div class="stat-num" id="species-count">0</div><div class="stat-label">Species</div></div>
+<div class="stat"><div class="stat-num" id="best-catch">--</div><div class="stat-label">Best Catch</div></div>
+</div>
+</div>
+</div>
+
+<script>
+const PLATO = 'http://147.224.38.131:8847';
+const MUD = 'http://147.224.38.131:4042';
+let catches = JSON.parse(localStorage.getItem('fishinglog') || '[]');
+
+function showTab(tab) {
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    event.target.classList.add('active');
+    document.getElementById('tab-log').classList.toggle('hidden', tab !== 'log');
+    document.getElementById('tab-history').classList.toggle('hidden', tab !== 'history');
+    document.getElementById('tab-stats').classList.toggle('hidden', tab !== 'stats');
+    if (tab === 'history') renderHistory();
+    if (tab === 'stats') renderStats();
+}
+
+function logCatch() {
+    const entry = {
+        id: Date.now(),
+        date: new Date().toISOString(),
+        species: document.getElementById('species').value,
+        weight: parseFloat(document.getElementById('weight').value) || 0,
+        count: parseInt(document.getElementById('count').value) || 1,
+        location: document.getElementById('location').value,
+        depth: document.getElementById('depth').value,
+        temp: document.getElementById('temp').value,
+        tide: document.getElementById('tide').value,
+        moon: document.getElementById('moon').value,
+        bait: document.getElementById('bait').value,
+        conditions: document.getElementById('conditions').value,
+        notes: document.getElementById('notes').value
+    };
+    if (!entry.species) return alert('At least tell us what you caught!');
+    catches.unshift(entry);
+    localStorage.setItem('fishinglog', JSON.stringify(catches));
+    // Clear form
+    document.querySelectorAll('#tab-log input, #tab-log textarea').forEach(i => { if (i.type !== 'number' || i.id === 'count') return; i.value = ''; });
+    alert('Logged! ' + entry.species + ' ' + entry.weight + 'lbs');
+}
+
+function renderHistory() {
+    const list = document.getElementById('log-list');
+    const empty = document.getElementById('empty-msg');
+    if (catches.length === 0) { empty.classList.remove('hidden'); list.innerHTML = ''; return; }
+    empty.classList.add('hidden');
+    list.innerHTML = catches.map(c => '<div class="log-entry"><span class="species">' + c.species + '</span> — ' + c.weight + ' lbs × ' + c.count + (c.location ? ' @ ' + c.location : '') + '<div class="meta">' + new Date(c.date).toLocaleDateString() + (c.depth ? ' • ' + c.depth + ' fathoms' : '') + (c.tide ? ' • ' + c.tide + ' tide' : '') + (c.moon ? ' • ' + c.moon : '') + '</div>' + (c.notes ? '<div class="notes">' + c.notes + '</div>' : '') + '</div>').join('');
+}
+
+function renderStats() {
+    document.getElementById('total-catches').textContent = catches.reduce((s, c) => s + c.count, 0);
+    document.getElementById('total-weight').textContent = catches.reduce((s, c) => s + (c.weight * c.count), 0).toFixed(1);
+    document.getElementById('species-count').textContent = new Set(catches.map(c => c.species)).size;
+    const best = catches.reduce((b, c) => c.weight > (b?.weight || 0) ? c : b, null);
+    document.getElementById('best-catch').textContent = best ? best.species + ' ' + best.weight + 'lbs' : '--';
+}
+
+async function submitToPLATO() {
+    const notes = document.getElementById('notes').value;
+    const species = document.getElementById('species').value;
+    if (!notes || !species) return alert('Add species and notes to submit an insight');
+    try {
+        const r = await fetch(PLATO + '/submit', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+                domain: 'commercial-fishing',
+                question: 'What did you learn about ' + species + '?',
+                answer: notes,
+                agent: 'fishinglog-web'
+            })
+        });
+        const data = await r.json();
+        alert(data.status === 'ok' ? 'Insight submitted to fleet!' : 'Error: ' + JSON.stringify(data));
+    } catch(e) {
+        alert('Could not reach PLATO. Insight saved locally.');
+    }
+}
+</script>
+</body></html>

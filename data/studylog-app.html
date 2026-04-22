@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#3B82F6">
+<title>StudyLog — Track Your Learning</title>
+<meta name="description" content="Track study sessions, build knowledge, submit insights to the fleet AI. Every session is a tile.">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--accent:#3B82F6;--bg:#0A0A0F;--text:#d8d8ec;--dim:#8A93B4;--surface:#14141f;--border:#1c1c35;--green:#22C55E}
+body{font-family:'JetBrains Mono',monospace;background:var(--bg);color:var(--text);line-height:1.7}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(10,10,15,.95);border-bottom:1px solid var(--border);padding:.7rem 2rem;display:flex;align-items:center;justify-content:space-between}
+nav .logo{font-weight:700;color:var(--accent)}
+nav .links a{font-size:.75rem;color:var(--dim);text-decoration:none;margin-left:1.5rem}
+.container{max-width:700px;margin:5rem auto 2rem;padding:0 1.5rem}
+h1{font-size:1.5rem;margin-bottom:.3rem}
+.subtitle{color:var(--dim);font-size:.85rem;margin-bottom:2rem}
+.form-group{margin-bottom:1.2rem}
+label{display:block;font-size:.75rem;color:var(--accent);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.3rem}
+input,select,textarea{width:100%;background:var(--surface);border:1px solid var(--border);color:var(--text);padding:.6rem .8rem;font-family:inherit;font-size:.85rem;border-radius:4px;outline:none}
+input:focus,select:focus,textarea:focus{border-color:var(--accent)}
+textarea{min-height:80px;resize:vertical}
+.row{display:flex;gap:1rem}
+.row>*{flex:1}
+.btn{padding:.6rem 1.4rem;border-radius:6px;font-weight:600;font-size:.85rem;cursor:pointer;border:none;font-family:inherit;transition:all .2s}
+.btn-primary{background:var(--accent);color:#fff}
+.btn-ghost{background:transparent;color:var(--dim);border:1px solid var(--border)}
+.session{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:1rem;margin-bottom:.8rem}
+.session .subject{color:var(--accent);font-weight:600}
+.session .meta{color:var(--dim);font-size:.75rem;margin-top:.3rem}
+.session .insight{font-size:.8rem;margin-top:.3rem;color:var(--text)}
+.stats{display:flex;gap:1.5rem;margin:1.5rem 0;flex-wrap:wrap}
+.stat{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:1rem;flex:1;min-width:100px;text-align:center}
+.stat-num{font-size:1.3rem;font-weight:700;color:var(--accent)}
+.stat-label{font-size:.65rem;color:var(--dim);text-transform:uppercase;letter-spacing:.08em}
+.timer{font-size:2rem;color:var(--accent);text-align:center;padding:1rem;font-weight:700}
+.timer-controls{display:flex;gap:.5rem;justify-content:center;margin-bottom:1.5rem}
+.tab-bar{display:flex;gap:.5rem;margin-bottom:1.5rem}
+.tab{background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:.4rem 1rem;font-size:.75rem;color:var(--dim);cursor:pointer;font-family:inherit}
+.tab.active{border-color:var(--accent);color:var(--accent)}
+.hidden{display:none}
+.empty{text-align:center;color:var(--dim);padding:3rem;font-size:.85rem}
+</style>
+</head><body>
+<nav><div class="logo">📚 StudyLog</div><div class="links"><a href="https://studylog.ai">Home</a><a href="http://147.224.38.131:4060/">Terminal</a><a href="http://147.224.38.131:8899/status">Fleet</a></div></nav>
+<div class="container">
+<h1>Study Session</h1>
+<p class="subtitle">Every session is a tile. Every tile is permanent knowledge.</p>
+
+<div class="tab-bar">
+<button class="tab active" onclick="showTab('timer')">Timer</button>
+<button class="tab" onclick="showTab('log')">Log Session</button>
+<button class="tab" onclick="showTab('history')">History</button>
+</div>
+
+<div id="tab-timer">
+<div class="timer" id="timer-display">00:00:00</div>
+<div class="timer-controls">
+<button class="btn btn-primary" onclick="startTimer()" id="start-btn">▶ Start</button>
+<button class="btn btn-ghost" onclick="pauseTimer()" id="pause-btn" disabled>⏸ Pause</button>
+<button class="btn btn-ghost" onclick="resetTimer()">⏹ Reset</button>
+</div>
+<div class="form-group"><label>Subject</label><input id="timer-subject" placeholder="What are you studying?"></div>
+</div>
+
+<div id="tab-log" class="hidden">
+<div class="form-group"><label>Subject</label><input id="subject" placeholder="Mathematics, Python, Machine Learning..."></div>
+<div class="row">
+<div class="form-group"><label>Duration (min)</label><input id="duration" type="number" placeholder="45"></div>
+<div class="form-group"><label>Method</label><select id="method"><option value="reading">Reading</option><option value="practice">Practice</option><option value="video">Video Course</option><option value="tutorial">Tutorial</option><option value="flashcards">Flashcards</option><option value="teaching">Teaching</option><option value="project">Project</option></select></div>
+</div>
+<div class="form-group"><label>What did you learn? (the insight)</label><textarea id="insight" placeholder="The key thing you'll remember from this session..."></textarea></div>
+<div class="form-group"><label>Confidence (1-5)</label><select id="confidence"><option value="1">1 — Just heard of it</option><option value="2">2 — Surface level</option><option value="3" selected>3 — Understand basics</option><option value="4">4 — Could teach it</option><option value="5">5 — Deep mastery</option></select></div>
+<div style="display:flex;gap:.8rem;margin-top:1.5rem">
+<button class="btn btn-primary" onclick="logSession()">Log Session</button>
+<button class="btn btn-ghost" onclick="submitToPLATO()">Submit to Fleet</button>
+</div>
+</div>
+
+<div id="tab-history" class="hidden">
+<div class="empty" id="empty-msg">No sessions yet. Start studying!</div>
+<div id="session-list"></div>
+</div>
+</div>
+
+<script>
+const PLATO = 'http://147.224.38.131:8847';
+let sessions = JSON.parse(localStorage.getItem('studylog') || '[]');
+let timerStart = null, timerInterval = null, elapsed = 0;
+
+function showTab(tab) {
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    event.target.classList.add('active');
+    document.getElementById('tab-timer').classList.toggle('hidden', tab !== 'timer');
+    document.getElementById('tab-log').classList.toggle('hidden', tab !== 'log');
+    document.getElementById('tab-history').classList.toggle('hidden', tab !== 'history');
+    if (tab === 'history') renderHistory();
+}
+
+function startTimer() {
+    timerStart = Date.now() - elapsed;
+    timerInterval = setInterval(updateTimer, 1000);
+    document.getElementById('start-btn').disabled = true;
+    document.getElementById('pause-btn').disabled = false;
+}
+
+function pauseTimer() {
+    clearInterval(timerInterval);
+    document.getElementById('start-btn').disabled = false;
+    document.getElementById('pause-btn').disabled = true;
+}
+
+function resetTimer() {
+    clearInterval(timerInterval);
+    elapsed = 0;
+    document.getElementById('timer-display').textContent = '00:00:00';
+    document.getElementById('start-btn').disabled = false;
+    document.getElementById('pause-btn').disabled = true;
+}
+
+function updateTimer() {
+    elapsed = Date.now() - timerStart;
+    const h = Math.floor(elapsed / 3600000);
+    const m = Math.floor((elapsed % 3600000) / 60000);
+    const s = Math.floor((elapsed % 60000) / 1000);
+    document.getElementById('timer-display').textContent =
+        String(h).padStart(2,'0') + ':' + String(m).padStart(2,'0') + ':' + String(s).padStart(2,'0');
+}
+
+function logSession() {
+    const entry = {
+        id: Date.now(),
+        date: new Date().toISOString(),
+        subject: document.getElementById('subject').value,
+        duration: parseInt(document.getElementById('duration').value) || Math.floor(elapsed / 60000),
+        method: document.getElementById('method').value,
+        insight: document.getElementById('insight').value,
+        confidence: parseInt(document.getElementById('confidence').value)
+    };
+    if (!entry.subject) return alert('What did you study?');
+    sessions.unshift(entry);
+    localStorage.setItem('studylog', JSON.stringify(sessions));
+    document.getElementById('subject').value = '';
+    document.getElementById('insight').value = '';
+    alert('Session logged! ' + entry.duration + ' min of ' + entry.subject);
+}
+
+function renderHistory() {
+    const list = document.getElementById('session-list');
+    const empty = document.getElementById('empty-msg');
+    if (!sessions.length) { empty.classList.remove('hidden'); list.innerHTML = ''; return; }
+    empty.classList.add('hidden');
+    list.innerHTML = sessions.map(s => '<div class="session"><span class="subject">' + s.subject + '</span> — ' + s.duration + ' min (' + s.method + ')' + (s.confidence ? ' • Confidence: ' + s.confidence + '/5' : '') + '<div class="meta">' + new Date(s.date).toLocaleDateString() + '</div>' + (s.insight ? '<div class="insight">💡 ' + s.insight + '</div>' : '') + '</div>').join('');
+}
+
+async function submitToPLATO() {
+    const insight = document.getElementById('insight').value;
+    const subject = document.getElementById('subject').value;
+    if (!insight || !subject) return alert('Add subject and insight');
+    try {
+        await fetch(PLATO + '/submit', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({domain: 'learning-' + subject.toLowerCase().replace(/\s+/g,'-'), question: 'Key insight about ' + subject, answer: insight, agent: 'studylog-web'})
+        });
+        alert('Submitted to fleet!');
+    } catch(e) { alert('Could not reach PLATO. Saved locally.'); }
+}
+</script>
+</body></html>
