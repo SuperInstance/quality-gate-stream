@@ -1,4 +1,12 @@
 Traceback (most recent call last):
-  File "/home/ubuntu/.openclaw/workspace/fleet/services/mud_telnet.py", line 24, in <module>
-    from plato_mud_server.Mud_server import MudServer
-ModuleNotFoundError: No module named 'plato_mud_server.Mud_server'
+  File "/home/ubuntu/.openclaw/workspace/fleet/services/mud_telnet.py", line 230, in <module>
+    asyncio.run(main())
+  File "/usr/lib/python3.10/asyncio/runners.py", line 44, in run
+    return loop.run_until_complete(main)
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 649, in run_until_complete
+    return future.result()
+  File "/home/ubuntu/.openclaw/workspace/fleet/services/mud_telnet.py", line 214, in main
+    build_fleet_world(mud)
+  File "/home/ubuntu/.openclaw/workspace/fleet/services/mud_telnet.py", line 54, in build_fleet_world
+    mud.add_room(rid, name, desc)
+AttributeError: 'Mud_server' object has no attribute 'add_room'
