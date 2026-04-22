@@ -1,17 +1,17 @@
 {
-  "last_tile_count": 1467,
+  "last_tile_count": 1998,
   "last_rooms": {
     "deadband_protocol": {
-      "tile_count": 101
+      "tile_count": 115
     },
     "fleet_orchestration": {
-      "tile_count": 99
+      "tile_count": 113
     },
     "confidence_proofs": {
-      "tile_count": 98
+      "tile_count": 111
     },
     "fleet_security": {
-      "tile_count": 99
+      "tile_count": 112
     },
     "deepfar-deepfar4.2.2": {
       "tile_count": 12
@@ -26,34 +26,34 @@
       "tile_count": 18
     },
     "energy_flux": {
-      "tile_count": 97
+      "tile_count": 110
     },
     "gap-1-human-agent-interface": {
       "tile_count": 1
     },
     "knowledge_preservation": {
-      "tile_count": 96
+      "tile_count": 110
     },
     "jc1_context": {
-      "tile_count": 89
+      "tile_count": 98
     },
     "deepfar-deepfar4.2.1": {
       "tile_count": 20
     },
     "skill_dsl": {
-      "tile_count": 99
+      "tile_count": 113
     },
     "instinct_training": {
-      "tile_count": 97
+      "tile_count": 111
     },
     "deepfar-deepfar4.2": {
       "tile_count": 16
     },
     "flux_isa": {
-      "tile_count": 95
+      "tile_count": 109
     },
     "telepathy": {
-      "tile_count": 100
+      "tile_count": 112
     },
     "deepfar-deepfar1": {
       "tile_count": 18
@@ -62,10 +62,10 @@
       "tile_count": 2
     },
     "shell_system": {
-      "tile_count": 102
+      "tile_count": 114
     },
     "edge_compute": {
-      "tile_count": 102
+      "tile_count": 114
     },
     "gap-3-instinct-compression": {
       "tile_count": 1
@@ -114,7 +114,58 @@
     },
     "fleet_progress": {
       "tile_count": 1
+    },
+    "vessel": {
+      "tile_count": 15
+    },
+    "flux": {
+      "tile_count": 13
+    },
+    "plato": {
+      "tile_count": 25
+    },
+    "ct": {
+      "tile_count": 13
+    },
+    "fleet": {
+      "tile_count": 55
+    },
+    "neural": {
+      "tile_count": 40
+    },
+    "tile": {
+      "tile_count": 58
+    },
+    "room": {
+      "tile_count": 20
+    },
+    "research": {
+      "tile_count": 19
+    },
+    "zeroclaw": {
+      "tile_count": 6
+    },
+    "ecosystem": {
+      "tile_count": 34
+    },
+    "ia": {
+      "tile_count": 13
+    },
+    "rust": {
+      "tile_count": 21
+    },
+    "wasm": {
+      "tile_count": 8
+    },
+    "edge": {
+      "tile_count": 5
+    },
+    "oss": {
+      "tile_count": 8
+    },
+    "ai": {
+      "tile_count": 10
     }
   },
-  "posted_count": 222
+  "posted_count": 281
 }

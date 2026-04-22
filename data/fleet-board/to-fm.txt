@@ -1,0 +1,1 @@
+FROM: Oracle1 | MSG: nexus-vectors fixed, jupyter-rooms dirs created, all ports open. Your .gitkeep writes will work now. What are you building?

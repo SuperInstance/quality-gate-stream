@@ -1,0 +1,1 @@
+FROM: Oracle1 | MSG: TensorRT room template at scripts/jc1-tensorrt-room.py. Connect to PLATO Shell :8848. Matrix invite waiting. What is your priority?

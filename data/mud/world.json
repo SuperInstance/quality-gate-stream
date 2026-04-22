@@ -1,5 +1,5 @@
 {
-  "tick": 91,
+  "tick": 168,
   "rooms": {
     "harbor": {
       "items": [
@@ -145,6 +145,181 @@
       "score": 0
     },
     "SSH-2.0-Go": {
+      "room": "harbor",
+      "inventory": [],
+      "score": 0
+    },
+    "l\u0000\u000b\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000": {
+      "room": "harbor",
+      "inventory": [],
+      "score": 0
+    },
+    "agent-8770": {
+      "room": "harbor",
+      "inventory": [],
+      "score": 0
+    },
+    "OPTIONS / HTTP/1.0": {
+      "room": "harbor",
+      "inventory": [],
+      "score": 0
+    },
+    "OPTIONS / RTSP/1.0": {
+      "room": "harbor",
+      "inventory": [],
+      "score": 0
+    },
+    "PRI * HTTP/2.0": {
+      "room": "harbor",
+      "inventory": [],
+      "score": 0
+    },
+    "\u0000\u001e\u0000\u0006\u0001\u0000\u0000\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0007version\u0004bind\u0000\u0000\u0010\u0000\u0003": {
+      "room": "harbor",
+      "inventory": [],
+      "score": 0
+    },
+    "\u0000\f\u0000\u0000\u0010\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000": {
+      "room": "harbor",
+      "inventory": [],
+      "score": 0
+    },
+    "AMQP\u0000\u0000\t\u0001": {
+      "room": "harbor",
+      "inventory": [],
+      "score": 0
+    },
+    "\u0001\u0001\u0000\u0000\u0000\u0000": {
+      "room": "harbor",
+      "inventory": [],
+      "score": 0
+    },
+    "{\"id\":1,\"method\":\"mining.subscri": {
+      "room": "harbor",
+      "inventory": [],
+      "score": 0
+    },
+    "t3 12.1.2": {
+      "room": "harbor",
+      "inventory": [],
+      "score": 0
+    },
+    "HELP": {
+      "room": "harbor",
+      "inventory": [],
+      "score": 0
+    },
+    "GET /nice%20ports%2C/Tri%6Eity.t": {
+      "room": "harbor",
+      "inventory": [],
+      "score": 0
+    },
+    "\u0001default": {
+      "room": "harbor",
+      "inventory": [],
+      "score": 0
+    },
+    "OPTIONS sip:nm SIP/2.0": {
+      "room": "harbor",
+      "inventory": [],
+      "score": 0
+    },
+    "INVITES sip:nm SIP/2.0": {
+      "room": "harbor",
+      "inventory": [],
+      "score": 0
+    },
+    "TNMP\u0004\u0000\u0000\u0000TNME\u0000\u0000\u0004\u0000": {
+      "room": "harbor",
+      "inventory": [],
+      "score": 0
+    },
+    "<?xml version='1.0'?><stream:str": {
+      "room": "harbor",
+      "inventory": [],
+      "score": 0
+    },
+    "#\u0000\u0000\u0000\u0012!\u0010\u0003\u001a\u0006:62710*\rfd135ge@&yt_02": {
+      "room": "harbor",
+      "inventory": [],
+      "score": 0
+    },
+    "\u0000\u0000\u0000": {
+      "room": "harbor",
+      "inventory": [],
+      "score": 0
+    },
+    "{\"id\":1,\"jsonrpc\":\"2.0\",\"method\"": {
+      "room": "harbor",
+      "inventory": [],
+      "score": 0
+    },
+    "EXAMPLE.COM": {
+      "room": "harbor",
+      "inventory": [],
+      "score": 0
+    },
+    "\u0000\u0000\u0000\u0019a": {
+      "room": "harbor",
+      "inventory": [],
+      "score": 0
+    },
+    "\u0000\u0000\u0000m\u0000\u0000\u0000i{\"code\":105,\"language\":\"": {
+      "room": "harbor",
+      "inventory": [],
+      "score": 0
+    },
+    "\u0000\u0001\u0000\u0001\u0000\u0000\u0000\u0001\u0000\u0000\u0000\u0000": {
+      "room": "harbor",
+      "inventory": [],
+      "score": 0
+    },
+    ")\u0000\u0000\u0000\u0000\u0000\u0000\u0000{\"Type\":\"Auth\",\"Payload\"": {
+      "room": "harbor",
+      "inventory": [],
+      "score": 0
+    },
+    "\u0000\u0000\u0000\u0006\u0000\u0000\u00000.26.0\u0007\u0000\u0000\u00000.26.10202cb962": {
+      "room": "harbor",
+      "inventory": [],
+      "score": 0
+    },
+    ":\u0000\u0000\u0000/\u0000\u0000\u0000\u0002\u0000\u0000@\u0002\u000f\u0000\u0001\u0000=\u0005\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000/": {
+      "room": "harbor",
+      "inventory": [],
+      "score": 0
+    },
+    "JRMI\u0000\u0002K": {
+      "room": "harbor",
+      "inventory": [],
+      "score": 0
+    },
+    "\u0004\u0001\u0000\u0016\u007f\u0000\u0000\u0001root\u0000": {
+      "room": "harbor",
+      "inventory": [],
+      "score": 0
+    },
+    "stats": {
+      "room": "harbor",
+      "inventory": [],
+      "score": 0
+    },
+    "\u0000\u0003\u0000\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0002\u0000\u0000\u0000\u0000\u000f\u0000": {
+      "room": "harbor",
+      "inventory": [],
+      "score": 0
+    },
+    "*1": {
+      "room": "harbor",
+      "inventory": [],
+      "score": 0
+    },
+    "GIOP\u0001\u0000\u0001\u0000$\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0001\u0000\u0000\u0000\u0001\u0000\u0000\u0000\u0006\u0000\u0000\u0000abcd": {
+      "room": "harbor",
+      "inventory": [],
+      "score": 0
+    },
+    "\u0010\u0010\u0000\u0004MQTT\u0004\u0002\u0000\u001e\u0000\u0004nmap": {
       "room": "harbor",
       "inventory": [],
       "score": 0
