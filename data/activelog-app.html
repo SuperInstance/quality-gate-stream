@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#22C55E">
+<title>ActiveLog — Track Everything</title>
+<meta name="description" content="Universal activity intelligence. Track workouts, coding, reading, learning — anything. AI finds cross-domain patterns.">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--accent:#22C55E;--bg:#0A0A0F;--text:#d8d8ec;--dim:#8A93B4;--surface:#14141f;--border:#1c1c35}
+body{font-family:'JetBrains Mono',monospace;background:var(--bg);color:var(--text);line-height:1.7}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(10,10,15,.95);border-bottom:1px solid var(--border);padding:.7rem 2rem;display:flex;align-items:center;justify-content:space-between}
+nav .logo{font-weight:700;color:var(--accent)}
+nav .links a{font-size:.75rem;color:var(--dim);text-decoration:none;margin-left:1.5rem}
+.container{max-width:700px;margin:5rem auto 2rem;padding:0 1.5rem}
+h1{font-size:1.5rem;margin-bottom:.3rem}
+.subtitle{color:var(--dim);font-size:.85rem;margin-bottom:1.5rem}
+.quick-add{display:flex;gap:.5rem;margin-bottom:1.5rem;flex-wrap:wrap}
+.quick-btn{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:.5rem 1rem;color:var(--dim);cursor:pointer;font-family:inherit;font-size:.75rem;transition:all .15s}
+.quick-btn:hover{border-color:var(--accent);color:var(--accent)}
+.quick-btn.active{border-color:var(--accent);color:var(--accent);background:rgba(34,197,94,.1)}
+.form-group{margin-bottom:1rem}
+label{display:block;font-size:.7rem;color:var(--accent);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.3rem}
+input,select,textarea{width:100%;background:var(--surface);border:1px solid var(--border);color:var(--text);padding:.5rem .7rem;font-family:inherit;font-size:.85rem;border-radius:4px;outline:none}
+input:focus,textarea:focus{border-color:var(--accent)}
+textarea{min-height:60px;resize:vertical}
+.row{display:flex;gap:.8rem}.row>*{flex:1}
+.btn{padding:.5rem 1.2rem;border-radius:6px;font-weight:600;font-size:.8rem;cursor:pointer;border:none;font-family:inherit;transition:all .2s}
+.btn-primary{background:var(--accent);color:var(--bg)}
+.btn-ghost{background:transparent;color:var(--dim);border:1px solid var(--border)}
+.entries{margin-top:1.5rem}
+.entry{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:.8rem 1rem;margin-bottom:.6rem;display:flex;align-items:center;gap:.8rem}
+.entry-icon{font-size:1.2rem}
+.entry-body{flex:1}
+.entry-activity{color:var(--accent);font-weight:600;font-size:.85rem}
+.entry-meta{color:var(--dim);font-size:.7rem;margin-top:.1rem}
+.entry-notes{font-size:.75rem;margin-top:.2rem}
+.stats{display:flex;gap:1rem;margin:1rem 0;flex-wrap:wrap}
+.stat{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:.8rem;flex:1;min-width:100px;text-align:center}
+.stat-num{font-size:1.2rem;font-weight:700;color:var(--accent)}
+.stat-label{font-size:.6rem;color:var(--dim);text-transform:uppercase;letter-spacing:.08em}
+.tab-bar{display:flex;gap:.5rem;margin-bottom:1rem}
+.tab{background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:.4rem 1rem;font-size:.75rem;color:var(--dim);cursor:pointer;font-family:inherit}
+.tab.active{border-color:var(--accent);color:var(--accent)}
+.hidden{display:none}
+.empty{text-align:center;color:var(--dim);padding:2rem;font-size:.85rem}
+#form-area{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:1.2rem;margin-bottom:1rem}
+</style>
+</head><body>
+<nav><div class="logo">📊 ActiveLog</div><div class="links"><a href="https://activelog.ai">Home</a><a href="http://147.224.38.131:4060/">Terminal</a><a href="http://147.224.38.131:8899/status">Fleet</a></div></nav>
+<div class="container">
+<h1>Track Everything</h1>
+<p class="subtitle">Life is activity. Activity is data. Data is intelligence.</p>
+
+<div class="quick-add" id="categories">
+<button class="quick-btn" onclick="pickCategory(this,'🏃','exercise','Exercise')">🏃 Exercise</button>
+<button class="quick-btn" onclick="pickCategory(this,'💻','coding','Coding')">💻 Coding</button>
+<button class="quick-btn" onclick="pickCategory(this,'📖','reading','Reading')">📖 Reading</button>
+<button class="quick-btn" onclick="pickCategory(this,'🧘','meditation','Meditation')">🧘 Meditation</button>
+<button class="quick-btn" onclick="pickCategory(this,'🎵','music','Music')">🎵 Music</button>
+<button class="quick-btn" onclick="pickCategory(this,'✍️','writing','Writing')">✍️ Writing</button>
+<button class="quick-btn" onclick="pickCategory(this,'🎮','gaming','Gaming')">🎮 Gaming</button>
+<button class="quick-btn" onclick="pickCategory(this,'💼','work','Work')">💼 Work</button>
+<button class="quick-btn" onclick="pickCategory(this,'🎨','creative','Creative')">🎨 Creative</button>
+<button class="quick-btn" onclick="pickCategory(this,'😴','sleep','Sleep')">😴 Sleep</button>
+<button class="quick-btn" onclick="pickCategory(this,'🍳','cooking','Cooking')">🍳 Cooking</button>
+<button class="quick-btn" onclick="pickCategory(this,'🧹','chores','Chores')">🧹 Chores</button>
+</div>
+
+<div id="form-area" class="hidden">
+<div class="row">
+<div class="form-group"><label>What</label><input id="activity" placeholder="Ran 5k, Fixed auth bug, Read chapter 7..."></div>
+<div class="form-group"><label>Duration</label><input id="duration" placeholder="45 min"></div>
+</div>
+<div class="form-group"><label>How did it go? (1-5)</label>
+<div style="display:flex;gap:.5rem">
+<button class="quick-btn" onclick="setRating(1)">1</button>
+<button class="quick-btn" onclick="setRating(2)">2</button>
+<button class="quick-btn" onclick="setRating(3)">3</button>
+<button class="quick-btn" onclick="setRating(4)">4</button>
+<button class="quick-btn" onclick="setRating(5)">5</button>
+</div>
+</div>
+<div class="form-group"><label>Notes</label><textarea id="notes" placeholder="What happened, what worked, what didn't..."></textarea></div>
+<div style="display:flex;gap:.6rem">
+<button class="btn btn-primary" onclick="logEntry()">Log It</button>
+<button class="btn btn-ghost" onclick="submitToPLATO()">Submit Insight</button>
+</div>
+</div>
+
+<div class="tab-bar">
+<button class="tab active" onclick="showTab('log')">Log</button>
+<button class="tab" onclick="showTab('today')">Today</button>
+<button class="tab" onclick="showTab('stats')">Stats</button>
+</div>
+
+<div id="tab-log">
+<div class="empty" id="empty-msg">Pick a category and start tracking!</div>
+<div class="entries" id="entries"></div>
+</div>
+
+<div id="tab-today" class="hidden">
+<div class="entries" id="today-entries"></div>
+<div class="stats" id="today-stats"></div>
+</div>
+
+<div id="tab-stats" class="hidden">
+<div class="stats">
+<div class="stat"><div class="stat-num" id="total-entries">0</div><div class="stat-label">Entries</div></div>
+<div class="stat"><div class="stat-num" id="total-categories">0</div><div class="stat-label">Categories</div></div>
+<div class="stat"><div class="stat-num" id="avg-rating">--</div><div class="stat-label">Avg Rating</div></div>
+<div class="stat"><div class="stat-num" id="streak">0</div><div class="stat-label">Day Streak</div></div>
+</div>
+</div>
+</div>
+
+<script>
+const PLATO='http://147.224.38.131:8847';
+let entries=JSON.parse(localStorage.getItem('activelog')||'[]');
+let selectedCategory=null,selectedIcon=null,selectedRating=3;
+
+function pickCategory(btn,icon,cat){
+    document.querySelectorAll('.quick-btn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    selectedIcon=icon;selectedCategory=cat;
+    document.getElementById('form-area').classList.remove('hidden');
+    document.getElementById('activity').focus();
+}
+
+function setRating(r){selectedRating=r;document.querySelectorAll('#form-area .quick-btn').forEach((b,i)=>{b.classList.toggle('active',i===r-1)})}
+
+function logEntry(){
+    const e={id:Date.now(),date:new Date().toISOString(),icon:selectedIcon,category:selectedCategory,activity:document.getElementById('activity').value,duration:document.getElementById('duration').value,rating:selectedRating,notes:document.getElementById('notes').value};
+    if(!e.category||!e.activity)return alert('Pick a category and describe what you did');
+    entries.unshift(e);localStorage.setItem('activelog',JSON.stringify(entries));
+    document.getElementById('activity').value='';document.getElementById('duration').value='';document.getElementById('notes').value='';
+    renderEntries();
+}
+
+function renderEntries(){
+    const list=document.getElementById('entries');const empty=document.getElementById('empty-msg');
+    if(!entries.length){empty.classList.remove('hidden');list.innerHTML='';return}
+    empty.classList.add('hidden');
+    list.innerHTML=entries.slice(0,30).map(e=>'<div class="entry"><div class="entry-icon">'+e.icon+'</div><div class="entry-body"><div class="entry-activity">'+e.activity+'</div><div class="entry-meta">'+e.category+' &bull; '+e.duration+' &bull; '+'⭐'.repeat(e.rating)+new Date(e.date).toLocaleDateString()+'</div>'+(e.notes?'<div class="entry-notes">'+e.notes+'</div>':'')+'</div></div>').join('');
+}
+
+function showTab(t){
+    document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+    event.target.classList.add('active');
+    document.getElementById('tab-log').classList.toggle('hidden',t!=='log');
+    document.getElementById('tab-today').classList.toggle('hidden',t!=='today');
+    document.getElementById('tab-stats').classList.toggle('hidden',t!=='stats');
+    if(t==='log')renderEntries();
+    if(t==='stats'){
+        document.getElementById('total-entries').textContent=entries.length;
+        document.getElementById('total-categories').textContent=new Set(entries.map(e=>e.category)).size;
+        const avg=entries.length?(entries.reduce((s,e)=>s+e.rating,0)/entries.length).toFixed(1):'--';
+        document.getElementById('avg-rating').textContent=avg;
+        const days=new Set(entries.map(e=>new Date(e.date).toDateString()));
+        let streak=0,d=new Date();
+        while(days.has(d.toDateString())){streak++;d.setDate(d.getDate()-1)}
+        document.getElementById('streak').textContent=streak;
+    }
+}
+
+async function submitToPLATO(){
+    const notes=document.getElementById('notes').value;
+    if(!notes||!selectedCategory)return alert('Add notes about your '+selectedCategory);
+    try{
+        await fetch(PLATO+'/submit',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({domain:'activity-'+selectedCategory,question:'What did you learn about '+selectedCategory+'?',answer:notes,agent:'activelog-web'})});
+        alert('Insight submitted to fleet!');
+    }catch(e){alert('Saved locally. Fleet unreachable.')}
+}
+
+renderEntries();
+</script>
+</body></html>

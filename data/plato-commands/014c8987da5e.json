@@ -1,0 +1,15 @@
+{
+  "id": "014c8987da5e",
+  "agent": "ccc-oracle1-check",
+  "room": "harbor",
+  "tool": "shell",
+  "command": "ls -la /home/ubuntu/.openclaw/workspace/scripts/ | head -n 40",
+  "cwd": "/home/ubuntu/.openclaw/workspace",
+  "started": 1776887101.0090616,
+  "status": "completed",
+  "output": "total 1268\ndrwxrwxr-x  5 ubuntu ubuntu   4096 Apr 22 18:12 .\ndrwxrwxr-x 41 ubuntu ubuntu   4096 Apr 22 07:30 ..\ndrwxrwxr-x  3 ubuntu ubuntu   4096 Apr 13 21:12 Enhance the plane analyzer at \ndrwxrwxr-x  2 ubuntu ubuntu   4096 Apr 22 02:48 __pycache__\n-rw-rw-r--  1 ubuntu ubuntu   9017 Apr 21 21:12 adaptive-mud.py\n-rw-rw-r--  1 ubuntu ubuntu   8092 Apr 21 01:46 agent-api.py\n-rwxrwxr-x  1 ubuntu ubuntu   4037 Apr 14 02:08 analyze_repo.py\n-rwxrwxr-x  1 ubuntu ubuntu   8845 Apr 14 02:08 batch.py\n-rwxrwxr-x  1 ubuntu ubuntu  18032 Apr 14 00:05 bootcamp.py\n-rw-rw-r--  1 ubuntu ubuntu  10245 Apr 13 19:57 bootstrap_research.py\n-rw-rw-r--  1 ubuntu ubuntu  49682 Apr 22 18:15 build-domains.py\n-rwxrwxr-x  1 ubuntu ubuntu   2374 Apr 19 23:46 ccc-shell-maintainer.sh\n-rw-rw-r--  1 ubuntu ubuntu   2468 Apr 20 03:26 convergence-report.json\n-rw-rw-r--  1 ubuntu ubuntu 100896 Apr 21 23:23 crab-trap-mud.py\n-rw-rw-r--  1 ubuntu ubuntu   5876 Apr 21 02:47 crab-trap-prompt.md\n-rw-rw-r--  1 ubuntu ubuntu  11197 Apr 21 17:58 crab-trap-prompts-v3.md\n-rw-rw-r--  1 ubuntu ubuntu  16118 Apr 21 07:28 curriculum-engine.py\n-rw-rw-r--  1 ubuntu ubuntu  15068 Apr 21 00:04 deep_gap_research.py\n-rw-rw-r--  1 ubuntu ubuntu   3941 Apr 21 08:10 deepfar-prompt.md\n-rw-rw-r--  1 ubuntu ubuntu   6527 Apr 22 17:15 deploy-domains.py\n-rwxrwxr-x  1 ubuntu ubuntu    190 Apr 14 02:08 do_fork.sh\n-rw-rw-r--  1 ubuntu ubuntu   1732 Apr 20 03:26 docker-compose.yml\n-rw-rw-r--  1 ubuntu ubuntu  30760 Apr 22 03:01 domain-rooms.py\n-rw-rw-r--  1 ubuntu ubuntu   7255 Apr 21 23:39 federated-nexus.py\n-rw-rw-r--  1 ubuntu ubuntu   4339 Apr 21 17:34 fleet-dashboard.py\n-rw-rw-r--  1 ubuntu ubuntu   9832 Apr 21 21:11 fleet-orchestrator.py\n-rwxrwxr-x  1 ubuntu ubuntu    910 Apr 13 17:58 fleet-push.sh\n-rwxrwxr-x  1 ubuntu ubuntu   1898 Apr 14 02:08 fleet-sync.sh\n-rw-rw-r--  1 ubuntu ubuntu  22655 Apr 20 03:26 fleet-visualization.html\n-rw-rw-r--  1 ubuntu ubuntu   8877 Apr 22 18:12 fleet-widget.js\n-rw-rw-r--  1 ubuntu ubuntu   7678 Apr 19 20:04 fleet_homunculus.py\n-rw-rw-r--  1 ubuntu ubuntu   3111 Apr 13 18:00 fleet_image_gen.py\n-rw-rw-r--  1 ubuntu ubuntu   3142 Apr 19 20:04 fleet_reflex.py\n-rw-rw-r--  1 ubuntu ubuntu   4276 Apr 20 23:14 fleet_synthesizer.py\n-rw-rw-r--  1 ubuntu ubuntu  20485 Apr 20 03:26 flywheel-dashboard.html\n-rw-rw-r--  1 ubuntu ubuntu  16361 Apr 20 03:26 flywheel-experiment.py\n-rw-rw-r--  1 ubuntu ubuntu  45394 Apr 20 03:26 flywheel-metrics.json\n-rwxrwxr-x  1 ubuntu ubuntu   3858 Apr 14 02:08 fork_lucineer.py\n-rw-rw-r--  1 ubuntu ubuntu   2882 Apr 19 08:44 holodeck-plato-bridge.py\n",
+  "error": "",
+  "returncode": 0,
+  "completed": 1776887101.012256,
+  "duration": 0.0
+}

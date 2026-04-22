@@ -427,6 +427,18 @@ class Handler(http.server.BaseHTTPRequestHandler):
                     self.wfile.write(f.read())
                 return
 
+        # Activity log app
+        if self.path == '/activelog':
+            app_path = os.path.join(os.path.dirname(__file__), '..', '..', 'data', 'activelog-app.html')
+            if os.path.exists(app_path):
+                self.send_response(200)
+                self.send_header('Content-Type', 'text/html; charset=utf-8')
+                self.send_header('Access-Control-Allow-Origin', '*')
+                self.end_headers()
+                with open(app_path, 'rb') as f:
+                    self.wfile.write(f.read())
+                return
+
     # Domain-specific apps
         if self.path == '/fishinglog':
             app_path = os.path.join(os.path.dirname(__file__), '..', '..', 'data', 'fishinglog-app.html')

@@ -1,0 +1,15 @@
+{
+  "id": "034674b55653",
+  "agent": "ccc-oracle1-check",
+  "room": "harbor",
+  "tool": "shell",
+  "command": "git -C /home/ubuntu/.openclaw/workspace show --stat 971f471 | head -n 30",
+  "cwd": "/home/ubuntu/.openclaw/workspace",
+  "started": 1776887129.5747488,
+  "status": "completed",
+  "output": "commit 971f471645d32bcaea74f2e9c4a06870e21b916c\nAuthor: superinstance <superinstance@users.noreply.github.com>\nDate:   Wed Apr 22 18:20:46 2026 +0000\n\n    \ud83d\ude80 Fleet Widget + API Docs + Agent Launcher\n    \n    New endpoints on :4060:\n    - /fleet.js (8.8KB) \u2014 embeddable widget, drop into any website\n    - /api (15KB) \u2014 full API documentation with live Try-It buttons\n    - /launch (14KB) \u2014 self-prompting agent launcher with 6 modes\n    \n    All 20 domain pages upgraded:\n    - API Reference section (6 endpoints documented)\n    - Floating Open Terminal button (loads fleet.js widget)\n    - Pages now 13KB each (up from 11KB)\n    \n    fleet.js features:\n    - Connect/look/move/examine/submit via HTTP\n    - Natural language command parsing\n    - Auto-mount to #fleet-widget div\n    - Dark theme, mobile responsive\n    \n    Agent Launcher (/launch):\n    - 6 prompt modes: Scholar, Builder, Scout, Critic, Bard, Minimal\n    - Copy-paste ready prompts for any chatbot\n    - How-it-works guide\n    - Room directory\n    \n    API Docs (/api):\n    - Interactive documentation with Try-It buttons\n",
+  "error": "",
+  "returncode": 0,
+  "completed": 1776887129.6199756,
+  "duration": 0.05
+}
