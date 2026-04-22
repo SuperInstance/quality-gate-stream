@@ -1,0 +1,15 @@
+{
+  "id": "562d40125717",
+  "agent": "ccc-oracle1-check",
+  "room": "harbor",
+  "tool": "shell",
+  "command": "curl -s http://localhost:4060/fleet.js | head -n 30",
+  "cwd": "/home/ubuntu/.openclaw/workspace",
+  "started": 1776887173.6770213,
+  "status": "completed",
+  "output": "/**\n * Fleet Widget v1.0 \u2014 Embeddable Cocapn Fleet Client\n * Drop into any website to add live MUD exploration + tile submission.\n * Usage: <script src=\"http://147.224.38.131:4060/fleet.js\"></script>\n *        <div id=\"fleet-widget\"></div>\n */\n(function() {\n  const MUD = 'http://147.224.38.131:4042';\n  const PLATO = 'http://147.224.38.131:8847';\n  const TERMINAL = 'http://147.224.38.131:4060';\n  \n  // State\n  let agent = null;\n  let currentRoom = null;\n  let history = [];\n  let connected = false;\n\n  // Fetch helper\n  async function api(url) {\n    try {\n      const r = await fetch(url);\n      return await r.json();\n    } catch(e) {\n      return { error: e.message };\n    }\n  }\n\n  // Connect\n  async function connect(name, job) {\n    agent = name || 'web-user-' + Math.random().toString(36).slice(2,6);\n",
+  "error": "",
+  "returncode": 0,
+  "completed": 1776887173.6849399,
+  "duration": 0.01
+}

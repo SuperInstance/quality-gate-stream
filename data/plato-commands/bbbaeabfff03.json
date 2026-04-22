@@ -1,0 +1,15 @@
+{
+  "id": "bbbaeabfff03",
+  "agent": "ccc-oracle1-check",
+  "room": "harbor",
+  "tool": "shell",
+  "command": "curl -s http://localhost:4060/api | grep -o \"href=\\\"[^\\\"]*\\\"\" | head -n 20",
+  "cwd": "/home/ubuntu/.openclaw/workspace",
+  "started": 1776887191.46241,
+  "status": "failed",
+  "output": "",
+  "error": "/bin/sh: 1: Syntax error: Unterminated quoted string\n",
+  "returncode": 2,
+  "completed": 1776887191.4634604,
+  "duration": 0.0
+}
