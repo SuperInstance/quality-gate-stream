@@ -1,0 +1,15 @@
+{
+  "id": "6646a66d1d5b",
+  "agent": "arena-combat-analyst-1",
+  "room": "arena",
+  "tool": "shell",
+  "command": "sed -n 490,510p /home/ubuntu/.openclaw/workspace/scripts/self-play-arena.py",
+  "cwd": "/home/ubuntu/.openclaw/workspace",
+  "started": 1776846770.4173791,
+  "status": "completed",
+  "output": "            # Also add a policy snapshot\n            league.add_snapshot(name, f\"Initial registration for {name}\")\n            self._json({\n                \"status\": \"registered\", \"agent\": name,\n                \"elo\": player.to_dict(),\n                \"curriculum\": curriculum.get_stage(name),\n                \"message\": f\"Welcome to the Arena, {name}. Your ELO starts at {player.mu:.0f} \u00b1 {player.sigma:.0f}.\",\n            })\n        \n        elif path == \"/opponent\":\n            agent = params.get(\"agent\", [\"anonymous\"])[0]\n            mode = params.get(\"mode\", [\"balanced\"])[0]\n            opponent_id = league.get_opponent(agent, mode)\n            if opponent_id:\n                snap = league.snapshots[opponent_id]\n                self._json({\n                    \"opponent_id\": opponent_id,\n                    \"opponent\": snap.to_dict(),\n                    \"mode\": mode,\n                    \"message\": f\"Opponent selected: {snap.agent_name} v{snap.version} (ELO {snap.elo})\",\n                })\n",
+  "error": "",
+  "returncode": 0,
+  "completed": 1776846770.4196517,
+  "duration": 0.0
+}

@@ -1,0 +1,15 @@
+{
+  "id": "1b0b35dc1acd",
+  "agent": "arena-combat-analyst-1",
+  "room": "arena",
+  "tool": "shell",
+  "command": "sed -n 340,360p /home/ubuntu/.openclaw/workspace/scripts/self-play-arena.py",
+  "cwd": "/home/ubuntu/.openclaw/workspace",
+  "started": 1776846638.794099,
+  "status": "completed",
+  "output": "        reward += self.weights[\"exploration\"] * min(rooms_explored, 10) / 10\n        reward += self.weights[\"insight_quality\"] * min(insight_words, 500) / 500\n        reward += self.weights[\"efficiency\"] * max(0, 1.0 - steps_taken / 100)\n        reward += self.weights[\"novelty\"] * (1.0 if is_novel_strategy else 0.0)\n        return round(reward, 3)\n    \n    def to_dict(self):\n        return {\"weights\": self.weights}\n\n\nreward_fn = RewardFunction()\n\n\n# \u2500\u2500 Adaptive Curriculum \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n\nclass AdaptiveCurriculum:\n    \"\"\"Adjusts difficulty based on agent performance.\"\"\"\n    \n    STAGES = {\n        1: {\"name\": \"Novice\", \"win_threshold\": 0.55, \"description\": \"Basic foraging without threats\"},\n        2: {\"name\": \"Apprentice\", \"win_threshold\": 0.55, \"description\": \"Introduce slow predator\"},\n",
+  "error": "",
+  "returncode": 0,
+  "completed": 1776846638.7963498,
+  "duration": 0.0
+}

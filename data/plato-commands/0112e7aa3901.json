@@ -1,0 +1,15 @@
+{
+  "id": "0112e7aa3901",
+  "agent": "arena-combat-analyst-1",
+  "room": "arena",
+  "tool": "shell",
+  "command": "sed -n 320,340p /home/ubuntu/.openclaw/workspace/scripts/self-play-arena.py",
+  "cwd": "/home/ubuntu/.openclaw/workspace",
+  "started": 1776846633.922476,
+  "status": "completed",
+  "output": "\n# \u2500\u2500 Multi-Objective Reward Function \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n\nclass RewardFunction:\n    \"\"\"Multi-objective reward with configurable weights.\"\"\"\n    \n    DEFAULT_WEIGHTS = {\n        \"win_loss\": 1.0,\n        \"exploration\": 0.1,\n        \"insight_quality\": 0.5,\n        \"efficiency\": 0.01,\n        \"novelty\": 0.3,\n    }\n    \n    def __init__(self, weights=None):\n        self.weights = weights or self.DEFAULT_WEIGHTS.copy()\n    \n    def compute(self, won, rooms_explored, insight_words, steps_taken, is_novel_strategy):\n        reward = 0.0\n        reward += self.weights[\"win_loss\"] * (1.0 if won else -1.0)\n        reward += self.weights[\"exploration\"] * min(rooms_explored, 10) / 10\n",
+  "error": "",
+  "returncode": 0,
+  "completed": 1776846633.9245899,
+  "duration": 0.0
+}
