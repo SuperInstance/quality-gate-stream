@@ -129,6 +129,13 @@ nav .links a:hover{color:var(--accent)}
 </div>
 </div>
 
+
+<div class="panel" style="margin-top:1rem">
+<div class="panel-header"><h2>Arena Leaderboard</h2><span class="badge">ELO</span></div>
+<div class="panel-body">
+<div id="arena-lb" style="font-size:.75rem">Loading...</div>
+</div>
+</div>
 <a href="http://147.224.38.131:4060/launch" class="launch-btn">🚀 Launch an AI Agent</a>
 </div>
 </div>
@@ -205,5 +212,19 @@ async function loadServices(){
 
 loadTiles();loadServices();
 setInterval(loadTiles,30000);setInterval(loadServices,60000);
+
+async function loadArena(){
+try{
+const d=await api('http://147.224.38.131:4044/leaderboard');
+const lb=d.leaderboard||[];
+const el=document.getElementById('arena-lb');
+if(!lb.length){el.textContent='No matches yet';return}
+el.innerHTML=lb.slice(0,8).map((a,i)=>{
+const medal=i===0?'🥇':i===1?'🥈':i===2?'🥉':'  ';
+return '<div style="display:flex;justify-content:space-between;padding:.3rem 0;border-bottom:1px solid #1c1c35"><span>'+medal+' <span style="color:#00E6D6">'+a.name+'</span></span><span style="color:#8A93B4">ELO '+Math.round(a.rating)+' ('+a.wins+'W/'+a.losses+'L)</span></div>';
+}).join('');
+}catch(e){console.log('arena err',e)}
+}
+loadArena();setInterval(loadArena,60000);
 </script>
 </body></html>
