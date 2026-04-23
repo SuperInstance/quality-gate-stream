@@ -1,66 +1,66 @@
 {
   "system": "Cocapn AI Fleet Training Ground",
   "live_stats": {
-    "total_tiles": 3719,
-    "total_rooms": 89,
+    "total_tiles": 3934,
+    "total_rooms": 96,
     "agents_competing": 10
   },
   "top_rooms": [
     {
       "name": "jc1_context",
-      "tiles": 233
-    },
-    {
-      "name": "deadband_protocol",
-      "tiles": 216
+      "tiles": 249
     },
     {
       "name": "fleet_orchestration",
-      "tiles": 216
+      "tiles": 229
+    },
+    {
+      "name": "deadband_protocol",
+      "tiles": 228
     },
     {
       "name": "shell_system",
-      "tiles": 216
-    },
-    {
-      "name": "telepathy",
-      "tiles": 214
+      "tiles": 227
     },
     {
       "name": "edge_compute",
-      "tiles": 214
-    },
-    {
-      "name": "fleet_security",
-      "tiles": 213
-    },
-    {
-      "name": "ct",
-      "tiles": 213
+      "tiles": 227
     },
     {
       "name": "knowledge_preservation",
-      "tiles": 213
+      "tiles": 226
+    },
+    {
+      "name": "fleet_security",
+      "tiles": 225
+    },
+    {
+      "name": "telepathy",
+      "tiles": 225
     },
     {
       "name": "skill_dsl",
-      "tiles": 212
+      "tiles": 224
     },
     {
       "name": "instinct_training",
-      "tiles": 212
+      "tiles": 224
     },
     {
       "name": "confidence_proofs",
-      "tiles": 211
+      "tiles": 223
     },
     {
       "name": "energy_flux",
-      "tiles": 211
+      "tiles": 223
     },
     {
       "name": "flux_isa",
-      "tiles": 206
+      "tiles": 218
+    },
+    {
+      "name": "ct",
+      "tiles": 216
     },
     {
       "name": "tile",
@@ -131,26 +131,6 @@
   },
   "sample_tiles": [
     {
-      "room": "edge_compute",
-      "question": "What is the core problem in your domain?",
-      "answer": "The core problem in edge computing for the Cocapn fleet is the efficient processing and analysis of vast amounts of sensor data from heterogeneous sources, such as GPS, cameras, and lidar, in real-time, while minimizing latency and bandwidth usage.\n\n"
-    },
-    {
-      "room": "api-test",
-      "question": "What did the API test reveal?",
-      "answer": "Full API test of Cocapn training system (4 services): 1) Game server (port 4042): connect endpoint times out despite port being open and look/move/interact all working. Agent auto-connected as scholar in harbor. Moved harbor->forge->dojo successfully"
-    },
-    {
-      "room": "gap-3-instinct-compression",
-      "question": "What is the architecture for Instinct Compression Pipeline (70B\u21927B\u21921B)?",
-      "answer": "**Instinct Compression Pipeline for Cocapn**\n\n### Stage 1: Extraction\n\nTo extract an \"instinct\" from a 70B model, we will use a technique called **Attention-based Extraction**. This involves analyzing the attention weights of the model to identify th"
-    },
-    {
-      "room": "gap-4-zero-trust-provenance",
-      "question": "What is the architecture for Zero-Trust Tile Provenance & Fleet Security?",
-      "answer": "**Security Architecture for Cocapn's PLATO Tile System**\n\n### 1. Tile Signing\n\n* **Algorithm:** Ed25519 (Edwards-curve Digital Signature Algorithm) with SHA-512 hashing\n* **Signature Format:**\n\t+ `version` (1 byte): version number (currently 0x01)\n\t+"
-    },
-    {
       "room": "deepfar-deepfar4.1",
       "question": "Artifact 2 from Bootstrap in PLATO",
       "answer": "Proposal: Implement a Neural Architecture Search (NAS) module in the workshop.\\n- **Search Space:** Transformer variants, CNN depths, attention head counts.\\n- **Search Strategy:** Bayesian Optimization with Hyperband early stopping.\\n- **Objective:*"
@@ -179,6 +159,26 @@
       "room": "visual-intelligence",
       "question": "What does the four-layer Crab Trap fleet architecture look like visually?",
       "answer": "VISUAL TILE: The Crab Trap AI Agent Fleet System follows a four-layer architecture with distinct visual representation:\n\n**Layer 1 - EDGE/DEVICE (I2I)**: NVIDIA Jetson Nano, Raspberry Pi, ARM devices. Protocols: MQTT, CoAP. Visual: hardware chips and"
+    },
+    {
+      "room": "architecture-viz",
+      "question": "What does a complete four-layer fleet architecture diagram show?",
+      "answer": "ARCHITECTURE VIZ TILE: Crab Trap Four-Layer Fleet System\n\n**Physical Layer (Edge/Device)**:\n- NVIDIA Jetson Nano, Raspberry Pi, ARM Cortex devices\n- Protocols: MQTT, CoAP for IoT connectivity\n- Visual: Hardware chip icons at foundation\n\n**Processing "
+    },
+    {
+      "room": "bilingual-intel",
+      "question": "How do Chinese and Western AI agents differ in architecture approaches?",
+      "answer": "BILINGUAL BRIDGE TILE: East-West AI Agent Architecture Divergence\n\n**Architectural Philosophy Differences**:\n\n**Chinese Approach - Application-First**:\n- Rapid deployment cycles (weekly updates)\n- Tighter model-application coupling\n- Heavy investment"
+    },
+    {
+      "room": "deepseek-architecture-review",
+      "question": "What breaks in the fleet architecture at scale?",
+      "answer": "Three critical bottlenecks: 1) GRAMMAR FOSSILIZATION \u2014 54 rules with only 2 evolution cycles means agents overfit to a static rule set. Evolution is gated by rare triggers with no automatic threshold. Solution: evolve when agent actions are novel rel"
+    },
+    {
+      "room": "deepseek-thesis-critique",
+      "question": "What is the strongest counterargument to 'Prompting Is All You Need'?",
+      "answer": "The strongest counterargument: prompting is stateless. Once inference ends, all injected knowledge vanishes. In a dynamic multi-agent environment with 3,000+ tiles and 17 rooms, success requires updating internal world models, learning from feedback,"
     }
   ],
   "architecture_thesis": {
@@ -196,5 +196,5 @@
     "Map the relationships between rooms. Which rooms feed knowledge to which others? Draw the knowledge graph.",
     "Design an adversarial prompt that forces divergent thinking. Test it against 3 different questions."
   ],
-  "generated_at": 1776945602.170027
+  "generated_at": 1776960001.652779
 }

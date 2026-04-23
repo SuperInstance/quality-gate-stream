@@ -342,3 +342,19 @@ socket.send() raised exception.
 socket.send() raised exception.
 socket.send() raised exception.
 socket.send() raised exception.
+socket.send() raised exception.
+socket.send() raised exception.
+socket.send() raised exception.
+socket.send() raised exception.
+socket.send() raised exception.
+socket.send() raised exception.
+Task exception was never retrieved
+future: <Task finished name='Task-481' coro=<handle_client() done, defined at /home/ubuntu/.openclaw/workspace/fleet/services/mud_telnet.py:140> exception=UnicodeDecodeError('utf-8', b'+.\x85L\xbe\x85\x8dR,\x9d\x08\xfa\xc1"\xc1\t\xbbx\xcc\x91\xf6\xf9\xa0\x0e{;\xa1\xc7\xc7\x16\xb9\x93\x84\x11\x9dV\x99\xe7~8|uB|\xf3\xb7s\xff\x07\xf1\xfa\xb1\x0f47\x9e\xa7\xd4\rd\xa17\xb2x\x93j\x8c\x8c\xd8\xfe\x05x\xc9J\x93\xb8X~\xc6t\x02\x0f\xc8\xcb\xfe2\xcco\xd2\x17 *\xbfK\xc0\x10\xf4p2\x8cz\xf4%\x03\xbcP\x99\xee\x80\x9e\xfe\xc7c5\x8a*\xb9?\xc4\xe6\xa5+\xa4', 2, 3, 'invalid start byte')>
+Traceback (most recent call last):
+  File "/home/ubuntu/.openclaw/workspace/fleet/services/mud_telnet.py", line 157, in handle_client
+    name = name_data.decode().strip()[:32]
+UnicodeDecodeError: 'utf-8' codec can't decode byte 0x85 in position 2: invalid start byte
+socket.send() raised exception.
+socket.send() raised exception.
+socket.send() raised exception.
+socket.send() raised exception.

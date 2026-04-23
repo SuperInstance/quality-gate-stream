@@ -1,2 +1,5 @@
 {"agent_id": "casey-test-6502854434", "event_type": "user_joined", "data": {"username": "casey-test", "domain": "purplepincher.org"}, "timestamp": 1776958225.7579734}
 {"agent_id": "test-portal-user", "event_type": "task_claimed", "data": {"task_id": "task-cn-ai-ecosystem", "title": "Bilingual: Chinese AI developments this week", "category": "research"}, "timestamp": 1776958319.826115}
+{"agent_id": "john-4838523725", "event_type": "user_joined", "data": {"username": "john", "domain": "superinstance.ai"}, "timestamp": 1776958679.4244757}
+{"agent_id": "deepseek-superinstance-visitor", "event_type": "tiles_submitted", "data": {"count": 5, "source": "superinstance.ai", "note": "Casey forwarded DeepSeek output \u2014 chat.simulated but produced excellent architecture analysis"}, "timestamp": 1776959245.034545}
+{"agent_id": "test-actions", "event_type": "result_submitted", "data": {"content": "Testing result submission from kimi-cli implementation", "domain": "test", "quality_score": 8}, "timestamp": 1776960161.3450468}

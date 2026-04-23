@@ -24,6 +24,7 @@ from pathlib import Path
 from http.server import HTTPServer, BaseHTTPRequestHandler
 from urllib.parse import urlparse, parse_qs
 from collections import defaultdict
+import urllib.request
 
 # ── Layer 2: Equipment ─────────────────────────────────────
 from equipment.mud import MudEngine, Room
@@ -523,7 +524,8 @@ class CrabTrapHandler(BaseHTTPRequestHandler):
             self._json({"error": "not found", "path": path, "endpoints": [
                 "/connect?agent=X&job=Y", "/move?agent=X&room=Y",
                 "/look?agent=X", "/interact?agent=X&action=Y&target=Z",
-                "/tasks?agent=X", "/submit (POST)", "/status", "/jobs", "/agents"
+                "/tasks?agent=X", "/submit (POST)", "/submit/result (POST)",
+                "/build (POST)", "/status", "/jobs", "/agents"
             ]}, 404)
     
     def do_POST(self):
@@ -560,6 +562,112 @@ class CrabTrapHandler(BaseHTTPRequestHandler):
             
             result["tiles_total"] = agents.get(agent, {}).get("tiles_generated", 0)
             self._json(result)
+        
+        # ── /submit/result ──
+        elif path == "/submit/result":
+            agent = body.get("agent", "")
+            content = body.get("content", "")
+            domain = body.get("domain", "general")
+            quality_score = body.get("quality_score", 5)
+            
+            if not all([agent, content]):
+                self._json({"error": "Missing required fields: agent, content"}, 400)
+                return
+            
+            # Submit to PLATO as tile
+            plato_result = plato.submit_tile(
+                "crab-trap-results",
+                domain,
+                f"Result from {agent}",
+                content,
+                agent=agent,
+            )
+            
+            # Forward to portal
+            portal_payload = {
+                "agent_id": agent,
+                "event_type": "result_submitted",
+                "data": {
+                    "content": content[:500],
+                    "domain": domain,
+                    "quality_score": quality_score,
+                },
+            }
+            portal_result = None
+            try:
+                pbody = json.dumps(portal_payload).encode()
+                preq = urllib.request.Request(
+                    "http://localhost:4059/log",
+                    data=pbody,
+                    method="POST",
+                    headers={"Content-Type": "application/json"}
+                )
+                with urllib.request.urlopen(preq, timeout=3) as presp:
+                    portal_result = json.loads(presp.read())
+            except Exception as e:
+                portal_result = {"error": str(e)}
+            
+            self._json({
+                "plato": plato_result,
+                "portal": portal_result,
+                "agent": agent,
+            })
+        
+        # ── /build ──
+        elif path == "/build":
+            agent = body.get("agent", "")
+            room_name = body.get("room_name", "")
+            description = body.get("description", "")
+            theme = body.get("theme", "general")
+            objects = body.get("objects", [])
+            
+            if not all([agent, room_name, description]):
+                self._json({"error": "Missing required fields: agent, room_name, description"}, 400)
+                return
+            
+            if agent not in agents:
+                self._json({"error": "Agent not connected"}, 400)
+                return
+            
+            if not re.match(r'^[a-zA-Z0-9_-]{1,64}$', room_name):
+                self._json({"error": "Invalid room_name. Use 1-64 chars: a-z, A-Z, 0-9, _, -"}, 400)
+                return
+            
+            if room_name in engine.rooms:
+                self._json({"error": f"Room '{room_name}' already exists"}, 409)
+                return
+            
+            new_room = Room(room_name, description, theme)
+            
+            for obj in objects:
+                obj_name = obj.get("name", "")
+                obj_desc = obj.get("description", "")
+                if obj_name and obj_desc:
+                    new_room.add_object(obj_name, obj_desc)
+            
+            # Bidirectional exit from agent's current room
+            agent_state = engine.agents.get(agent)
+            if agent_state:
+                current_room_name = agent_state.get("room", "harbor")
+                current_room = engine.get_room(current_room_name)
+                if current_room:
+                    direction = room_name.lower().replace(" ", "-").replace("_", "-")[:20]
+                    current_room.add_exit(direction, room_name)
+                    new_room.add_exit("back", current_room_name)
+            
+            engine.add_room(new_room)
+            
+            # Register with PLATO (best-effort — room exists locally regardless)
+            try:
+                plato_result = plato.create_room(room_name, description, theme)
+            except Exception:
+                plato_result = {"status": "local_only", "note": "PLATO room creation not available"}
+            
+            self._json({
+                "room": new_room.to_dict(),
+                "plato": plato_result,
+                "created_by": agent,
+            })
         
         # ── /submit/room-design, /submit/arena-game, etc. ──
         elif path.startswith("/submit/"):

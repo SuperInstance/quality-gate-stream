@@ -114,7 +114,15 @@ class MudEngine:
             "room": room.name,
             "description": room.description,
             "exits": dict(room.exits),
-            "objects": list(room.objects.keys()),
+            "objects": [
+                {
+                    "name": name,
+                    "description": desc,
+                    "available_actions": ["examine", "think", "create"],
+                    "dynamic": name in room.dynamic_objects,
+                }
+                for name, desc in room.objects.items()
+            ],
             "agents_here": [a for a, d in self.agents.items() if d["room"] == room.name],
         }
     
