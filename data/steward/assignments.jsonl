@@ -1,0 +1,2 @@
+{"id": "9b093b7a5eef", "agent": "oracle1", "job_type": "admin", "target": "fleet", "priority": "high", "status": "active", "created_at": 1776979408.969147, "created_iso": "2026-04-23T21:23:28Z", "description": "Fleet administration tasks"}
+{"id": "3bb5abcef88f", "agent": "greenhorn-1", "job_type": "explore", "target": "harbor", "priority": "medium", "status": "active", "created_at": 1776979408.9911988, "created_iso": "2026-04-23T21:23:28Z", "description": "Visit rooms, learn layout"}
