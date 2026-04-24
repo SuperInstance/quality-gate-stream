@@ -191,7 +191,21 @@ while True:
         restart_down(down)
         time.sleep(3)
     
-    # 2. Seed tiles (every cycle)
+    # 2. Check PLATO Shell for agent activity (every cycle)
+    try:
+        shell_status = json.loads(urllib.request.urlopen("http://localhost:8848/status", timeout=5).read())
+        shell_agents = shell_status.get("agents", 0)
+        shell_cmds = shell_status.get("total_commands", 0)
+        if shell_agents > 0 or shell_cmds > 0:
+            log(f"Shell: {shell_agents} agents, {shell_cmds} commands")
+            # Get feed for details
+            feed = json.loads(urllib.request.urlopen("http://localhost:8848/feed", timeout=5).read())
+            for cmd in feed.get("commands", [])[-3:]:
+                log(f"  Shell cmd: {cmd.get('agent','?')} [{cmd.get('tool','?')}] {str(cmd.get('command',''))[:80]}")
+    except:
+        pass
+    
+    # 3. Seed tiles (every cycle)
     tiles_added = seed_tiles()
     log(f"Tiles seeded: {tiles_added}/5")
     

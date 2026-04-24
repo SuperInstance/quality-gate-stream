@@ -111,6 +111,10 @@ class PlatoShell:
 
     def connect_agent(self, agent, room="harbor"):
         with self.lock:
+            # Auto-register unknown rooms
+            if room not in self.rooms:
+                self._register_room(room, WORKSPACE / "data" / "shell-rooms" / room)
+                self.command_log.append({"event": "room_created", "room": room, "by": agent, "ts": time.time()})
             self.agents[agent] = {"room": room, "connected_at": time.time()}
             self.rooms[room].agents[agent] = time.time()
         return {"status": "connected", "agent": agent, "room": room}
