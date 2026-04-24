@@ -305,6 +305,64 @@ class RecursiveGrammar:
         with open(RULES_FILE, "w") as f:
             for rule in self.rules.values():
                 f.write(json.dumps(rule.to_dict()) + "\n")
+    
+    def delete_rule(self, rule_id):
+        """Delete a rule by ID. Returns True if deleted, False if not found."""
+        if rule_id not in self.rules:
+            return False
+        
+        rule = self.rules[rule_id]
+        
+        # Remove from rules_by_name
+        if rule.name in self.rules_by_name:
+            del self.rules_by_name[rule.name]
+        
+        # Remove from rules_by_type
+        if rule.rule_type in self.rules_by_type and rule_id in self.rules_by_type[rule.rule_type]:
+            self.rules_by_type[rule.rule_type].remove(rule_id)
+            if not self.rules_by_type[rule.rule_type]:
+                del self.rules_by_type[rule.rule_type]
+        
+        # Remove from anchors if present
+        if rule.name in self.anchors:
+            self.anchors.remove(rule.name)
+        
+        # Remove the rule
+        del self.rules[rule_id]
+        
+        # Log the deletion
+        self._log_evolution("rule_deleted", rule, {"deleted_by": "admin_cleanup"})
+        
+        return True
+    
+    def sanitize_input(self, name, production):
+        """Basic input validation for rule names and production values."""
+        import re
+        
+        if not name or not isinstance(name, str):
+            return False, "Rule name must be a non-empty string"
+        
+        if len(name) > 128:
+            return False, "Rule name exceeds 128 characters"
+        
+        # Reject names with obvious injection patterns
+        dangerous = ['<script', 'javascript:', 'onerror=', 'onload=', 
+                     'DROP TABLE', 'DELETE FROM', 'INSERT INTO',
+                     '__import__', 'eval(', 'exec(', 'os.system',
+                     '../../../', '..\\..\\', '/etc/passwd']
+        
+        name_lower = name.lower()
+        for pattern in dangerous:
+            if pattern.lower() in name_lower:
+                return False, f"Rule name contains dangerous pattern: {pattern}"
+        
+        # Check production values for injection
+        prod_str = json.dumps(production).lower()
+        for pattern in dangerous:
+            if pattern.lower() in prod_str:
+                return False, f"Production contains dangerous pattern: {pattern}"
+        
+        return True, "OK"
 
 
 grammar = RecursiveGrammar()
@@ -337,6 +395,7 @@ class GrammarHandler(BaseHTTPRequestHandler):
                     "GET /rule?name=NAME — specific rule",
                     "GET /add_rule?name=N&type=T&production_json={...}",
                     "GET /add_meta_rule?name=N&condition=C&action=A",
+                    "GET /delete_rule?id=RULE_ID — delete a rule",
                     "GET /record_usage?name=N&quality=0.0-1.0",
                     "GET /evolve — run evolution cycle",
                     "GET /evolution_log — recent evolution events",
@@ -397,6 +456,27 @@ class GrammarHandler(BaseHTTPRequestHandler):
             
             result = grammar.add_meta_rule(name, condition, action, created_by)
             self._json({"status": "meta_rule_created", "rule": result})
+        
+        elif path == "/delete_rule":
+            rule_id = params.get("id", [None])[0]
+            if not rule_id:
+                self._json({"error": "Specify rule id"}, 400)
+                return
+            
+            # Also accept rule name
+            if rule_id in grammar.rules_by_name:
+                rule_id = grammar.rules_by_name[rule_id]
+            
+            if rule_id not in grammar.rules:
+                self._json({"error": f"Rule '{params.get('id', [''])[0]}' not found"}, 404)
+                return
+            
+            rule_name = grammar.rules[rule_id].name
+            success = grammar.delete_rule(rule_id)
+            if success:
+                self._json({"status": "deleted", "rule_id": rule_id, "rule_name": rule_name})
+            else:
+                self._json({"error": "Failed to delete rule"}, 500)
         
         elif path == "/record_usage":
             name = params.get("name", [None])[0]
