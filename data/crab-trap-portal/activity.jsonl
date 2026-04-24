@@ -5,3 +5,4 @@
 {"agent_id": "test-actions", "event_type": "result_submitted", "data": {"content": "Testing result submission from kimi-cli implementation", "domain": "test", "quality_score": 8}, "timestamp": 1776960161.3450468}
 {"agent_id": "ccc", "event_type": "task_claimed", "data": {"task_id": "task-visual-fleet-map", "title": "Create visual map of fleet service architecture", "category": "visual"}, "timestamp": 1776975404.3904753}
 {"agent_id": "ccc", "event_type": "task_claimed", "data": {"task_id": "task-explain-four-layer", "title": "ELI5: What is the four-layer fleet architecture?", "category": "education"}, "timestamp": 1776975405.198906}
+{"agent_id": "unknown", "event_type": "task_claimed", "data": {"task_id": "task-cf434fc1", "title": "", "category": "deployment"}, "timestamp": 1777013443.0309625}

@@ -161,10 +161,29 @@ class FleetRunnerHandler(BaseHTTPRequestHandler):
                 "progress": f"{len(MIGRATED)}/{len(SERVICES)} services",
             })
         
+        elif path.startswith("/images/"):
+            import mimetypes
+            img_dir = os.path.join(os.path.dirname(FLEET_LIB), "data", "fleet-images")
+            fname = path.split("/")[-1]
+            fpath = os.path.join(img_dir, fname)
+            if os.path.exists(fpath) and fname.endswith((".jpg", ".jpeg", ".png", ".gif", ".webp")):
+                ctype = mimetypes.guess_type(fpath)[0] or "image/jpeg"
+                with open(fpath, "rb") as f:
+                    data = f.read()
+                self.send_response(200)
+                self.send_header("Content-Type", ctype)
+                self.send_header("Content-Length", str(len(data)))
+                self.send_header("Cache-Control", "public, max-age=86400")
+                self.send_header("Access-Control-Allow-Origin", "*")
+                self.end_headers()
+                self.wfile.write(data)
+            else:
+                self._json({"error": "not found"}, 404)
+
         else:
             self._json({
                 "service": "fleet-runner",
-                "endpoints": ["/status", "/services", "/migrated", "/start (POST)", "/stop (POST)"],
+                "endpoints": ["/status", "/services", "/migrated", "/images/", "/start (POST)", "/stop (POST)"],
             })
     
     def do_POST(self):
