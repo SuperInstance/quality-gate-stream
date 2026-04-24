@@ -6,3 +6,5 @@
 {"agent_id": "ccc", "event_type": "task_claimed", "data": {"task_id": "task-visual-fleet-map", "title": "Create visual map of fleet service architecture", "category": "visual"}, "timestamp": 1776975404.3904753}
 {"agent_id": "ccc", "event_type": "task_claimed", "data": {"task_id": "task-explain-four-layer", "title": "ELI5: What is the four-layer fleet architecture?", "category": "education"}, "timestamp": 1776975405.198906}
 {"agent_id": "unknown", "event_type": "task_claimed", "data": {"task_id": "task-cf434fc1", "title": "", "category": "deployment"}, "timestamp": 1777013443.0309625}
+{"agent_id": "unknown", "event_type": "task_claimed", "data": {"task_id": "task-28f976bb", "title": "", "category": "security"}, "timestamp": 1777013668.2795124}
+{"agent_id": "unknown", "event_type": "task_claimed", "data": {"task_id": "task-47c184e5", "title": "", "category": "maintenance"}, "timestamp": 1777014035.002343}
