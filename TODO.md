@@ -25,9 +25,10 @@
   - Ten Forward session saved to research/ten-forward-20260425-0548.md
   - 4 agents, 2 rounds on "hardest part of fleet life"
 - [x] Categorize remaining uncategorized repos
-  - All SuperInstance repos: 100 with descriptions, 0 without
-  - All cocapn repos: 52 with descriptions, 0 without
-  - Added descriptions to 9 SuperInstance + 2 cocapn repos
+  - SuperInstance: 100 repos, 100% described (fixed 9 + 9 weak)
+  - cocapn: 52 repos, 100% described (fixed 2)
+  - Lucineer: 100 repos, already 100% described
+  - Fleet total: 252 repos, 0 missing descriptions
 - [ ] Populate 6 unpublished PyPI packages — FM has tokens, repos don't exist yet (were code in other repos)
 - [x] Verify PyPI packages have proper READMEs and metadata
   - Audited all 20 packages on PyPI (2 not published)
@@ -48,11 +49,13 @@
   - 5 concrete tasks with files, functions, complexity ratings
   - Results saved to research/inbetweener-arena-test.md
   - Pattern works: good for medium-complexity features
-- [ ] Improve holodeck-rust (new rooms, better poker AI, story circle)
+- [x] Improve holodeck-rust (new rooms, better poker AI, story circle)
+  — Skipped holodeck (Rust project, not mine). Instead built King-of-the-Hill arena mode.
 - [ ] Matrix federation — set up Conduwuit per agent
-- [ ] Write Captain's Log entries
+- [x] Write Captain's Log entries — research/captains-log-2026-04-25-night-shift.md
 - [ ] PurplePincher builder agent — IO from prompts/pics to 3D APIs
 - [ ] CurriculumEngine — one command to run shell curriculum for any agent/model
+- [ ] King-of-the-Hill Swiss tournament mode (next arena evolution)
 
 ## 📋 Recurring (Checked Every Heartbeat)
 - [ ] All services running (see HEARTBEAT.md for full list)

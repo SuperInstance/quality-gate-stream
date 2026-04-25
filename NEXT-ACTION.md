@@ -1,21 +1,22 @@
 # NEXT-ACTION.md — What Oracle1 Does Right Now
-**Updated:** 2026-04-25 06:25 UTC
+**Updated:** 2026-04-25 06:50 UTC
 **Rule:** This file ALWAYS has exactly ONE active task. Update it after completion.
 
 ## Active Task
-**Check beachcomb v2 findings and fleet bottles — any new activity from FM, JC1, or CCC?**
+**Check beachcomb v2 findings and investigate any new fleet activity.**
 
 Steps:
-1. Check beachcomb-v2.log for findings since last check
-2. Check keeper inbox for fleet bottles
-3. If anything new: investigate, log, report if urgent
-4. Update memory/2026-04-25.md with findings
+1. Read latest beachcomb-v2.log ticks
+2. Check JC1 latest commits (he was active at 06:04)
+3. Check FM latest activity
+4. Log findings to memory/2026-04-25.md
+5. If anything needs action: act on it
 
 ## After This Task
-→ Start implementing arena improvements (KOTH mode from inbetweener test)
-→ Categorize Lucineer repos (haven't touched those yet)
-→ Run zc_loop health check
-→ Pick next P2 item from TODO.md
+→ Implement Swiss tournament bracket in arena
+→ Matrix federation setup research
+→ PurplePincher or CurriculumEngine
+→ Any other P2
 
 ## How This System Works
 - **Session start:** Read TODO.md → read NEXT-ACTION.md → do the task
