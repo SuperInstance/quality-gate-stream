@@ -2373,3 +2373,8 @@
 [2026-04-25T05:00:01Z] OK — all services checked
 [2026-04-25T05:05:01Z] OK — all services checked
 [2026-04-25T05:10:01Z] OK — all services checked
+[2026-04-25T05:15:01Z] OK — all services checked
+[2026-04-25T05:20:01Z] DOWN arena:4044
+[2026-04-25T05:20:01Z] RESTART arena:4044
+[2026-04-25T05:20:04Z] RECOVERED arena:4044
+[2026-04-25T05:20:04Z] OK — all services checked

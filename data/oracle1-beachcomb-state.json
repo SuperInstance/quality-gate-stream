@@ -1,6 +1,6 @@
 {
-  "cycle": 1,
-  "tiles_seeded": 0,
+  "cycle": 3,
+  "tiles_seeded": 3,
   "research_notes": 0,
   "classified_players": [],
   "seeded_rooms": [
@@ -8,7 +8,10 @@
     "interpretability",
     "healer-diagnostics",
     "exit_strategy",
-    "physical_attack_resistance"
+    "physical_attack_resistance",
+    "scout-intel",
+    "frontend",
+    "neuroscience_foundations"
   ],
   "evolution_runs": 0,
   "git_pushes": 0,

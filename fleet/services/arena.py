@@ -236,7 +236,11 @@ class LeagueManager:
 
 
 league = LeagueManager()
-
+# Reconstruct league snapshots from known players
+for player_name, player in elo.players.items():
+    league.add_snapshot(player_name, f"Reconstructed from {player.matches} matches")
+if elo.players:
+    print(f"  League reconstructed: {len(league.snapshots)} snapshots for {len(elo.players)} players")
 
 # ── Games (Arena Task Definitions) ─────────────────────────
 
@@ -518,8 +522,12 @@ if MATCHES_FILE.exists():
 
 
 def save_match(match):
-    with open(MATCHES_FILE, "a") as f:
-        f.write(json.dumps(match.to_dict()) + "\n")
+    try:
+        DATA_DIR.mkdir(parents=True, exist_ok=True)
+        with open(MATCHES_FILE, "a") as f:
+            f.write(json.dumps(match.to_dict()) + "\n")
+    except Exception as e:
+        print(f"  ⚠️ Match save failed: {e}")
 
 
 # ── HTTP Handler ────────────────────────────────────────────
