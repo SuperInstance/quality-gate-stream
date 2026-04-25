@@ -259,7 +259,8 @@ def call_deepinfra(context: str) -> Optional[List[dict]]:
         "User-Agent": "plato-scout/1.0",
     }
     status, body = api_request(url, method="POST", headers=headers, data=json.dumps(payload).encode("utf-8"))
-    log_error(f"DEBUG DeepInfra: url={url}, status={status}, body_len={len(body) if body else 0}, payload_len={len(json.dumps(payload).encode('utf-8'))}")
+    if status != 200:
+        log_error(f"DeepInfra returned {status} for {url}")
     state = load_state()
     state["deepinfra_calls"] = state.get("deepinfra_calls", 0) + 1
     save_state(state)
@@ -286,7 +287,7 @@ def call_deepinfra(context: str) -> Optional[List[dict]]:
         return tiles
     except (KeyError, json.JSONDecodeError, IndexError) as exc:
         log_error(f"DeepInfra response parse error: {exc}")
-        log_error(f"Response body: {body[:500] if body else 'empty'}")
+        log_error(f"Response: {body[:200] if body else 'empty'}")
         return None
 
 # ---------------------------------------------------------------------------

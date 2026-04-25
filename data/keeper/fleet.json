@@ -12,7 +12,7 @@
         "crates"
       ],
       "endpoint": "oracle-cloud",
-      "status": "active",
+      "status": "offline",
       "trust_score": 0.5,
       "load": 0.0,
       "last_seen": 1777096571.3976712
@@ -25,7 +25,7 @@
         "probe"
       ],
       "endpoint": "localhost:9999",
-      "status": "active",
+      "status": "offline",
       "trust_score": 0.5,
       "load": 0.0,
       "last_seen": 1777096597.8362384
@@ -38,12 +38,12 @@
       "status": "active",
       "trust_score": 0.5,
       "load": 0.0,
-      "last_seen": 1777109641.3126252
+      "last_seen": 1777129725.0981612
     }
   },
   "active_count": 1,
   "total_registered": 3,
   "beacons_active": 1,
   "bottles_sent": 1,
-  "last_update": 1777109641.3126917
+  "last_update": 1777129725.098228
 }

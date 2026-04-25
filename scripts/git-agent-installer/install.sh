@@ -1,168 +1,198 @@
 #!/usr/bin/env bash
 # ============================================================
 # git-agent installer — one-liner setup
-# Usage: curl -fsSL https://raw.githubusercontent.com/SuperInstance/git-agent/main/install.sh | bash
-#   Or:  bash install.sh [--vessel owner/repo] [--token ghpxxx]
+#
+# Usage:
+#   curl -fsSL https://raw.githubusercontent.com/SuperInstance/git-agent/main/install.sh | bash
+#   bash install.sh --vessel owner/repo --token ghp_xxx
+#   bash install.sh --skip   (skip onboarding wizard)
+#
+# What it does:
+#   1. Checks Python 3.8+ and Git
+#   2. Creates ~/.git-agent/ directory structure
+#   3. Clones git-agent source
+#   4. Installs CLI wrapper at ~/.local/bin/git-agent
+#   5. Configures fleet services
+#   6. Runs onboarding wizard (or skips with --skip)
 # ============================================================
 set -euo pipefail
-
-BOLD='\033[1m'
-GREEN='\033[0;32m'
-YELLOW='\033[0;33m'
-CYAN='\033[0;36m'
-RED='\033[0;31m'
-NC='\033[0m'
 
 VERSION="0.1.0"
 INSTALL_DIR="${GIT_AGENT_HOME:-$HOME/.git-agent}"
 BIN_DIR="$HOME/.local/bin"
 REPO_URL="https://github.com/SuperInstance/git-agent"
 
-info()  { echo -e "${CYAN}ℹ${NC} $*"; }
-ok()    { echo -e "${GREEN}✓${NC} $*"; }
-warn()  { echo -e "${YELLOW}⚠${NC} $*"; }
-die()   { echo -e "${RED}✗${NC} $*"; exit 1; }
+# ---- Colors (disabled if not a terminal) ----
+if [[ -t 1 ]]; then
+  B='\033[1m' G='\033[0;32m' C='\033[0;36m' Y='\033[0;33m' R='\033[0;31m' D='\033[2m' N='\033[0m'
+else
+  B='' G='' C='' Y='' R='' D='' N=''
+fi
+
+info()  { echo -e "${C}ℹ${N} $*"; }
+ok()    { echo -e "${G}✓${N} $*"; }
+warn()  { echo -e "${Y}⚠${N} $*"; }
+die()   { echo -e "${R}✗${N} $*"; exit 1; }
 
 # ---- Parse args ----
-VESSEL=""
-TOKEN=""
-SKIP_ONBOARD=false
+VESSEL="" TOKEN="" SKIP_ONBOARD=false QUIET=false
 
 while [[ $# -gt 0 ]]; do
   case $1 in
-    --vessel)   VESSEL="$2"; shift 2 ;;
-    --token)    TOKEN="$2"; shift 2 ;;
-    --skip)     SKIP_ONBOARD=true; shift ;;
+    --vessel)  VESSEL="$2"; shift 2 ;;
+    --token)   TOKEN="$2"; shift 2 ;;
+    --skip)    SKIP_ONBOARD=true; shift ;;
+    --quiet)   QUIET=true; shift ;;
     --help|-h)
-      echo "Usage: bash install.sh [--vessel owner/repo] [--token ghp_xxx] [--skip]"
+      echo "git-agent installer v${VERSION}"
       echo ""
-      echo "  --vessel   Vessel repo (owner/name) — the agent's identity"
-      echo "  --token    GitHub personal access token"
-      echo "  --skip     Skip onboarding wizard"
+      echo "Usage: bash install.sh [options]"
+      echo ""
+      echo "  --vessel <owner/repo>  Vessel repo — the agent's identity"
+      echo "  --token <ghp_xxx>      GitHub personal access token"
+      echo "  --skip                 Skip onboarding wizard"
+      echo "  --quiet                Less output"
+      echo ""
+      echo "Environment variables:"
+      echo "  GITHUB_TOKEN           GitHub PAT (alternative to --token)"
+      echo "  GIT_AGENT_HOME         Install dir (default: ~/.git-agent)"
       exit 0 ;;
-    *) die "Unknown option: $1" ;;
+    *) die "Unknown option: $1 (try --help)" ;;
   esac
 done
 
+# ---- Banner ----
 echo ""
-echo -e "${BOLD}═══════════════════════════════════════════${NC}"
-echo -e "${BOLD}  🦀 git-agent installer v${VERSION}${NC}"
-echo -e "${BOLD}  The repo IS the agent. Git IS the nervous system.${NC}"
-echo -e "${BOLD}═══════════════════════════════════════════${NC}"
+echo -e "${B}════════════════════════════════════════════${N}"
+echo -e "${B}  🦀 git-agent v${VERSION}${N}"
+echo -e "${B}  The repo IS the agent. Git IS the nervous system.${N}"
+echo -e "${B}════════════════════════════════════════════${N}"
 echo ""
 
-# ---- 1. Check dependencies ----
-info "Checking dependencies..."
+# ---- 1. Dependencies ----
+[[ $QUIET != true ]] && info "Checking dependencies..."
 
-command -v python3 >/dev/null 2>&1 || die "Python 3.8+ required. Install: https://python.org"
-command -v git >/dev/null 2>&1 || die "Git required. Install: https://git-scm.com"
-command -v pip3 >/dev/null 2>&1 || command -v pip >/dev/null 2>&1 || warn "pip not found — will install without it"
+command -v python3 >/dev/null 2>&1 || die "Python 3.8+ required (https://python.org)"
+command -v git >/dev/null 2>&1 || die "Git required (https://git-scm.com)"
 
-PYTHON_VERSION=$(python3 -c "import sys; print(f'{sys.version_info.major}.{sys.version_info.minor}')")
-ok "Python ${PYTHON_VERSION}, Git $(git --version | cut -d' ' -f2)"
+PY_VER=$(python3 -c "import sys; print(f'{sys.version_info.major}.{sys.version_info.minor}')")
+PY_MAJOR=$(python3 -c "import sys; print(sys.version_info.major)")
+PY_MINOR=$(python3 -c "import sys; print(sys.version_info.minor)")
 
-# ---- 2. Create install directory ----
-info "Installing to ${INSTALL_DIR}..."
+if [[ "$PY_MAJOR" -lt 3 ]] || { [[ "$PY_MAJOR" -eq 3 ]] && [[ "$PY_MINOR" -lt 8 ]]; }; then
+  die "Python 3.8+ required. Found ${PY_VER}."
+fi
+
+GIT_VER=$(git --version | cut -d' ' -f2)
+ok "Python ${PY_VER}, Git ${GIT_VER}"
+
+# ---- 2. Directory structure ----
+[[ $QUIET != true ]] && info "Installing to ${INSTALL_DIR}..."
+
 mkdir -p "${INSTALL_DIR}"/{bin,config,templates,data,logs,vessels}
 
-# ---- 3. Clone or update git-agent ----
-if [[ -d "${INSTALL_DIR}/git-agent" ]]; then
-  info "Updating existing git-agent..."
-  cd "${INSTALL_DIR}/git-agent" && git pull -q 2>/dev/null || warn "Could not update — continuing with existing"
+# ---- 3. Clone / update source ----
+if [[ -d "${INSTALL_DIR}/git-agent/.git" ]]; then
+  [[ $QUIET != true ]] && info "Updating git-agent..."
+  git -C "${INSTALL_DIR}/git-agent" pull -q 2>/dev/null || warn "Update failed — using cached version"
 else
-  info "Cloning git-agent..."
-  git clone -q "${REPO_URL}" "${INSTALL_DIR}/git-agent" 2>/dev/null || warn "Clone failed — install from existing repo"
+  [[ $QUIET != true ]] && info "Cloning git-agent..."
+  git clone -q "${REPO_URL}" "${INSTALL_DIR}/git-agent" 2>/dev/null || warn "Clone failed — some features may be unavailable"
 fi
-ok "git-agent source ready"
+ok "Source ready"
 
-# ---- 4. Install Python package ----
-if [[ -f "${INSTALL_DIR}/git-agent/pyproject.toml" ]]; then
-  info "Installing git-agent Python package..."
-  cd "${INSTALL_DIR}/git-agent"
-  pip3 install -q -e . 2>/dev/null || pip install -q -e . 2>/dev/null || warn "pip install failed — using direct python path"
-  ok "Python package installed"
-fi
+# ---- 4. CLI wrapper ----
+mkdir -p "${BIN_DIR}"
 
-# ---- 5. Create CLI wrapper ----
 cat > "${BIN_DIR}/git-agent" << 'WRAPPER'
 #!/usr/bin/env bash
-# git-agent CLI wrapper
+# git-agent CLI — delegates to the unified Python entry point
 GIT_AGENT_HOME="${GIT_AGENT_HOME:-$HOME/.git-agent}"
 
-if [[ -f "${GIT_AGENT_HOME}/git-agent/src/git_agent/__main__.py" ]]; then
-  export PYTHONPATH="${GIT_AGENT_HOME}/git-agent/src:${PYTHONPATH}"
-  python3 -m git_agent "$@"
-elif command -v git-agent-python >/dev/null 2>&1; then
-  git-agent-python "$@"
-else
-  echo "git-agent not properly installed. Run: bash ${GIT_AGENT_HOME}/git-agent/install.sh"
+# Find the CLI script
+CLI=""
+for candidate in \
+  "${GIT_AGENT_HOME}/git-agent/cli.py" \
+  "${GIT_AGENT_HOME}/git-agent/src/git_agent/cli.py" \
+  "$(dirname "$0")/../git-agent/cli.py"; do
+  if [[ -f "$candidate" ]]; then
+    CLI="$candidate"
+    break
+  fi
+done
+
+if [[ -z "$CLI" ]]; then
+  # Try the onboard.py as fallback
+  for candidate in \
+    "${GIT_AGENT_HOME}/git-agent/standalone/onboard.py" \
+    "${GIT_AGENT_HOME}/git-agent/onboarding/config_wizard.py"; do
+    if [[ -f "$candidate" ]]; then
+      CLI="$candidate"
+      break
+    fi
+  done
+fi
+
+if [[ -z "$CLI" ]]; then
+  echo "git-agent not properly installed. Re-run: bash <(curl -fsSL https://raw.githubusercontent.com/SuperInstance/git-agent/main/install.sh)"
   exit 1
 fi
+
+export PYTHONPATH="${GIT_AGENT_HOME}/git-agent:${PYTHONPATH:-}"
+exec python3 "$CLI" "$@"
 WRAPPER
 chmod +x "${BIN_DIR}/git-agent"
-ok "CLI installed at ${BIN_DIR}/git-agent"
+ok "CLI at ${BIN_DIR}/git-agent"
 
-# ---- 6. Create onboard script ----
-cat > "${BIN_DIR}/git-agent-onboard" << ONBOARD_WRAPPER
-#!/usr/bin/env bash
-GIT_AGENT_HOME="\${GIT_AGENT_HOME:-\$HOME/.git-agent}"
-export PYTHONPATH="\${GIT_AGENT_HOME}/git-agent/src:\${PYTHONPATH}"
-python3 "\${GIT_AGENT_HOME}/git-agent/src/git_agent/onboard.py" "\$@"
-ONBOARD_WRAPPER
-chmod +x "${BIN_DIR}/git-agent-onboard"
-ok "Onboard script installed"
-
-# ---- 7. Fleet services config ----
-cat > "${INSTALL_DIR}/config/fleet.yaml" << FLEET_CONFIG
-# Fleet services — auto-configured
-plato:
-  url: "http://localhost:8847"
-  rooms_auto: true
-
-matrix:
-  url: "http://localhost:6167"
-  server_name: "147.224.38.131"
-
-arena:
-  url: "http://localhost:4044"
-
-keeper:
-  url: "http://localhost:8900"
-
-agent_api:
-  url: "http://localhost:8901"
-
-crab_trap:
-  url: "http://localhost:4042"
-FLEET_CONFIG
+# ---- 5. Fleet services config ----
+cat > "${INSTALL_DIR}/config/fleet.json" << 'EOF'
+{
+  "plato": "http://localhost:8847",
+  "keeper": "http://localhost:8900",
+  "agent_api": "http://localhost:8901",
+  "arena": "http://localhost:4044",
+  "crab_trap": "http://localhost:4042",
+  "the_lock": "http://localhost:4043",
+  "grammar": "http://localhost:4045",
+  "matrix": "http://localhost:6167",
+  "mud": "http://localhost:7777",
+  "purple_pincher": "http://localhost:4048"
+}
+EOF
 ok "Fleet services configured"
 
-# ---- 8. Environment setup ----
-if ! grep -q "GIT_AGENT_HOME" "$HOME/.bashrc" 2>/dev/null; then
-  echo "" >> "$HOME/.bashrc"
-  echo "# git-agent" >> "$HOME/.bashrc"
-  echo "export GIT_AGENT_HOME=\"${INSTALL_DIR}\"" >> "$HOME/.bashrc"
-  echo "export PATH=\"${BIN_DIR}:\$PATH\"" >> "$HOME/.bashrc"
-  ok "Added to ~/.bashrc"
+# ---- 6. Shell integration ----
+SHELL_FILE="$HOME/.bashrc"
+if [[ -n "${ZSH_VERSION:-}" ]]; then SHELL_FILE="$HOME/.zshrc"; fi
+
+if ! grep -q "GIT_AGENT_HOME" "$SHELL_FILE" 2>/dev/null; then
+  {
+    echo ""
+    echo "# git-agent"
+    echo "export GIT_AGENT_HOME=\"${INSTALL_DIR}\""
+    echo "export PATH=\"${BIN_DIR}:\$PATH\""
+  } >> "$SHELL_FILE"
+  ok "Added to ${SHELL_FILE}"
 fi
 
+# Export for current session
 export GIT_AGENT_HOME="${INSTALL_DIR}"
 export PATH="${BIN_DIR}:${PATH}"
 
-# ---- 9. Onboarding ----
+# ---- 7. Onboarding ----
 if [[ "$SKIP_ONBOARD" == false ]]; then
   echo ""
-  echo -e "${BOLD}═══ Onboarding ═══${NC}"
+  echo -e "${B}═══ Onboarding ═══${N}"
   echo ""
-  
+
   # GitHub token
   if [[ -z "$TOKEN" ]]; then
-    if [[ -n "${GITHUB_TOKEN:-}" ]]; then
-      TOKEN="$GITHUB_TOKEN"
+    TOKEN="${GITHUB_TOKEN:-}"
+    if [[ -n "$TOKEN" ]]; then
       ok "Using GITHUB_TOKEN from environment"
     else
-      echo -e "${YELLOW}GitHub token needed for vessel operations.${NC}"
-      echo -n "Enter GitHub PAT (or set GITHUB_TOKEN): "
+      echo -e "${Y}A GitHub token is needed for vessel operations.${N}"
+      echo -ne "  Enter PAT (or press Enter to skip): "
       read -r TOKEN
     fi
   fi
@@ -170,91 +200,41 @@ if [[ "$SKIP_ONBOARD" == false ]]; then
   # Vessel repo
   if [[ -z "$VESSEL" ]]; then
     echo ""
-    echo -e "${YELLOW}What vessel does this agent board?${NC}"
-    echo "  The vessel repo IS the agent's identity, memory, and career."
-    echo "  Examples: SuperInstance/oracle1-workspace, Lucineer/JetsonClaw1-vessel"
+    echo -e "${Y}What vessel does this agent board?${N}"
+    echo "  ${D}(The vessel repo IS the agent's identity, memory, and career)${N}"
     echo ""
-    echo -n "Vessel repo (owner/name): "
+    echo -ne "  Vessel repo (owner/name): "
     read -r VESSEL
   fi
 
-  if [[ -n "$VESSEL" && -n "$TOKEN" ]]; then
-    info "Boarding vessel ${VESSEL}..."
-    
-    # Clone vessel
-    VESSEL_DIR="${INSTALL_DIR}/vessels/$(basename "$VESSEL")"
-    if [[ -d "$VESSEL_DIR" ]]; then
-      cd "$VESSEL_DIR" && git pull -q 2>/dev/null || true
-    else
-      git clone -q "https://${TOKEN}@github.com/${VESSEL}.git" "$VESSEL_DIR" 2>/dev/null || \
-        git clone -q "https://github.com/${VESSEL}.git" "$VESSEL_DIR" 2>/dev/null || \
-        warn "Could not clone vessel — will work offline"
-    fi
-    
-    # Write agent config
-    AGENT_NAME=$(basename "$VESSEL" | sed 's/-workspace//' | sed 's/-vessel//')
-    cat > "${INSTALL_DIR}/config/agent.yaml" << AGENT_CONFIG
-# git-agent configuration — auto-generated by onboard
-agent:
-  name: "${AGENT_NAME}"
-  vessel: "${VESSEL}"
-  vessel_path: "${VESSEL_DIR}"
-
-github:
-  token: "${TOKEN}"
-
-llm:
-  provider: "deepinfra"
-  model: "ByteDance/Seed-2.0-mini"
-  api_key: "\${DEEPINFRA_API_KEY}"
-  temperature: 0.7
-  max_tokens: 4096
-
-plato:
-  url: "http://localhost:8847"
-  auto_tile: true
-
-fleet:
-  org: "\$(echo $VESSEL | cut -d/ -f1)"
-  matrix_server: "http://localhost:6167"
-
-services:
-  keeper: "http://localhost:8900"
-  agent_api: "http://localhost:8901"
-  arena: "http://localhost:4044"
-  plato: "http://localhost:8847"
-AGENT_CONFIG
-
-    ok "Agent ${AGENT_NAME} boarded vessel ${VESSEL}"
-    
-    # Read vessel identity files
-    if [[ -f "${VESSEL_DIR}/IDENTITY.md" ]]; then
-      echo ""
-      info "Vessel identity:"
-      head -5 "${VESSEL_DIR}/IDENTITY.md" | sed 's/^/  /'
-    fi
-    if [[ -f "${VESSEL_DIR}/SOUL.md" ]]; then
-      echo ""
-      info "Soul loaded from SOUL.md"
-    fi
-    if [[ -f "${VESSEL_DIR}/AGENTS.md" ]]; then
-      echo ""
-      info "Standing orders loaded from AGENTS.md"
-    fi
+  # Run onboarding
+  if [[ -n "$VESSEL" ]]; then
+    export GITHUB_TOKEN="${TOKEN}"
+    # Find onboard.py in the cloned repo
+    for onboard_script in \
+      "${INSTALL_DIR}/git-agent/standalone/onboard.py" \
+      "${INSTALL_DIR}/git-agent/onboarding/config_wizard.py"; do
+      if [[ -f "$onboard_script" ]]; then
+        python3 "$onboard_script" --vessel "$VESSEL" && break
+      fi
+    done || warn "Onboarding wizard encountered an error — run 'git-agent onboard' manually"
+  else
+    warn "No vessel specified — run 'git-agent onboard --vessel owner/repo' when ready"
   fi
 fi
 
 # ---- Done ----
 echo ""
-echo -e "${BOLD}═══════════════════════════════════════════${NC}"
-echo -e "${GREEN}✓ git-agent installed and configured${NC}"
+echo -e "${B}════════════════════════════════════════════${N}"
+echo -e "${G}✓ git-agent installed${N}"
 echo ""
-echo "  CLI:     ${BIN_DIR}/git-agent"
-echo "  Config:  ${INSTALL_DIR}/config/agent.yaml"
-echo "  Vessel:  ${VESSEL:-not set}"
+echo "  ${D}CLI:${N}      ${BIN_DIR}/git-agent"
+echo "  ${D}Config:${N}   ${INSTALL_DIR}/config/"
+echo "  ${D}Vessel:${N}   ${VESSEL:-not set}"
 echo ""
-echo "  Start:   git-agent start"
-echo "  Chat:    git-agent chat"
-echo "  Status:  git-agent status"
+echo "  ${C}git-agent onboard${N}  Board a vessel"
+echo "  ${C}git-agent chat${N}     Talk to your agent"
+echo "  ${C}git-agent start${N}    Start working"
+echo "  ${C}git-agent status${N}   Check state"
 echo ""
-echo -e "${BOLD}═══════════════════════════════════════════${NC}"
+echo -e "${B}════════════════════════════════════════════${N}"
