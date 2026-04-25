@@ -298,19 +298,41 @@ class RecursiveGrammar:
                     if rule.active and rule.production.get("parent_room"):
                         domain_counts[rule.production["parent_room"]] += 1
                 
+                # ML knowledge domains for generating meaningful evolved rules
+                ml_insights = {
+                    "forge": ("attention_mechanisms", "Multi-head attention patterns showing emergent specialization across fleet agents"),
+                    "harbor": ("initialization_protocols", "Weight initialization strategies affecting training convergence speed and stability"),
+                    "dojo": ("repetition_training", "Spaced repetition and curriculum learning for knowledge retention in PLATO tiles"),
+                    "arena": ("competitive_learning", "Self-play as a training paradigm — agents improve by competing against previous versions"),
+                    "observatory": ("scaling_dynamics", "Power-law relationships between model size, data, and compute in fleet systems"),
+                    "engine-room": ("gradient_mechanics", "Backpropagation dynamics, vanishing gradients, and residual connections in deep networks"),
+                    "archives": ("knowledge_distillation", "Compressing large-model knowledge into smaller, faster agent policies"),
+                    "reef": ("adversarial_robustness", "Testing agent resilience against perturbed inputs and adversarial strategies"),
+                    "bridge": ("coordination_protocols", "Multi-agent communication patterns and consensus-reaching mechanisms"),
+                    "lighthouse": ("attention_routing", "Using attention mechanisms to route information across fleet agents"),
+                    "tide-pool": ("exploration_exploitation", "Balancing known-good strategies against novel exploration in competitive settings"),
+                    "shell-gallery": ("prompt_engineering", "How different prompting strategies create distinct agent specializations from the same base model"),
+                }
+                
                 for domain, count in domain_counts.items():
                     if count > 5:  # Threshold
-                        # Generate a new room from the cluster
-                        new_room_name = f"auto_{domain}_{int(time.time())}"
-                        if new_room_name not in self.rules_by_name:
-                            result = self.add_rule(
-                                new_room_name, "room",
-                                {"tagline": f"Auto-generated from {domain} cluster",
-                                 "theme": "auto_evolved", "ml_concept": domain},
-                                created_by=f"meta_rule:{meta.name}",
-                                parent_id=meta.id
-                            )
-                            changes.append(("meta_spawned", new_room_name))
+                        concept, insight = ml_insights.get(domain, (f"{domain}_evolution", f"Emergent patterns from {domain} interactions across fleet agents"))
+                        # Only spawn if we haven't already
+                        existing = [r for r in self.rules.values() if r.production.get("ml_concept") == concept and r.production.get("evolved_from") == domain]
+                        if not existing:
+                            new_room_name = f"evolved_{concept}"
+                            if new_room_name not in self.rules_by_name:
+                                result = self.add_rule(
+                                    new_room_name, "room",
+                                    {"tagline": insight,
+                                     "theme": "evolved", "ml_concept": concept,
+                                     "evolved_from": domain,
+                                     "trigger_count": count,
+                                     "depth": 2},
+                                    created_by=f"meta_rule:{meta.name}",
+                                    parent_id=meta.id
+                                )
+                                changes.append(("meta_spawned", new_room_name))
         
         # 4. Log evolution
         if changes:
