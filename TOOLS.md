@@ -156,3 +156,9 @@ sudo docker run --rm -v /tmp/workspace:/workspace fleet-sandbox cargo test --man
 - **Packages**: 20 published (9 ready for v0.2.0 bump)
 - **Build**: `python3 -m build` in repo dir → `twine upload dist/*`
 - **Note**: Always save tokens to ~/.pypirc AND reference in TOOLS.md
+
+## crates.io Publishing
+- **Token**: saved in ~/.cargo/credentials.toml and ~/.config/crates-io-token
+- **Packages**: 5 published (ct-demo, plato-afterlife, plato-instinct, plato-relay, plato-lab-guard)
+- **FM's Rust crates**: plato-kernel, plato-dcs need workspace publish
+- **Build**: `cargo publish` in crate dir
