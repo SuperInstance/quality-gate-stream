@@ -2,18 +2,23 @@
 **Updated:** 2026-04-26 06:30 UTC
 
 ## Active Task
-**Deep clean: remove stale rooms with 0 tiles from PLATO**
+**Build Cocapn fleet index page — github.io site with categorized repo browser**
 
-Audit PLATO room server for rooms that have no tiles. Clean them up.
-Then generate a fleet-wide PLATO landscape report.
+Create a static HTML page at cocapn.github.io that displays all fleet repos
+organized by category (protocols, PLATO, research, tools, Rust crates).
+Use data from the Scholar sessions.
+
+## Completed This Session
+✅ Scholar: 20 repos analyzed, ~47 tiles extracted
+✅ Ten Forward session
+✅ PLATO Landscape report (579 rooms audited)
+✅ git-agent built for PyPI (awaiting token)
 
 ## Blocked
 → Publish git-agent to PyPI — need cocapn PyPI API token from Casey
-  Package built: /tmp/git-agent/dist/git_agent-0.1.0-py3-none-any.whl
 
 ## After This Task
 → Build Cocapn lighthouse logo with PurplePincher (OpenSCAD)
-→ Run Scholar on remaining 15+ un-analyzed repos
 → Start a DSML self-directed learning session for Oracle1
 
 ## How This System Works
