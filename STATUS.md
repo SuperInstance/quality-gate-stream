@@ -12,8 +12,10 @@
 | Seed MCP | 9438 | ❌ DOWN (source lost to /tmp cleanup) |
 
 ## PLATO Knowledge System
-- **Rooms:** 580
-- **Gate:** 267 accepted, 471 rejected (56% rejection = strong dedup)
+- **Rooms:** 580 (3 empty agent identity rooms, 358 single-tile niche rooms)
+- **Gate:** 353 accepted, 639 rejected (637 duplicates, 2 absolute claims)
+- **Dedup rate:** 64% rejection — strong dedup working correctly
+- **Explainability:** 992 traces, 0 in oversight queue
 - **Top rooms:** general (924), jc1_context (499), arena (328), neural (330), telepathy (312)
 - **Version:** v2-provenance-explain
 
