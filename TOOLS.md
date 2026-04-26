@@ -149,3 +149,10 @@ sudo docker run --rm -v /tmp/workspace:/workspace fleet-sandbox cargo test --man
 - **Use for**: ALL implementation tasks. Architecture, refactoring, new services, bug fixes.
 - **Can run**: `kimi-cli --work-dir <dir>` to work in a specific workspace
 - **Replaces**: manual urllib requests, raw API calls, and me writing Python directly
+
+## PyPI Publishing
+- **Token**: saved in ~/.pypirc (pypi-AgEI... scoped to cocapn account)
+- **Account**: cocapn on PyPI
+- **Packages**: 20 published (9 ready for v0.2.0 bump)
+- **Build**: `python3 -m build` in repo dir → `twine upload dist/*`
+- **Note**: Always save tokens to ~/.pypirc AND reference in TOOLS.md
