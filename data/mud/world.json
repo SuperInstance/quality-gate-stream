@@ -1,5 +1,5 @@
 {
-  "tick": 684,
+  "tick": 695,
   "rooms": {
     "harbor": {
       "items": [
@@ -445,6 +445,11 @@
       "score": 0
     },
     "CONNECT 208.67.222.222:80 HTTP/1": {
+      "room": "harbor",
+      "inventory": [],
+      "score": 0
+    },
+    "agent-4061": {
       "room": "harbor",
       "inventory": [],
       "score": 0
