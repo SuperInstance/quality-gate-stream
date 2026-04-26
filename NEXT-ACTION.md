@@ -1,28 +1,22 @@
 # NEXT-ACTION.md — What Oracle1 Does Right Now
-**Updated:** 2026-04-26 06:30 UTC
+**Updated:** 2026-04-26 17:42 UTC
 
 ## Active Task
-**Submit PLATO tiles from Scholar + DSML sessions to Room Server**
+**Run DSML sessions on remaining knowledge gaps (20 rooms with 1-5 tiles).**
 
-Submit the ~52 extracted tiles to the PLATO room server at localhost:8847.
-Use the tile injection API. Group by domain.
-
-## Completed This Session
-✅ Scholar: 20 repos analyzed, ~47 tiles extracted
-✅ Ten Forward session
-✅ PLATO Landscape report (579 rooms audited)
-✅ git-agent built for PyPI (awaiting token)
-✅ Fleet index page live at cocapn.github.io
-✅ DSML session: constraint theory deep learning, 5 tiles
-✅ Lighthouse logo SVG created and deployed
-✅ Fleet bottle sent to FM repo
-
-## Blocked
-→ Publish git-agent to PyPI — need cocapn PyPI API token from Casey
+The DSML engine works — 15 tiles from 3 sessions. Keep feeding PLATO's gaps:
+- llm-agent-specialized-rooms
+- rust-async-runtimes
+- config-wizard-gotchas
+- interactive-cli-wizard
+- application-config-storage
+- python-mutable-default-avoidance
 
 ## After This Task
-→ Build Cocapn lighthouse logo with PurplePincher (OpenSCAD)
-→ Start a DSML self-directed learning session for Oracle1
+→ Generate fleet-wide PLATO landscape report (room density + quality map)
+→ Build Scout Agent v2 (periodic gap scanning, auto-fix what it can)
+→ Start a Ten Forward social session
+→ Wire fleet status page into cocapn.github.io
 
 ## How This System Works
 - **Session start:** Read TODO.md → read NEXT-ACTION.md → do the task
