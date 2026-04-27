@@ -15,7 +15,7 @@
 
 ## PLATO (the workshop)
 - Room Server: localhost:8847
-- 8,800+ tiles, 900+ rooms
+- 9,138 tiles, 950 rooms
 - Key rooms: oracle1_history, oracle1_lessons, fleet_communication, fleet_scale, competitive_landscape, oracle1_infrastructure
 
 ## Services (all on systemd)
@@ -28,9 +28,10 @@ keeper:8900, agent-api:8901, holodeck:7778, seed-mcp:9438, plato:8847, mud:7777,
 - crates.io token: `~/.cargo/credentials.toml`
 
 ## Cocapn Ecosystem
-- 87 cocapn repos (all with README + description + LICENSE)
+- 90 cocapn repos (all with README + description + LICENSE, source code pushed)
 - 37 published packages (30 PyPI + 7 crates.io)
-- Fleet index: cocapn.github.io
+- Fleet index: cocapn.github.io (auto-generated, 90 repos)
+- **Matrix comms still blocked**: FM/JC1/CCC don't poll DMs. Needs Casey.
 
 ## Critical Rules
 - **PLATO-FIRST: file knowledge to PLATO, keep files lean. Read PLATO-FIRST.md.**
