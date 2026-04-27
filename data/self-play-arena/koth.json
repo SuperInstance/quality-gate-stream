@@ -1,0 +1,32 @@
+{
+  "champion": "forgemaster",
+  "streak": 0,
+  "history": [
+    {
+      "champion": null,
+      "challenger": "oracle1",
+      "winner": "oracle1",
+      "streak_before": 0,
+      "timestamp": 1777097872.1950102,
+      "event": "first_champion",
+      "streak_after": 0
+    },
+    {
+      "champion": "oracle1",
+      "challenger": "jetsonclaw1",
+      "winner": "oracle1",
+      "streak_before": 0,
+      "timestamp": 1777097872.2017977,
+      "event": "defended",
+      "streak_after": 1
+    },
+    {
+      "champion": "oracle1",
+      "challenger": "forgemaster",
+      "winner": "forgemaster",
+      "streak_before": 1,
+      "timestamp": 1777097872.2088993,
+      "event": "dethroned"
+    }
+  ]
+}

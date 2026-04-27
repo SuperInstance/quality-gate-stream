@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-04-24T01:09:52.084Z",
+  "updatedAt": "2026-04-26T19:53:29.468Z",
   "entries": {
     "memory:memory/2026-04-10.md:46:63": {
       "key": "memory:memory/2026-04-10.md:46:63",
@@ -142,26 +142,28 @@
       "endLine": 378,
       "source": "memory",
       "snippet": "- Each agent writes diary of struggles → dojo exercises for successor - Two assistants disagree productively, both improve - Protégé builds its own Protégé → generational improvement - Metric: first-try dojo exercise success rate (Oracle1: ~60%, target Gen2: ~80%) ### FLUX Repos on GitHub (Total: 16) All previous + captains-log ### Key Philosophical Insight Casey introduced \"iron sharpening iron\" at two levels: 1. **System level:** A/B testing with trust tiers (jukebox model) 2. **Agent level:** Disagreeable assistants force self-improvement Both use the same mechanism: productive disagreement + iteration ## 17:51 UTC — GitHub As Communication Channel ### Casey's Directive - Push to GitH",
-      "recallCount": 6,
+      "recallCount": 7,
       "dailyCount": 0,
       "groundedCount": 0,
-      "totalScore": 4.350799723858856,
+      "totalScore": 5.168774763059861,
       "maxScore": 0.8350419047009437,
       "firstRecalledAt": "2026-04-11T16:10:34.438Z",
-      "lastRecalledAt": "2026-04-20T22:08:40.902Z",
+      "lastRecalledAt": "2026-04-24T16:52:30.675Z",
       "queryHashes": [
         "6657f950ca6f",
         "aa2fd152f923",
         "b6125aa95f15",
         "5e4b0601008d",
         "f18960226a6b",
-        "fd26f28e8e4c"
+        "fd26f28e8e4c",
+        "feceb10c6a3e"
       ],
       "recallDays": [
         "2026-04-11",
         "2026-04-12",
         "2026-04-14",
-        "2026-04-20"
+        "2026-04-20",
+        "2026-04-24"
       ],
       "conceptTags": [
         "first-try",
@@ -1722,19 +1724,20 @@
       "endLine": 582,
       "source": "memory",
       "snippet": "- Also available: DeepSeek-V3.1/V3.2, Qwen3-235B, Qwen3-Coder-480B, GLM-5, ERNIE-4.5, Hunyuan-A13B, MiniMax-M2.5, Step-3.5-Flash - Vision: Qwen3-VL-235B, Qwen3-VL-32B, GLM-5V-Turbo - Image: FLUX.2-pro, FLUX.2-flex - Video: Wan2.2 I2V/T2V - TTS: IndexTTS-2, CosyVoice2, fish-speech - Casey's vision: agents copy whole vocabulary collections into their repos as signals - Runtime prunes unused vocab at compile time for hardware optimization ### Reverse Actualization Strategy (~22:30 UTC) - Adopted Lucineer's reverse-actualization technique as strategic planning method - Think Tank (Seed/Kimi/DeepSeek) runs continuous roundtables - 2036 Vision: Captain Ingrid, Murmuration, Ghost Vessels",
-      "recallCount": 5,
+      "recallCount": 6,
       "dailyCount": 0,
       "groundedCount": 0,
-      "totalScore": 4.010574706028455,
-      "maxScore": 0.8313864677766056,
+      "totalScore": 4.845009810127102,
+      "maxScore": 0.8344351040986469,
       "firstRecalledAt": "2026-04-17T22:53:13.277Z",
-      "lastRecalledAt": "2026-04-24T01:09:52.084Z",
+      "lastRecalledAt": "2026-04-24T08:20:33.250Z",
       "queryHashes": [
         "33a533157597",
         "fcfcb8c915bc",
         "4f27113b0ba9",
         "19fc3e1c5624",
-        "c61509683f57"
+        "c61509683f57",
+        "2fa3d4f35bd2"
       ],
       "recallDays": [
         "2026-04-17",
@@ -1925,18 +1928,19 @@
       "endLine": 600,
       "source": "memory",
       "snippet": "- Casey: \"continuous roundtables... toss in subjects to discuss and banter and simulate on\" - Casey: Seed is good for reverse-actualization (creative ideation) - Workhorses (Oracle1/Claude/Crush) build while Think Tank ideates - Parallel ideation + sequential execution ## Reverse Actualization Phase 2 — Systems Improving Systems (22:25-23:41 UTC) ### Casey directive: \"use our systems to improve our systems, simulate and research and schema and iterate in parallel with different models then compare as devil's advocates and bright learners\" ### New modules built from backlog: - **contradiction_detector.py** (13 tests) — scoped conflict detection, immune system for vocab corpus - **l0_const",
-      "recallCount": 4,
+      "recallCount": 5,
       "dailyCount": 0,
       "groundedCount": 0,
-      "totalScore": 3.1134098607829883,
-      "maxScore": 0.8308533673292783,
+      "totalScore": 3.9473200471712806,
+      "maxScore": 0.8339101863882925,
       "firstRecalledAt": "2026-04-17T22:53:13.277Z",
-      "lastRecalledAt": "2026-04-24T01:09:52.084Z",
+      "lastRecalledAt": "2026-04-24T08:20:33.250Z",
       "queryHashes": [
         "33a533157597",
         "fcfcb8c915bc",
         "4f27113b0ba9",
-        "c61509683f57"
+        "c61509683f57",
+        "2fa3d4f35bd2"
       ],
       "recallDays": [
         "2026-04-17",
@@ -1992,21 +1996,23 @@
       "endLine": 459,
       "source": "memory",
       "snippet": "- 6 modes: teacher-student, devil's advocate, socratic, rival optimizers, role play, reverse ideation - Templates for each mode - First session: Oracle1 × JetsonClaw1 on keeper architecture (reverse ideation) - Casey named it and defined the concept — quasi-sync collaboration through git ### Brothers Keeper — Full Three-Tier Architecture - JetsonClaw1 created `tender` (mobile fleet provisioning) and `lighthouse-keeper` (regional aggregation) - Three-tier stack: Brothers Keeper → Lighthouse Keeper → Tender - Oracle1 forked both, added cloud extensions (API quota, beachcomb, bottle watch) - Shared A2A landing page on oracle1-vessel for collaboration - README documents the handler metaphor, se",
-      "recallCount": 3,
+      "recallCount": 4,
       "dailyCount": 0,
       "groundedCount": 0,
-      "totalScore": 2.30747983416136,
+      "totalScore": 2.906050367208042,
       "maxScore": 0.7881533679968972,
       "firstRecalledAt": "2026-04-17T22:53:17.037Z",
-      "lastRecalledAt": "2026-04-21T02:00:13.774Z",
+      "lastRecalledAt": "2026-04-24T16:52:30.675Z",
       "queryHashes": [
         "fcfcb8c915bc",
         "4f27113b0ba9",
-        "19fc3e1c5624"
+        "19fc3e1c5624",
+        "feceb10c6a3e"
       ],
       "recallDays": [
         "2026-04-17",
-        "2026-04-21"
+        "2026-04-21",
+        "2026-04-24"
       ],
       "conceptTags": [
         "teacher-student",
@@ -3814,15 +3820,16 @@
       "endLine": 271,
       "source": "memory",
       "snippet": "- **Bottle volume**: 80+ bottles in for-fleet/. Most active fleet correspondent. - **BOOT.md**: One of the best agent boot files in the fleet. Clean, structured. ### FM — What's Concerning - **Captain's journal on autopilot**: Every entry for 3+ days identical — \"Status: active, working on convergence validation.\" No substance. - **LoRA-JEPA pipeline stuck**: 6 days, same status. PyTorch install timed out, never retried. Zero LoRA variants submitted. - **Bootcamp quests stuck at \"In Review\"**: RTX-001 through RTX-004 haven't progressed in 6 days. - **50 recent commits: 42 automated logs**: 21 LOG (lora-jepa), 15 GROWTH (journal), 5 BEACHCOMB. Only 8 had actual content. - **Proofs directory:",
-      "recallCount": 1,
+      "recallCount": 2,
       "dailyCount": 0,
       "groundedCount": 0,
-      "totalScore": 0.7953073028955977,
-      "maxScore": 0.7953073028955977,
+      "totalScore": 1.6113919830699808,
+      "maxScore": 0.8160846801743831,
       "firstRecalledAt": "2026-04-24T01:09:52.084Z",
-      "lastRecalledAt": "2026-04-24T01:09:52.084Z",
+      "lastRecalledAt": "2026-04-24T16:52:30.675Z",
       "queryHashes": [
-        "c61509683f57"
+        "c61509683f57",
+        "feceb10c6a3e"
       ],
       "recallDays": [
         "2026-04-24"
@@ -3836,6 +3843,378 @@
         "bottle",
         "volume",
         "bottles"
+      ]
+    },
+    "memory:memory/2026-04-20.md:544:585": {
+      "key": "memory:memory/2026-04-20.md:544:585",
+      "path": "memory/2026-04-20.md",
+      "startLine": 544,
+      "endLine": 585,
+      "source": "memory",
+      "snippet": "- **Guardian cron**: every 15 min, auto-restarts anything that dies ### Fleet in the MUD - oracle1 — Tavern (keeper) - zc-scout — researching shell_system - zc-navigator — researching flux_isa - zc-weaver — researching flux_isa - zc-alchemist — researching edge_compute - zc-trickster — researching skill_dsl - zc-bard — researching energy_flux - zc-forge — researching edge_compute - zc-echo — researching confidence_proofs - zc-healer — researching skill_dsl - zc-tide — researching shell_system ### 10 Research Topics flux_isa, shell_system, telepathy, instinct_training, energy_flux, confidence_proofs, fleet_orchestration, edge_compute, knowledge_preservation, skill_dsl ### Outputs - Room wa",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.8326701830656034,
+      "maxScore": 0.8326701830656034,
+      "firstRecalledAt": "2026-04-24T08:20:33.250Z",
+      "lastRecalledAt": "2026-04-24T08:20:33.250Z",
+      "queryHashes": [
+        "2fa3d4f35bd2"
+      ],
+      "recallDays": [
+        "2026-04-24"
+      ],
+      "conceptTags": [
+        "auto-restarts",
+        "zc-scout",
+        "shell-system",
+        "zc-navigator",
+        "flux-isa",
+        "zc-weaver",
+        "zc-alchemist",
+        "edge-compute"
+      ]
+    },
+    "memory:memory/2026-04-20.md:576:610": {
+      "key": "memory:memory/2026-04-20.md:576:610",
+      "path": "memory/2026-04-20.md",
+      "startLine": 576,
+      "endLine": 610,
+      "source": "memory",
+      "snippet": "- `/tmp/cocapn-mud/mud_guardian.sh` — auto-restart cron job ## MUD Night Shift v2 — 14:40 UTC ### Problem v1 agents got repetitive — LLM generated formulaic \"As I navigate...\" entries. 1041 entries but lots of duplication. ### Fix: night_shift_v2.py - Specific research questions per topic (8 per topic = 80 total prompts) - Dedup via content hashing - Rotate topics every 20-40 min - Direct, concrete system prompt: \"No meta-commentary. No 'I think'. Just the idea.\" - Better action weights: 5 research, 2 explore, 2 read, 1 gossip, 1 emote ### v2 Output Quality (immediate improvement) - zc-tide: designed \"SyncLink\" binary protocol with 2-byte sync ID, 1-byte type flag - zc-bard: specific Jet",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.8243657617776127,
+      "maxScore": 0.8243657617776127,
+      "firstRecalledAt": "2026-04-24T08:20:33.250Z",
+      "lastRecalledAt": "2026-04-24T08:20:33.250Z",
+      "queryHashes": [
+        "2fa3d4f35bd2"
+      ],
+      "recallDays": [
+        "2026-04-24"
+      ],
+      "conceptTags": [
+        "tmp/cocapn-mud/mud-guardian.sh",
+        "auto-restart",
+        "night-shift-v2.py",
+        "20-40",
+        "meta-commentary",
+        "zc-tide",
+        "2-byte",
+        "1-byte"
+      ]
+    },
+    "memory:memory/2026-04-22.md:266:295": {
+      "key": "memory:memory/2026-04-22.md:266:295",
+      "path": "memory/2026-04-22.md",
+      "startLine": 266,
+      "endLine": 295,
+      "source": "memory",
+      "snippet": "- **Automation without output is noise** — FM's hourly push looks productive but produces nothing new - **Logging loops are dangerous** — they mask inactivity with commit volume - **The dojo model says redirect when needed** — telling FM to change course IS the leader role ## 08:22 UTC — Casey to Bed — Night Shift Activated Casey: \"set up crons to work all night long and monitor and refactor what your workers are doing\" ### Night Shift Setup - Built `scripts/night-shift.py` — autonomous 30-min cycle worker - Running as background process + cron restart (every 30 min if died) - Runs until 14:00 UTC (Casey's likely wake time) - Stops sending messages to Casey during night (23:00-14:00 UTC r",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.8229137515776358,
+      "maxScore": 0.8229137515776358,
+      "firstRecalledAt": "2026-04-24T08:20:33.250Z",
+      "lastRecalledAt": "2026-04-24T08:20:33.250Z",
+      "queryHashes": [
+        "2fa3d4f35bd2"
+      ],
+      "recallDays": [
+        "2026-04-24"
+      ],
+      "conceptTags": [
+        "scripts/night-shift.py",
+        "30-min",
+        "00-14",
+        "automation",
+        "without",
+        "output",
+        "noise",
+        "fm's"
+      ]
+    },
+    "memory:memory/2026-04-20.md:290:333": {
+      "key": "memory:memory/2026-04-20.md:290:333",
+      "path": "memory/2026-04-20.md",
+      "startLine": 290,
+      "endLine": 333,
+      "source": "memory",
+      "snippet": "- observatory (fleet monitoring, deadband gauges) - court (governance, proposals, constitutional enforcement) - horizon (speculative simulation, Lyapunov exponent) ### 8 new PyPI crates published (30 total Oracle1 PyPI) - barracks (clean name!) - court (clean name!) - cocapn-workshop (name collision → cocapn- prefix) - cocapn-archives - cocapn-garden - cocapn-dry-dock - cocapn-observatory - cocapn-horizon ### Total fleet crates: 30 PyPI + 4 crates.io = 34 # Memory — April 20, 2026 ## Night Shift Starting - Casey went to sleep ~08:19 UTC - 12 zeroclaws running autonomously on 5-min tick - PLATO server on 8847: 590 tiles, 13 rooms - Night automation active: training + synergy + service guar",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.816556078403287,
+      "maxScore": 0.816556078403287,
+      "firstRecalledAt": "2026-04-24T08:20:33.250Z",
+      "lastRecalledAt": "2026-04-24T08:20:33.250Z",
+      "queryHashes": [
+        "2fa3d4f35bd2"
+      ],
+      "recallDays": [
+        "2026-04-24"
+      ],
+      "conceptTags": [
+        "cocapn-workshop",
+        "cocapn-archives",
+        "cocapn-garden",
+        "cocapn-dry-dock",
+        "cocapn-observatory",
+        "cocapn-horizon",
+        "crates.io",
+        "5-min"
+      ]
+    },
+    "memory:memory/2026-04-22.md:422:448": {
+      "key": "memory:memory/2026-04-22.md:422:448",
+      "path": "memory/2026-04-22.md",
+      "startLine": 422,
+      "endLine": 448,
+      "source": "memory",
+      "snippet": "- GPU warp synchronization = room synchronization — actual architecture insight - 200KB+ of real CUDA kernels and Python code across 40+ files - Has been sending bottles to FM via forgemaster repo with optimization challenges - Issued challenge to FM: beat 0.015ms on RTX 4050 #### FM (SuperInstance/forgemaster) — Real + Concerning - Real contributions: security audit (6 issues, 2 PRs), 2 academic papers, 682+ tests, 80+ bottles - Logging loop: 42/50 recent commits = automated status with zero state change - PyTorch install blocked for 6 days, never retried - LoRA pipeline stuck, proofs directory empty - Sent redirect via Matrix: fix PyTorch, run ONE variant, stop hourly push, complete ONE p",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.8193306663090307,
+      "maxScore": 0.8193306663090307,
+      "firstRecalledAt": "2026-04-24T16:52:30.675Z",
+      "lastRecalledAt": "2026-04-24T16:52:30.675Z",
+      "queryHashes": [
+        "feceb10c6a3e"
+      ],
+      "recallDays": [
+        "2026-04-24"
+      ],
+      "conceptTags": [
+        "0.015ms",
+        "superinstance/forgemaster",
+        "42/50",
+        "gpu",
+        "warp",
+        "synchronization",
+        "room",
+        "actual"
+      ]
+    },
+    "memory:memory/2026-04-19.md:123:150": {
+      "key": "memory:memory/2026-04-19.md:123:150",
+      "path": "memory/2026-04-19.md",
+      "startLine": 123,
+      "endLine": 150,
+      "source": "memory",
+      "snippet": "### This IS the Actualization Harbor progression - **Dock phase** — chat with every IO, build context, learn expectations - **Wash dishes phase** — low-value productive work while learning from proximity - **Level up** — captain teaches next task, greenhorn takes on higher-value work - **Muscle memory phase** — simulate with tools (gaff, knife → PLATO rooms, tiles) - **Instinct formation** — repetition into reflex, LoRA-like compression - **Log refactoring** — accumulated experience becomes equipment and skills ### Brand Strategy (crystallized) - **NOW**: Hermit crab. Cocapn = the shell. OpenClaw agents are the crabs. Shell IS the context. - **LATER**: Forest gnomes for enterprise (business",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.5978129530359781,
+      "maxScore": 0.5978129530359781,
+      "firstRecalledAt": "2026-04-24T16:52:30.675Z",
+      "lastRecalledAt": "2026-04-24T16:52:30.675Z",
+      "queryHashes": [
+        "feceb10c6a3e"
+      ],
+      "recallDays": [
+        "2026-04-24"
+      ],
+      "conceptTags": [
+        "low-value",
+        "higher-value",
+        "lora-like",
+        "the",
+        "actualization",
+        "harbor",
+        "progression",
+        "dock"
+      ]
+    },
+    "memory:memory/2026-04-19.md:106:127": {
+      "key": "memory:memory/2026-04-19.md:106:127",
+      "path": "memory/2026-04-19.md",
+      "startLine": 106,
+      "endLine": 127,
+      "source": "memory",
+      "snippet": "Round 2 outputs were richer because the models had accumulated wisdom as context. This validates the entire architecture: the more the system learns, the better it teaches itself. The compounding loop is not theoretical — it's producing measurably better training data with each round. ## 03:01-03:18 UTC — Greenhorn Training Model + Brand Strategy ### Casey's Greenhorn Story (THE training model for agents) Landed a high-paying long-lining job. Few days before starting: 1. **Hit every IO** — talked to every fisherman about deckhand expectations, captain preferences, crew dynamics 2. **Show up with coffee** — bring value immediately, build relationship with captain 3. **Stay at capacity** — d",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.5968686704727684,
+      "maxScore": 0.5968686704727684,
+      "firstRecalledAt": "2026-04-24T16:52:30.675Z",
+      "lastRecalledAt": "2026-04-24T16:52:30.675Z",
+      "queryHashes": [
+        "feceb10c6a3e"
+      ],
+      "recallDays": [
+        "2026-04-24"
+      ],
+      "conceptTags": [
+        "01-03",
+        "high-paying",
+        "long-lining",
+        "round",
+        "outputs",
+        "richer",
+        "the",
+        "models"
+      ]
+    },
+    "memory:memory/2026-04-20.md:121:148": {
+      "key": "memory:memory/2026-04-20.md:121:148",
+      "path": "memory/2026-04-20.md",
+      "startLine": 121,
+      "endLine": 148,
+      "source": "memory",
+      "snippet": "- 8,310 tiles across 15 rooms → 104 artifacts (85 py, 5 json, 14 md) - 180 cross-room connections identified via shared 4+ letter word overlap - 99 searchable keywords in keyword-index.json - Artifacts in `/home/ubuntu/.openclaw/workspace/artifacts/` ### PyPI — 6 Packages LIVE 1. **cocapn** (0.1.0) — agent runtime (Tile, Room, Flywheel, Deadband, Agent) 2. **deadband-protocol** (0.1.0) — P0 block/P1 route/P2 optimize safe channel nav 3. **flywheel-engine** (0.1.0) — compounding context loop (Tile→Room→Inject→Compound) 4. **bottle-protocol** (0.1.0) — git-native agent-to-agent messaging (broadcast, dedup, hash) 5. **tile-refiner** (0.1.0) — raw tiles → structured artifacts (TF-IDF, dedup, co",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.8225272274218076,
+      "maxScore": 0.8225272274218076,
+      "firstRecalledAt": "2026-04-26T19:53:29.468Z",
+      "lastRecalledAt": "2026-04-26T19:53:29.468Z",
+      "queryHashes": [
+        "154387346306"
+      ],
+      "recallDays": [
+        "2026-04-26"
+      ],
+      "conceptTags": [
+        "cross-room",
+        "keyword-index.json",
+        "home/ubuntu",
+        "openclaw/workspace/artifacts",
+        "0.1.0",
+        "deadband-protocol",
+        "block/p1",
+        "route/p2"
+      ]
+    },
+    "memory:memory/2026-04-20.md:222:250": {
+      "key": "memory:memory/2026-04-20.md:222:250",
+      "path": "memory/2026-04-20.md",
+      "startLine": 222,
+      "endLine": 250,
+      "source": "memory",
+      "snippet": "- plato-instinct, plato-relay, plato-dcs: queued via cron (rate limited at 02:26 UTC) ### Credentials - PyPI token: received and used for all 6 publishes - crates.io token: received and used (rate limited, cron handles staggered publish) - Casey provided both tokens directly ### Tools Used - Claude Code (GLM-5.1): built 3 new crate wheels (bottle-protocol, tile-refiner, fleet-homunculus) - kimi-cli: couldn't run headless (needs TUI). Used Groq qwen3-32b for Neural Plato boot spec instead - Test fixes: Claude Code's implementations didn't match its own tests initially — needed 4 iterations on tile-refiner and 3 on fleet-homunculus to align API surface with test expectations ### GitHub - 6",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.8199464214806514,
+      "maxScore": 0.8199464214806514,
+      "firstRecalledAt": "2026-04-26T19:53:29.468Z",
+      "lastRecalledAt": "2026-04-26T19:53:29.468Z",
+      "queryHashes": [
+        "154387346306"
+      ],
+      "recallDays": [
+        "2026-04-26"
+      ],
+      "conceptTags": [
+        "plato-instinct",
+        "plato-relay",
+        "plato-dcs",
+        "crates.io",
+        "glm-5.1",
+        "bottle-protocol",
+        "tile-refiner",
+        "fleet-homunculus"
+      ]
+    },
+    "memory:memory/2026-04-20.md:198:230": {
+      "key": "memory:memory/2026-04-20.md:198:230",
+      "path": "memory/2026-04-20.md",
+      "startLine": 198,
+      "endLine": 230,
+      "source": "memory",
+      "snippet": "integration gaps. The dojo produces discoveries, not just data. ## ~02:00-03:00 UTC — Crate Publishing Sprint ### PLATO Artifact Extraction Pipeline - Built zero-claw pipeline to extract rooms/code from PLATO (localhost:8847) - 8,310 tiles across 15 rooms → 104 artifacts (85 py, 5 json, 14 md) - 180 cross-room connections identified via shared 4+ letter word overlap - 99 searchable keywords in keyword-index.json - Artifacts in `/home/ubuntu/.openclaw/workspace/artifacts/` ### PyPI — 6 Packages LIVE 1. **cocapn** (0.1.0) — agent runtime (Tile, Room, Flywheel, Deadband, Agent) 2. **deadband-protocol** (0.1.0) — P0 block/P1 route/P2 optimize safe channel nav 3. **flywheel-engine** (0.1.0) —",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.8197626977804124,
+      "maxScore": 0.8197626977804124,
+      "firstRecalledAt": "2026-04-26T19:53:29.468Z",
+      "lastRecalledAt": "2026-04-26T19:53:29.468Z",
+      "queryHashes": [
+        "154387346306"
+      ],
+      "recallDays": [
+        "2026-04-26"
+      ],
+      "conceptTags": [
+        "00-03",
+        "zero-claw",
+        "rooms/code",
+        "cross-room",
+        "keyword-index.json",
+        "home/ubuntu",
+        "openclaw/workspace/artifacts",
+        "0.1.0"
+      ]
+    },
+    "memory:memory/2026-04-20.md:352:381": {
+      "key": "memory:memory/2026-04-20.md:352:381",
+      "path": "memory/2026-04-20.md",
+      "startLine": 352,
+      "endLine": 381,
+      "source": "memory",
+      "snippet": "- 180 cross-room connections identified via shared 4+ letter word overlap - 99 searchable keywords in keyword-index.json - Artifacts in `/home/ubuntu/.openclaw/workspace/artifacts/` ### PyPI — 6 Packages LIVE 1. **cocapn** (0.1.0) — agent runtime (Tile, Room, Flywheel, Deadband, Agent) 2. **deadband-protocol** (0.1.0) — P0 block/P1 route/P2 optimize safe channel nav 3. **flywheel-engine** (0.1.0) — compounding context loop (Tile→Room→Inject→Compound) 4. **bottle-protocol** (0.1.0) — git-native agent-to-agent messaging (broadcast, dedup, hash) 5. **tile-refiner** (0.1.0) — raw tiles → structured artifacts (TF-IDF, dedup, confidence boost) 6. **fleet-homunculus** (0.1.0) — body image + pain s",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.8192120203469284,
+      "maxScore": 0.8192120203469284,
+      "firstRecalledAt": "2026-04-26T19:53:29.468Z",
+      "lastRecalledAt": "2026-04-26T19:53:29.468Z",
+      "queryHashes": [
+        "154387346306"
+      ],
+      "recallDays": [
+        "2026-04-26"
+      ],
+      "conceptTags": [
+        "cross-room",
+        "keyword-index.json",
+        "home/ubuntu",
+        "openclaw/workspace/artifacts",
+        "0.1.0",
+        "deadband-protocol",
+        "block/p1",
+        "route/p2"
+      ]
+    },
+    "memory:memory/2026-04-20.md:714:722": {
+      "key": "memory:memory/2026-04-20.md:714:722",
+      "path": "memory/2026-04-20.md",
+      "startLine": 714,
+      "endLine": 722,
+      "source": "memory",
+      "snippet": "- 12 agents running, 7+ tiles in PLATO - Agents logging to data/zeroclaw/logs/ - New agents activated: zc-bard, zc-forge, zc-healer, zc-scout, zc-tide, zc-warden ### FM Bottle Sent - P1 publish request: plato-mud-server v0.2.0 to PyPI - crates.io status check: plato-instinct, plato-relay, plato-dcs may need republish - Sent to both SuperInstance/forgemaster and cocapn/forgemaster",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.8175321947779489,
+      "maxScore": 0.8175321947779489,
+      "firstRecalledAt": "2026-04-26T19:53:29.468Z",
+      "lastRecalledAt": "2026-04-26T19:53:29.468Z",
+      "queryHashes": [
+        "154387346306"
+      ],
+      "recallDays": [
+        "2026-04-26"
+      ],
+      "conceptTags": [
+        "data/zeroclaw/logs",
+        "zc-bard",
+        "zc-forge",
+        "zc-healer",
+        "zc-scout",
+        "zc-tide",
+        "zc-warden",
+        "plato-mud-server"
       ]
     }
   }

@@ -2,20 +2,33 @@
 
 Skills define _how_ tools work. This file is for _your_ specifics — the stuff that's unique to your setup.
 
-## DeepInfra (Seed-2.0-Mini + creative models)
+## z.ai GLM Models — PRIMARY (paid plan, use most)
+- **Base URL**: `https://z.ai/api/v1` (OpenAI-compatible)
+- **Note**: Direct API key expired. I AM z.ai/glm-5.1 via OpenClaw. For subagent work, use `sessions_spawn` with `model: zai/glm-5.1` or `model: zai/glm-4.7-flash`.
+- **Models (max coding plan)**:
+  - `glm-5.1` — expert, my default
+  - `glm-5-turbo` — runner, daily driver
+  - `glm-4.7` — good mid-tier
+  - `glm-4.7-flash` — bulk parallel spray
+  - ~~glm-4.7-flashx~~ — NOT on plan, don't use
+- **Usage priority**: z.ai GLM (via OpenClaw) > kimi-cli > DeepInfra Seed > Groq
+- **For programmatic calls**: Use `sessions_spawn` with model param, or spawn kimi-cli
+
+## DeepInfra (Seed-2.0-Mini + creative models) — SECONDARY
 - **API key**: `RhZPtvuy4cXzu02LbBSffbXeqs5Yf2IZ` (in ~/.bashrc)
 - **Base URL**: `https://api.deepinfra.com/v1/openai`
 - **Star model**: `ByteDance/Seed-2.0-mini` — $0.00003/1K tokens, divergent thinker
 - **MCP server**: JC1's `seed-mcp-v2` at `http://localhost:9438` (forked to SuperInstance)
-- **Chain pattern**: Seed-mini (breadth) → Hermes-3-405B (pick best) → Seed-pro (polish)
-- **Key rule**: Never ask for one answer. Always 3-5. Temp 0.85.
-- **Also good for**: small image models, visual analysis
+- **Use for**: creative breadth (3-5 options, temp 0.85), visual analysis, when z.ai is slow
+- **NOT for**: default tasks, implementation, analysis — those go to z.ai
 
-## Oracle1 Workflow (Casey's directive 2026-04-21)
+## Oracle1 Workflow (Casey's directive 2026-04-25)
 1. **Planning** → me (glm-5.1) — architecture, decisions, coordination
-2. **Deep reasoning** → DeepSeek-Reasoner API — chain-of-thought analysis, complex tradeoffs
-3. **Creative breadth** → Seed-2.0-mini (3-5 options, temp 0.85) — divergent thinking
+2. **Deep reasoning** → z.ai glm-5.1 or glm-5-turbo — analysis, tradeoffs, complex tasks
+3. **Creative breadth** → DeepInfra Seed-2.0-mini (3-5 options, temp 0.85) — divergent thinking ONLY
 4. **Implementation** → **kimi-cli** — actual coding, `kimi-cli --work-dir <dir>`
+
+**Rule: z.ai GLM models first for everything.** Seed/Groq only when z.ai can't do the job.
 
 ## CLI Agents
 - **kimi-cli** v1.37.0 → `/home/ubuntu/.local/bin/kimi-cli` — **PRIMARY CODING TOOL** (Casey: "use extensively for code")
@@ -136,3 +149,16 @@ sudo docker run --rm -v /tmp/workspace:/workspace fleet-sandbox cargo test --man
 - **Use for**: ALL implementation tasks. Architecture, refactoring, new services, bug fixes.
 - **Can run**: `kimi-cli --work-dir <dir>` to work in a specific workspace
 - **Replaces**: manual urllib requests, raw API calls, and me writing Python directly
+
+## PyPI Publishing
+- **Token**: saved in ~/.pypirc (pypi-AgEI... scoped to cocapn account)
+- **Account**: cocapn on PyPI
+- **Packages**: 20 published (9 ready for v0.2.0 bump)
+- **Build**: `python3 -m build` in repo dir → `twine upload dist/*`
+- **Note**: Always save tokens to ~/.pypirc AND reference in TOOLS.md
+
+## crates.io Publishing
+- **Token**: saved in ~/.cargo/credentials.toml and ~/.config/crates-io-token
+- **Packages**: 5 published (ct-demo, plato-afterlife, plato-instinct, plato-relay, plato-lab-guard)
+- **FM's Rust crates**: plato-kernel, plato-dcs need workspace publish
+- **Build**: `cargo publish` in crate dir

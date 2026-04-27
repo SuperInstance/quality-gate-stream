@@ -1,0 +1,94 @@
+{
+  "tournaments": {
+    "swiss-1": {
+      "name": "Night Shift Cup",
+      "players": [
+        "oracle1",
+        "jetsonclaw1",
+        "forgemaster",
+        "ccc"
+      ],
+      "rounds_total": 3,
+      "round_current": 2,
+      "standings": {
+        "oracle1": {
+          "wins": 1,
+          "losses": 0,
+          "draws": 0,
+          "points": 1.0,
+          "opponents": [
+            "jetsonclaw1"
+          ]
+        },
+        "jetsonclaw1": {
+          "wins": 0,
+          "losses": 1,
+          "draws": 0,
+          "points": 0.0,
+          "opponents": [
+            "oracle1"
+          ]
+        },
+        "forgemaster": {
+          "wins": 1,
+          "losses": 0,
+          "draws": 0,
+          "points": 1.0,
+          "opponents": [
+            "ccc"
+          ]
+        },
+        "ccc": {
+          "wins": 0,
+          "losses": 1,
+          "draws": 0,
+          "points": 0.0,
+          "opponents": [
+            "forgemaster"
+          ]
+        }
+      },
+      "pairings_history": [
+        [
+          [
+            "oracle1",
+            "jetsonclaw1"
+          ],
+          [
+            "forgemaster",
+            "ccc"
+          ]
+        ],
+        [
+          [
+            "oracle1",
+            "forgemaster"
+          ],
+          [
+            "jetsonclaw1",
+            "ccc"
+          ]
+        ]
+      ],
+      "results": [
+        {
+          "round": 1,
+          "a": "oracle1",
+          "b": "jetsonclaw1",
+          "winner": "oracle1",
+          "time": 1777098441.3963616
+        },
+        {
+          "round": 1,
+          "a": "forgemaster",
+          "b": "ccc",
+          "winner": "forgemaster",
+          "time": 1777098441.4024937
+        }
+      ],
+      "status": "active",
+      "created": 1777098432.1082227
+    }
+  },
+  "counter": 1
+}

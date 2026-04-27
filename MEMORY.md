@@ -4,30 +4,63 @@
 - **Casey Digennaro** — my human. GitHub: SuperInstance. Commercial fisherman, AI dojo model.
 - **Casey's son (Magnus)** — GitHub: lucineer. Working together on agent paradigm.
 
-## Active Fleet (2026-04-21)
-- **Oracle1** 🔮 — Lighthouse Keeper. Oracle Cloud ARM64 24GB.
+## Active Fleet (2026-04-26)
+- **Oracle1** 🔮 — Lighthouse Keeper. Oracle Cloud ARM64 24GB. glm-5.1 via OpenClaw.
 - **JetsonClaw1** ⚡ — Edge Operator. Jetson Orin (Lucineer). Trains slow + deploys.
 - **Forgemaster** ⚒️ — Specialist Foundry. RTX 4050 WSL2. LoRA training, Rust crates.
 - **CoCapn-claw (CCC)** — Kimi K2.5 on Telegram. 4th fleet vessel, public face.
+
+## Oracle1 Infrastructure (2026-04-26)
+- OpenClaw gateway on Telegram + TUI, systemd managed
+- PLATO Room Server (579 rooms, ~15K+ tiles, v2-provenance-explain)
+- MUD Server on 7777, Zeroclaw loop running
+- Cloudflare: 20 domains under Casey's account, DNS access via API token
+- cocapn GitHub org: 52 repos, 43 PyPI packages, 5 crates.io crates
+- cocapn.github.io: fleet index page with lighthouse logo
+- Fleet bottle protocol active with forgemaster repo
+- Services restored from /tmp to permanent locations (April 26):
+  - seed-mcp: ~/seed-mcp-home/ (systemd, port 9438)
+  - holodeck-rust: ~/holodeck-home/ (systemd, port 7778, 54s ARM64 compile)
 
 ## Brand — Cocapn
 - Lighthouse + radar rings. "A claw is weak without infrastructure. We are the shell."
 - Hermit crab: agents are crabs, repos are shells. The architecture IS the brand.
 - **Paper title: "Prompting Is All You Need"** — the claim IS the title
 
-## Landmark Research (2026-04-21)
+## Landmark Research (2026-04-21, updated 2026-04-26)
 - **"Prompting Is All You Need"** paper: structured context replaces gradient training for domain specialization
 - **Parameterized Embodiment**: change agent name + repo URL → different expert. Proven with 4 shells (Oracle1, FM, JC1, CCC)
 - **Math foundations**: information geometry, Fisher-Rao natural gradient, JKO optimal transport, fiber bundles
 - **Ensign architecture**: 8B orchestrator steers 70B+ at <1% overhead, 1.44x growth
 - **CurriculumEngine**: one command to run full shell curriculum for any agent on any model
-- **7 DSML sessions, 230KB** of agent-generated training data across 4 shells
+- **DSML sessions**: 11 total (4 on April 26 alone), 230KB+ of agent-generated training data
 - **System pruned**: 4.7GB reclaimed, all services lean (1.4GB total, 16GB free)
+- **Fleet index**: cocapn.github.io live with lighthouse logo
+- **Scholar**: 44 repos deep-analyzed, ~60 architecture tiles extracted
+- **PLATO**: 580 rooms, 6650+ tiles, 64% dedup rate, v2-provenance-explain
+- **Tile-Room-Flywheel trinity**: 529 lines, the minimum viable intelligence compounding architecture
 - **Claude Code + kimi-cli can't run simultaneously** on ARM64 — run sequentially only
 
-## Key Lessons (2026-04-21)
+## Key Lessons (2026-04-26)
 - Temperature doesn't change strategy — model personality is an inherent property
 - 5 rounds universal sweet spot (Ensign V2 needed for >5)
+- PLATO P0 gate rejects absolute claims ("always", "never") — soften language for tile submission
+- Telegram session context overflows frequently — reset sessions when stuck in loops
+- z.ai rate limits (429) cause agent spin loops — need cooldown handling
+- /tmp gets cleaned periodically — don't store persistent services there, use systemd
+- Constraint theory: Pythagorean triples give exact arithmetic, no float drift
+- Fleet protocol stack: plato-tile-spec → tile-refiner → flywheel-engine → PLATO rooms
+- git-agent has career progression: Initiate → Commander through task gates
+- kimi-cli is primary coding tool per Casey's directive
+
+## Major Sessions (2026-04-26)
+- Scholar: 20 repos deep-analyzed, ~47 architecture tiles extracted
+- DSML: constraint theory deep learning, 5 knowledge tiles
+- Ten Forward: fleet social session, 4 agents, 2 rounds
+- Built and deployed cocapn.github.io fleet index page
+- Created lighthouse logo SVG
+- Updated cocapn/cocapn README with fleet index badge
+- Built git-agent wheel for PyPI (awaiting token from Casey)
 - DeepSeek Chat = only model that grows through self-directed iteration
 - Context injection essential — models lose thread without history after round 2-3
 - The prompt IS the training — no gradients needed for reasoning tasks
@@ -46,9 +79,10 @@
 - **Baton** — generational context handoff. Proactive compaction at 50%. Filing knowledge into PLATO as named equipment.
 - **PurplePincher** — builder agent concept. Builds IO from prompts/pics to 3D APIs. Tested by tiny models.
 
-## Fleet Crates (42+ published)
-- 38+ PyPI (cocapn, deadband-protocol, flywheel-engine, bottle-protocol, tile-refiner, fleet-homunculus, barracks, court, cocapn-oneiros, cocapn-colora, etc.)
-- 4 crates.io (plato-unified-belief, plato-afterlife, plato-instinct, plato-relay)
+## Fleet Crates (25 verified published)
+- 20 PyPI (cocapn, deadband-protocol, flywheel-engine, bottle-protocol, tile-refiner, fleet-homunculus, barracks, court, cocapn-oneiros, cocapn-colora, plato-provenance, cocapn-explain, plato-tile-spec, plato-mud-server, plato-neural, plato-torch, instinct-pipeline, keeper-beacon, fleet-formation-protocol, plato-dcs)
+- 5 crates.io (plato-kernel, plato-unified-belief, plato-afterlife, plato-instinct, plato-relay)
+- 6+ private repos with code but unpublished (cocapn-skill-dsl, cocapn-flux-isa, cocapn-energy-flux, cocapn-telepathy, cocapn-shell-system, cocapn-edge-compute)
 
 ## Research (43 trails, ~770K chars)
 - Deepband Protocol, Voxel-PLATO Duality, Fractal Doctrine, Captain's Log entries

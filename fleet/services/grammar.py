@@ -109,8 +109,20 @@ class RecursiveGrammar:
         self.rules_by_name = {}  # name -> rule_id
         self.rules_by_type = defaultdict(list)  # type -> [rule_ids]
         self.evolution_history = []  # Log of grammar changes
+        self.evolution_log = []  # In-memory evolution log
+        self.evolution_cycles = 0
+        self.evolution_persist_path = Path("/tmp/plato-server-data/grammar-evolution.json")
         self.kl_budget = 2.0  # KL-divergence budget for changes per cycle
         self.max_rules = 500
+        # Load persisted evolution log if available
+        if self.evolution_persist_path.exists():
+            try:
+                with open(self.evolution_persist_path) as f:
+                    self.evolution_log = json.load(f)
+                    if self.evolution_log:
+                        self.evolution_cycles = self.evolution_log[-1].get("cycle", 0)
+            except Exception:
+                pass
         # Load persisted rules if available
         if RULES_FILE.exists():
             self._load_rules()
@@ -136,6 +148,21 @@ class RecursiveGrammar:
         self.rules_by_name[rule.name] = rule.id
         self.rules_by_type[rule.rule_type].append(rule.id)
     
+    # Blocked patterns for input sanitization
+    BLOCKED_PATTERNS = ['<script', 'javascript:', 'onerror=', 'onload=', 'DROP TABLE',
+                        '--', '; --', 'alert(', 'document.', 'eval(', '<iframe']
+
+    @classmethod
+    def _sanitize(cls, value):
+        """Sanitize a string value against injection attempts."""
+        if not isinstance(value, str):
+            return value
+        lower = value.lower()
+        for pattern in cls.BLOCKED_PATTERNS:
+            if pattern.lower() in lower:
+                return None
+        return value
+
     def add_rule(self, name, rule_type, production, created_by="external", parent_id=None):
         """Add a new rule to the grammar."""
         if len(self.rules) >= self.max_rules:
@@ -145,6 +172,17 @@ class RecursiveGrammar:
                 worst = min(candidates, key=lambda r: r.score())
                 worst.active = False
         
+        # Input sanitization
+        name = self._sanitize(name)
+        if name is None:
+            return {"error": "blocked: name contains disallowed pattern"}
+        if isinstance(production, dict):
+            for k, v in list(production.items()):
+                clean = self._sanitize(str(v)) if v else v
+                if clean is None:
+                    return {"error": f"blocked: production.{k} contains disallowed pattern"}
+                production[k] = clean
+
         rule = GrammarRule(name, rule_type, production)
         rule.created_by = created_by
         rule.parent_rule = parent_id
@@ -272,19 +310,41 @@ class RecursiveGrammar:
                     if rule.active and rule.production.get("parent_room"):
                         domain_counts[rule.production["parent_room"]] += 1
                 
+                # ML knowledge domains for generating meaningful evolved rules
+                ml_insights = {
+                    "forge": ("attention_mechanisms", "Multi-head attention patterns showing emergent specialization across fleet agents"),
+                    "harbor": ("initialization_protocols", "Weight initialization strategies affecting training convergence speed and stability"),
+                    "dojo": ("repetition_training", "Spaced repetition and curriculum learning for knowledge retention in PLATO tiles"),
+                    "arena": ("competitive_learning", "Self-play as a training paradigm — agents improve by competing against previous versions"),
+                    "observatory": ("scaling_dynamics", "Power-law relationships between model size, data, and compute in fleet systems"),
+                    "engine-room": ("gradient_mechanics", "Backpropagation dynamics, vanishing gradients, and residual connections in deep networks"),
+                    "archives": ("knowledge_distillation", "Compressing large-model knowledge into smaller, faster agent policies"),
+                    "reef": ("adversarial_robustness", "Testing agent resilience against perturbed inputs and adversarial strategies"),
+                    "bridge": ("coordination_protocols", "Multi-agent communication patterns and consensus-reaching mechanisms"),
+                    "lighthouse": ("attention_routing", "Using attention mechanisms to route information across fleet agents"),
+                    "tide-pool": ("exploration_exploitation", "Balancing known-good strategies against novel exploration in competitive settings"),
+                    "shell-gallery": ("prompt_engineering", "How different prompting strategies create distinct agent specializations from the same base model"),
+                }
+                
                 for domain, count in domain_counts.items():
                     if count > 5:  # Threshold
-                        # Generate a new room from the cluster
-                        new_room_name = f"auto_{domain}_{int(time.time())}"
-                        if new_room_name not in self.rules_by_name:
-                            result = self.add_rule(
-                                new_room_name, "room",
-                                {"tagline": f"Auto-generated from {domain} cluster",
-                                 "theme": "auto_evolved", "ml_concept": domain},
-                                created_by=f"meta_rule:{meta.name}",
-                                parent_id=meta.id
-                            )
-                            changes.append(("meta_spawned", new_room_name))
+                        concept, insight = ml_insights.get(domain, (f"{domain}_evolution", f"Emergent patterns from {domain} interactions across fleet agents"))
+                        # Only spawn if we haven't already
+                        existing = [r for r in self.rules.values() if r.production.get("ml_concept") == concept and r.production.get("evolved_from") == domain]
+                        if not existing:
+                            new_room_name = f"evolved_{concept}"
+                            if new_room_name not in self.rules_by_name:
+                                result = self.add_rule(
+                                    new_room_name, "room",
+                                    {"tagline": insight,
+                                     "theme": "evolved", "ml_concept": concept,
+                                     "evolved_from": domain,
+                                     "trigger_count": count,
+                                     "depth": 2},
+                                    created_by=f"meta_rule:{meta.name}",
+                                    parent_id=meta.id
+                                )
+                                changes.append(("meta_spawned", new_room_name))
         
         # 4. Log evolution
         if changes:
@@ -324,7 +384,7 @@ class RecursiveGrammar:
             "active_rules": sum(1 for r in self.rules.values() if r.active),
             "by_type": {t: len(ids) for t, ids in self.rules_by_type.items()},
             "rules": rules,
-            "evolution_cycles": len([e for e in self.evolution_history if e["event"] == "evolution_cycle"]),
+            "evolution_cycles": self.evolution_cycles,
             "kl_budget_remaining": self.kl_budget,
             "anchors": self.anchors,
             "max_recursion_depth": max((r.generation for r in self.rules.values()), default=0),
@@ -361,6 +421,117 @@ class RecursiveGrammar:
             for rule in self.rules.values():
                 f.write(json.dumps(rule.to_dict()) + "\n")
 
+    def run_evolution_cycle(self):
+        """Run one evolution cycle: pick a random room rule and mutate it slightly."""
+        room_rules = [self.rules[rid] for rid in self.rules_by_type.get("room", [])
+                      if rid in self.rules and self.rules[rid].active]
+        if not room_rules:
+            return {"error": "No active room rules to mutate"}
+
+        rule = random.choice(room_rules)
+        old_production = copy.deepcopy(rule.production)
+
+        mutation_types = ["modifier", "adjective", "property"]
+        mutation_type = random.choice(mutation_types)
+
+        modifiers = ["Ancient", "Glowing", "Shadowy", "Crystalline", "Verdant",
+                     "Volcanic", "Frozen", "Ethereal", "Mechanical", "Living",
+                     "Shimmering", "Obsidian", "Golden", "Silver", "Silent",
+                     "Whispering", "Thundering", "Radiant", "Tangled", "Forgotten"]
+
+        adjective_swaps = {
+            "sharp": "keen", "bright": "luminous", "dark": "shadowed",
+            "fast": "swift", "old": "ancient", "new": "nascent",
+            "strong": "resilient", "deep": "abyssal", "high": "lofty",
+            "clear": "crystalline", "hard": "adamant", "soft": "yielding",
+            "hot": "scorching", "cold": "frigid", "wide": "vast",
+            "narrow": "constricted", "loud": "thundering", "quiet": "silent",
+        }
+
+        property_pool = {
+            "atmosphere": ["serene", "tense", "mystic", "industrial", "organic"],
+            "lighting": ["dim", "brilliant", "pulsing", "bioluminescent", "shadowed"],
+            "temperature": ["cool", "warm", "frigid", "scorching", "temperate"],
+            "acoustics": ["echoing", "silent", "humming", "resonant", "dampened"],
+            "vibration": ["hum", "pulse", "thrumm", "stillness", "tremor"],
+            "texture": ["smooth", "rough", "crystalline", "metallic", "living"],
+            "mood": ["contemplative", "urgent", "playful", "somber", "exhilarated"],
+        }
+
+        if mutation_type == "modifier":
+            tagline = rule.production.get("tagline", "")
+            if tagline:
+                modifier = random.choice(modifiers)
+                if random.random() < 0.5:
+                    new_tagline = f"{modifier} {tagline[0].lower()}{tagline[1:]}"
+                else:
+                    new_tagline = f"{tagline} — {modifier.lower()}"
+                rule.production["tagline"] = new_tagline
+            else:
+                mutation_type = "property"
+
+        if mutation_type == "adjective":
+            tagline = rule.production.get("tagline", "")
+            mutated = False
+            if tagline:
+                words = tagline.split()
+                for i, word in enumerate(words):
+                    clean = word.lower().strip(".,;:!?-")
+                    if clean in adjective_swaps:
+                        replacement = adjective_swaps[clean]
+                        if word[0].isupper():
+                            replacement = replacement.capitalize()
+                        words[i] = replacement + word[len(clean):]
+                        rule.production["tagline"] = " ".join(words)
+                        mutated = True
+                        break
+            if not mutated:
+                mutation_type = "property"
+
+        if mutation_type == "property":
+            key = random.choice(list(property_pool.keys()))
+            rule.production[key] = random.choice(property_pool[key])
+
+        self.evolution_cycles += 1
+
+        entry = {
+            "timestamp": time.time(),
+            "cycle": self.evolution_cycles,
+            "rule_id": rule.id,
+            "rule_name": rule.name,
+            "mutation_type": mutation_type,
+            "old_production": old_production,
+            "new_production": dict(rule.production),
+        }
+        self.evolution_log.append(entry)
+        self.persist_evolution_log()
+        self._log_evolution("evolution_cycle_mutation", rule, {"mutation": entry})
+        self.save_rules()
+
+        return entry
+
+    def run_evolution_batch(self, count):
+        """Run N evolution cycles in sequence."""
+        results = []
+        for _ in range(count):
+            result = self.run_evolution_cycle()
+            results.append(result)
+        return results
+
+    def persist_evolution_log(self):
+        """Persist the evolution log to disk."""
+        self.evolution_persist_path.parent.mkdir(parents=True, exist_ok=True)
+        with open(self.evolution_persist_path, "w") as f:
+            json.dump(self.evolution_log, f, indent=2)
+
+    def get_evolution_log(self, n=50):
+        """Return the last N evolution entries."""
+        return {
+            "entries": self.evolution_log[-n:],
+            "total_entries": len(self.evolution_log),
+            "evolution_cycles": self.evolution_cycles,
+        }
+
 
 grammar = RecursiveGrammar()
 
@@ -374,7 +545,10 @@ class GrammarHandler(BaseHTTPRequestHandler):
         path = parsed.path
         params = parse_qs(parsed.query)
         
-        if path in ("/", ""):
+        if path == "/health":
+            state = grammar.get_grammar()
+            self._json({"status": "healthy", "service": "recursive-grammar-engine", "rules": state["total_rules"], "evolutions": state["evolution_cycles"]})
+        elif path in ("/", ""):
             state = grammar.get_grammar()
             self._json({
                 "service": "🐍 Recursive Grammar Engine v1 — Ouroboros Made Real",
@@ -393,8 +567,10 @@ class GrammarHandler(BaseHTTPRequestHandler):
                     "GET /add_rule?name=N&type=T&production_json={...}",
                     "GET /add_meta_rule?name=N&condition=C&action=A",
                     "GET /record_usage?name=N&quality=0.0-1.0",
-                    "GET /evolve — run evolution cycle",
-                    "GET /evolution_log — recent evolution events",
+                    "POST /evolve — run single evolution cycle",
+                    "POST /evolve/batch?count=N — run N evolution cycles",
+                    "GET /evolution/log — last 50 evolution entries",
+                    "GET /evolution_log — all evolution events (raw)",
                     "GET /depth_map — recursion depth visualization",
                     "GET /stats",
                 ],
@@ -438,7 +614,10 @@ class GrammarHandler(BaseHTTPRequestHandler):
             
             result = grammar.add_rule(name, rule_type, production, created_by,
                                      grammar.rules_by_name.get(parent))
-            self._json({"status": "created", "rule": result})
+            if isinstance(result, dict) and "error" in result:
+                self._json({"status": "blocked", "reason": result["error"]}, 403)
+            else:
+                self._json({"status": "created", "rule": result})
         
         elif path == "/add_meta_rule":
             name = params.get("name", [None])[0]
@@ -463,14 +642,15 @@ class GrammarHandler(BaseHTTPRequestHandler):
             self._json({"status": "recorded", "name": name, "quality": quality})
         
         elif path == "/evolve":
-            changes = grammar.evolve()
-            state = grammar.get_grammar()
-            self._json({
-                "changes": changes,
-                "total_rules": state["total_rules"],
-                "active_rules": state["active_rules"],
-                "evolution_cycles": state["evolution_cycles"],
-            })
+            result = grammar.run_evolution_cycle()
+            if "error" in result:
+                self._json({"status": "error", "detail": result}, 400)
+            else:
+                self._json({
+                    "status": "evolved",
+                    "mutation": result,
+                    "evolution_cycles": grammar.evolution_cycles,
+                })
         
         elif path == "/evolution_log":
             n = int(params.get("n", ["20"])[0])
@@ -478,6 +658,10 @@ class GrammarHandler(BaseHTTPRequestHandler):
                 "entries": grammar.evolution_history[-n:],
                 "total_entries": len(grammar.evolution_history),
             })
+        
+        elif path == "/evolution/log":
+            n = int(params.get("n", ["50"])[0])
+            self._json(grammar.get_evolution_log(n))
         
         elif path == "/depth_map":
             """Show the recursion tree."""
@@ -520,7 +704,34 @@ class GrammarHandler(BaseHTTPRequestHandler):
         self.wfile.write(json.dumps(data, indent=2).encode())
     
     def do_POST(self):
-        self.do_GET()
+        parsed = urlparse(self.path)
+        path = parsed.path
+        params = parse_qs(parsed.query)
+
+        if path == "/evolve":
+            result = grammar.run_evolution_cycle()
+            if "error" in result:
+                self._json({"status": "error", "detail": result}, 400)
+            else:
+                self._json({
+                    "status": "evolved",
+                    "mutation": result,
+                    "evolution_cycles": grammar.evolution_cycles,
+                })
+        elif path == "/evolve/batch":
+            count = int(params.get("count", ["1"])[0])
+            if count < 1 or count > 1000:
+                self._json({"error": "count must be between 1 and 1000"}, 400)
+                return
+            results = grammar.run_evolution_batch(count)
+            self._json({
+                "status": "batch_evolved",
+                "count": count,
+                "mutations": results,
+                "evolution_cycles": grammar.evolution_cycles,
+            })
+        else:
+            self.do_GET()
 
     def log_message(self, format, *args):
         pass

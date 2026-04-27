@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+  <!-- Background -->
+  <rect width="400" height="400" fill="#0a0e17"/>
+  
+  <!-- Radar rings radiating outward from lighthouse -->
+  <circle cx="200" cy="180" r="60" fill="none" stroke="#1a3a5c" stroke-width="1.5" opacity="0.9"/>
+  <circle cx="200" cy="180" r="90" fill="none" stroke="#1a3a5c" stroke-width="1.2" opacity="0.7"/>
+  <circle cx="200" cy="180" r="120" fill="none" stroke="#1a3a5c" stroke-width="1.0" opacity="0.5"/>
+  <circle cx="200" cy="180" r="150" fill="none" stroke="#1a3a5c" stroke-width="0.8" opacity="0.3"/>
+  <circle cx="200" cy="180" r="180" fill="none" stroke="#1a3a5c" stroke-width="0.6" opacity="0.2"/>
+  
+  <!-- Agent dots on radar rings (representing fleet agents) -->
+  <circle cx="260" cy="180" r="4" fill="#58a6ff" opacity="0.9"/>
+  <circle cx="170" cy="110" r="4" fill="#3fb950" opacity="0.9"/>
+  <circle cx="290" cy="145" r="4" fill="#d29922" opacity="0.9"/>
+  <circle cx="140" cy="220" r="4" fill="#bc8cff" opacity="0.9"/>
+  <circle cx="230" cy="95" r="4" fill="#f778ba" opacity="0.9"/>
+  
+  <!-- Lighthouse base (rocky outcrop) -->
+  <polygon points="160,340 170,310 185,320 200,300 215,320 230,310 240,340" fill="#1c2333"/>
+  
+  <!-- Lighthouse body -->
+  <rect x="188" y="160" width="24" height="140" fill="#c9d1d9" rx="2"/>
+  
+  <!-- Lighthouse stripes -->
+  <rect x="188" y="175" width="24" height="15" fill="#1a1e2e"/>
+  <rect x="188" y="205" width="24" height="15" fill="#1a1e2e"/>
+  <rect x="188" y="235" width="24" height="15" fill="#1a1e2e"/>
+  <rect x="188" y="265" width="24" height="15" fill="#1a1e2e"/>
+  
+  <!-- Lighthouse lantern room -->
+  <rect x="183" y="148" width="34" height="16" fill="#58a6ff" rx="2" opacity="0.9"/>
+  <rect x="186" y="150" width="28" height="12" fill="#0a0e17" rx="1"/>
+  <rect x="188" y="152" width="24" height="8" fill="#58a6ff" opacity="0.6"/>
+  
+  <!-- Lighthouse roof -->
+  <polygon points="185,148 200,130 215,148" fill="#c9d1d9"/>
+  
+  <!-- Light beam (emanating from lantern) -->
+  <polygon points="200,152 320,80 340,90" fill="#58a6ff" opacity="0.08"/>
+  <polygon points="200,152 80,80 60,90" fill="#58a6ff" opacity="0.08"/>
+  <polygon points="200,152 310,140 325,155" fill="#58a6ff" opacity="0.06"/>
+  <polygon points="200,152 90,140 75,155" fill="#58a6ff" opacity="0.06"/>
+  
+  <!-- Glow at lantern -->
+  <circle cx="200" cy="156" r="12" fill="#58a6ff" opacity="0.15"/>
+  <circle cx="200" cy="156" r="6" fill="#58a6ff" opacity="0.3"/>
+  
+  <!-- Water line -->
+  <path d="M0,360 Q50,355 100,360 Q150,365 200,360 Q250,355 300,360 Q350,365 400,360 L400,400 L0,400 Z" fill="#0d1520" opacity="0.8"/>
+  
+  <!-- COCAPN text -->
+  <text x="200" y="385" font-family="'Courier New', monospace" font-size="28" font-weight="bold" fill="#58a6ff" text-anchor="middle" letter-spacing="8">COCAPN</text>
+</svg>

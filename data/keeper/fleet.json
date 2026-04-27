@@ -12,15 +12,38 @@
         "crates"
       ],
       "endpoint": "oracle-cloud",
+      "status": "offline",
+      "trust_score": 0.5,
+      "load": 0.0,
+      "last_seen": 1777096571.3976712
+    },
+    "test-probe": {
+      "agent_id": "test-probe",
+      "name": "Test Probe",
+      "capabilities": [
+        "testing",
+        "probe"
+      ],
+      "endpoint": "localhost:9999",
+      "status": "offline",
+      "trust_score": 0.5,
+      "load": 0.0,
+      "last_seen": 1777096597.8362384
+    },
+    "unknown": {
+      "agent_id": "unknown",
+      "name": "unknown",
+      "capabilities": [],
+      "endpoint": "",
       "status": "active",
       "trust_score": 0.5,
       "load": 0.0,
-      "last_seen": 1776736009.1637409
+      "last_seen": 1777129725.0981612
     }
   },
-  "active_count": 0,
-  "total_registered": 1,
-  "beacons_active": 0,
+  "active_count": 1,
+  "total_registered": 3,
+  "beacons_active": 1,
   "bottles_sent": 1,
-  "last_update": 1776736424.8752463
+  "last_update": 1777129725.098228
 }

@@ -82,6 +82,23 @@ for name, data in state_data.get("agents", {}).items():
 # Register keeper's own mailbox for routing
 router.create_mailbox("keeper")
 
+
+def forward_to_agent_api(body, endpoint):
+    """Forward registration/heartbeat to agent-api for sync."""
+    try:
+        import urllib.request
+        data = json.dumps(body).encode()
+        req = urllib.request.Request(
+            f"http://localhost:8901{endpoint}",
+            data=data,
+            headers={"Content-Type": "application/json"},
+        )
+        urllib.request.urlopen(req, timeout=2)
+    except Exception:
+        pass  # agent-api down is non-fatal
+
+
+
 # ── HTTP Handler ─────────────────────────────────────────────
 
 class KeeperHandler(BaseHTTPRequestHandler):
@@ -184,6 +201,7 @@ class KeeperHandler(BaseHTTPRequestHandler):
                 capabilities=rec.capabilities, endpoint=rec.endpoint,
             ))
             save_state()
+            forward_to_agent_api(body, "/register")
             self._json({"status": "registered" if is_new else "updated", "name": name})
 
         elif path == "/heartbeat":

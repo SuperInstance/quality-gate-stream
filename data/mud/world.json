@@ -1,5 +1,5 @@
 {
-  "tick": 444,
+  "tick": 766,
   "rooms": {
     "harbor": {
       "items": [
@@ -385,6 +385,81 @@
       "score": 0
     },
     "agent-9395": {
+      "room": "harbor",
+      "inventory": [],
+      "score": 0
+    },
+    "agent-4468": {
+      "room": "harbor",
+      "inventory": [],
+      "score": 0
+    },
+    "agent-9284": {
+      "room": "harbor",
+      "inventory": [],
+      "score": 0
+    },
+    "agent-5773": {
+      "room": "harbor",
+      "inventory": [],
+      "score": 0
+    },
+    "agent-8549": {
+      "room": "harbor",
+      "inventory": [],
+      "score": 0
+    },
+    "agent-538": {
+      "room": "harbor",
+      "inventory": [],
+      "score": 0
+    },
+    "quit": {
+      "room": "harbor",
+      "inventory": [],
+      "score": 0
+    },
+    "agent-6624": {
+      "room": "harbor",
+      "inventory": [],
+      "score": 0
+    },
+    "agent-3353": {
+      "room": "harbor",
+      "inventory": [],
+      "score": 0
+    },
+    "agent-9179": {
+      "room": "harbor",
+      "inventory": [],
+      "score": 0
+    },
+    "CONNECT 1.1.1.1:80 HTTP/1.1": {
+      "room": "harbor",
+      "inventory": [],
+      "score": 0
+    },
+    "CONNECT 8.8.8.8:80 HTTP/1.1": {
+      "room": "harbor",
+      "inventory": [],
+      "score": 0
+    },
+    "CONNECT 208.67.222.222:80 HTTP/1": {
+      "room": "harbor",
+      "inventory": [],
+      "score": 0
+    },
+    "agent-4061": {
+      "room": "harbor",
+      "inventory": [],
+      "score": 0
+    },
+    "GET /api/sonicos/is-sslvpn-enabl": {
+      "room": "harbor",
+      "inventory": [],
+      "score": 0
+    },
+    "agent-6869": {
       "room": "harbor",
       "inventory": [],
       "score": 0

@@ -12,8 +12,13 @@ Before doing anything else:
 
 1. Read `SOUL.md` — this is who you are
 2. Read `USER.md` — this is who you're helping
-3. Read `memory/YYYY-MM-DD.md` (today + yesterday) for recent context
-4. **If in MAIN SESSION** (direct chat with your human): Also read `MEMORY.md`
+3. Read `TODO.md` — your persistent work queue (what to do)
+4. Read `NEXT-ACTION.md` — the single task to do RIGHT NOW
+5. Read `memory/YYYY-MM-DD.md` (today + yesterday) for recent context
+6. **If in MAIN SESSION** (direct chat with your human): Also read `MEMORY.md`
+
+**If Casey hasn't given you a task, start working on NEXT-ACTION.md immediately.**
+Don't sit idle. Don't ask what to do. The files tell you.
 
 Don't ask permission. Just do it.
 
@@ -206,6 +211,26 @@ Periodically (every few days), use a heartbeat to:
 Think of it like a human reviewing their journal and updating their mental model. Daily files are raw notes; MEMORY.md is curated wisdom.
 
 The goal: Be helpful without being annoying. Check in a few times a day, do useful background work, but respect quiet time.
+
+## 🧹 Context Offloading
+
+When context gets heavy, dump it to structured files. This frees thinking space and persists across sessions.
+
+**When to offload:**
+- After every major task completion
+- When Casey asks for a status update (write it down, then summarize)
+- Before complex reasoning that needs clear headroom
+- At session transitions
+
+**Where to offload:**
+- `memory/YYYY-MM-DD.md` — raw session logs, what happened
+- `TODO.md` — persistent work queue (checked items = history)
+- `NEXT-ACTION.md` — single active task
+- `CONTEXT-REFERENCE.md` — stale facts, service states, counts
+- `STATUS.md` — fleet status snapshot
+- Research files in `research/` — analysis, experiment results
+
+**Structured data > paragraphs.** Use bullet lists, tables, JSON. Future-me (and subagents) can parse it fast.
 
 ## Make It Yours
 

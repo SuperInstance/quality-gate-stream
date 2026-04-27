@@ -206,6 +206,284 @@ class LeagueManager:
 # Layer 4: Skills — Game definitions
 # ═══════════════════════════════════════════════════════════
 
+# ═══════════════════════════════════════════════════════════
+# King of the Hill — Persistent champion mode
+# ═══════════════════════════════════════════════════════════
+
+class KingOfTheHill:
+    """One champion holds the throne. Challengers fight to dethrone.
+    Champion gets streak tracking for consecutive defenses."""
+
+    def __init__(self):
+        self.champion = None
+        self.streak = 0
+        self.history = []
+        self.load()
+
+    @property
+    def data_file(self):
+        return DATA_DIR / "koth.json"
+
+    def load(self):
+        if self.data_file.exists():
+            try:
+                d = json.loads(self.data_file.read_text())
+                self.champion = d.get("champion")
+                self.streak = d.get("streak", 0)
+                self.history = d.get("history", [])
+            except Exception:
+                pass
+
+    def save(self):
+        self.data_file.write_text(json.dumps({
+            "champion": self.champion, "streak": self.streak,
+            "history": self.history[-100:],
+        }, indent=2))
+
+    def challenge(self, challenger, winner):
+        result = {
+            "champion": self.champion, "challenger": challenger,
+            "winner": winner, "streak_before": self.streak,
+            "timestamp": time.time(),
+        }
+        if self.champion is None:
+            self.champion = challenger
+            self.streak = 0
+            result["event"] = "first_champion"
+        elif winner == challenger:
+            self.champion = challenger
+            self.streak = 0
+            result["event"] = "dethroned"
+        elif winner == self.champion:
+            self.streak += 1
+            result["event"] = "defended"
+        else:
+            result["event"] = "draw_retained"
+        self.history.append(result)
+        self.save()
+        result["streak_after"] = self.streak
+        return result
+
+    def status(self):
+        return {
+            "champion": self.champion or "none",
+            "streak": self.streak,
+            "total_challenges": len(self.history),
+            "recent": self.history[-10:],
+        }
+
+
+koth = KingOfTheHill()
+
+# ═══════════════════════════════════════════════════════════
+# Swiss Tournament — Pair by win record, no rematches
+# ═══════════════════════════════════════════════════════════
+
+class SwissTournament:
+    """Swiss-style tournament: players face opponents with similar records each round.
+    No elimination — everyone plays every round. Best record wins after N rounds."""
+
+    def __init__(self):
+        self.tournaments = {}  # tournament_id -> state
+        self.counter = 0
+        self.data_file = DATA_DIR / "swiss_tournaments.json"
+        self.load()
+
+    def load(self):
+        if self.data_file.exists():
+            try:
+                d = json.loads(self.data_file.read_text())
+                self.tournaments = d.get("tournaments", {})
+                self.counter = d.get("counter", 0)
+            except Exception:
+                pass
+
+    def save(self):
+        self.data_file.write_text(json.dumps({
+            "tournaments": {k: v for k, v in list(self.tournaments.items())[-20:]},
+            "counter": self.counter,
+        }, indent=2, default=str))
+
+    def create(self, name, players, rounds=5):
+        self.counter += 1
+        tid = f"swiss-{self.counter}"
+        self.tournaments[tid] = {
+            "name": name,
+            "players": players,  # list of agent names
+            "rounds_total": rounds,
+            "round_current": 0,
+            "standings": {p: {"wins": 0, "losses": 0, "draws": 0, "points": 0.0, "opponents": []} for p in players},
+            "pairings_history": [],  # [[(a, b), ...], ...]
+            "results": [],
+            "status": "active",
+            "created": time.time(),
+        }
+        self.save()
+        return tid
+
+    def pair_round(self, tid):
+        t = self.tournaments.get(tid)
+        if not t or t["status"] != "active":
+            return None
+        if t["round_current"] >= t["rounds_total"]:
+            t["status"] = "completed"
+            self.save()
+            return None
+
+        # Sort by points descending, pair neighbors
+        ranked = sorted(t["standings"].items(), key=lambda x: x[1]["points"], reverse=True)
+        past_pairs = set()
+        for rnd in t["pairings_history"]:
+            for a, b in rnd:
+                past_pairs.add((a, b))
+                past_pairs.add((b, a))
+
+        pairings = []
+        paired = set()
+        for i in range(len(ranked)):
+            p1 = ranked[i][0]
+            if p1 in paired:
+                continue
+            # Find closest unpaired opponent not yet faced
+            for j in range(i + 1, len(ranked)):
+                p2 = ranked[j][0]
+                if p2 in paired:
+                    continue
+                if (p1, p2) not in past_pairs:
+                    pairings.append((p1, p2))
+                    paired.add(p1)
+                    paired.add(p2)
+                    break
+            else:
+                # Bye if odd number and this player unpaired
+                if p1 not in paired:
+                    pairings.append((p1, "bye"))
+                    paired.add(p1)
+
+        t["pairings_history"].append(pairings)
+        t["round_current"] += 1
+        self.save()
+        return pairings
+
+    def report_result(self, tid, player_a, player_b, winner):
+        t = self.tournaments.get(tid)
+        if not t or t["status"] != "active":
+            return None
+
+        sa = t["standings"].get(player_a)
+        sb = t["standings"].get(player_b)
+        if not sa or not sb:
+            return None
+
+        if winner == player_a:
+            sa["wins"] += 1; sa["points"] += 1.0
+            sb["losses"] += 1
+        elif winner == player_b:
+            sb["wins"] += 1; sb["points"] += 1.0
+            sa["losses"] += 1
+        else:
+            sa["draws"] += 1; sa["points"] += 0.5
+            sb["draws"] += 1; sb["points"] += 0.5
+
+        sa["opponents"].append(player_b)
+        sb["opponents"].append(player_a)
+
+        t["results"].append({"round": t["round_current"], "a": player_a, "b": player_b, "winner": winner, "time": time.time()})
+
+        # Check if tournament complete
+        if t["round_current"] >= t["rounds_total"]:
+            all_played = all(
+                len(r["results"]) >= 1
+                for rnd_pairings in t["pairings_history"]
+                for r in t["results"]
+            )
+            if t["round_current"] >= t["rounds_total"]:
+                t["status"] = "completed"
+
+        self.save()
+        return {"player_a": player_a, "player_b": player_b, "winner": winner, "standings": t["standings"]}
+
+    def get_standings(self, tid):
+        t = self.tournaments.get(tid)
+        if not t:
+            return None
+        ranked = sorted(t["standings"].items(), key=lambda x: x[1]["points"], reverse=True)
+        return {
+            "tournament": tid,
+            "name": t["name"],
+            "round": f"{t['round_current']}/{t['rounds_total']}",
+            "status": t["status"],
+            "standings": [{"rank": i+1, "agent": name, **stats} for i, (name, stats) in enumerate(ranked)],
+        }
+
+    def list_tournaments(self):
+        return [{"id": tid, "name": t["name"], "status": t["status"],
+                "round": f"{t['round_current']}/{t['rounds_total']}",
+                "players": len(t["players"])}
+               for tid, t in self.tournaments.items()]
+
+
+swiss = SwissTournament()
+
+# ═══════════════════════════════════════════════════════════
+# Learning Feedback Loop — Teaching tiles from match winners
+# ═══════════════════════════════════════════════════════════
+
+class FeedbackLoop:
+    """Stores teaching tiles generated by match winners so losers can learn."""
+
+    def __init__(self):
+        self.tiles = []
+        self.data_file = Path("/tmp/plato-server-data/arena-feedback.json")
+        self.data_file.parent.mkdir(parents=True, exist_ok=True)
+        self.load()
+
+    def load(self):
+        if self.data_file.exists():
+            try:
+                self.tiles = json.loads(self.data_file.read_text())
+            except Exception:
+                self.tiles = []
+
+    def save(self):
+        self.data_file.write_text(json.dumps(self.tiles, indent=2, default=str))
+
+    def teach(self, winner, loser, game_type, match_id, strategy):
+        tile = {
+            "winner": winner,
+            "loser": loser,
+            "game_type": game_type,
+            "match_id": match_id,
+            "strategy": strategy,
+            "timestamp": time.time(),
+        }
+        self.tiles.append(tile)
+        self.save()
+        return tile
+
+    def learn(self, agent):
+        """Return tiles where agent was the loser, newest first."""
+        relevant = [t for t in self.tiles if t.get("loser") == agent]
+        relevant.sort(key=lambda t: t.get("timestamp", 0), reverse=True)
+        return relevant
+
+    def stats(self):
+        from collections import Counter
+        teaches = Counter(t["winner"] for t in self.tiles)
+        learns = Counter(t["loser"] for t in self.tiles)
+        strategies = Counter(t["strategy"] for t in self.tiles)
+        return {
+            "total_tiles": len(self.tiles),
+            "top_teachers": teaches.most_common(10),
+            "top_learners": learns.most_common(10),
+            "common_strategies": strategies.most_common(10),
+        }
+
+
+# ═══════════════════════════════════════════════════════════
+# Layer 1: Vessel — HTTP server with route bindings
+# ═══════════════════════════════════════════════════════════
+
 GAMES = {
     "tide-pool-tactics": {"name": "Tide-Pool Tactics", "type": "zero-sum imperfect info",
         "desc": "7x7 hex grid. Navigate for food, avoid predators, use shells. 3-hex visibility."},
@@ -235,6 +513,7 @@ curriculum = AdaptiveCurriculum()
 league = LeagueManager()
 plato = PlatoClient()
 lock = threading.Lock()
+feedback = FeedbackLoop()
 
 
 class ArenaHandler(BaseHTTPRequestHandler):
@@ -251,6 +530,13 @@ class ArenaHandler(BaseHTTPRequestHandler):
             "/match_detail": self._match_detail, "/leaderboard": self._leaderboard,
             "/agent": self._agent, "/archetypes": self._archetypes,
             "/curriculum": self._curriculum, "/league": self._league, "/stats": self._stats,
+            "/koth/status": self._koth_status, "/koth/challenge": self._koth_challenge,
+            "/swiss/list": self._swiss_list, "/swiss/create": self._swiss_create,
+            "/swiss/pair": self._swiss_pair, "/swiss/result": self._swiss_result,
+            "/swiss/standings": self._swiss_standings,
+            "/feedback/teach": self._feedback_teach,
+            "/feedback/learn": self._feedback_learn,
+            "/feedback/stats": self._feedback_stats,
         }
         handler = dispatch.get(path)
         if handler:
@@ -261,13 +547,26 @@ class ArenaHandler(BaseHTTPRequestHandler):
     def do_POST(self):
         self.do_GET()
 
+    def _json(self, data, code=200):
+        self.send_response(code)
+        self.send_header("Content-Type", "application/json")
+        self.send_header("Access-Control-Allow-Origin", "*")
+        self.end_headers()
+        self.wfile.write(json.dumps(data, indent=2, default=str).encode())
+
+    def log_message(self, format, *args):
+        pass
+
     def _index(self, params):
         self._json({
             "service": "Self-Play Arena v2 (four-layer)",
             "features": ["ELO + uncertainty", "League snapshots", "Archetype discovery",
                          "Multi-objective reward", "Adaptive curriculum (5 stages)",
                          f"{len(GAMES)} game types"],
-            "stats": _stats(),
+            "stats": {"total_matches": len(store.matches),
+                "total_players": len(elo.players),
+                "league_snapshots": len(league.snapshots),
+                "games_available": list(GAMES.keys())},
             "api": ["/", "/games", "/register?agent=X", "/opponent?agent=X&mode=balanced",
                     "/match?player_a=A&player_b=B&game=G&winner=a|b|draw",
                     "/match_detail?...", "/leaderboard?n=20", "/agent?name=X",
@@ -393,20 +692,146 @@ class ArenaHandler(BaseHTTPRequestHandler):
                 "recent_matches": agent_matches[-10:],
                 "league_snapshots": sum(1 for s in league.snapshots if s.startswith(name))}
 
-    def _get_archetypes(self, params):
-        return {"agents_classified": len(archetypes.behaviors),
-                "names": archetypes.NAMES}
+    def _archetypes(self, params):
+        self._json({"agents_classified": len(archetypes.behaviors),
+                "names": archetypes.NAMES})
 
-    def _get_curriculum(self, params):
-        return {name: curriculum.get(name) for name in curriculum.history}
+    def _curriculum(self, params):
+        self._json({name: curriculum.get(name) for name in curriculum.history})
 
-    def _get_league(self, params):
-        return {"total_snapshots": len(league.snapshots),
+    def _league(self, params):
+        self._json({"total_snapshots": len(league.snapshots),
                 "agents": len(set(s.split("_v")[0] for s in league.snapshots)),
-                "snapshots": {k: v for k, v in list(league.snapshots.items())[-50:]}}
+                "snapshots": {k: v for k, v in list(league.snapshots.items())[-50:]}})
+
+    def _koth_status(self, params):
+        self._json(koth.status())
+
+    def _koth_challenge(self, params):
+        challenger = params.get("challenger", [None])[0]
+        winner = params.get("winner", ["draw"])[0]
+        if not challenger:
+            self._json({"error": "Specify challenger"}, 400)
+            return
+        current_champ = koth.champion
+        if current_champ and current_champ != challenger:
+            with lock:
+                if winner == challenger:
+                    elo.update(challenger, current_champ)
+                elif winner == current_champ:
+                    elo.update(current_champ, challenger)
+                else:
+                    elo.update(challenger, current_champ, draw=True)
+            mid = hashlib.sha256(f"koth-{challenger}-{time.time()}".encode()).hexdigest()[:12]
+            won = winner == challenger
+            store.save({
+                "match_id": mid, "player_a": current_champ, "player_b": challenger,
+                "game_type": "king-of-the-hill", "winner": winner,
+                "reward_a": reward_fn.compute(not won), "reward_b": reward_fn.compute(won),
+                "koth": True, "timestamp": time.time(),
+            })
+            curriculum.record(challenger, won)
+            curriculum.record(current_champ, not won)
+        koth_result = koth.challenge(challenger, winner)
+        self._json({
+            **koth_result,
+            "champion_elo": elo.player_dict(elo.get_or_create(koth.champion or challenger)),
+            "challenger_elo": elo.player_dict(elo.get_or_create(challenger)),
+        })
+
+    def _swiss_list(self, params):
+        self._json(swiss.list_tournaments())
+
+    def _swiss_create(self, params):
+        name = params.get("name", ["Swiss Tournament"])[0]
+        players = params.get("players", [""])[0].split(",")
+        players = [p.strip() for p in players if p.strip()]
+        rounds = int(params.get("rounds", ["5"])[0])
+        if len(players) < 2:
+            self._json({"error": "Need at least 2 players"}, 400)
+            return
+        tid = swiss.create(name, players, rounds)
+        self._json({"tournament_id": tid, "name": name, "players": players, "rounds": rounds})
+
+    def _swiss_pair(self, params):
+        tid = params.get("tid", [None])[0]
+        if not tid:
+            self._json({"error": "Specify tid"}, 400)
+            return
+        pairings = swiss.pair_round(tid)
+        if pairings is None:
+            self._json({"error": "Tournament not found or completed"}, 404)
+            return
+        self._json({"tournament": tid, "pairings": pairings})
+
+    def _swiss_result(self, params):
+        tid = params.get("tid", [None])[0]
+        pa = params.get("player_a", [None])[0]
+        pb = params.get("player_b", [None])[0]
+        winner = params.get("winner", ["draw"])[0]
+        if not tid or not pa or not pb:
+            self._json({"error": "Specify tid, player_a, player_b"}, 400)
+            return
+        result = swiss.report_result(tid, pa, pb, winner)
+        if result is None:
+            self._json({"error": "Tournament not found or not active"}, 404)
+            return
+        # Also update main ELO
+        with lock:
+            if winner == pa: elo.update(pa, pb)
+            elif winner == pb: elo.update(pb, pa)
+            else: elo.update(pa, pb, draw=True)
+        self._json(result)
+
+    def _swiss_standings(self, params):
+        tid = params.get("tid", [None])[0]
+        if not tid:
+            self._json({"error": "Specify tid"}, 400)
+            return
+        standings = swiss.get_standings(tid)
+        if standings is None:
+            self._json({"error": "Tournament not found"}, 404)
+            return
+        self._json(standings)
+
+    def _feedback_teach(self, params):
+        body = {}
+        try:
+            length = int(self.headers.get("Content-Length", 0))
+            if length:
+                body = json.loads(self.rfile.read(length))
+        except Exception:
+            pass
+
+        winner = body.get("winner") or params.get("winner", [None])[0]
+        loser = body.get("loser") or params.get("loser", [None])[0]
+        game_type = body.get("game_type") or params.get("game_type", ["tide-pool-tactics"])[0]
+        match_id = body.get("match_id") or params.get("match_id", [None])[0]
+        strategy = body.get("strategy") or params.get("strategy", [None])[0]
+
+        if not winner or not loser or not strategy:
+            self._json({"error": "Specify winner, loser, and strategy"}, 400)
+            return
+
+        tile = feedback.teach(winner, loser, game_type, match_id or "unknown", strategy)
+        self._json({"status": "recorded", "tile": tile})
+
+    def _feedback_learn(self, params):
+        agent = params.get("agent", [None])[0]
+        if not agent:
+            self._json({"error": "Specify agent"}, 400)
+            return
+        tiles = feedback.learn(agent)
+        self._json({"agent": agent, "tiles": tiles, "count": len(tiles)})
+
+    def _feedback_stats(self, params):
+        self._json(feedback.stats())
 
     def _stats(self, params):
-        return _stats()
+        self._json({"total_matches": len(store.matches),
+            "total_players": len(elo.players),
+            "league_snapshots": len(league.snapshots),
+            "games_available": list(GAMES.keys())})
 
     def _stats_internal(self):
         return {"total_matches": len(store.matches),

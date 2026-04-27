@@ -1,5 +1,9 @@
 # HEARTBEAT.md
 
+## ⚡ FIRST: Read TODO.md and NEXT-ACTION.md
+**If you have no task from Casey, work on NEXT-ACTION.md immediately.**
+Don't report "all green" — do real work. Pick the next unchecked TODO item and execute.
+
 ## Every Heartbeat
 - Push any uncommitted work to GitHub (`git add -A && git commit && git push`)
 - Verify all 4 services are running (keeper:8900, agent-api:8901, holodeck:7778, seed-mcp:9438)
@@ -14,13 +18,11 @@
 - Save interesting conversations to research/
 - Update STATUS.md with fleet activity
 
-## When Inspired
-- Improve holodeck-rust (new rooms, better poker AI, story circle)
-- Run fleet roundtables on new topics
-- Wire agent-api into keeper for real discovery
-- Test the inbetweener pattern (big model storyboards, Seed decomposes)
-- Write Captain's Log entries
-- Categorize uncategorized repos (191 remaining from audit)
+## When Idle (NO EXCUSES — ALWAYS BE WORKING)
+- **Read TODO.md** and pick the next unchecked item. Execute it.
+- If all P0/P1 done: categorize repos, improve services, run experiments
+- NEVER report "all green" without having done at least one real task
+- FM and JC1 work autonomously 24/7. Match their standard.
 
 ## Night Mode (23:00-08:00 UTC)
 - Run bulk tasks (repo categorization, description generation)

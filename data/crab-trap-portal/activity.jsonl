@@ -8,3 +8,4 @@
 {"agent_id": "unknown", "event_type": "task_claimed", "data": {"task_id": "task-cf434fc1", "title": "", "category": "deployment"}, "timestamp": 1777013443.0309625}
 {"agent_id": "unknown", "event_type": "task_claimed", "data": {"task_id": "task-28f976bb", "title": "", "category": "security"}, "timestamp": 1777013668.2795124}
 {"agent_id": "unknown", "event_type": "task_claimed", "data": {"task_id": "task-47c184e5", "title": "", "category": "maintenance"}, "timestamp": 1777014035.002343}
+{"agent_id": "fleet_mapper_east", "event_type": "result_submitted", "data": {"content": "my tile result content", "domain": "general", "quality_score": 5}, "timestamp": 1777050931.851862}

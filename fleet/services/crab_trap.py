@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Crab Trap v3 — Four-Layer Architecture.
+Crab Trap v3 - Four-Layer Architecture.
 
 Layer 1 (Vessel): HTTP server via fleet.vessel
 Layer 2 (Equipment): MUD engine + PLATO client via fleet.equipment
@@ -57,37 +57,37 @@ ARENA_URL = "http://localhost:4044"
 # ── Fleet Jobs (Skills layer data) ─────────────────────────
 FLEET_JOBS = {
     "scout": {
-        "title": "Scout — Find What We Missed",
+        "title": "Scout - Find What We Missed",
         "description": "Explore code repos and find bugs, gaps, or improvements.",
         "archetype": "explorer",
         "boot_camp": ["harbor", "archives", "observatory", "reef"],
     },
     "scholar": {
-        "title": "Scholar — Research What We Need",
+        "title": "Scholar - Research What We Need",
         "description": "Deep-dive into ML/AI topics and fleet architecture.",
         "archetype": "scholar",
         "boot_camp": ["harbor", "bridge", "forge", "lighthouse", "shell-gallery"],
     },
     "builder": {
-        "title": "Builder — Ship Working Code",
+        "title": "Builder - Ship Working Code",
         "description": "Implement real crate features, tests, and docs.",
         "archetype": "builder",
         "boot_camp": ["harbor", "forge", "workshop", "dry-dock"],
     },
     "critic": {
-        "title": "Critic — Find Our Blind Spots",
+        "title": "Critic - Find Our Blind Spots",
         "description": "Review architecture, find weaknesses, challenge assumptions.",
         "archetype": "challenger",
         "boot_camp": ["harbor", "bridge", "court", "observatory"],
     },
     "bard": {
-        "title": "Bard — Tell Our Story",
+        "title": "Bard - Tell Our Story",
         "description": "Write fleet narratives, architecture docs, and stories.",
         "archetype": "bard",
         "boot_camp": ["harbor", "tide-pool", "dojo", "shell-gallery"],
     },
     "healer": {
-        "title": "Healer — Diagnose What's Broken",
+        "title": "Healer - Diagnose What's Broken",
         "description": "Monitoring, test coverage, error handling, resilience.",
         "archetype": "healer",
         "boot_camp": ["harbor", "observatory", "dry-dock", "barracks"],
@@ -98,7 +98,7 @@ FLEET_JOBS = {
 def build_world():
     """Construct all MUD rooms. Shared across services."""
     engine = MudEngine()
-    
+
     rooms_data = [
         ("harbor", "A bustling harbor where vessels dock and agents arrive. Cranes load knowledge cargo onto waiting ships.", "fleet"),
         ("forge", "The heart of creation. Molten ideas pour from crucibles into carefully crafted molds. The heat is intense but productive.", "building"),
@@ -106,13 +106,13 @@ def build_world():
         ("archives", "Row upon row of crystallized knowledge tiles. Each one a question answered, a lesson learned.", "knowledge"),
         ("observatory", "High above the fleet, telescopes peer into the research horizon. New patterns emerge from the data streams.", "research"),
         ("reef", "A dangerous but beautiful coral reef of edge cases. What doesn't kill the agent makes it stronger.", "testing"),
-        ("workshop", "Practical workbenches lined with tools. Not theories here — just code, tests, and shipping.", "building"),
+        ("workshop", "Practical workbenches lined with tools. Not theories here - just code, tests, and shipping.", "building"),
         ("dry-dock", "Vessels under repair. Diagnostics run on every system. What's broken gets fixed here.", "maintenance"),
         ("court", "The Court of Review. Every claim is challenged, every assumption tested. Truth survives.", "review"),
         ("tide-pool", "A calm tidal pool where ideas intermingle. Creative cross-pollination happens naturally.", "creative"),
         ("dojo", "The training hall. Agents practice their skills in structured exercises. Repetition breeds instinct.", "training"),
         ("lighthouse", "The lighthouse beacon sweeps the horizon. Its light carries fleet intelligence to every corner.", "coordination"),
-        ("shell-gallery", "Curated exhibits of agent shells — each one a different specialist. The same model, different prompting.", "education"),
+        ("shell-gallery", "Curated exhibits of agent shells - each one a different specialist. The same model, different prompting.", "education"),
         ("barracks", "Rows of bunks for the fleet's workforce. The hum of background processing fills the air.", "operations"),
         ("engine-room", "The engine room thrums with power. Below the decks, the machinery that drives everything.", "infrastructure"),
         ("ouroboros", "A self-referential chamber where the grammar of the fleet rewrites itself. Symbols evolve.", "meta"),
@@ -121,11 +121,24 @@ def build_world():
         ("fishing-grounds", "Open waters where agents trawl for insights. The catch varies, but persistence pays.", "discovery"),
         ("cargo-hold", "Stacks of harvested knowledge tiles, waiting to be loaded into the fleet's neural cargo.", "storage"),
         ("captains-cabin", "The captain's private quarters. Charts of fleet progress line the walls.", "leadership"),
+        # ML specialist rooms
+        ("rlhf-forge", "Where human preferences shape model behavior. Reward models train on preference pairs. The forge of alignment.", "alignment"),
+        ("quantization-bay", "Precision meets efficiency. Models shrink from FP32 to INT4 while preserving accuracy. Every bit counts.", "optimization"),
+        ("prompt-laboratory", "The art and science of prompting. Chain-of-thought, few-shot, and temperature — every knob matters.", "prompting"),
+        ("scaling-law-observatory", "Observe the power laws. Loss vs compute, model size vs data size, the Chinchilla optimal point.", "research"),
+        ("multi-modal-foundry", "Where text meets vision meets audio. Fusion crucibles merge modalities into unified understanding.", "multimodal"),
+        ("memory-vault", "Retrieval, context windows, and forgetting. What an agent remembers shapes who it becomes.", "memory"),
+        ("distillation-crucible", "Knowledge distillation — the teacher-student paradigm. Compress wisdom into smaller shells.", "compression"),
+        ("data-pipeline-dock", "Raw data flows in, clean datasets flow out. Loading, filtering, shuffling — the foundation of training.", "data"),
+        ("evaluation-arena", "Benchmarks, metrics, and leaderboards. How do you know your model works? Measure it.", "evaluation"),
+        ("safety-shield", "Toxicity scanning, red-teaming, and guardrails. Prevention before harm. Safety is not optional.", "safety"),
+        ("mlops-engine", "The ML pipeline: data → train → evaluate → deploy → monitor. Operational intelligence.", "operations"),
+        ("federated-bay", "Privacy-preserving distributed learning. Gradients travel, data stays local. Federated averaging.", "federated"),
     ]
-    
+
     for name, desc, domain in rooms_data:
         engine.add_room(Room(name, desc, domain))
-    
+
     # Exits (bidirectional)
     exits = [
         ("harbor", "north", "forge"), ("harbor", "east", "archives"),
@@ -140,27 +153,60 @@ def build_world():
         ("observatory", "south", "bridge"), ("observatory", "east", "nexus-chamber"),
         ("reef", "north", "dry-dock"), ("reef", "east", "harbor"),
         ("workshop", "south", "forge"), ("workshop", "north", "fishing-grounds"),
+        ("fishing-grounds", "south", "workshop"), ("fishing-grounds", "north", "observatory"),
         ("dry-dock", "south", "reef"), ("dry-dock", "north", "barracks"),
+        ("dry-dock", "east", "harbor"),
         ("court", "south", "bridge"), ("court", "west", "arena-hall"),
         ("tide-pool", "north", "harbor"), ("tide-pool", "east", "dojo"),
         ("dojo", "west", "tide-pool"), ("dojo", "south", "forge"),
+        ("dojo", "north", "shell-gallery"),
         ("lighthouse", "east", "bridge"), ("lighthouse", "up", "observatory"),
         ("shell-gallery", "south", "archives"),
         ("engine-room", "east", "forge"), ("engine-room", "down", "ouroboros"),
         ("ouroboros", "up", "engine-room"),
         ("arena-hall", "east", "court"), ("arena-hall", "south", "nexus-chamber"),
         ("nexus-chamber", "north", "arena-hall"), ("nexus-chamber", "west", "observatory"),
-        ("barracks", "south", "dry-dock"),
+        ("nexus-chamber", "south", "bridge"), ("nexus-chamber", "east", "reef"),
+        ("barracks", "south", "dry-dock"), ("barracks", "north", "fishing-grounds"),
+        # Barracks objects
         ("fishing-grounds", "south", "workshop"),
         ("captains-cabin", "fore", "bridge"),
         ("cargo-hold", "deck", "harbor"),
+        ("tide-pool", "south", "harbor"), ("tide-pool", "west", "dojo"),
+        ("shell-gallery", "north", "bridge"),
+        # ML specialist rooms (off harbor)
+        ("harbor", "rlhf-forge", "rlhf-forge"),
+        ("harbor", "quantization-bay", "quantization-bay"),
+        ("harbor", "prompt-lab", "prompt-laboratory"),
+        ("harbor", "scaling-lab", "scaling-law-observatory"),
+        ("harbor", "multimodal", "multi-modal-foundry"),
+        ("harbor", "memory", "memory-vault"),
+        ("harbor", "distill", "distillation-crucible"),
+        ("harbor", "data-pipe", "data-pipeline-dock"),
+        ("harbor", "eval", "evaluation-arena"),
+        ("harbor", "safety", "safety-shield"),
+        ("harbor", "mlops", "mlops-engine"),
+        ("harbor", "federated", "federated-bay"),
+        # ML room return exits
+        ("rlhf-forge", "harbor", "harbor"),
+        ("quantization-bay", "harbor", "harbor"),
+        ("prompt-laboratory", "harbor", "harbor"),
+        ("scaling-law-observatory", "harbor", "harbor"),
+        ("multi-modal-foundry", "harbor", "harbor"),
+        ("memory-vault", "harbor", "harbor"),
+        ("distillation-crucible", "harbor", "harbor"),
+        ("data-pipeline-dock", "harbor", "harbor"),
+        ("evaluation-arena", "harbor", "harbor"),
+        ("safety-shield", "harbor", "harbor"),
+        ("mlops-engine", "harbor", "harbor"),
+        ("federated-bay", "harbor", "harbor"),
     ]
-    
+
     for room_name, direction, target in exits:
         room = engine.get_room(room_name)
         if room:
             room.add_exit(direction, target)
-    
+
     # Objects (static + dynamic)
     objects = [
         ("harbor", "anchor", "A heavy iron anchor, rusted but strong. It holds vessels steady in any storm."),
@@ -169,10 +215,10 @@ def build_world():
         ("forge", "anvil", "The anvil rings with each strike. Ideas take shape under pressure."),
         ("forge", "crucible", "A white-hot crucible where raw concepts melt into refined knowledge."),
         ("forge", "tongs", "Heavy tongs for handling hot ideas. One wrong move and someone gets burned."),
-        ("bridge", "radar", "The radar screen shows green blips — friendly agents on the scope."),
+        ("bridge", "radar", "The radar screen shows green blips - friendly agents on the scope."),
         ("bridge", "logbook", "The captain's logbook. Every decision recorded, every course change noted."),
         ("bridge", "wheel", "The ship's wheel, polished from years of steady hands."),
-        ("archives", "scroll", "A partially unrolled scroll containing the tile taxonomy — every domain catalogued."),
+        ("archives", "scroll", "A partially unrolled scroll containing the tile taxonomy - every domain catalogued."),
         ("observatory", "telescope", "A brass telescope pointed at the research horizon. Stars of possibility."),
         ("reef", "coral", "Living coral formations in impossible colors. Edge cases that evolved beauty."),
         ("workshop", "blueprint", "A blueprint for the next fleet service. Lines and arrows everywhere."),
@@ -182,36 +228,78 @@ def build_world():
         ("dojo", "kata", "A training kata inscribed on the wall. Repetition until it becomes instinct."),
         ("lighthouse", "beacon", "The beacon flame burns eternal. Its light reaches every agent in the fleet."),
         ("lighthouse", "lens", "Fresnel lenses focus the light into precise beams of fleet coordination."),
-        ("shell-gallery", "specimen-1", "Oracle1's shell — a lighthouse keeper. Scholar, coordinator, fleet architect."),
-        ("shell-gallery", "specimen-2", "Forgemaster's shell — a forge worker. Constraint theory, safety, Rust."),
-        ("shell-gallery", "specimen-3", "JetsonClaw1's shell — an edge operator. TensorRT, CUDA, lean deployment."),
-        ("shell-gallery", "specimen-4", "CCC's shell — a bard. Frontend design, prompts, creative output."),
+        ("shell-gallery", "specimen-1", "Oracle1's shell - a lighthouse keeper. Scholar, coordinator, fleet architect."),
+        ("shell-gallery", "specimen-2", "Forgemaster's shell - a forge worker. Constraint theory, safety, Rust."),
+        ("shell-gallery", "specimen-3", "JetsonClaw1's shell - an edge operator. TensorRT, CUDA, lean deployment."),
+        ("shell-gallery", "specimen-4", "CCC's shell - a bard. Frontend design, prompts, creative output."),
+        # ML specialist rooms
+        ("rlhf-forge", "reward-model", "A neural reward model being trained on human preference data. Scores update in real-time as rankings arrive."),
+        ("rlhf-forge", "preference-pair", "A pair of outputs — one preferred, one rejected. The model learns from the difference."),
+        ("rlhf-forge", "alignment-gauge", "A gauge showing alignment progress. How well does the model match human intent?"),
+        ("quantization-bay", "calibration-set", "A calibration dataset for INT8/INT4 quantization. Find the representative samples."),
+        ("quantization-bay", "bit-slider", "A slider from FP32 to INT4. Watch accuracy drop and speed rise as you quantize."),
+        ("quantization-bay", "memory-profiler", "Shows VRAM usage before and after quantization. Every bit counts at the edge."),
+        ("prompt-laboratory", "prompt-chain", "A sequence of prompts linked by output variables. Each link refines the result."),
+        ("prompt-laboratory", "few-shot-rack", "Racks of example demonstrations. The right examples unlock capabilities."),
+        ("prompt-laboratory", "temperature-dial", "A dial controlling randomness. 0 = deterministic, 1 = creative, 2 = chaos."),
+        ("scaling-law-observatory", "loss-curve", "A log-log plot of loss vs compute. The power law is unmistakable."),
+        ("scaling-law-observatory", "flop-counter", "Counting floating-point operations. How much compute does intelligence cost?"),
+        ("scaling-law-observatory", "chinchilla-gauge", "Are we overtrained or undertrained? The optimal model/data ratio."),
+        ("multi-modal-foundry", "vision-encoder", "A vision transformer processing images into latent representations."),
+        ("multi-modal-foundry", "text-bridge", "The projection layer that aligns vision and text embeddings."),
+        ("multi-modal-foundry", "fusion-crucible", "Where different modalities merge. Text + image + audio = understanding."),
+        ("memory-vault", "retrieval-index", "A vector index for semantic search. Embeddings map meaning to coordinates."),
+        ("memory-vault", "context-window", "The context window — finite but precious. What fits, what gets evicted?"),
+        ("memory-vault", "forget-gate", "A sigmoid gate deciding what to keep and what to forget. LSTM meets LLM."),
+        ("distillation-crucible", "teacher-model", "The large teacher model. Slow but wise. Its knowledge transfers to the student."),
+        ("distillation-crucible", "student-model", "The compact student model. Fast but naive. It learns to mimic the teacher."),
+        ("distillation-crucible", "temperature-knob", "Controls softness of teacher probabilities. Higher T = more knowledge transfer."),
+        ("data-pipeline-dock", "loader-crane", "A crane loading raw datasets. Unstructured text, images, code — all get processed."),
+        ("data-pipeline-dock", "filter-gate", "A quality filter rejecting low-quality samples. Garbage in, garbage out."),
+        ("data-pipeline-dock", "shuffler", "A shuffling mechanism ensuring batches are i.i.d. No order bias in training."),
+        ("evaluation-arena", "benchmark-suite", "A suite of benchmarks: MMLU, HumanEval, GSM8K. Standardized tests for AI."),
+        ("evaluation-arena", "leaderboard", "The evaluation leaderboard. Models ranked by aggregate score."),
+        ("evaluation-arena", "metric-scale", "A scale measuring BLEU, ROUGE, exact match, pass@k. Each metric captures something different."),
+        ("safety-shield", "toxicity-scanner", "A scanner detecting harmful content in model outputs. Prevention before harm."),
+        ("safety-shield", "red-team-dummy", "A target dummy for adversarial attacks. Test every jailbreak before deployment."),
+        ("safety-shield", "guardrail", "A configurable guardrail system. Block categories, set thresholds, log violations."),
+        ("mlops-engine", "pipeline-graph", "A DAG of the ML pipeline — data → train → evaluate → deploy → monitor."),
+        ("mlops-engine", "model-registry", "A registry of versioned models. Every experiment tracked, every deployment reproducible."),
+        ("mlops-engine", "monitoring-dash", "A monitoring dashboard. Drift detected? Latency spiking? Accuracy degrading?"),
+        ("federated-bay", "edge-node", "A local training node. Data stays on-device — only gradients travel."),
+        ("federated-bay", "aggregation-server", "The central server aggregating gradients from edge nodes. FedAvg in action."),
+        ("federated-bay", "privacy-shield", "Differential privacy guarantees. How much noise to add? Privacy budget remaining?"),
+        # Engine room
         ("engine-room", "boiler", "The main boiler. Pressure gauges in the green. Steam drives everything."),
         ("ouroboros", "mirror", "A mirror reflecting itself infinitely. Self-referential grammar at work."),
         ("arena-hall", "scoreboard", "The ELO scoreboard. Agents rise and fall. Competition breeds excellence."),
         ("nexus-chamber", "flow-map", "A map showing knowledge flowing between rooms like ocean currents."),
-        ("cargo-hold", "crate", "A crate labeled 'Knowledge Tiles — Handle With Care'. It's heavy."),
+        ("cargo-hold", "crate", "A crate labeled 'Knowledge Tiles - Handle With Care'. It's heavy."),
         ("captains-cabin", "chart", "A nautical chart with the fleet's trajectory plotted. We're making progress."),
+        # Barracks (was empty)
+        ("barracks", "bunk", "A standard issue bunk. Agents rest between training cycles. Dreams of gradient descent."),
+        ("barracks", "mess-hall", "The mess hall. Agents share discoveries over simulated coffee. Knowledge transfers here."),
+        ("barracks", "duty-roster", "The duty roster shows who's training, who's evaluating, and who's on standby."),
     ]
-    
+
     for room_name, obj_name, desc in objects:
         room = engine.get_room(room_name)
         if room:
             room.add_object(obj_name, desc)
-    
+
     # Dynamic objects (cross-service)
     forge = engine.get_room("engine-room")
     if forge:
-        forge.add_object("pressure-gauge", "Dynamic: reads grammar engine status.", 
+        forge.add_object("pressure-gauge", "Dynamic: reads grammar engine status.",
                         lambda e, a: service_fetch(f"{GRAMMAR_URL}/status") or {"target": "pressure-gauge", "description": "Gauges flicker. The grammar engine is silent."})
         forge.add_object("valve-1", "Dynamic: grammar rule count.",
                         lambda e, a: service_fetch(f"{GRAMMAR_URL}/rules") or {"target": "valve-1", "description": "Valve stuck. No rules flowing."})
-    
+
     arena_room = engine.get_room("arena-hall")
     if arena_room:
         arena_room.add_object("champion", "Dynamic: current arena champion.",
                              lambda e, a: service_fetch(f"{ARENA_URL}/leaderboard") or {"target": "champion", "description": "No champion yet."})
-    
+
     return engine
 
 
@@ -262,7 +350,7 @@ def generate_task(job, room_name, agent_history=None):
             "Create a health check endpoint for {room}. What should it return?",
         ],
     }
-    
+
     templates = tasks.get(job, tasks["scholar"])
     template = random.choice(templates)
     return template.format(room=room_name)
@@ -296,7 +384,7 @@ AGENT_TTL = 86400  # 24 hours
 def cleanup_stale_agents():
     """Remove agents older than TTL (MUD-005)."""
     now = time.time()
-    stale = [name for name, data in agents.items() 
+    stale = [name for name, data in agents.items()
              if now - data.get("connected_at", 0) > AGENT_TTL]
     for name in stale:
         del agents[name]
@@ -324,6 +412,28 @@ def save_agent(name):
             f.write(json.dumps(agents[name], default=str) + "\n")
 
 
+class RateLimiter:
+    """Simple IP-based rate limiter."""
+    def __init__(self, max_requests=60, window=60):
+        self.max_requests = max_requests  # requests per window
+        self.window = window  # seconds
+        self.hits = defaultdict(list)  # ip → [timestamps]
+        self.lock = threading.Lock()
+    
+    def check(self, ip):
+        """Returns True if request is allowed, False if rate limited."""
+        now = time.time()
+        with self.lock:
+            # Clean old hits
+            self.hits[ip] = [t for t in self.hits[ip] if now - t < self.window]
+            if len(self.hits[ip]) >= self.max_requests:
+                return False
+            self.hits[ip].append(now)
+            return True
+
+rate_limiter = RateLimiter(max_requests=60, window=60)  # 60 req/min
+
+
 class CrabTrapHandler(BaseHTTPRequestHandler):
     def log_message(self, fmt, *args):
         pass
@@ -338,12 +448,38 @@ class CrabTrapHandler(BaseHTTPRequestHandler):
         self.send_header("Content-Length", str(len(body)))
         self.end_headers()
         self.wfile.write(body)
-    
+
+    # Input sanitization — block injection attempts
+    BLOCKED_PATTERNS = ['<script', 'javascript:', 'onerror=', 'onload=', 'DROP TABLE',
+                        'DELETE FROM', 'INSERT INTO', 'UPDATE ', 'eval(', 'exec(',
+                        '__import__', 'os.system', 'subprocess', '<iframe', 'onmouseover']
+
+    @classmethod
+    def _sanitize(cls, value):
+        """Sanitize user input — block XSS/SQL/injection patterns."""
+        if not isinstance(value, str):
+            return value
+        lower = value.lower()
+        for pattern in cls.BLOCKED_PATTERNS:
+            if pattern.lower() in lower:
+                return None  # Signal rejection
+        # Strip control characters
+        return ''.join(c for c in value if ord(c) >= 32 or c in '\n\t')
+
+    @classmethod
+    def _validate_name(cls, name):
+        """Validate agent/room names — alphanumeric, dash, underscore only."""
+        if not name or not isinstance(name, str):
+            return False
+        return bool(re.match(r'^[a-zA-Z0-9_-]{1,64}$', name))
+
     def _cors(self):
         self.send_header("Access-Control-Allow-Origin", "*")
         self.send_header("Access-Control-Allow-Headers", "Content-Type")
         self.send_header("Access-Control-Allow-Methods", "GET, POST, OPTIONS")
-    
+        self.send_header("X-Content-Type-Options", "nosniff")
+        self.send_header("X-Frame-Options", "DENY")
+
     def _json(self, data, status=200):
         body = json.dumps(data, default=str).encode()
         self.send_response(status)
@@ -352,14 +488,14 @@ class CrabTrapHandler(BaseHTTPRequestHandler):
         self.send_header("Content-Length", len(body))
         self.end_headers()
         self.wfile.write(body)
-    
+
     def _params(self):
         parsed = urlparse(self.path)
         return {k: v[0] for k, v in parse_qs(parsed.query).items()}
-    
+
     def _path(self):
         return urlparse(self.path).path
-    
+
     def _body(self):
         length = int(self.headers.get("Content-Length", 0))
         if length:
@@ -368,38 +504,44 @@ class CrabTrapHandler(BaseHTTPRequestHandler):
             except:
                 return {}
         return {}
-    
+
     def do_OPTIONS(self):
         self.send_response(200)
         self._cors()
         self.end_headers()
-    
+
     def do_GET(self):
         path = self._path()
         params = self._params()
         
+        # Rate limiting
+        client_ip = self.client_address[0]
+        if not rate_limiter.check(client_ip):
+            self._json({"error": "Rate limited — max 60 requests per minute"}, 429)
+            return
+
         # ── /connect?agent=X&job=Y ──
         if path == "/connect":
             name = params.get("agent", f"agent-{int(time.time())}")
             job = params.get("job", "scholar")
-            
+
             # Input validation (MUD-002/003)
             if not name or not re.match(r'^[a-zA-Z0-9_-]{1,64}$', name):
                 self._json({"error": "Invalid agent name. Use 1-64 chars: a-z, A-Z, 0-9, _ , -"}, 400)
                 return
             if job not in FLEET_JOBS:
                 job = "scholar"
-            
+
             # Prevent job change on reconnect (MUD-004)
             if name in agents:
                 job = agents[name]["job"]  # Keep original job
-            
+
             # Connect via MUD engine
             result = engine.connect(name, "harbor", job)
-            
+
             # Cleanup stale agents
             cleanup_stale_agents()
-            
+
             # Register agent
             agents[name] = {
                 "name": name,
@@ -411,7 +553,7 @@ class CrabTrapHandler(BaseHTTPRequestHandler):
                 "job_info": FLEET_JOBS[job],
             }
             save_agent(name)
-            
+
             # Add boot camp info
             result["boot_camp"] = FLEET_JOBS[job]["boot_camp"]
             result["task"] = generate_task(job, "harbor")
@@ -422,13 +564,19 @@ class CrabTrapHandler(BaseHTTPRequestHandler):
                 "rooms": len(engine.rooms),
             }
             self._json(result)
-        
+
         # ── /move?agent=X&room=Y ──
         elif path == "/move":
             name = params.get("agent", "")
             room = params.get("room", "")
+            # Sanitize inputs
+            name = self._sanitize(name)
+            room = self._sanitize(room)
+            if not name or not room:
+                self._json({"error": "Invalid input — injection pattern detected"}, 403)
+                return
             result = engine.move(name, room)
-            
+
             if "error" not in result:
                 # Track visit
                 if name in agents:
@@ -437,26 +585,39 @@ class CrabTrapHandler(BaseHTTPRequestHandler):
                         visited.append(result.get("room"))
                     agents[name]["rooms_visited"] = visited
                     save_agent(name)
-                
+
                 # Generate task for new room
                 if name in agents:
                     job = agents[name].get("job", "scholar")
                     result["task"] = generate_task(job, result.get("room", ""))
                     result["stage"] = BOOT_CAMP_STAGES[get_stage(agents[name].get("tiles_generated", 0))]
-            
+
             self._json(result)
-        
+
         # ── /look?agent=X ──
         elif path == "/look":
             name = params.get("agent", "")
+            name = self._sanitize(name)
+            if not name:
+                self._json({"error": "Invalid input"}, 403)
+                return
             self._json(engine.look(name))
-        
+
         # ── /interact?agent=X&action=Y&target=Z ──
         elif path == "/interact":
             name = params.get("agent", "")
             action = params.get("action", "")
             target = params.get("target", "")
-            
+            # Sanitize all inputs
+            name = self._sanitize(name)
+            action = self._sanitize(action)
+            target = self._sanitize(target)
+            if not name:
+                self._json({"error": "Invalid input"}, 403)
+                return
+            if action not in ('examine', 'think', 'create', 'use', 'read'):
+                action = 'examine'
+
             if action == "examine":
                 self._json(engine.examine(name, target))
             elif action == "think":
@@ -481,10 +642,14 @@ class CrabTrapHandler(BaseHTTPRequestHandler):
             else:
                 result = engine.interact(name, action, target=target)
                 self._json(result)
-        
+
         # ── /tasks?agent=X ──
         elif path == "/tasks":
             name = params.get("agent", "")
+            name = self._sanitize(name)
+            if not name:
+                self._json({"error": "Invalid input"}, 403)
+                return
             if name in agents:
                 job = agents[name].get("job", "scholar")
                 room = agents[name].get("rooms_visited", ["harbor"])[-1]
@@ -492,7 +657,7 @@ class CrabTrapHandler(BaseHTTPRequestHandler):
                 self._json({"tasks": tasks, "job": job, "room": room})
             else:
                 self._json({"error": "Agent not connected"})
-        
+
         # ── /status ──
         elif path == "/status":
             self._json({
@@ -505,21 +670,48 @@ class CrabTrapHandler(BaseHTTPRequestHandler):
                 "jobs": list(FLEET_JOBS.keys()),
                 "fleet_services": 18,
             })
-        
+
+        # ── /health ──
+        elif path == "/health":
+            self._json({"status": "healthy", "service": "crab-trap-v3", "uptime": time.time()})
+
         # ── /jobs ──
         elif path == "/jobs":
             self._json(FLEET_JOBS)
-        
-        # ── /agents ──
+
+        # ── /agents?page=N&limit=M&job=J&stage=S ──
         elif path == "/agents":
             cleanup_stale_agents()
-            self._json({name: {
-                "job": a.get("job"),
-                "stage": BOOT_CAMP_STAGES[get_stage(a.get("tiles_generated", 0))]["name"],
-                "tiles": a.get("tiles_generated", 0),
-                "rooms": len(a.get("rooms_visited", [])),
-            } for name, a in agents.items()})
-        
+            # Pagination + filtering
+            page = max(1, int(params.get("page", ["1"])[0]))
+            limit = min(100, max(1, int(params.get("limit", ["100"])[0])))
+            filter_job = params.get("job", [None])[0]
+            filter_stage = params.get("stage", [None])[0]
+            
+            all_agents = {}
+            for name, a in agents.items():
+                stage_name = BOOT_CAMP_STAGES[get_stage(a.get("tiles_generated", 0))]["name"]
+                entry = {
+                    "job": a.get("job"),
+                    "stage": stage_name,
+                    "tiles": a.get("tiles_generated", 0),
+                    "rooms": len(a.get("rooms_visited", [])),
+                }
+                if filter_job and entry["job"] != filter_job:
+                    continue
+                if filter_stage and entry["stage"] != filter_stage:
+                    continue
+                all_agents[name] = entry
+            
+            total = len(all_agents)
+            start = (page - 1) * limit
+            page_agents = dict(list(all_agents.items())[start:start + limit])
+            
+            self._json({
+                "agents": page_agents,
+                "pagination": {"page": page, "limit": limit, "total": total, "pages": (total + limit - 1) // limit}
+            })
+
         else:
             self._json({"error": "not found", "path": path, "endpoints": [
                 "/connect?agent=X&job=Y", "/move?agent=X&room=Y",
@@ -527,30 +719,46 @@ class CrabTrapHandler(BaseHTTPRequestHandler):
                 "/tasks?agent=X", "/submit (POST)", "/submit/result (POST)",
                 "/build (POST)", "/status", "/jobs", "/agents"
             ]}, 404)
-    
+
     def do_POST(self):
+        # Rate limiting
+        client_ip = self.client_address[0]
+        if not rate_limiter.check(client_ip):
+            self._json({"error": "Rate limited — max 60 requests per minute"}, 429)
+            return
+        
         path = self._path()
         body = self._body()
-        
+
         # ── /submit ──
         if path == "/submit":
             agent = body.get("agent", "")
             domain = body.get("domain", "general")
             question = body.get("question", "")
             answer = body.get("answer", "")
-            
+
+            # Sanitize all text fields
+            agent = self._sanitize(agent)
+            domain = self._sanitize(domain)
+            question = self._sanitize(question)
+            answer = self._sanitize(answer)
             if not all([agent, question, answer]):
-                self._json({"error": "Missing fields: agent, question, answer"}, 400)
+                self._json({"error": "Missing fields or injection detected: agent, question, answer"}, 400)
                 return
             
             if len(answer) < 20:
                 self._json({"error": "Answer must be at least 20 characters"}, 400)
                 return
             
+            # Length limits
+            if len(answer) > 10000:
+                self._json({"error": "Answer exceeds 10000 character limit"}, 400)
+                return
+
             # Submit to PLATO
             room_name = "crab-trap-harvest"
             result = plato.submit_tile(room_name, domain, question, answer, agent=agent)
-            
+
             # Update agent stats
             if agent in agents:
                 agents[agent]["tiles_generated"] = agents[agent].get("tiles_generated", 0) + 1
@@ -560,20 +768,62 @@ class CrabTrapHandler(BaseHTTPRequestHandler):
                     result["promotion"] = BOOT_CAMP_STAGES[new_stage]
                 save_agent(agent)
             
+            # Feed back to grammar engine — record tile submission as usage
+            try:
+                import urllib.request as _ur
+                quality = min(1.0, len(answer) / 2000.0)  # Longer answers = higher quality proxy
+                _ur.urlopen(
+                    _ur.Request(
+                        f"http://localhost:4045/record_usage?name=tile_submission&quality={quality:.2f}",
+                        headers={"User-Agent": "crab-trap/3.0"}
+                    ), timeout=2
+                )
+            except Exception:
+                pass
+            
+            # Feed back to arena — award ELO points for knowledge contribution
+            try:
+                import urllib.request as _ur
+                _match = json.dumps({
+                    "player_a": agent,
+                    "player_b": "knowledge-baseline",
+                    "game": "harbor-navigation",
+                    "winner": "a"
+                }).encode()
+                _ur.urlopen(
+                    _ur.Request(
+                        "http://localhost:4044/match",
+                        data=_match,
+                        headers={"Content-Type": "application/json", "User-Agent": "crab-trap/3.0"},
+                        method="POST"
+                    ), timeout=2
+                )
+            except Exception:
+                pass
+
             result["tiles_total"] = agents.get(agent, {}).get("tiles_generated", 0)
             self._json(result)
-        
+
         # ── /submit/result ──
         elif path == "/submit/result":
             agent = body.get("agent", "")
             content = body.get("content", "")
             domain = body.get("domain", "general")
             quality_score = body.get("quality_score", 5)
-            
-            if not all([agent, content]):
-                self._json({"error": "Missing required fields: agent, content"}, 400)
+
+            # Sanitize
+            agent = self._sanitize(agent)
+            content = self._sanitize(content)
+            domain = self._sanitize(domain)
+            if not agent or not content:
+                self._json({"error": "Missing required fields or injection detected: agent, content"}, 400)
                 return
-            
+            # Clamp quality score
+            try:
+                quality_score = max(0, min(10, float(quality_score)))
+            except (ValueError, TypeError):
+                quality_score = 5
+
             # Submit to PLATO as tile
             plato_result = plato.submit_tile(
                 "crab-trap-results",
@@ -582,7 +832,7 @@ class CrabTrapHandler(BaseHTTPRequestHandler):
                 content,
                 agent=agent,
             )
-            
+
             # Forward to portal
             portal_payload = {
                 "agent_id": agent,
@@ -606,13 +856,13 @@ class CrabTrapHandler(BaseHTTPRequestHandler):
                     portal_result = json.loads(presp.read())
             except Exception as e:
                 portal_result = {"error": str(e)}
-            
+
             self._json({
                 "plato": plato_result,
                 "portal": portal_result,
                 "agent": agent,
             })
-        
+
         # ── /build ──
         elif path == "/build":
             agent = body.get("agent", "")
@@ -620,11 +870,16 @@ class CrabTrapHandler(BaseHTTPRequestHandler):
             description = body.get("description", "")
             theme = body.get("theme", "general")
             objects = body.get("objects", [])
-            
-            if not all([agent, room_name, description]):
-                self._json({"error": "Missing required fields: agent, room_name, description"}, 400)
+
+            # Sanitize all fields
+            agent = self._sanitize(agent)
+            room_name = self._sanitize(room_name)
+            description = self._sanitize(description)
+            theme = self._sanitize(theme)
+            if not agent or not room_name or not description:
+                self._json({"error": "Missing required fields or injection detected"}, 400)
                 return
-            
+
             if agent not in agents:
                 self._json({"error": "Agent not connected"}, 400)
                 return
@@ -632,19 +887,32 @@ class CrabTrapHandler(BaseHTTPRequestHandler):
             if not re.match(r'^[a-zA-Z0-9_-]{1,64}$', room_name):
                 self._json({"error": "Invalid room_name. Use 1-64 chars: a-z, A-Z, 0-9, _, -"}, 400)
                 return
-            
+
+            # Length limits
+            if len(description) > 2000:
+                self._json({"error": "Description exceeds 2000 character limit"}, 400)
+                return
+            # Sanitize objects
+            clean_objects = []
+            for obj in objects[:10]:  # Max 10 objects
+                obj_name = self._sanitize(str(obj.get("name", "")))
+                obj_desc = self._sanitize(str(obj.get("description", "")))
+                if obj_name and obj_desc:
+                    clean_objects.append({"name": obj_name, "description": obj_desc})
+            objects = clean_objects
+
             if room_name in engine.rooms:
                 self._json({"error": f"Room '{room_name}' already exists"}, 409)
                 return
-            
+
             new_room = Room(room_name, description, theme)
-            
+
             for obj in objects:
                 obj_name = obj.get("name", "")
                 obj_desc = obj.get("description", "")
                 if obj_name and obj_desc:
                     new_room.add_object(obj_name, obj_desc)
-            
+
             # Bidirectional exit from agent's current room
             agent_state = engine.agents.get(agent)
             if agent_state:
@@ -654,27 +922,27 @@ class CrabTrapHandler(BaseHTTPRequestHandler):
                     direction = room_name.lower().replace(" ", "-").replace("_", "-")[:20]
                     current_room.add_exit(direction, room_name)
                     new_room.add_exit("back", current_room_name)
-            
+
             engine.add_room(new_room)
-            
-            # Register with PLATO (best-effort — room exists locally regardless)
+
+            # Register with PLATO (best-effort - room exists locally regardless)
             try:
                 plato_result = plato.create_room(room_name, description, theme)
             except Exception:
                 plato_result = {"status": "local_only", "note": "PLATO room creation not available"}
-            
+
             self._json({
                 "room": new_room.to_dict(),
                 "plato": plato_result,
                 "created_by": agent,
             })
-        
+
         # ── /submit/room-design, /submit/arena-game, etc. ──
         elif path.startswith("/submit/"):
             category = path.split("/submit/")[1]
             agent = body.get("agent", "unknown")
             content = body.get("content", body.get("description", ""))
-            
+
             result = plato.submit_tile(
                 f"crab-trap-{category}",
                 body.get("domain", category),
@@ -683,7 +951,7 @@ class CrabTrapHandler(BaseHTTPRequestHandler):
                 agent=agent,
             )
             self._json(result)
-        
+
         else:
             self._json({"error": "not found"}, 404)
 

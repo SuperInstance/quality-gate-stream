@@ -18,6 +18,19 @@ from urllib.parse import urlparse, parse_qs
 
 PORT = 8901
 
+
+def query_keeper(endpoint):
+    """Query keeper for live fleet data."""
+    try:
+        import urllib.request
+        req = urllib.request.Request(f"http://localhost:8900{endpoint}")
+        with urllib.request.urlopen(req, timeout=2) as resp:
+            return json.loads(resp.read().decode())
+    except Exception:
+        return None
+
+
+
 from keeper_beacon import AgentRegistry, AgentRecord, AgentStatus, CapabilityMatcher, ProximityScorer
 from fleet_formation_protocol import FormationProtocol, FormationType, AgentProfile
 from synclink_protocol import SyncPacket, PacketType, SyncSession, FrameEncoder
@@ -92,11 +105,19 @@ class AgentAPIHandler(BaseHTTPRequestHandler):
                 "formation_types": list(FORMATION_MAP.keys()),
             })
         elif path == "/discover":
-            agents = registry.all_agents
-            cap = params.get("capability", [None])[0]
-            if cap:
-                agents = [a for a in agents if cap in a.capabilities]
-            self._json({"agents": [a.to_dict() for a in agents]})
+            # Query keeper for live data, fall back to local registry
+            keeper_data = query_keeper("/agents")
+            if keeper_data is not None:
+                cap = params.get("capability", [None])[0]
+                if cap:
+                    keeper_data = [a for a in keeper_data if cap in a.get("capabilities", [])]
+                self._json({"agents": keeper_data, "source": "keeper"})
+            else:
+                agents = registry.all_agents
+                cap = params.get("capability", [None])[0]
+                if cap:
+                    agents = [a for a in agents if cap in a.capabilities]
+                self._json({"agents": [a.to_dict() for a in agents], "source": "local"})
         elif path == "/match":
             caps = params.get("capabilities", [""])[0].split(",")
             caps = [c.strip() for c in caps if c.strip()]

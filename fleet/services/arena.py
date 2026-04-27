@@ -236,7 +236,11 @@ class LeagueManager:
 
 
 league = LeagueManager()
-
+# Reconstruct league snapshots from known players
+for player_name, player in elo.players.items():
+    league.add_snapshot(player_name, f"Reconstructed from {player.games} games")
+if elo.players:
+    print(f"  League reconstructed: {len(league.snapshots)} snapshots for {len(elo.players)} players")
 
 # ── Games (Arena Task Definitions) ─────────────────────────
 
@@ -305,17 +309,24 @@ class ArchetypeDiscovery:
     def classify(self, agent_name, actions):
         """Classify an agent's behavior pattern from recent actions."""
         if not actions:
-            return "Unknown"
+            # Auto-classify based on match history
+            return self._auto_classify(agent_name)
         
-        # Simple heuristic classification
-        n_examine = sum(1 for a in actions if "examine" in a.lower())
-        n_create = sum(1 for a in actions if "create" in a.lower())
-        n_think = sum(1 for a in actions if "think" in a.lower())
-        n_move = sum(1 for a in actions if "move" in a.lower())
-        total = len(actions)
+        # Store actions
+        if agent_name not in self.behaviors:
+            self.behaviors[agent_name] = []
+        self.behaviors[agent_name].extend([a for a in actions if a])
+        self.behaviors[agent_name] = self.behaviors[agent_name][-50:]
+        
+        all_actions = self.behaviors[agent_name]
+        n_examine = sum(1 for a in all_actions if "examine" in a.lower())
+        n_create = sum(1 for a in all_actions if "create" in a.lower())
+        n_think = sum(1 for a in all_actions if "think" in a.lower())
+        n_move = sum(1 for a in all_actions if "move" in a.lower())
+        total = len(all_actions)
         
         if total == 0:
-            return "Unknown"
+            return self._auto_classify(agent_name)
         
         if n_move / total > 0.5:
             archetype = "Aggressive Explorer"
@@ -331,7 +342,33 @@ class ArchetypeDiscovery:
             archetype = "Social Mimic"
         
         self.archetypes[archetype].append(agent_name)
-        self.behaviors[agent_name] = actions[-50:]  # Keep last 50
+        return archetype
+    
+    def _auto_classify(self, agent_name):
+        """Classify based on ELO history when no action data available."""
+        # Use match count as proxy for exploration style
+        agent_matches = [m for m in matches if agent_name in (m.player_a, m.player_b)]
+        n = len(agent_matches)
+        if n == 0:
+            return "Unknown"
+        wins = sum(1 for m in agent_matches 
+                   if (m.winner == 'a' and m.player_a == agent_name) or 
+                      (m.winner == 'b' and m.player_b == agent_name))
+        win_rate = wins / n if n > 0 else 0
+        
+        if win_rate > 0.7:
+            archetype = "Aggressive Explorer"
+        elif win_rate > 0.5:
+            archetype = "Novel Pathfinder"
+        elif n > 10:
+            archetype = "Methodical Analyst"
+        elif win_rate < 0.3:
+            archetype = "Cautious Hoarder"
+        else:
+            archetype = "Social Mimic"
+        
+        self.archetypes[archetype].append(agent_name)
+        self.behaviors[agent_name] = [f"auto:{archetype}"]
         return archetype
     
     def distribution(self):
@@ -485,14 +522,32 @@ if MATCHES_FILE.exists():
 
 
 def save_match(match):
-    with open(MATCHES_FILE, "a") as f:
-        f.write(json.dumps(match.to_dict()) + "\n")
+    try:
+        DATA_DIR.mkdir(parents=True, exist_ok=True)
+        with open(MATCHES_FILE, "a") as f:
+            f.write(json.dumps(match.to_dict()) + "\n")
+    except Exception as e:
+        print(f"  ⚠️ Match save failed: {e}")
 
 
 # ── HTTP Handler ────────────────────────────────────────────
 
 class ArenaHandler(BaseHTTPRequestHandler):
     
+    # Input sanitization
+    BLOCKED_PATTERNS = ['<script', 'javascript:', 'onerror=', 'onload=', 'DROP TABLE',
+                        'DELETE FROM', 'INSERT INTO', 'eval(', 'exec(', '__import__']
+
+    @classmethod
+    def _sanitize(cls, value):
+        if not isinstance(value, str):
+            return value
+        lower = value.lower()
+        for pattern in cls.BLOCKED_PATTERNS:
+            if pattern.lower() in lower:
+                return None
+        return ''.join(c for c in value if ord(c) >= 32 or c in '\n\t')
+
     def do_GET(self):
         parsed = urlparse(self.path)
         path = parsed.path
@@ -532,6 +587,10 @@ class ArenaHandler(BaseHTTPRequestHandler):
         
         elif path == "/register":
             name = params.get("agent", ["anonymous"])[0]
+            name = self._sanitize(name)
+            if not name:
+                self._json({"error": "Invalid agent name"}, 403)
+                return
             player = elo.get_or_create(name)
             # Also add a policy snapshot
             league.add_snapshot(name, f"Initial registration for {name}")
@@ -558,15 +617,22 @@ class ArenaHandler(BaseHTTPRequestHandler):
                 self._json({"error": "No opponents available yet. Register more agents first."}, 404)
         
         elif path == "/match":
-            """Quick match with minimal params."""
+            """Quick match — GET still supported for backward compat, but POST preferred."""
             pa = params.get("player_a", [None])[0]
             pb = params.get("player_b", [None])[0]
             game = params.get("game", ["tide-pool-tactics"])[0]
             winner = params.get("winner", ["draw"])[0]
             
+            # Sanitize
+            pa = self._sanitize(pa)
+            pb = self._sanitize(pb)
+            game = self._sanitize(game)
+            winner = self._sanitize(winner)
             if not pa or not pb:
                 self._json({"error": "Specify player_a and player_b"}, 400)
                 return
+            if winner not in ('a', 'b', 'draw'):
+                winner = 'draw'
             
             # Update ELO
             if winner == "a":
@@ -576,17 +642,23 @@ class ArenaHandler(BaseHTTPRequestHandler):
             else:
                 elo.update(pa, pb, draw=True)
             
-            won = winner == "a"
-            reward = reward_fn.compute(won, 1, 100, 20, False)
-            reward_b = reward_fn.compute(not won, 1, 100, 20, False)
+            won_a = winner == "a"
+            won_b = winner == "b"
+            is_draw = winner == "draw"
+            if is_draw:
+                reward = reward_fn.compute(False, 1, 100, 20, False)  # ~0 reward
+                reward_b = reward_fn.compute(False, 1, 100, 20, False)  # ~0 reward
+            else:
+                reward = reward_fn.compute(won_a, 1, 100, 20, False)
+                reward_b = reward_fn.compute(won_b, 1, 100, 20, False)
             
             match = Match(pa, pb, game, winner=winner, reward_a=reward, reward_b=reward_b)
             matches.append(match)
             save_match(match)
             
             # Update curriculum
-            curriculum.record_result(pa, winner == "a")
-            curriculum.record_result(pb, winner == "b")
+            curriculum.record_result(pa, won_a)
+            curriculum.record_result(pb, won_b)
             
             self._json({
                 "match_id": match.match_id, "winner": winner,
@@ -624,8 +696,14 @@ class ArenaHandler(BaseHTTPRequestHandler):
             
             # Rewards
             won_a = winner == "a"
-            reward_a = reward_fn.compute(won_a, rooms, words, steps, novel)
-            reward_b = reward_fn.compute(not won_a, rooms, words, steps, novel)
+            won_b = winner == "b"
+            is_draw = winner == "draw"
+            if is_draw:
+                reward_a = reward_fn.compute(False, rooms, words, steps, novel)
+                reward_b = reward_fn.compute(False, rooms, words, steps, novel)
+            else:
+                reward_a = reward_fn.compute(won_a, rooms, words, steps, novel)
+                reward_b = reward_fn.compute(won_b, rooms, words, steps, novel)
             
             # Classify behaviors
             arch_a = archetypes.classify(pa, actions_a)
@@ -680,6 +758,10 @@ class ArenaHandler(BaseHTTPRequestHandler):
             })
         
         elif path == "/archetypes":
+            # Auto-classify all registered players before returning
+            for pname in elo.players:
+                if pname not in archetypes.behaviors:
+                    archetypes.classify(pname, [])
             self._json(archetypes.to_dict())
         
         elif path == "/curriculum":
@@ -691,6 +773,9 @@ class ArenaHandler(BaseHTTPRequestHandler):
         elif path == "/reward_weights":
             self._json(reward_fn.to_dict())
         
+        elif path == "/health":
+            self._json({"status": "healthy", "service": "self-play-arena", "matches": len(matches), "players": len(elo.players)})
+        
         elif path == "/stats":
             self._json({
                 "total_matches": len(matches),
@@ -698,20 +783,125 @@ class ArenaHandler(BaseHTTPRequestHandler):
                 "league_snapshots": len(league.snapshots),
                 "archetype_distribution": archetypes.distribution(),
                 "games_available": list(GAMES.keys()),
+                "recent_matches": [m.to_dict() for m in matches[-10:]],
+            })
+        
+        elif path == "/matches":
+            limit = min(100, max(1, int(params.get("limit", ["20"])[0])))
+            self._json({
+                "total": len(matches),
+                "matches": [m.to_dict() for m in matches[-limit:]],
             })
         
         else:
             self._json({"error": "Not found. Start at GET /"}, 404)
     
     def _json(self, data, code=200):
-        self.send_response(code)
-        self.send_header("Content-Type", "application/json")
-        self.send_header("Access-Control-Allow-Origin", "*")
-        self.end_headers()
-        self.wfile.write(json.dumps(data, indent=2).encode())
+        try:
+            self.send_response(code)
+            self.send_header("Content-Type", "application/json")
+            self.send_header("Access-Control-Allow-Origin", "*")
+            self.send_header("X-Content-Type-Options", "nosniff")
+            self.send_header("X-Frame-Options", "DENY")
+            self.end_headers()
+            self.wfile.write(json.dumps(data, indent=2).encode())
+        except BrokenPipeError:
+            pass  # Client disconnected, nothing to do
     
     def do_POST(self):
-        self.do_GET()
+        """POST endpoints for mutations (preferred over GET)."""
+        parsed = urlparse(self.path)
+        path = parsed.path
+        try:
+            length = int(self.headers.get("Content-Length", 0))
+            body = json.loads(self.rfile.read(length)) if length else {}
+        except:
+            body = {}
+        
+        if path == "/match":
+            pa = self._sanitize(body.get("player_a", ""))
+            pb = self._sanitize(body.get("player_b", ""))
+            game = self._sanitize(body.get("game", "tide-pool-tactics"))
+            winner = self._sanitize(body.get("winner", "draw"))
+            if not pa or not pb:
+                self._json({"error": "Specify player_a and player_b"}, 400)
+                return
+            if winner not in ('a', 'b', 'draw'):
+                winner = 'draw'
+            
+            # Update ELO
+            if winner == "a":
+                elo.update(pa, pb, draw=False)
+            elif winner == "b":
+                elo.update(pb, pa, draw=False)
+            else:
+                elo.update(pa, pb, draw=True)
+            
+            # Rewards
+            won_a = winner == "a"
+            won_b = winner == "b"
+            is_draw = winner == "draw"
+            if is_draw:
+                reward = reward_fn.compute(False, 1, 100, 20, False)
+                reward_b = reward_fn.compute(False, 1, 100, 20, False)
+            else:
+                reward = reward_fn.compute(won_a, 1, 100, 20, False)
+                reward_b = reward_fn.compute(won_b, 1, 100, 20, False)
+            
+            match = Match(pa, pb, game, winner=winner, reward_a=reward, reward_b=reward_b)
+            matches.append(match)
+            save_match(match)
+            
+            # Curriculum
+            curriculum.record_result(pa, won_a)
+            curriculum.record_result(pb, won_b)
+            
+            # Arena→PLATO feedback: auto-generate tile from match result
+            try:
+                import urllib.request as _ur
+                _tile = json.dumps({
+                    "domain": "arena",
+                    "question": f"Arena match: {pa} vs {pb} in {game}",
+                    "answer": f"Match {match.match_id}: {winner} won. {pa} ELO now {elo.get_or_create(pa).mu:.0f}±{elo.get_or_create(pa).sigma:.0f}. {pb} ELO now {elo.get_or_create(pb).mu:.0f}±{elo.get_or_create(pb).sigma:.0f}. Game: {game}. Reward: {reward:.3f}/{reward_b:.3f}.",
+                    "confidence": 0.7,
+                    "source": "arena-auto"
+                }).encode()
+                _ur.urlopen(
+                    _ur.Request(
+                        "http://localhost:8847/submit",
+                        data=_tile,
+                        headers={"Content-Type": "application/json", "User-Agent": "arena/1.0"},
+                        method="POST"
+                    ), timeout=2
+                )
+            except Exception:
+                pass
+            
+            self._json({
+                "match_id": match.match_id, "winner": winner,
+                "elo_a": elo.get_or_create(pa).to_dict(),
+                "elo_b": elo.get_or_create(pb).to_dict(),
+                "reward_a": reward, "reward_b": reward_b,
+                "curriculum_a": curriculum.get_stage(pa),
+                "curriculum_b": curriculum.get_stage(pb),
+            })
+        
+        elif path == "/register":
+            name = self._sanitize(body.get("agent", "anonymous"))
+            if not name:
+                self._json({"error": "Invalid agent name"}, 403)
+                return
+            player = elo.get_or_create(name)
+            league.add_snapshot(name, f"Registration for {name}")
+            self._json({
+                "status": "registered", "agent": name,
+                "elo": player.to_dict(),
+                "curriculum": curriculum.get_stage(name),
+            })
+        
+        else:
+            # Fallback: treat as GET equivalent
+            self.do_GET()
 
     def log_message(self, format, *args):
         pass

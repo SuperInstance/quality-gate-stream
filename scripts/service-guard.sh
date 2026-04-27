@@ -7,6 +7,7 @@ mkdir -p "$WORKSPACE/data"
 
 # Service name:port:script mapping
 SERVICES=(
+  "Fleet Dashboard:4049"
   "keeper:8900:keeper.py"
   "agent-api:8901:agent_api.py"
   "mud:7777:mud_telnet.py"
