@@ -1,5 +1,5 @@
 {
-  "tick": 882,
+  "tick": 946,
   "rooms": {
     "harbor": {
       "items": [
@@ -480,6 +480,11 @@
       "score": 0
     },
     "GET /+CSCOE+/logon.html HTTP/1.0": {
+      "room": "harbor",
+      "inventory": [],
+      "score": 0
+    },
+    "agent-2115": {
       "room": "harbor",
       "inventory": [],
       "score": 0
