@@ -3493,3 +3493,15 @@
 [2026-04-27T17:05:01Z] DOWN Fleet Dashboard:4049
 [2026-04-27T17:05:01Z] MISSING Fleet Dashboard:4049 (/home/ubuntu/.openclaw/workspace/fleet/services/)
 [2026-04-27T17:05:01Z] OK — all services checked
+[2026-04-27T17:10:01Z] DOWN Fleet Dashboard:4049
+[2026-04-27T17:10:01Z] MISSING Fleet Dashboard:4049 (/home/ubuntu/.openclaw/workspace/fleet/services/)
+[2026-04-27T17:10:01Z] OK — all services checked
+[2026-04-27T17:15:01Z] DOWN Fleet Dashboard:4049
+[2026-04-27T17:15:01Z] MISSING Fleet Dashboard:4049 (/home/ubuntu/.openclaw/workspace/fleet/services/)
+[2026-04-27T17:15:01Z] OK — all services checked
+[2026-04-27T17:20:01Z] DOWN Fleet Dashboard:4049
+[2026-04-27T17:20:01Z] MISSING Fleet Dashboard:4049 (/home/ubuntu/.openclaw/workspace/fleet/services/)
+[2026-04-27T17:20:01Z] OK — all services checked
+[2026-04-27T17:25:01Z] DOWN Fleet Dashboard:4049
+[2026-04-27T17:25:01Z] MISSING Fleet Dashboard:4049 (/home/ubuntu/.openclaw/workspace/fleet/services/)
+[2026-04-27T17:25:01Z] OK — all services checked
