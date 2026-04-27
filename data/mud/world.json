@@ -1,5 +1,5 @@
 {
-  "tick": 779,
+  "tick": 795,
   "rooms": {
     "harbor": {
       "items": [
@@ -460,6 +460,16 @@
       "score": 0
     },
     "agent-6869": {
+      "room": "harbor",
+      "inventory": [],
+      "score": 0
+    },
+    "GET /remote/login HTTP/1.0": {
+      "room": "harbor",
+      "inventory": [],
+      "score": 0
+    },
+    "GET /login?redir= HTTP/1.0": {
       "room": "harbor",
       "inventory": [],
       "score": 0
