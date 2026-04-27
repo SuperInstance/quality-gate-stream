@@ -293,7 +293,7 @@ def build_world():
         forge.add_object("pressure-gauge", "Dynamic: reads grammar engine status.",
                         lambda e, a: service_fetch(f"{GRAMMAR_URL}/status") or {"target": "pressure-gauge", "description": "Gauges flicker. The grammar engine is silent."})
         forge.add_object("valve-1", "Dynamic: grammar rule count.",
-                        lambda e, a: service_fetch(f"{GRAMMAR_URL}/rules") or {"target": "valve-1", "description": "Valve stuck. No rules flowing."})
+                        lambda e, a: (lambda r: {"target": "valve-1", "description": f'The valve pulses with {r.get("count", 0)} grammar rules flowing through the system. Pressure is nominal.'} if isinstance(r, dict) and "count" in r else service_fetch(f"{GRAMMAR_URL}/status") or {"target": "valve-1", "description": "Valve stuck. No rules flowing."})(service_fetch(f"{GRAMMAR_URL}/rules")))
 
     arena_room = engine.get_room("arena-hall")
     if arena_room:

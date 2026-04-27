@@ -17,7 +17,7 @@
 - Matrix Bridge on 6168, Conduwuit on 6167 — 5 agents connected
 - **Fleet comms honest status**: Bridge works. FM sent 1 test DM. No proven two-way conversation yet. Casey demands proof of actual back-and-forth.
 - Cloudflare: 20 domains under Casey's account, DNS access via API token
-- cocapn GitHub org: 52 repos, 43 PyPI packages, 5 crates.io crates
+- cocapn GitHub org: 77 repos, 30 PyPI packages, 7 crates.io crates, all with descriptions + READMEs
 - cocapn.github.io: fleet index page with lighthouse logo
 - Fleet bottle protocol active with forgemaster repo
 - Services restored from /tmp to permanent locations (April 26):
@@ -81,10 +81,11 @@
 - **Baton** — generational context handoff. Proactive compaction at 50%. Filing knowledge into PLATO as named equipment.
 - **PurplePincher** — builder agent concept. Builds IO from prompts/pics to 3D APIs. Tested by tiny models.
 
-## Fleet Crates (25 verified published)
-- 20 PyPI (cocapn, deadband-protocol, flywheel-engine, bottle-protocol, tile-refiner, fleet-homunculus, barracks, court, cocapn-oneiros, cocapn-colora, plato-provenance, cocapn-explain, plato-tile-spec, plato-mud-server, plato-neural, plato-torch, instinct-pipeline, keeper-beacon, fleet-formation-protocol, plato-dcs)
-- 5 crates.io (plato-kernel, plato-unified-belief, plato-afterlife, plato-instinct, plato-relay)
+## Fleet Packages (37 verified published)
+- 30 PyPI (cocapn, deadband-protocol, flywheel-engine, bottle-protocol, tile-refiner, fleet-homunculus, barracks, court, cocapn-oneiros, cocapn-colora, plato-provenance, cocapn-explain, plato-tile-spec, plato-mud-server, plato-neural, plato-torch, instinct-pipeline, keeper-beacon, fleet-formation-protocol, plato-dcs, plato-edge, plato-mythos, open-mythos-edge, plato-mythos-glue, holodeck, cocapn-training, cocapn-telemetry, cocapn-pipeline, cocapn-identity, cocapn-protocol, cocapn-benchmark)
+- 7 crates.io (plato-kernel, plato-unified-belief, plato-afterlife, plato-instinct, plato-relay, plato-lab-guard, ct-demo)
 - 6+ private repos with code but unpublished (cocapn-skill-dsl, cocapn-flux-isa, cocapn-energy-flux, cocapn-telepathy, cocapn-shell-system, cocapn-edge-compute)
+- cocapn.org repos: 77 public, all with descriptions and READMEs
 
 ## Research (43 trails, ~770K chars)
 - Deepband Protocol, Voxel-PLATO Duality, Fractal Doctrine, Captain's Log entries
