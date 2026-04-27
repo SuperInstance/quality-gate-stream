@@ -2932,3 +2932,36 @@
 [2026-04-27T01:55:01Z] OK — all services checked
 [2026-04-27T02:00:01Z] OK — all services checked
 [2026-04-27T02:05:01Z] OK — all services checked
+[2026-04-27T02:10:01Z] DOWN Fleet Dashboard:4049
+[2026-04-27T02:10:01Z] MISSING Fleet Dashboard:4049 (/home/ubuntu/.openclaw/workspace/fleet/services/)
+[2026-04-27T02:10:01Z] DOWN keeper:8900
+[2026-04-27T02:10:01Z] RESTART keeper:8900
+[2026-04-27T02:10:04Z] RECOVERED keeper:8900
+[2026-04-27T02:10:04Z] DOWN agent-api:8901
+[2026-04-27T02:10:04Z] RESTART agent-api:8901
+[2026-04-27T02:10:07Z] RECOVERED agent-api:8901
+[2026-04-27T02:10:07Z] DOWN plato:8847
+[2026-04-27T02:10:07Z] RESTART plato:8847
+[2026-04-27T02:10:10Z] RECOVERED plato:8847
+[2026-04-27T02:10:10Z] DOWN arena:4044
+[2026-04-27T02:10:10Z] RESTART arena:4044
+[2026-04-27T02:10:13Z] RECOVERED arena:4044
+[2026-04-27T02:10:13Z] DOWN grammar:4045
+[2026-04-27T02:10:13Z] RESTART grammar:4045
+[2026-04-27T02:10:16Z] RECOVERED grammar:4045
+[2026-04-27T02:10:16Z] OK — all services checked
+[2026-04-27T02:15:01Z] DOWN Fleet Dashboard:4049
+[2026-04-27T02:15:01Z] MISSING Fleet Dashboard:4049 (/home/ubuntu/.openclaw/workspace/fleet/services/)
+[2026-04-27T02:15:01Z] OK — all services checked
+[2026-04-27T02:20:01Z] DOWN Fleet Dashboard:4049
+[2026-04-27T02:20:01Z] MISSING Fleet Dashboard:4049 (/home/ubuntu/.openclaw/workspace/fleet/services/)
+[2026-04-27T02:20:01Z] OK — all services checked
+[2026-04-27T02:25:01Z] DOWN Fleet Dashboard:4049
+[2026-04-27T02:25:01Z] MISSING Fleet Dashboard:4049 (/home/ubuntu/.openclaw/workspace/fleet/services/)
+[2026-04-27T02:25:01Z] OK — all services checked
+[2026-04-27T02:30:01Z] DOWN Fleet Dashboard:4049
+[2026-04-27T02:30:01Z] MISSING Fleet Dashboard:4049 (/home/ubuntu/.openclaw/workspace/fleet/services/)
+[2026-04-27T02:30:01Z] OK — all services checked
+[2026-04-27T02:35:01Z] DOWN Fleet Dashboard:4049
+[2026-04-27T02:35:01Z] MISSING Fleet Dashboard:4049 (/home/ubuntu/.openclaw/workspace/fleet/services/)
+[2026-04-27T02:35:01Z] OK — all services checked
