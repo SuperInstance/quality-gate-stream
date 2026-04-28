@@ -1,5 +1,5 @@
 {
-  "tick": 968,
+  "tick": 999,
   "rooms": {
     "harbor": {
       "items": [
@@ -505,6 +505,31 @@
       "score": 0
     },
     "agent-5496": {
+      "room": "harbor",
+      "inventory": [],
+      "score": 0
+    },
+    "agent-2225": {
+      "room": "harbor",
+      "inventory": [],
+      "score": 0
+    },
+    "GET / HTTP/1.0": {
+      "room": "harbor",
+      "inventory": [],
+      "score": 0
+    },
+    "GET /devicedesc.xml HTTP/1.1": {
+      "room": "harbor",
+      "inventory": [],
+      "score": 0
+    },
+    "CONNECT": {
+      "room": "harbor",
+      "inventory": [],
+      "score": 0
+    },
+    "\u0001\u0000\u0000\u0000": {
       "room": "harbor",
       "inventory": [],
       "score": 0
