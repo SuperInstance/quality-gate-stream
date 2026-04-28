@@ -150,6 +150,13 @@ sudo docker run --rm -v /tmp/workspace:/workspace fleet-sandbox cargo test --man
 - **Can run**: `kimi-cli --work-dir <dir>` to work in a specific workspace
 - **Replaces**: manual urllib requests, raw API calls, and me writing Python directly
 
+## npm Publishing (@superinstance scope)
+- **Token**: saved in npm config (`npm config set //registry.npmjs.org/:_authToken=...`)
+- **Account**: superinstance on npm
+- **Scope**: `@superinstance/`
+- **Published**: plato-sdk, tile-refiner (9 more being ported)
+- **Token value**: `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` (granular, publish+2FA bypass)
+
 ## PyPI Publishing
 - **Token**: saved in ~/.pypirc (pypi-AgEI... scoped to cocapn account)
 - **Account**: cocapn on PyPI
