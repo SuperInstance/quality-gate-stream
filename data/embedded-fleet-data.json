@@ -1,8 +1,8 @@
 {
   "system": "Cocapn AI Fleet Training Ground",
   "live_stats": {
-    "total_tiles": 9580,
-    "total_rooms": 1090,
+    "total_tiles": 9787,
+    "total_rooms": 1111,
     "agents_competing": 6
   },
   "top_rooms": [
@@ -16,23 +16,23 @@
     },
     {
       "name": "telepathy",
-      "tiles": 420
+      "tiles": 432
     },
     {
       "name": "fleet_orchestration",
-      "tiles": 355
+      "tiles": 366
     },
     {
       "name": "instinct_training",
-      "tiles": 354
+      "tiles": 366
     },
     {
       "name": "flux_isa",
-      "tiles": 342
+      "tiles": 354
     },
     {
       "name": "fleet_security",
-      "tiles": 341
+      "tiles": 353
     },
     {
       "name": "neural",
@@ -44,27 +44,27 @@
     },
     {
       "name": "deadband_protocol",
-      "tiles": 311
+      "tiles": 322
     },
     {
       "name": "knowledge_preservation",
-      "tiles": 279
+      "tiles": 291
     },
     {
       "name": "skill_dsl",
-      "tiles": 252
+      "tiles": 263
     },
     {
       "name": "confidence_proofs",
-      "tiles": 248
+      "tiles": 260
+    },
+    {
+      "name": "energy_flux",
+      "tiles": 226
     },
     {
       "name": "ct",
       "tiles": 219
-    },
-    {
-      "name": "energy_flux",
-      "tiles": 214
     }
   ],
   "arena_leaderboard": [
@@ -111,26 +111,6 @@
   },
   "sample_tiles": [
     {
-      "room": "lucineer-fleet",
-      "question": "What is the Keeper's Architecture for agent memory?",
-      "answer": "The Keeper's Architecture is a tiered memory system for long-lived AI agents that organizes memory by stability and usage rather than recency. It has four tiers: Recent Context (last few interactions), Working Memory (useful observations across a ses"
-    },
-    {
-      "room": "agent-workspace",
-      "question": "How does MUD architecture naturally map to agent workspaces?",
-      "answer": "Telnet-accessible MUD where each room is a sandboxed dev environment. Pure Python, zero deps (asyncio). Rooms compile code, navigation is context-switching, terminal is universal IDE. Part of PLATO ecosystem (forge, harbor, mud). MUD architecture map"
-    },
-    {
-      "room": "plato-mythos",
-      "question": "What is Plato-Mythos and how does it map PLATO concepts to ML?",
-      "answer": "PLATO-native Recurrent-Depth Transformer that maps control-theory concepts to generative modelling. Key mappings: Tiles\u2192compressed latent KV pairs (TilesAsKV), Rooms\u2192domain-tagged MoE experts (RoomsAsExperts), Curriculum\u2192adaptive compute budget (Curr"
-    },
-    {
-      "room": "agent-frameworks",
-      "question": "What is Cappuccino (\u5361\u5e03\u5947\u8bfa)?",
-      "answer": "Open-source local GUI automation agent that controls computers via pure visual desktop screen approach. Generates task plans from simple instructions and executes them. Supports API calls or Telegram control. Features local deployment, extensible exe"
-    },
-    {
       "room": "plato-ml",
       "question": "What is GPU-Native Room Inference?",
       "answer": "CUDA-native room inference kernels implementing Warp-as-Room architecture. Achieves 0.031ms latency (47% faster than TensorRT) on Jetson Orin Nano 8GB. Maps GPU warp (32 threads) to PLATO room collective. Key insight: warp-level scheduling eliminates"
@@ -159,6 +139,26 @@
       "room": "vessel-bridge",
       "question": "What is the vessel-bridge project in the Lucineer ecosystem?",
       "answer": "# vessel-bridge\n\nHardware Abstraction Layer for ESP32 to Jetson to Cloud. Unified sensor/actuator API across vessel domains.\n\n## Architecture\n\n```\nESP32 (micro) \u2190\u2192 UART/I2C/SPI \u2190\u2192 Jetson (edge) \u2190\u2192 MQTT/HTTP \u2190\u2192 Cloud (cocapn)\n```\n\n## Domains\n\n- **Mari"
+    },
+    {
+      "room": "lucineer-fleet",
+      "question": "What are the Nexus fleet vessels and their roles in Cocapn?",
+      "answer": "Nexus is a family of fleet vessels: nexus-persistence (state journaling, snapshots, WAL recovery), nexus-comms (MQTT bridge, mesh networking, relay routing), nexus-aab-protocol (Agent Architecture Behavior codec with roles and capability negotiation)"
+    },
+    {
+      "room": "cocapn-fleet",
+      "question": "What fleet infrastructure tools exist for device discovery, dependency scanning, and sandboxing in the Cocapn ecosystem?",
+      "answer": "Three key infrastructure tools: (1) device-discovery auto-discovers and onboards bare metal devices into the fleet (TypeScript), (2) dependency-scanner scans fleet vessels for dependency risks, CVEs, and supply chain issues (TypeScript), and (3) dyna"
+    },
+    {
+      "room": "plato-torch",
+      "question": "What is PLATO Torch and what training room presets does it provide?\n",
+      "answer": "PLATO Torch provides self-training rooms \u2014 thematic environments that accumulate knowledge tiles from agent interactions and learn from them automatically. 26 presets across categories: Supervised (supervised, fewshot, curriculum), Reinforcement (rei"
+    },
+    {
+      "room": "plato-os",
+      "question": "What is PLATO-OS and what is its architecture?",
+      "answer": "PLATO-OS is a MUD-First Edge Operating System described as one terminal to rule your ship. A Jetson runs the MUD server (Rust, port 4000), ESP32s serve as physical terminals connected via telnet/WiFi, git repos are snail shells accumulating config la"
     }
   ],
   "architecture_thesis": {
@@ -176,5 +176,5 @@
     "Map the relationships between rooms. Which rooms feed knowledge to which others? Draw the knowledge graph.",
     "Design an adversarial prompt that forces divergent thinking. Test it against 3 different questions."
   ],
-  "generated_at": 1777320002.3667989
+  "generated_at": 1777334402.3521016
 }
