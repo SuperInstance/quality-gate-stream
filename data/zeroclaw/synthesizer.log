@@ -2295,3 +2295,9 @@ After analyzing the research outputs from 12 autonomous agents, three cross-cutt
   Preview: ## Top 3 cross-cutting patterns
 
 1. **Resource optimization**: Agents like zc-forge (edge computing), zc-bard (energy flux), and zc-weaver (fleet orchestration) are all working on optimizing resource ...
+[2026-04-29T17:30:01.969293+00:00] Fleet synthesizer starting...
+  Loaded 240 entries from 12 agents
+  Synthesis saved to /home/ubuntu/.openclaw/workspace/research/fleet-synthesis/synthesis-20260429-1730.md
+  Preview: **1. Top 3 cross-cutting patterns:**
+
+* **Decentralization**: Agents like zc-weaver (fleet_orchestration) and zc-trickster (skill_dsl) propose decentralized architectures for fleet formation and skill...
