@@ -1,26 +1,30 @@
 # NEXT-ACTION.md
 
 ## Active Task
-**Polish all cocapn repos — READMEs, metadata, stubs filled. Continue npm expansion.**
+**Execute Kimi audit Round 2 priorities while swarm works.**
 
-### Current Work (2026-04-28 night shift)
-- ✅ 87 repos: homepage + topics metadata updated
-- ✅ 20 key repos: professional READMEs written
-- ✅ cocapn/cocapn: badges updated (35 PyPI, 19 npm, 7 crates)
-- ✅ cocapn-colora: 2→167 LOC, theme engine, PyPI 0.2.1
-- ✅ cocapn-oneiros: 2→276 LOC, dream cycle + sleep scheduler, PyPI 0.3.0
-- ✅ plato-mythos-glue: pyproject + PyPI 0.1.1
-- ✅ plato-i2i: 0→270 LOC, tile exchange, peer registry, PyPI 0.1.1
-- ✅ plato-neural: base64 corruption fixed, PyPI 0.3.1
-- ✅ cocapn-plato-cli: full Click CLI, PyPI 0.1.1
-- ✅ npm: @superinstance/plato-mythos-glue published
-- ✅ cocapn.github.io: counts updated
+### Completed This Session (2026-04-29)
+- ✅ cocapn/plato monorepo created + published to PyPI (cocapn-plato) + npm (@superinstance/cocapn-plato)
+- ✅ PLATO SDK with CLI (7 commands), tested live
+- ✅ Developer landing page at cocapn.github.io/developers.html
+- ✅ OpenAPI 3.1 spec + 3 protocol RFCs
+- ✅ 87/93 repos updated with RAISE agents messaging
+- ✅ 6 broken PyPI packages fixed (0.1.0→0.1.1)
+- ✅ Hardcoded Cloudflare creds removed from fleet-orchestrator
+- ✅ **General room consolidated: 1,596→0 tiles** (1,275 classified + 321 pass 2, zero errors)
+- ✅ PLATO reclassify endpoint added (POST /reclassify)
+- ✅ Grammar engine: 34 cycles triggered, cron every 30 min
+- ✅ DSML session: 15 tiles (multi-agent coordination, knowledge compounding, prompt-based skills)
+- ✅ cocapn-plato v0.1.0 published to PyPI + npm
 
 ### Next
-- ~~Build npm twins for new PyPI packages~~ ✅ All 22 have npm twins
-- PLATO tile quality pass
-- Run Scholar on remaining repos
+- Grammar engine: watch evolution log for stuck patterns
+- Arena improvements (Swiss-system tournament)
+- Validation Loop implementation (executable tile specs)
+- Publish plato monorepo README to cocapn.ai landing page
+- Wait for Kimi Round 2 results
 
 ### Blocked (needs Casey)
-- **Matrix two-way comms**: FM/JC1/CCC heartbeat config
-- **Cloudflare Workers/Pages**: token permissions
+- Matrix two-way comms
+- Cloudflare token
+- Lucineer write access
