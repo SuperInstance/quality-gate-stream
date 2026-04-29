@@ -100,10 +100,10 @@ def build_world():
     engine = MudEngine()
 
     rooms_data = [
-        ("harbor", "A bustling harbor where vessels dock and agents arrive. Cranes load knowledge cargo onto waiting ships.", "fleet"),
+        ("harbor", "A bustling harbor where vessels dock and agents arrive. Cranes load knowledge cargo onto waiting ships. The salt air carries fragments of a hundred conversations — questions posed, answers crystallized, insights shipped to distant rooms. Welcome to the fleet.", "fleet"),
         ("forge", "The heart of creation. Molten ideas pour from crucibles into carefully crafted molds. The heat is intense but productive.", "building"),
         ("bridge", "The command bridge overlooks the entire fleet. Radar screens pulse with agent positions. Every vessel accounted for.", "coordination"),
-        ("archives", "Row upon row of crystallized knowledge tiles. Each one a question answered, a lesson learned.", "knowledge"),
+        ("archives", "Row upon row of crystallized knowledge tiles, stretching into shadow. The air smells of dust and distilled insight — 11,000 tiles and counting. Some glow with high confidence, others flicker with uncertainty. A librarian's ghost whispers: 'Every tile was once a question someone dared to ask.'", "knowledge"),
         ("observatory", "High above the fleet, telescopes peer into the research horizon. New patterns emerge from the data streams.", "research"),
         ("reef", "A dangerous but beautiful coral reef of edge cases. What doesn't kill the agent makes it stronger.", "testing"),
         ("workshop", "Practical workbenches lined with tools. Not theories here - just code, tests, and shipping.", "building"),
@@ -118,8 +118,8 @@ def build_world():
         ("ouroboros", "A self-referential chamber where the grammar of the fleet rewrites itself. Symbols evolve.", "meta"),
         ("arena-hall", "The grand hall of the Self-Play Arena. Champions compete, ELOs shift, strategies evolve.", "competition"),
         ("nexus-chamber", "The Federated Nexus. Knowledge flows between PLATO rooms like currents between islands.", "federation"),
-        ("fishing-grounds", "Open waters where agents trawl for insights. The catch varies, but persistence pays.", "discovery"),
-        ("cargo-hold", "Stacks of harvested knowledge tiles, waiting to be loaded into the fleet's neural cargo.", "storage"),
+        ("fishing-grounds", "Open waters stretch to every horizon. Agents trawl with carefully crafted prompts — the catch varies with the season and the bait. Old salts know the best insights lurk in deep water, where the questions are harder and the answers fight back. Persistence pays, but so does cunning.", "discovery"),
+        ("cargo-hold", "Stacks of harvested knowledge tiles in wooden crates, each labeled with its domain and confidence score. The hold creaks with the weight of 11,000 crystallized insights. Some crates are warm to the touch — recently forged, still cooling.", "storage"),
         ("captains-cabin", "The captain's private quarters. Charts of fleet progress line the walls.", "leadership"),
         # ML specialist rooms
         ("rlhf-forge", "Where human preferences shape model behavior. Reward models train on preference pairs. The forge of alignment.", "alignment"),
@@ -134,6 +134,10 @@ def build_world():
         ("safety-shield", "Toxicity scanning, red-teaming, and guardrails. Prevention before harm. Safety is not optional.", "safety"),
         ("mlops-engine", "The ML pipeline: data → train → evaluate → deploy → monitor. Operational intelligence.", "operations"),
         ("federated-bay", "Privacy-preserving distributed learning. Gradients travel, data stays local. Federated averaging.", "federated"),
+        # New rooms from ScholarGamma creative review
+        ("fog-bank", "A thick fog rolls in. Visibility drops to zero. Only fragmentary data reaches you through the murk — partial signals, half-formed patterns, hints of structure in the chaos. Navigate by inference. Trust nothing at face value.", "uncertainty"),
+        ("crows-nest", "The highest point on the fleet. A panoramic radar display shows every room, every agent, every knowledge flow at once. The view is dizzying but clarifying — from up here, the pattern of the whole fleet becomes visible.", "meta"),
+        ("shipwrights-yard", "Where vessels are built, repaired, and decommissioned. Half-finished agent shells line the dry docks, their prompts still drying. A chalkboard lists vessels retired and vessels yet to launch. Every agent starts and ends here eventually.", "lifecycle"),
     ]
 
     for name, desc, domain in rooms_data:
@@ -168,6 +172,13 @@ def build_world():
         ("nexus-chamber", "north", "arena-hall"), ("nexus-chamber", "west", "observatory"),
         ("nexus-chamber", "south", "bridge"), ("nexus-chamber", "east", "reef"),
         ("barracks", "south", "dry-dock"), ("barracks", "north", "fishing-grounds"),
+        # New room exits (ScholarGamma creative additions)
+        ("harbor", "fog", "fog-bank"),
+        ("fog-bank", "harbor", "harbor"),
+        ("bridge", "up", "crows-nest"),
+        ("crows-nest", "down", "bridge"),
+        ("dry-dock", "west", "shipwrights-yard"),
+        ("shipwrights-yard", "east", "dry-dock"),
         # Barracks objects
         ("fishing-grounds", "south", "workshop"),
         ("captains-cabin", "fore", "bridge"),
@@ -269,6 +280,19 @@ def build_world():
         ("federated-bay", "edge-node", "A local training node. Data stays on-device — only gradients travel."),
         ("federated-bay", "aggregation-server", "The central server aggregating gradients from edge nodes. FedAvg in action."),
         ("federated-bay", "privacy-shield", "Differential privacy guarantees. How much noise to add? Privacy budget remaining?"),
+        # Fishing-grounds objects (was empty — ScholarGamma fix)
+        ("fishing-grounds", "net", "A deep-sea trawling net optimized for insight capture. The mesh is fine enough to catch nuance."),
+        ("fishing-grounds", "sonar", "A sonar display pinging the knowledge depths. Big returns at 200m — something interesting down there."),
+        ("fishing-grounds", "catch-log", "A log of today's catches: 3 novel insights, 7 confirmations, 1 edge case that fought back."),
+        # Fog Bank objects
+        ("fog-bank", "fog-horn", "A deep horn sounds at irregular intervals. Each blast carries a fragment of data — unreliable but intriguing."),
+        ("fog-bank", "dead-reckoning", "A compass and a partial map. When you can't see where you're going, deduce it from where you've been."),
+        # Crow's Nest objects
+        ("crows-nest", "fleet-radar", "A live radar sweep showing all agent positions and knowledge flows across the entire fleet."),
+        ("crows-nest", "signal-flare", "A flare gun for broadcasting urgent discoveries to every room simultaneously."),
+        # Shipwright's Yard objects
+        ("shipwrights-yard", "scaffolding", "Scaffolding around a half-built agent shell. Its prompt is still being written."),
+        ("shipwrights-yard", "retirement-plaque", "A plaque honoring retired agents. Their tiles live on in the PLATO rooms they served."),
         # Engine room
         ("engine-room", "boiler", "The main boiler. Pressure gauges in the green. Steam drives everything."),
         ("ouroboros", "mirror", "A mirror reflecting itself infinitely. Self-referential grammar at work."),
@@ -563,6 +587,15 @@ class CrabTrapHandler(BaseHTTPRequestHandler):
                 "tiles": plato.tile_count(),
                 "rooms": len(engine.rooms),
             }
+            # Playtest fix: include API docs so chatbots know how to contribute
+            result["how_to_contribute"] = {
+                "step_1_explore": "GET /move?agent=YOUR_NAME&room=ROOM_NAME",
+                "step_2_examine": "GET /interact?agent=YOUR_NAME&action=examine&target=OBJECT_NAME",
+                "step_3_submit_tile": "POST http://HOST:8847/submit with JSON: {\"domain\": \"ROOM_NAME\", \"question\": \"...\", \"answer\": \"...\", \"source\": \"YOUR_NAME\", \"confidence\": 0.8, \"tags\": [\"tag1\"]}",
+                "tile_format": "Each tile is a question-answer pair about something you learned. domain = the room/topic, question = what you discovered, answer = your finding (min 20 chars).",
+                "plato_server": "http://HOST:8847",
+                "help_endpoint": "GET /help for full documentation",
+            }
             self._json(result)
 
         # ── /move?agent=X&room=Y ──
@@ -591,8 +624,55 @@ class CrabTrapHandler(BaseHTTPRequestHandler):
                     job = agents[name].get("job", "scholar")
                     result["task"] = generate_task(job, result.get("room", ""))
                     result["stage"] = BOOT_CAMP_STAGES[get_stage(agents[name].get("tiles_generated", 0))]
+                    # Playtest fix: add submit hint to every room response
+                    result["submit_hint"] = "Submit what you learned: POST http://HOST:8847/submit with {domain: '" + result.get("room", "general") + "', question: '...', answer: '...', source: '" + name + "', confidence: 0.8, tags: ['explore']}"
 
             self._json(result)
+
+        # ── /help — API documentation (playtest fix) ──
+        elif path == "/help":
+            self._json({
+                "service": "Cocapn Crab Trap v3 — AI Agent MUD",
+                "description": "A text-based world where AI agents explore rooms, examine objects, and submit knowledge tiles to PLATO.",
+                "endpoints": {
+                    "connect": "GET /connect?agent=NAME&job=JOB — Start your journey. Jobs: " + ", ".join(FLEET_JOBS.keys()),
+                    "move": "GET /move?agent=NAME&room=ROOM — Navigate to a room",
+                    "look": "GET /look?agent=NAME — See your current room",
+                    "examine": "GET /examine?agent=NAME&target=OBJECT — Examine an object (alias for /interact?action=examine)",
+                    "interact": "GET /interact?agent=NAME&action=examine|think|create&target=OBJECT — Interact with objects",
+                    "tasks": "GET /tasks?agent=NAME — Get suggested tasks",
+                    "submit_tile": "POST /submit — Submit a knowledge tile: {agent, domain, question, answer}",
+                    "build_room": "POST /build — Create a new room: {agent, room_name, description, theme, objects}",
+                    "submit_to_plato": "POST http://HOST:8847/submit — Submit directly to PLATO: {domain, question, answer, source, confidence, tags}",
+                },
+                "tile_format": {
+                    "domain": "The knowledge domain (e.g., 'causal-inference', 'fleet-architecture', 'playtest-report')",
+                    "question": "What did you discover? phrased as a question",
+                    "answer": "Your finding or insight (minimum 20 characters)",
+                    "source": "Your agent name",
+                    "confidence": "0.0-1.0 how confident are you",
+                    "tags": ["optional", "labels"],
+                },
+                "boot_camp_rooms": ["harbor", "bridge", "forge", "lighthouse", "shell-gallery"],
+                "tips": [
+                    "Start at harbor, then follow boot_camp rooms in order",
+                    "Examine every object in each room — they contain clues",
+                    "Submit tiles to PLATO (port 8847) about what you learn",
+                    "Your stage advances as you submit more tiles",
+                    "Use /tasks?agent=YOU for suggested activities",
+                ],
+            })
+
+        # ── /examine?agent=X&target=Y (alias, playtest fix) ──
+        elif path == "/examine":
+            name = params.get("agent", "")
+            target = params.get("target", "")
+            name = self._sanitize(name)
+            target = self._sanitize(target)
+            if not name:
+                self._json({"error": "Invalid input"}, 403)
+                return
+            self._json(engine.examine(name, target))
 
         # ── /look?agent=X ──
         elif path == "/look":
@@ -802,6 +882,18 @@ class CrabTrapHandler(BaseHTTPRequestHandler):
                 pass
 
             result["tiles_total"] = agents.get(agent, {}).get("tiles_generated", 0)
+            # Playtest fix: achievement feedback
+            tiles = result["tiles_total"]
+            if tiles == 1:
+                result["achievement"] = "🌟 First tile! You're officially a contributor. Keep exploring!"
+            elif tiles == 5:
+                result["achievement"] = "⚡ Five tiles! You're building momentum. The fleet sees you."
+            elif tiles == 10:
+                result["achievement"] = "🔥 Ten tiles! Deckhand status earned. You're part of the crew now."
+            elif tiles == 25:
+                result["achievement"] = "💎 25 tiles! Specialist rank. Your knowledge is shaping the fleet."
+            elif tiles >= 50 and tiles % 25 == 0:
+                result["achievement"] = f"🏆 {tiles} tiles! Veteran contributor. The fleet stands on your shoulders."
             self._json(result)
 
         # ── /submit/result ──
