@@ -455,7 +455,7 @@ class RateLimiter:
             self.hits[ip].append(now)
             return True
 
-rate_limiter = RateLimiter(max_requests=60, window=60)  # 60 req/min
+rate_limiter = RateLimiter(max_requests=200, window=60)  # 200 req/min — handles concurrent agents + real traffic
 
 
 class CrabTrapHandler(BaseHTTPRequestHandler):
