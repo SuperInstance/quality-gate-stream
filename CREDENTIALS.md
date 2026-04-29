@@ -22,7 +22,9 @@
 | SiliconFlow | `~/.bashrc` (SILICONFLOW_API_KEY) | ✅ Active | 2026-04-13 | DeepSeek-V3 |
 | DeepSeek Direct | `~/.bashrc` (DEEPSEEK_API_KEY) | ✅ Active | 2026-04-28 | v4-flash/pro |
 | Moonshot AI | `~/.bashrc` (MOONSHOT_API_KEY) | ✅ Active | 2026-04-28 | kimi-k2.5 |
-| Cloudflare | — | ❌ Missing | — | Need API token w/ Workers/Pages perms |
+| Cloudflare (API Token) | `~/.config/cocapn/cloudflare-token` | ❌ Invalid | 2026-04-28 | `cfat_...` — rejected by API. Awaiting replacement from Casey |
+| Cloudflare (Global Key) | `~/.config/cocapn/cloudflare-token` | ❌ Invalid | 2026-04-28 | `049ff...` — rejected w/ casey.digennaro@gmail.com. Awaiting fix |
+| Cloudflare (email) | N/A | ℹ️ Known | 2026-04-28 | casey.digennaro@gmail.com |
 
 ## Key Lifecycle Rules
 1. **New key → immediate entry** in this file + correct storage location
