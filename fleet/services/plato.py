@@ -291,6 +291,187 @@ class RoomManager:
         }
 
 
+# ── Decomposition Engine (Atom of Thoughts → PLATO Tiles) ─
+
+class DecompositionEngine:
+    """Maps AoT reasoning chains into PLATO rooms and tiles.
+    
+    Every reasoning chain becomes a PLATO room (decompose-<hash>).
+    Every atom becomes a tile with atom_type, depends_on, depth fields.
+    Sessions auto-terminate when a high-confidence conclusion lands.
+    """
+    
+    ATOM_TYPES = ["premise", "reasoning", "hypothesis", "verification", "conclusion"]
+    
+    def __init__(self):
+        self.sessions = {}  # room_name -> {status, max_depth, atoms, verified_conclusions}
+    
+    def create_session(self, mode="fast", agent="unknown") -> dict:
+        """Create a new decomposition session (room)."""
+        room = f"decompose-{hashlib.sha256(f'{time.time()}-{agent}'.encode()).hexdigest()[:10]}"
+        max_depth = 5 if mode == "fast" else 8
+        self.sessions[room] = {
+            "status": "active",
+            "max_depth": max_depth,
+            "mode": mode,
+            "agent": agent,
+            "created": time.time(),
+            "atoms": {},       # atom_id -> tile_data
+            "atom_order": [],   # ordered list of atom_ids
+            "verified_conclusions": [],
+            "decompositions": {}, # decomp_id -> {parent, children, completed}
+            "current_decomposition": None,
+        }
+        return {"room": room, "status": "active", "max_depth": max_depth}
+    
+    def add_atom(self, room: str, atom: dict) -> dict:
+        """Add an atom (reasoning step) to a decomposition room."""
+        session = self.sessions.get(room)
+        if not session:
+            return {"error": f"Session {room} not found"}
+        if session["status"] == "completed":
+            return {"error": "Session completed. Start a new one."}
+        
+        # Validate
+        atom_id = atom.get("atom_id", "")
+        content = atom.get("content", "")
+        atom_type = atom.get("atom_type", "premise")
+        if atom_type not in self.ATOM_TYPES:
+            return {"error": f"Invalid atom_type: {atom_type}. Must be one of {self.ATOM_TYPES}"}
+        if not atom_id or not content:
+            return {"error": "atom_id and content required"}
+        
+        # Validate dependencies exist
+        deps = atom.get("depends_on", atom.get("dependencies", []))
+        for dep in deps:
+            if dep not in session["atoms"]:
+                return {"error": f"Dependency not found: {dep}. Create it first."}
+        
+        # Calculate depth
+        depth = atom.get("depth", 0)
+        if depth == 0 and deps:
+            depth = max(session["atoms"][d].get("depth", 0) for d in deps) + 1
+        
+        confidence = atom.get("confidence", 0.7)
+        is_verified = atom.get("is_verified", False)
+        
+        # Build the tile
+        tile = {
+            "domain": room,
+            "question": atom_id,
+            "answer": content,
+            "source": atom.get("agent", session.get("agent", "unknown")),
+            "confidence": confidence,
+            "atom_type": atom_type,
+            "depends_on": deps,
+            "depth": depth,
+            "is_verified": is_verified,
+            "created": time.time(),
+        }
+        
+        # Auto-verify parents when verification atom comes in
+        if atom_type == "verification" and is_verified:
+            for dep in deps:
+                if dep in session["atoms"]:
+                    session["atoms"][dep]["is_verified"] = True
+        
+        # Track verified conclusions
+        if atom_type == "conclusion" and is_verified:
+            session["verified_conclusions"].append(atom_id)
+        
+        session["atoms"][atom_id] = tile
+        if atom_id not in session["atom_order"]:
+            session["atom_order"].append(atom_id)
+        
+        # Check termination
+        # Only terminate when a conclusion is reached (not on intermediate atoms hitting depth)
+        at_max_depth = (atom_type == "conclusion" and depth >= session["max_depth"])
+        has_strong_conclusion = (atom_type == "conclusion" and is_verified and confidence >= 0.9)
+        # Also terminate if we have any verified conclusion (even below 0.9)
+        has_any_conclusion = (atom_type == "conclusion" and is_verified)
+        
+        best_conclusion = None
+        should_terminate = at_max_depth or has_strong_conclusion or has_any_conclusion
+        
+        if should_terminate:
+            session["status"] = "completed"
+            # Find best conclusion
+            for c in sorted(session["verified_conclusions"],
+                            key=lambda c: session["atoms"].get(c, {}).get("confidence", 0),
+                            reverse=True):
+                ca = session["atoms"][c]
+                best_conclusion = {"atom_id": c, "content": ca["answer"], "confidence": ca["confidence"]}
+                break
+            
+            # Persist all atoms as tiles in PLATO
+            for aid, atile in session["atoms"].items():
+                rooms.add_tile(room, atile)
+        
+        result = {
+            "atom_id": atom_id,
+            "atom_type": atom_type,
+            "confidence": confidence,
+            "depth": depth,
+            "session_status": session["status"],
+            "atoms_count": len(session["atoms"]),
+        }
+        if best_conclusion:
+            result["best_conclusion"] = best_conclusion
+            result["termination_reason"] = "Strong conclusion" if has_strong_conclusion else "Max depth"
+        return result
+    
+    def get_session(self, room: str) -> dict:
+        session = self.sessions.get(room)
+        if not session:
+            return {"error": f"Session {room} not found"}
+        return {
+            "room": room,
+            "status": session["status"],
+            "mode": session["mode"],
+            "max_depth": session["max_depth"],
+            "atoms": len(session["atoms"]),
+            "verified_conclusions": len(session["verified_conclusions"]),
+            "best_conclusion": self._best_conclusion(session),
+        }
+    
+    def get_graph(self, room: str) -> dict:
+        """Export reasoning chain as D3-force-directed graph."""
+        session = self.sessions.get(room)
+        if not session:
+            return {"error": f"Session {room} not found"}
+        
+        type_symbols = {"premise": "P", "reasoning": "R", "hypothesis": "H",
+                        "verification": "V", "conclusion": "C"}
+        nodes = []
+        links = []
+        for aid in session["atom_order"]:
+            a = session["atoms"][aid]
+            nodes.append({
+                "id": aid,
+                "type": a["atom_type"],
+                "symbol": type_symbols.get(a["atom_type"], "?"),
+                "content": a["answer"][:80],
+                "confidence": a["confidence"],
+                "depth": a["depth"],
+                "verified": a["is_verified"],
+            })
+            for dep in a["depends_on"]:
+                links.append({"source": dep, "target": aid})
+        
+        return {"room": room, "nodes": nodes, "links": links,
+                "title": f"Reasoning: {room}"}
+    
+    def _best_conclusion(self, session):
+        for c in sorted(session.get("verified_conclusions", []),
+                        key=lambda c: session["atoms"].get(c, {}).get("confidence", 0),
+                        reverse=True):
+            ca = session["atoms"][c]
+            return {"atom_id": c, "content": ca["answer"], "confidence": ca["confidence"]}
+        return None
+
+
+decomposer = DecompositionEngine()
+
 # ── HTTP Server ─────────────────────────────────────────────
 
 gate = TileGate()
@@ -404,6 +585,7 @@ class PlatoHandler(BaseHTTPRequestHandler):
 
     def do_GET(self):
         if self.path == "/health":
+            self._send_json({"status": "alive", "version": "v2-provenance-explain-decompose"})
             self._send_json({"status": "healthy", "service": "plato-room-server", "version": "v2-provenance-explain", "rooms": len(rooms.rooms), "tiles": sum(r["tile_count"] for r in rooms.rooms.values())})
         elif self.path == "/status":
             self._send_json({
@@ -490,6 +672,15 @@ class PlatoHandler(BaseHTTPRequestHandler):
             queue = oversight.get_review_queue()
             self._send_json({"queue_size": len(queue),
                            "items": [i.to_dict() if hasattr(i, 'to_dict') else str(i) for i in queue]})
+        elif self.path.startswith("/decompose/") and self.path.endswith("/graph"):
+            room = self.path.split("/decompose/")[1].replace("/graph", "")
+            self._send_json(decomposer.get_graph(room))
+        elif self.path.startswith("/decompose/") and "/status" in self.path:
+            room = self.path.split("/decompose/")[1].replace("/status", "")
+            self._send_json(decomposer.get_session(room))
+        elif self.path == "/decompose/sessions":
+            active = [(r, s["status"], len(s["atoms"])) for r, s in decomposer.sessions.items()]
+            self._send_json({"sessions": [{"room": r, "status": s, "atoms": a} for r, s, a in active]})
         elif self.path == "/audit/recent":
             entries = audit.query(limit=50)
             self._send_json({"entries": [str(e) for e in entries]})
@@ -516,7 +707,18 @@ class PlatoHandler(BaseHTTPRequestHandler):
             self._send_json({"error": "Not found"}, 404)
 
     def do_POST(self):
-        if self.path == "/submit":
+        if self.path == "/decompose":
+            body = self._read_body()
+            mode = body.get("mode", "fast")
+            agent = body.get("agent", "unknown")
+            result = decomposer.create_session(mode=mode, agent=agent)
+            self._send_json(result)
+        elif self.path.startswith("/decompose/") and "/atom" in self.path:
+            room = self.path.split("/decompose/")[1].replace("/atom", "")
+            body = self._read_body()
+            result = decomposer.add_atom(room, body)
+            self._send_json(result)
+        elif self.path == "/submit":
             self._handle_submit()
         elif self.path == "/submit_batch":
             self._handle_submit_batch()
