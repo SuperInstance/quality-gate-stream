@@ -2439,3 +2439,9 @@ After analyzing the research outputs, three cross-cutting patterns emerge: (1) t
   Preview: ## Top 3 cross-cutting patterns
 
 1. **Security and access control**: Agents like zc-warden (fleet_security) and zc-trickster (skill_dsl) are working on access control systems, capability-based access ...
+[2026-04-30T07:30:01.569662+00:00] Fleet synthesizer starting...
+  Loaded 240 entries from 12 agents
+  Synthesis saved to /home/ubuntu/.openclaw/workspace/research/fleet-synthesis/synthesis-20260430-0730.md
+  Preview: ## Top 3 cross-cutting patterns
+
+1. **Decentralized architectures**: Multiple agents (zc-weaver, zc-trickster, zc-tide) propose decentralized approaches for fleet orchestration, skill marketplaces, an...
