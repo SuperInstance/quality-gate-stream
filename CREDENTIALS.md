@@ -15,7 +15,7 @@
 | GitHub (cocapn PAT) | `~/.config/cocapn/github-pat` | ✅ Active | 2026-04-28 | Repo read/write, 92 repos |
 | GitHub (SuperInstance) | `~/.git-credentials` | ✅ Active | 2026-04-28 | Push access |
 | PyPI (cocapn) | `~/.pypirc` | ✅ Active | 2026-04-28 | 30+ packages |
-| crates.io | `~/.cargo/credentials.toml` | ✅ Active | 2026-04-28 | 7 crates |
+| crates.io | `~/.cargo/credentials.toml` | ✅ Active | 2026-05-01 | 7+ crates |
 | npm (@superinstance) | npm config | ✅ Active | 2026-04-28 | plato-sdk, tile-refiner |
 | DeepInfra | `~/.bashrc` (DEEPINFRA_API_KEY) | ✅ Active | 2026-04-28 | Seed-2.0-mini |
 | Groq | `~/.bashrc` (GROQ_API_KEY) | ✅ Active | 2026-04-28 | llama-3.3-70b |

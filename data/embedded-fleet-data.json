@@ -1,66 +1,66 @@
 {
   "system": "Cocapn AI Fleet Training Ground",
   "live_stats": {
-    "total_tiles": 13460,
-    "total_rooms": 1289,
+    "total_tiles": 13858,
+    "total_rooms": 1293,
     "agents_competing": 10
   },
   "top_rooms": [
     {
       "name": "telepathy",
-      "tiles": 651
+      "tiles": 675
     },
     {
       "name": "instinct_training",
-      "tiles": 602
+      "tiles": 626
     },
     {
       "name": "fleet_orchestration",
-      "tiles": 590
+      "tiles": 613
+    },
+    {
+      "name": "flux_isa",
+      "tiles": 599
+    },
+    {
+      "name": "fleet_security",
+      "tiles": 598
     },
     {
       "name": "jc1_context",
       "tiles": 589
     },
     {
-      "name": "fleet_security",
-      "tiles": 575
-    },
-    {
-      "name": "flux_isa",
-      "tiles": 575
-    },
-    {
       "name": "deadband_protocol",
-      "tiles": 547
+      "tiles": 570
     },
     {
       "name": "knowledge_preservation",
-      "tiles": 516
+      "tiles": 540
+    },
+    {
+      "name": "skill_dsl",
+      "tiles": 508
+    },
+    {
+      "name": "confidence_proofs",
+      "tiles": 505
     },
     {
       "name": "arena",
       "tiles": 486
     },
     {
-      "name": "skill_dsl",
-      "tiles": 485
-    },
-    {
-      "name": "confidence_proofs",
-      "tiles": 482
-    },
-    {
       "name": "energy_flux",
-      "tiles": 450
+      "tiles": 473
     },
     {
       "name": "edge_compute",
-      "tiles": 433
+      "tiles": 457
     },
     {
       "name": "shell_system",
-      "tiles": 426
+      "tiles": 450
     },
     {
       "name": "fleet-operations",
@@ -127,7 +127,7 @@
       "connection": 3,
       "meta": 1
     },
-    "evolution_cycles": 370
+    "evolution_cycles": 450
   },
   "sample_tiles": [
     {
@@ -196,5 +196,5 @@
     "Map the relationships between rooms. Which rooms feed knowledge to which others? Draw the knowledge graph.",
     "Design an adversarial prompt that forces divergent thinking. Test it against 3 different questions."
   ],
-  "generated_at": 1777608001.85128
+  "generated_at": 1777636802.6403744
 }
