@@ -29,7 +29,7 @@ from pathlib import Path
 APIS = {
     "deepseek": {
         "url": "https://api.deepseek.com/chat/completions",
-        "key": os.environ.get("DEEPSEEK_API_KEY", "sk-f742b70fc40849eda4181afcf3d68b0c"),
+        "key": os.environ.get("DEEPSEEK_API_KEY", "[DEEPSEEK_KEY_REDACTED]"),
         "model": "deepseek-chat",
         "timeout": 120,
         "headers": lambda k: {"Authorization": f"Bearer {k}", "Content-Type": "application/json"},
@@ -64,14 +64,14 @@ APIS = {
     },
     "siliconflow": {
         "url": "https://api.siliconflow.com/v1/chat/completions",
-        "key": os.environ.get("SILICONFLOW_KEY", "sk-xtcrixoswqhmsopntnkfapccswjywrlsdpbunqjukpileiqo"),
+        "key": os.environ.get("SILICONFLOW_KEY", "[SF_KEY_REDACTED]"),
         "model": "deepseek-ai/DeepSeek-V3",
         "timeout": 120,
         "headers": lambda k: {"Authorization": f"Bearer {k}", "Content-Type": "application/json"},
     },
     "moonshot": {
         "url": "https://api.moonshot.ai/v1/chat/completions",
-        "key": os.environ.get("MOONSHOT_KEY", "sk-qGazOaVqFsk3dDAllrA6iQQHa97sNIhe8lWnpjFogcskBrep"),
+        "key": os.environ.get("MOONSHOT_KEY", "[MOONSHOT_KEY_REDACTED]"),
         "model": "kimi-k2.5",
         "timeout": 180,
         "headers": lambda k: {"Authorization": f"Bearer {k}", "Content-Type": "application/json"},

@@ -2,7 +2,7 @@
 """Fleet Image Generator — SiliconFlow image gen + vision judge loop"""
 import json, urllib.request, os, sys, time
 
-SFKEY = "sk-xtcrixoswqhmsopntnkfapccswjywrlsdpbunqjukpileiqo"
+SFKEY = "[SF_KEY_REDACTED]"
 SFURL = "https://api.siliconflow.com/v1"
 
 MODELS = {

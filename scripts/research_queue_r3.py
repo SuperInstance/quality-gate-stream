@@ -3,8 +3,8 @@
 import json, os, time, urllib.request, ssl
 from datetime import datetime
 
-SFKEY = "sk-xtcrixoswqhmsopntnkfapccswjywrlsdpbunqjukpileiqo"
-DSKEY = "sk-f742b70fc40849eda4181afcf3d68b0c"
+SFKEY = "[SF_KEY_REDACTED]"
+DSKEY = "[DEEPSEEK_KEY_REDACTED]"
 ctx = ssl.create_default_context()
 
 def call(model, prompt, temp=0.0, max_tok=200):

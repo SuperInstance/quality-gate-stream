@@ -17,9 +17,9 @@ from pathlib import Path
 from datetime import datetime, timezone
 import urllib.request
 
-DEEPSEEK_KEY = os.environ.get("DEEPSEEK_API_KEY", "sk-f742b70fc40849eda4181afcf3d68b0c")
+DEEPSEEK_KEY = os.environ.get("DEEPSEEK_API_KEY", "[DEEPSEEK_KEY_REDACTED]")
 DEEPSEEK_URL = "https://api.deepseek.com/chat/completions"
-GITHUB_TOKEN = os.environ.get("GITHUB_TOKEN", "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")
+GITHUB_TOKEN = os.environ.get("GITHUB_TOKEN", "[GITHUB_TOKEN_REVOKED]")
 GITHUB_USER = "SuperInstance"
 
 def call_deepseek(system_prompt: str, user_prompt: str, max_tokens: int = 2000) -> str:

@@ -24,8 +24,8 @@ Round 2 tests:
 import json, os, sys, time, urllib.request, ssl
 from datetime import datetime
 
-SFKEY = os.environ.get("SILICONFLOW_KEY", "sk-xtcrixoswqhmsopntnkfapccswjywrlsdpbunqjukpileiqo")
-DSKEY = os.environ.get("DEEPSEEK_KEY", "sk-f742b70fc40849eda4181afcf3d68b0c")
+SFKEY = os.environ.get("SILICONFLOW_KEY", "[SF_KEY_REDACTED]")
+DSKEY = os.environ.get("DEEPSEEK_KEY", "[DEEPSEEK_KEY_REDACTED]")
 SFURL = "https://api.siliconflow.com/v1/chat/completions"
 DSURL = "https://api.deepseek.com/chat/completions"
 ctx = ssl.create_default_context()

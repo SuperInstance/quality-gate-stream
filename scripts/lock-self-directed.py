@@ -29,13 +29,13 @@ MODELS = {
     },
     "deepseek-chat": {
         "url": "https://api.deepseek.com/chat/completions",
-        "key": os.environ.get("DEEPSEEK_API_KEY", "sk-f742b70fc40849eda4181afcf3d68b0c"),
+        "key": os.environ.get("DEEPSEEK_API_KEY", "[DEEPSEEK_KEY_REDACTED]"),
         "model": "deepseek-chat",
         "max_tokens": 1500,
     },
     "kimi-k2": {
         "url": "https://api.moonshot.ai/v1/chat/completions",
-        "key": os.environ.get("MOONSHOT_API_KEY", "sk-qGazOaVqFsk3dDAllrA6iQQHa97sNIhe8lWnpjFogcskBrep"),
+        "key": os.environ.get("MOONSHOT_API_KEY", "[MOONSHOT_KEY_REDACTED]"),
         "model": "kimi-k2.5",
         "max_tokens": 1500,
     },

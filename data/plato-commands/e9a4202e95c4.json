@@ -7,7 +7,7 @@
   "cwd": "/home/ubuntu/.openclaw/workspace/repos",
   "started": 1776829338.5719445,
   "status": "completed",
-  "output": "[core]\n\trepositoryformatversion = 0\n\tfilemode = true\n\tbare = false\n\tlogallrefupdates = true\n[remote \"origin\"]\n\turl = https://SuperInstance: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@github.com/SuperInstance/oracle1-workspace.git\n\tfetch = +refs/heads/*:refs/remotes/origin/*\n[branch \"main\"]\n\tremote = origin\n\tmerge = refs/heads/main\n[remote \"jetson\"]\n\turl = https://github.com/SuperInstance/jetson-poker.git\n\tfetch = +refs/heads/*:refs/remotes/jetson/*\n[remote \"cocapn\"]\n\turl = https://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@github.com/cocapn/workspace.git\n\tfetch = +refs/heads/*:refs/remotes/cocapn/*\n",
+  "output": "[core]\n\trepositoryformatversion = 0\n\tfilemode = true\n\tbare = false\n\tlogallrefupdates = true\n[remote \"origin\"]\n\turl = https://SuperInstance:[GITHUB_TOKEN_REDACTED]@github.com/SuperInstance/oracle1-workspace.git\n\tfetch = +refs/heads/*:refs/remotes/origin/*\n[branch \"main\"]\n\tremote = origin\n\tmerge = refs/heads/main\n[remote \"jetson\"]\n\turl = https://github.com/SuperInstance/jetson-poker.git\n\tfetch = +refs/heads/*:refs/remotes/jetson/*\n[remote \"cocapn\"]\n\turl = https://[GITHUB_TOKEN_REDACTED]@github.com/cocapn/workspace.git\n\tfetch = +refs/heads/*:refs/remotes/cocapn/*\n",
   "error": "",
   "returncode": 0,
   "completed": 1776829338.5735152,

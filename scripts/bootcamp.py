@@ -25,8 +25,8 @@ from dataclasses import dataclass, field
 from typing import List, Optional, Dict, Tuple
 
 # API setup
-DSKEY = os.environ.get("DEEPSEEK_KEY", "sk-f742b70fc40849eda4181afcf3d68b0c")
-SFKEY = os.environ.get("SILICONFLOW_KEY", "sk-xtcrixoswqhmsopntnkfapccswjywrlsdpbunqjukpileiqo")
+DSKEY = os.environ.get("DEEPSEEK_KEY", "[DEEPSEEK_KEY_REDACTED]")
+SFKEY = os.environ.get("SILICONFLOW_KEY", "[SF_KEY_REDACTED]")
 ctx = ssl.create_default_context()
 
 @dataclass

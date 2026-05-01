@@ -15,7 +15,7 @@ import urllib.request
 
 DEEPSEEK_KEY = os.environ.get("DEEPSEEK_API_KEY", "sk-f742b70fc40849eda4181afcf3d68b0c")
 DEEPSEEK_URL = "https://api.deepseek.com/chat/completions"
-GITHUB_TOKEN = os.environ.get("GH_TOKEN", "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")
+GITHUB_TOKEN = os.environ.get("GH_TOKEN", "[GITHUB_TOKEN_REVOKED]")
 PLATO_URL = "http://localhost:8847"
 SHELLS_DIR = Path("/tmp/zeroclaw-shells")
 FLEET_KB = SHELLS_DIR / "fleet-knowledge"

@@ -274,7 +274,7 @@ FLEET_AGENTS = {
 def check_agent_activity(agent_name, repos):
     """Check if agent has committed in last 24h."""
     import pathlib
-    token = "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"
+    token = "[GITHUB_TOKEN_REVOKED]"
     for repo in repos:
         try:
             req = urllib.request.Request(

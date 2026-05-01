@@ -5,3 +5,14 @@ repos/*
 !repos/.gitkeep
 archive/repos*.tar.gz
 research/
+
+# === Oracle1 Specific ===
+# Never commit these
+memory/
+state/
+credentials/
+*.vault
+.credentials_vault
+
+# Session transcripts contain task context - keep private
+data/plato-commands/

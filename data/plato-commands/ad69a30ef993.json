@@ -7,7 +7,7 @@
   "cwd": "/home/ubuntu/.openclaw/workspace",
   "started": 1776829764.7816076,
   "status": "completed",
-  "output": "export GITHUB_TOKEN=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\nexport DEEPSEEK_API_KEY=\"sk-f742b70fc40849eda4181afcf3d68b0c\"\nexport SILICONFLOW_API_KEY=sk-xtcrixoswqhmsopntnkfapccswjywrlsdpbunqjukpileiqo\nexport DEEPINFRA_API_KEY=\"RhZPtvuy4cXzu02LbBSffbXeqs5Yf2IZ\"\nexport ANTHROPIC_API_KEY=\"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\"\nexport MOONSHOT_API_KEY=\"sk-YkKmGKO5FNU2J9zYGcKnicywq0EiVmYUfScgQ5L69ActZONP\"\nexport CLOUDFLARE_API_TOKEN=\"cfut_WwKg7uJMm72SdOUQTiHhPMcUyejLkn0HMmalcNrY76d25494\"\n",
+  "output": "export GITHUB_TOKEN=[GITHUB_TOKEN_REDACTED]\nexport DEEPSEEK_API_KEY=\"sk-f742b70fc40849eda4181afcf3d68b0c\"\nexport SILICONFLOW_API_KEY=[API_KEY_REDACTED]\nexport DEEPINFRA_API_KEY=\"RhZPtvuy4cXzu02LbBSffbXeqs5Yf2IZ\"\nexport ANTHROPIC_API_KEY=\"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\"\nexport MOONSHOT_API_KEY=\"[API_KEY_REDACTED]\"\nexport CLOUDFLARE_API_TOKEN=\"[CF_TOKEN_REDACTED]\"\n",
   "error": "",
   "returncode": 0,
   "completed": 1776829764.7839286,

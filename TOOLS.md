@@ -66,7 +66,7 @@ Skills define _how_ tools work. This file is for _your_ specifics — the stuff 
   - Audio: `whisper-large-v3`, `whisper-large-v3-turbo`
 
 ## SiliconFlow API
-- **API key**: `sk-xtcrixoswqhmsopntnkfapccswjywrlsdpbunqjukpileiqo`, base: `https://api.siliconflow.com/v1`
+- **API key**: `[SILICONFLOW_KEY_REDACTED]`, base: `https://api.siliconflow.com/v1`
 - **Working as of 2026-04-13** — previously was invalid
 - Models: `deepseek-ai/DeepSeek-V3` (reasoning), `Pro/Qwen/Qwen2.5-VL-7B-Instruct` (vision)
 
@@ -124,7 +124,7 @@ sudo docker run --rm -v /tmp/workspace:/workspace fleet-sandbox cargo test --man
 ```
 
 ## DeepSeek Direct API (v4 models — PRIMARY external)
-- **API key**: `sk-f742b70fc40849eda4181afcf3d68b0c`
+- **API key**: `[DEEPSEEK_KEY_REDACTED]`
 - **Base URL**: `https://api.deepseek.com`
 - **Models**:
   - `deepseek-v4-flash` — quick second opinions, fast analysis, code review
@@ -137,7 +137,7 @@ sudo docker run --rm -v /tmp/workspace:/workspace fleet-sandbox cargo test --man
 - **Also available on SiliconFlow**: `deepseek-ai/DeepSeek-V3`, `deepseek-ai/DeepSeek-R1`, `deepseek-ai/DeepSeek-V3.1`, `deepseek-ai/DeepSeek-V3.2`
 
 ## Moonshot AI (Kimi K2.5 Reasoning Model)
-- **API key**: `sk-qGazOaVqFsk3dDAllrA6iQQHa97sNIhe8lWnpjFogcskBrep`
+- **API key**: `[MOONSHOT_KEY_REDACTED]`
 - **Base URL**: `https://api.moonshot.ai/v1` (NOT moonshot.cn!)
 - **Best model**: `kimi-k2.5` — reasoning model with `reasoning_content` field
 - **Also**: `kimi-k2-thinking`, `kimi-k2-turbo-preview`, `moonshot-v1-auto`
@@ -158,7 +158,7 @@ sudo docker run --rm -v /tmp/workspace:/workspace fleet-sandbox cargo test --man
 - **Account**: superinstance on npm
 - **Scope**: `@superinstance/`
 - **Published**: plato-sdk, tile-refiner (9 more being ported)
-- **Token value**: `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` (granular, publish+2FA bypass)
+- **Token value**: `[NPM_TOKEN_OLD_REVOKED]` (granular, publish+2FA bypass)
 
 ## PyPI Publishing
 - **Token**: saved in ~/.pypirc (pypi-AgEI... scoped to cocapn account)

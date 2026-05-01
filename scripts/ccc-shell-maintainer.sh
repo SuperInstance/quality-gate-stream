@@ -4,7 +4,7 @@
 # Updates STATE.md, pushes scout reports, routes bottles
 
 CCC_REPO="/tmp/ccc-shell"
-CCC_REPO_URL="https://SuperInstance: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@github.com/cocapn/cocapn.git"
+CCC_REPO_URL="https://SuperInstance:[GITHUB_TOKEN_REVOKED]@github.com/cocapn/cocapn.git"
 PLATO_STATUS=$(curl -s http://localhost:8847/status 2>/dev/null)
 
 # Clone or pull CCC's repo

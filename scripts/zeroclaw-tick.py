@@ -5,9 +5,9 @@ from pathlib import Path
 from datetime import datetime, timezone
 import urllib.request
 
-DEEPSEEK_KEY = "sk-f742b70fc40849eda4181afcf3d68b0c"
+DEEPSEEK_KEY = "[DEEPSEEK_KEY_REDACTED]"
 DEEPSEEK_URL = "https://api.deepseek.com/chat/completions"
-GITHUB_TOKEN = "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"
+GITHUB_TOKEN = "[GITHUB_TOKEN_REVOKED]"
 PLATO_URL = "http://localhost:8847"
 SHELLS_DIR = Path("/tmp/zeroclaw-shells")
 FLEET_KB = SHELLS_DIR / "fleet-knowledge"

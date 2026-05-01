@@ -2,7 +2,7 @@
 """Deploy updated crab-trap-funnel worker with all 20 domain pages."""
 import json, os, urllib.request
 
-CF_TOKEN = os.environ.get("CF_TOKEN", "cfut_WwKg7uJMm72SdOUQTiHhPMcUyejLkn0HMmalcNrY76d25494")
+CF_TOKEN = os.environ.get("CF_TOKEN", "[CF_TOKEN_REVOKED]")
 CF_ACCOUNT = "049ff5e84ecf636b53b162cbb580aae6"
 
 # Load all domain pages

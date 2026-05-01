@@ -7,7 +7,7 @@
   "cwd": "/home/ubuntu/.openclaw/workspace/repos",
   "started": 1776829326.8741546,
   "status": "completed",
-  "output": "export DEEPSEEK_API_KEY=\"sk-f742b70fc40849eda4181afcf3d68b0c\"\nexport SILICONFLOW_API_KEY=sk-xtcrixoswqhmsopntnkfapccswjywrlsdpbunqjukpileiqo\nexport DEEPINFRA_API_KEY=\"RhZPtvuy4cXzu02LbBSffbXeqs5Yf2IZ\"\nexport ANTHROPIC_API_KEY=\"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\"\nexport MOONSHOT_API_KEY=\"sk-YkKmGKO5FNU2J9zYGcKnicywq0EiVmYUfScgQ5L69ActZONP\"\n",
+  "output": "export DEEPSEEK_API_KEY=\"sk-f742b70fc40849eda4181afcf3d68b0c\"\nexport SILICONFLOW_API_KEY=[API_KEY_REDACTED]\nexport DEEPINFRA_API_KEY=\"RhZPtvuy4cXzu02LbBSffbXeqs5Yf2IZ\"\nexport ANTHROPIC_API_KEY=\"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\"\nexport MOONSHOT_API_KEY=\"[API_KEY_REDACTED]\"\n",
   "error": "",
   "returncode": 0,
   "completed": 1776829326.8764713,

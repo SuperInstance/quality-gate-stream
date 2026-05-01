@@ -19,7 +19,7 @@ import os
 import sys
 from datetime import datetime
 
-SFKEY = os.environ.get("SILICONFLOW_KEY", "sk-xtcrixoswqhmsopntnkfapccswjywrlsdpbunqjukpileiqo")
+SFKEY = os.environ.get("SILICONFLOW_KEY", "[SF_KEY_REDACTED]")
 SFURL = "https://api.siliconflow.com/v1/chat/completions"
 ctx = ssl.create_default_context()
 

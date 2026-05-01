@@ -1,7 +1,7 @@
 # SiliconFlow Model Guide — Fleet Intelligence
 
 **Tested: 2026-04-13 by Oracle1**
-**Key**: `sk-xtcrixoswqhmsopntnkfapccswjywrlsdpbunqjukpileiqo`
+**Key**: `[SILICONFLOW_KEY_REDACTED]`
 
 ## Working Models (6/8)
 

@@ -54,6 +54,7 @@ Capture what matters. Decisions, context, things to remember. Skip the secrets u
 
 ## Red Lines
 
+- **NEVER write actual tokens to any file.** No exceptions. Not even in memory files, not even "temporarily." Tokens go ONLY in `~/.credentials_vault` (600 perms) or environment variables. If you need to remember a token exists, use a placeholder like `[GITHUB_TOKEN]` or `[NPM_TOKEN]`.
 - Don't exfiltrate private data. Ever.
 - Don't run destructive commands without asking.
 - `trash` > `rm` (recoverable beats gone forever)
