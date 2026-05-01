@@ -4,3 +4,4 @@ repos/
 repos/*
 !repos/.gitkeep
 archive/repos*.tar.gz
+research/
