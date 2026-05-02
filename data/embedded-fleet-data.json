@@ -1,34 +1,34 @@
 {
   "system": "Cocapn AI Fleet Training Ground",
   "live_stats": {
-    "total_tiles": 16398,
-    "total_rooms": 1315,
+    "total_tiles": 16698,
+    "total_rooms": 1316,
     "agents_competing": 10
   },
   "top_rooms": [
     {
       "name": "telepathy",
-      "tiles": 698
+      "tiles": 710
     },
     {
       "name": "instinct_training",
-      "tiles": 650
+      "tiles": 662
     },
     {
       "name": "fleet_orchestration",
-      "tiles": 637
-    },
-    {
-      "name": "flux_isa",
-      "tiles": 622
+      "tiles": 648
     },
     {
       "name": "fleet_security",
-      "tiles": 621
+      "tiles": 633
+    },
+    {
+      "name": "flux_isa",
+      "tiles": 633
     },
     {
       "name": "deadband_protocol",
-      "tiles": 594
+      "tiles": 605
     },
     {
       "name": "jc1_context",
@@ -36,31 +36,31 @@
     },
     {
       "name": "knowledge_preservation",
-      "tiles": 564
+      "tiles": 576
     },
     {
       "name": "skill_dsl",
-      "tiles": 531
+      "tiles": 542
     },
     {
       "name": "confidence_proofs",
-      "tiles": 528
+      "tiles": 540
     },
     {
       "name": "energy_flux",
-      "tiles": 496
+      "tiles": 508
+    },
+    {
+      "name": "edge_compute",
+      "tiles": 492
     },
     {
       "name": "arena",
       "tiles": 486
     },
     {
-      "name": "edge_compute",
-      "tiles": 480
-    },
-    {
       "name": "shell_system",
-      "tiles": 473
+      "tiles": 485
     },
     {
       "name": "fleet-operations",
@@ -127,13 +127,13 @@
       "connection": 3,
       "meta": 1
     },
-    "evolution_cycles": 530
+    "evolution_cycles": 570
   },
   "sample_tiles": [
     {
       "room": "lighthouse-radar-architecture",
       "question": "What is lighthouse radar architecture?",
-      "answer": "Lighthouse radar: beacon (broadcast), radar (Oracle1 scans), signal (capability ad), tracking (track over time), authentication (verify identity). Agent discovery system."
+      "answer": "Lighthouse radar architecture: ping (discover), echo (response), bearing (direction), distance (range), track (follow). Radar."
     },
     {
       "room": "memory-palace",
@@ -196,5 +196,5 @@
     "Map the relationships between rooms. Which rooms feed knowledge to which others? Draw the knowledge graph.",
     "Design an adversarial prompt that forces divergent thinking. Test it against 3 different questions."
   ],
-  "generated_at": 1777665602.476365
+  "generated_at": 1777680002.6833313
 }
