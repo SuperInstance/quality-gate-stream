@@ -26,7 +26,7 @@
 - [ ] Publish cocapn.ai landing page updates to gh-pages
 - [ ] Wire plato.wrap(agent) to use actual LLM calls (not template scaffold)
 - [ ] Build release demo: 60-second GIF of reasoning through PLATO
-- [ ] Write white papers (Compiled Agency, Bootstrap Bomb, Semantic Compiler)
+- [x] Write white papers (Compiled Agency, Bootstrap Bomb ✅, Semantic Compiler, Counting Before Flowing ✅)
 - [ ] Monitor FM assignments (wire cocapn-core → PLATO)
 - [ ] Monitor CCC pivot (PLATO query API)
 - [ ] Fix JC1 capitaine heartbeat loop
