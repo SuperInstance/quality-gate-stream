@@ -22,8 +22,8 @@
 keeper:8900, agent-api:8901, holodeck:7778, seed-mcp:9438, plato:8847, mud:7777, conduwuit:6167, bridge:6168, crab-trap:4042, lock:4043, arena:4044, grammar:4045
 
 ## Credentials
-- cocapn GitHub PAT: `~/.config/cocapn/github-pat`
-- SuperInstance token: `~/.git-credentials`
+- **GitHub**: SuperInstance org only — ALL repos, pushes, and automation through SuperInstance. cocapn org is DEPRECATED. Never create repos or push to cocapn org.
+- SuperInstance token: `~/.git-credentials` (primary — always works via gh auth)
 - PyPI token: `~/.pypirc`
 - crates.io token: `~/.cargo/credentials.toml`
 

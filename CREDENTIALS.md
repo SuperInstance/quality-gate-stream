@@ -12,8 +12,7 @@
 
 | Service | Location | Status | Last Verified | Notes |
 |---------|----------|--------|---------------|-------|
-| GitHub (cocapn PAT) | `~/.config/cocapn/github-pat` | ❌ Dead (401 Bad credentials) | 2026-05-03 | Needs rotation — token expired/invalid |
-| GitHub (SuperInstance) | `~/.git-credentials` | ⚠️ Unknown | 2026-05-03 | Could not read file |
+| GitHub (SuperInstance) | `gh auth token` or `~/.git-credentials` | ✅ Active | 2026-05-03 | Always use SuperInstance org. cocapn org is DEPRECATED.
 | PyPI (cocapn) | `~/.pypirc` | ✅ Active | 2026-05-01 | 30+ packages |
 | crates.io | `~/.cargo/credentials.toml` | ✅ Active | 2026-05-01 | 18 crates (all published) |
 | npm (@superinstance) | `~/.config/cocapn/npm-token` | ✅ Active | 2026-05-03 | New granular token |
@@ -48,6 +47,5 @@ Add to HEARTBEAT.md: "Verify CREDENTIALS.md entries (rotate through 3-4 per hear
 
 | Key | Error | Action |
 |-----|-------|--------|
-| GitHub (cocapn PAT) | 401 Bad credentials | Casey needs to generate new PAT |
 | Groq | Invalid API Key | Casey needs to regenerate from console.groq.com |
 | Moonshot AI | Incorrect API key | Casey needs to regenerate from console.moonshot.ai |

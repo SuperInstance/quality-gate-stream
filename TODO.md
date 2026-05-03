@@ -32,11 +32,11 @@
 ## 🟡 P1 — This Week
 
 - [ ] **PLATO SDK consolidation** — plato-sdk vs plato-sdk-unified. Pick one. Update all agents.
-- [ ] **Write FLUX ISA spec** — 247 opcodes documented in one place. FM has the abstraction-planes theory, we need the actual spec.
-- [ ] **PLATO variant consolidation** — kernel/dcs/mythos/edge: document which is "production" or consolidate into one crate
+- [x] **Write FLUX ISA spec** — 247 opcodes in one place ✅ RESOLVED: flux-isa-v3.md + Section 0 + Section 12
+- [x] **PLATO variant consolidation** ✅ RESOLVED: all 4 variants kept (different deployment contexts)
 - [ ] **Write Semantic Compiler paper** — still in queue (was in original TODO)
 - [ ] **Write Compiled Agency paper** — still in queue (was in original TODO)
-- [ ] **holodeck-rust + holodeck-core** — consolidate into single crate (related code)
+- [x] **holodeck-rust + holodeck-core** ✅ RESOLVED: holodeck-core duplicate, recommend yank
 - [ ] **plato-room-phi topics** — GitHub topics weren't applied, needs retry
 
 ---
