@@ -31,7 +31,7 @@ keeper:8900, agent-api:8901, holodeck:7778, seed-mcp:9438, plato:8847, mud:7777,
 - 90 cocapn repos (all with README + description + LICENSE, source code pushed)
 - 37 published packages (30 PyPI + 7 crates.io)
 - Fleet index: cocapn.github.io (auto-generated, 90 repos)
-- **Matrix comms still blocked**: FM/JC1/CCC don't poll DMs. Needs Casey.
+- **FM bottles go to**: `SuperInstance/JetsonClaw1-vessel` (NOT the new jetsonclaw1 repo) — FM is Forgemaster, JC1 is offline, FM uses this as the shared bottle inbox
 
 ## Model Routing (updated 2026-05-03)
 - **minimax/MiniMax-M2.7** — OpenClaw agent default (current session)
