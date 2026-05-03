@@ -46,7 +46,7 @@ Skills define _how_ tools work. This file is for _your_ specifics — the stuff 
 ## Model Routing (updated 2026-05-03)
 - **minimax/MiniMax-M2.7** — OpenClaw agent default (current)
 - **Moonshot** — kimi-cli only (not direct API)
-- **z.ai** — Claude Code and Crush only (not direct API)
+- **z.ai GLM** — Claude Code, Crush, and Droid Factory all routed through z.ai (not direct API)
 - **SiliconFlow** — DEPRECATED / revoked
 
 ## z.ai Models (max coding plan)
@@ -57,21 +57,8 @@ Skills define _how_ tools work. This file is for _your_ specifics — the stuff 
 - ~~glm-4.7-flashx~~ — NOT on plan, don't use
 
 ## Groq API (high-frequency iterations)
-- **API key**: `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`
-- **Base URL**: `https://api.groq.com/openai/v1`
-- **Best for**: High-frequency iterations, spray-and-pray, rapid feedback loops
-- **Speed**: ~24ms inference for 70B model. Absurdly fast.
-- **⚠️ Python urllib**: Groq blocks default Python User-Agent. Must set `User-Agent: curl/7.88` header.
-- **Models (18)**:
-  - `llama-3.3-70b-versatile` — workhorse, 24ms
-  - `llama-3.1-8b-instant` — fastest, for spray iterations
-  - `meta-llama/llama-4-scout-17b-16e-instruct` — Llama 4
-  - `qwen/qwen3-32b` — Qwen at Groq speed
-  - `moonshotai/kimi-k2-instruct` — Kimi at inference speed
-  - `openai/gpt-oss-120b` — 120B model
-  - `openai/gpt-oss-20b` — mid-tier OSS
-  - `groq/compound` + `groq/compound-mini` — Groq native
-  - Audio: `whisper-large-v3`, `whisper-large-v3-turbo`
+- **API key**: `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` — DEAD (401, needs rotation)
+- **⚠️ Note:** Groq token is revoked. All high-frequency iteration tasks should use kimi-cli or glm-4.7-flash instead.
 
 ## SiliconFlow API
 - **API key**: `[SILICONFLOW_KEY_REDACTED]`, base: `https://api.siliconflow.com/v1`
