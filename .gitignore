@@ -16,3 +16,6 @@ credentials/
 
 # Session transcripts contain task context - keep private
 data/plato-commands/
+.crush/crush.db
+.crush/
+memory/
