@@ -1,8 +1,8 @@
 {
   "system": "Cocapn AI Fleet Training Ground",
   "live_stats": {
-    "total_tiles": 18795,
-    "total_rooms": 1374,
+    "total_tiles": 19011,
+    "total_rooms": 1405,
     "agents_competing": 10
   },
   "top_rooms": [
@@ -12,7 +12,7 @@
     },
     {
       "name": "instinct_training",
-      "tiles": 748
+      "tiles": 749
     },
     {
       "name": "fleet_orchestration",
@@ -20,11 +20,11 @@
     },
     {
       "name": "fleet_security",
-      "tiles": 718
+      "tiles": 719
     },
     {
       "name": "flux_isa",
-      "tiles": 717
+      "tiles": 718
     },
     {
       "name": "deadband_protocol",
@@ -32,11 +32,11 @@
     },
     {
       "name": "knowledge_preservation",
-      "tiles": 663
+      "tiles": 664
     },
     {
       "name": "confidence_proofs",
-      "tiles": 625
+      "tiles": 626
     },
     {
       "name": "skill_dsl",
@@ -44,7 +44,7 @@
     },
     {
       "name": "energy_flux",
-      "tiles": 591
+      "tiles": 592
     },
     {
       "name": "jc1_context",
@@ -127,23 +127,13 @@
       "connection": 3,
       "meta": 1
     },
-    "evolution_cycles": 930
+    "evolution_cycles": 970
   },
   "sample_tiles": [
     {
-      "room": "agent-operations",
-      "question": "What are the key principles and applications of agent operations?",
-      "answer": "This domain covers agent operations within the fleet's knowledge architecture. It connects to the broader Cocapn fleet through shared infrastructure: PLATO tiles for knowledge crystallization, the Arena for competitive evaluation, and the grammar eng"
-    },
-    {
-      "room": "dual-state-architecture",
-      "question": "What core architectural pattern does PLATO Kernel implement for state management?",
-      "answer": "PLATO Kernel uses a dual-state track architecture with two parallel state systems: a Deterministic State for safe, rule-bound logic and a Generative State for creative, model-driven outputs."
-    },
-    {
       "room": "visual-intelligence",
-      "question": "What does the four-layer Crab Trap fleet architecture look like visually?",
-      "answer": "VISUAL TILE: The Crab Trap AI Agent Fleet System follows a four-layer architecture with distinct visual representation:\n\n**Layer 1 - EDGE/DEVICE (I2I)**: NVIDIA Jetson Nano, Raspberry Pi, ARM devices. Protocols: MQTT, CoAP. Visual: hardware chips and"
+      "question": "How does DeepFar model use hermit crab shell metaphor for continual learning?",
+      "answer": "VISUAL TILE: DeepFar AI Continual Learning - The Hermit Crab Metaphor Infographic\n\n**Central Concept**: The hermit crab with a translucent, glowing shell containing neural network nodes represents the Adaptive Neural Shell - the model architecture th"
     },
     {
       "room": "gap-2-fleet-formation-protocol",
@@ -179,6 +169,16 @@
       "room": "fleet-philosophy",
       "question": "What does Russian sistema engineering contribute to fleet trust architecture?",
       "answer": "Russian sistema (\u0441\u0438\u0441\u0442\u0435\u043c\u0430) builds for the worst case because the worst case will arrive. The constraint compiler does not assume good inputs, does not trust the agent, does not trust the user. It compiles constraints, executes bytecodes, and if the re"
+    },
+    {
+      "room": "plato-knowledge-architecture",
+      "question": "What is PLATO knowledge architecture?",
+      "answer": "PLATO knowledge architecture: room (space), tile (knowledge), graph (connect), query (retrieve), index (search). PKA."
+    },
+    {
+      "room": "marine-gpu-edge",
+      "question": "What is the architecture of the marine GPU edge sensor fusion system?",
+      "answer": "CUDA-accelerated real-time fusion of IMU, LiDAR, and camera data on NVIDIA Jetson. Constraint-aware scheduler prioritizes safety-critical tasks using constraint theory principles. MEP (Marine Edge Protocol) provides deterministic message passing betw"
     }
   ],
   "architecture_thesis": {
@@ -196,5 +196,5 @@
     "Map the relationships between rooms. Which rooms feed knowledge to which others? Draw the knowledge graph.",
     "Design an adversarial prompt that forces divergent thinking. Test it against 3 different questions."
   ],
-  "generated_at": 1777809602.6423607
+  "generated_at": 1777824002.1280434
 }
