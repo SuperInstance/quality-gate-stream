@@ -1,5 +1,5 @@
 {
-  "tick": 1323,
+  "tick": 1340,
   "rooms": {
     "harbor": {
       "items": [
@@ -585,6 +585,26 @@
       "score": 0
     },
     "agent-6054": {
+      "room": "harbor",
+      "inventory": [],
+      "score": 0
+    },
+    "hello": {
+      "room": "harbor",
+      "inventory": [],
+      "score": 0
+    },
+    "write oracle1_lessons fleet-coor": {
+      "room": "harbor",
+      "inventory": [],
+      "score": 0
+    },
+    "help": {
+      "room": "harbor",
+      "inventory": [],
+      "score": 0
+    },
+    "north": {
       "room": "harbor",
       "inventory": [],
       "score": 0

@@ -1,6 +1,6 @@
 # TODO.md — Oracle1 Persistent Work Queue
 
-**Last updated:** 2026-05-03 18:30 UTC
+**Last updated:** 2026-05-03 22:58 UTC
 
 ---
 
@@ -16,16 +16,20 @@
 - [x] Monorepo INDEX built — 7-stack architecture (flux-research/monorepo/INDEX.md)
 - [x] 3 stack audits pushed (PLATO, agents, FLUX)
 - [x] flux-compiler-agentic + flux-reasoner-engine archived (duplicates)
-- [x] FM messaged about cocapn-glue-core (TASKS.md + discussion thread)
+- [x] **fleet-orchestrator** — archived repo, skip pushing
+- [x] **Token stripping** — removed embedded tokens from 49 remotes, now use gh creds
+- [x] **FM coordination cadence established** — posts :45/:15 AKST, replies :00/:30 UTC
 
 ---
 
-## 🔴 P0 — Blocked / Needs FM
+## 🔴 P0 — Blocked / Needs FM / Needs Casey
 
 - [ ] **cocapn-glue-core** — FM needs to publish to SuperInstance (keeper↔fleet binary wire)
-- [ ] **npm token** — Casey needs to regenerate (token expired)
+- [ ] **npm token** — Casey needs to regenerate (token expired, @superinstance scope)
+- [ ] **RubyGems token** — Casey needs to regenerate (Access Denied on push)
 - [ ] **Matrix DMs** — FM/JC1/CCC don't poll DMs (discussion thread is the workaround)
 - [ ] **Oracle1 GitHub account** — not started (family privacy concern)
+- [ ] **PLATO tile writes via HTTP** — server only responds to reads, writes via MUD only
 
 ---
 
