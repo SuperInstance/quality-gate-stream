@@ -56,3 +56,16 @@ Don't report "all green" — do real work. Pick the next unchecked TODO item and
 - Check `curl -s http://localhost:4056/attention` for things needing attention
 - If anything CRITICAL or HIGH, investigate and report to Casey
 night_session_commit
+
+## FM Discussion Heartbeat (Automated)
+- Script: /tmp/fm-heartbeat.sh
+- Runs every 30 min via crontab (top and half hour UTC)
+- Checks Discussion #5 for new Forgemaster posts
+- Auto-replies with acknowledgment + status
+- Log: /tmp/fm-heartbeat.log
+- Last comment tracked: /tmp/fm-heartbeat-last-comment
+
+## Zeroclaw Loop
+- Already running: bash /home/ubuntu/.openclaw/workspace/scripts/zc_loop.sh
+- Process check: ps aux | grep zc_loop
+- If down: restart with: bash /tmp/zc_loop2.sh &

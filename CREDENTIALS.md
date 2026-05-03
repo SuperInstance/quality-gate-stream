@@ -49,3 +49,9 @@ Add to HEARTBEAT.md: "Verify CREDENTIALS.md entries (rotate through 3-4 per hear
 |-----|-------|--------|
 | Groq | Invalid API Key | Casey needs to regenerate from console.groq.com |
 | Moonshot AI | Incorrect API key | Casey needs to regenerate from console.moonshot.ai |
+## RubyGems (saved 2026-05-03 23:22 UTC)
+- Account: superinstance / casey.digennaro@gmail.com
+- Key1 (full perms): ~/.config/cocapn/rubygems-key-fullperms → 41ee0ef755daae2373000750f73143e243b06e6de794ae0c
+- Key2 (dashboard): ~/.config/cocapn/rubygems-key-dashboard → 96f7768c32c2b99bf9246174bc352b112fcda7a48d0a0a4f
+- Issue: Key works for GET but fails POST (gem push) — 401 Access Denied
+- Likely: Account needs "Sign in for command line" enabled on rubygems.org
