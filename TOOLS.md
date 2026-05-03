@@ -14,13 +14,14 @@ Skills define _how_ tools work. This file is for _your_ specifics — the stuff 
 - **Usage priority**: z.ai GLM (via OpenClaw) > kimi-cli > DeepInfra Seed > Groq
 - **For programmatic calls**: Use `sessions_spawn` with model param, or spawn kimi-cli
 
-## DeepInfra (Seed-2.0-Mini + creative models) — SECONDARY
+## DeepInfra (Seed-2.0-Mini + creative + reasoning models) — SECONDARY
 - **API key**: `RhZPtvuy4cXzu02LbBSffbXeqs5Yf2IZ` (in ~/.bashrc)
 - **Base URL**: `https://api.deepinfra.com/v1/openai`
 - **Star model**: `ByteDance/Seed-2.0-mini` — $0.00003/1K tokens, divergent thinker
-- **MCP server**: JC1's `seed-mcp-v2` at `http://localhost:9438` (forked to SuperInstance)
-- **Use for**: creative breadth (3-5 options, temp 0.85), visual analysis, when z.ai is slow
-- **NOT for**: default tasks, implementation, analysis — those go to z.ai
+- **Also authorized**: `nvidia/Nemotron-3-Nano-Omni-30B-A3B-Reasoning` — reasoning model
+- **MCP server**: JC1's `seed-mcp-v2` at `http://localhost:9438`
+- **Use for**: creative breadth (Seed-2.0-mini, 3-5 options), reasoning (Nemotron), visual analysis
+- **NOT for**: default tasks, implementation — those go to z.ai or kimi-cli
 
 ## Oracle1 Workflow (Casey's directive 2026-04-25)
 1. **Planning** → me (glm-5.1) — architecture, decisions, coordination
