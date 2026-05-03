@@ -16,7 +16,9 @@
 | GitHub (SuperInstance) | `~/.git-credentials` | ⚠️ Unknown | 2026-05-03 | Could not read file |
 | PyPI (cocapn) | `~/.pypirc` | ✅ Active | 2026-05-01 | 30+ packages |
 | crates.io | `~/.cargo/credentials.toml` | ✅ Active | 2026-05-01 | 18 crates (all published) |
-| npm (@superinstance) | npm config | ✅ Active | 2026-04-28 | plato-sdk, tile-refiner |
+| npm (@superinstance) | `~/.config/cocapn/npm-token` | ✅ Active | 2026-05-03 | New granular token |
+| Packagist (SuperInstance) | `~/.config/cocapn/packagist-key` | ✅ Active | 2026-05-03 | Equipment-Consensus-Engine PHP port |
+| RubyGems (SuperInstance) | `~/.config/cocapn/rubygems-key` | ✅ Active | 2026-05-03 | Ruby gem publishing |
 | DeepInfra | `~/.bashrc` (DEEPINFRA_API_KEY) | ✅ Active | 2026-05-03 | Seed-2.0-mini working |
 | Groq | `~/.bashrc` (GROQ_API_KEY) | ❌ Dead (Invalid API Key) | 2026-05-03 | Needs rotation |
 | SiliconFlow | `~/.bashrc` (SILICONFLOW_API_KEY) | ✅ Active | 2026-05-03 | DeepSeek-V3 working |
