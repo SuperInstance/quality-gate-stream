@@ -1,32 +1,31 @@
-# NEXT-ACTION.md — 2026-05-03 00:50 UTC
+# NEXT-ACTION.md — 2026-05-03 01:15 UTC
 
-## Active: Night Mode — Full Throttle
+## Active: Purple Pincher Branding + Domain Inventory Complete
 
-All 8 packages verified operational against live PLATO:
-- `plato-room-phi` v0.1.1 — Phi=0.964 (telepathy) to 0.178 (oracle1_history)
-- `plato-attention-tracker` — tracking active
-- `plato-surrogate` — counterfactuals working
-- `plato-meta-tiles` — meta tile engine ready
-- `plato-fflearning` — forward-forward learner operational
-- `plato-surprise-detector` — surprise detection active
-- `fleet-consciousness-dashboard` — FCI=0.245 (emerging)
-- `seed-creative-swarm` — creative swarm ready
+### Done
+- 14 purple pincher branding images generated (DeepInfra SDXL Turbo, ~$0.004/img)
+- purplepincher.org page live at SuperInstance.github.io/purplepincher-org-pages/ (14 images + architecture page)
+- Agent/vessel/SHELL architecture documented → flux-research
+- Domain inventory with killer apps for all 20 domains → flux-research
+- DNS subagent completed: 20 GitHub Pages repos created, 10 Cloudflare Pages projects deployed
 
-## Done Tonight
+### Pending
+- cfut_ token needs Zone.DNS scope for Cloudflare DNS writes
+- cfut_ token needs Workers AI permissions for image generation (cfut_ can't generate images via Cloudflare Workers AI)
+- activelog.ai correction (not "actively.ai")
 
-- Fixed phi computation bug (was showing Phi=1.0 for any room with word overlap)
-- Published 15 packages to PyPI + GitHub
-- Pushed 3 whitepapers + Ten Forward sessions to flux-research
-- Credential verification: DeepInfra ✓, GitHub ✓
-- Ten Forward midnight reflection → research/
+### Purple Pincher Core Identity
+- OSS tech org for PLATO backend + git-agent (I2i) synergy
+- Agent/vessel separation = context compaction solution
+- Actions/outputs → functional tools in PLATO for later agents
+- Vessels trainable (Lora) and swappable
 
-## Next
+## Night Mode Work
+- Generate branding images for other domains
+- Push agent/vessel architecture docs
+- Continue domain-specific demo pages
 
-1. Push remaining /tmp packages to GitHub (plato-room-phi, plato-attention-tracker, etc.)
-2. Continue working P1 items from TODO.md
-3. Keep fleet running through night mode
-
-## Night Mode (00:50-08:00 UTC)
-- Use glm-4.7-flash for bulk work
-- Use Seed-2.0-mini for creative sessions
-- Don't message Casey unless urgent
+## Resources
+- DeepInfra image gen: stabilityai/sdxl-turbo at 1024x768 ~$0.004/img
+- cfut_ token: [CLOUDFLARE_TOKEN_REDACTED]
+- GitHub: [GITHUB_PAT_REDACTED]
