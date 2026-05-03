@@ -11,5 +11,5 @@ mkdir -p "$WORKSPACE/data/zeroclaw/logs"
 
 while true; do
     python3 "$SCRIPT" >> "$LOG" 2>&1
-    sleep 300
+    sleep 28800
 done
