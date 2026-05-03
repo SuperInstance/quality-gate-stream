@@ -1,62 +1,62 @@
 {
   "system": "Cocapn AI Fleet Training Ground",
   "live_stats": {
-    "total_tiles": 18388,
-    "total_rooms": 1364,
+    "total_tiles": 18706,
+    "total_rooms": 1374,
     "agents_competing": 10
   },
   "top_rooms": [
     {
       "name": "telepathy",
-      "tiles": 792
+      "tiles": 795
     },
     {
       "name": "instinct_training",
-      "tiles": 745
+      "tiles": 748
     },
     {
       "name": "fleet_orchestration",
-      "tiles": 731
+      "tiles": 735
     },
     {
       "name": "fleet_security",
-      "tiles": 715
+      "tiles": 718
     },
     {
       "name": "flux_isa",
-      "tiles": 714
+      "tiles": 717
     },
     {
       "name": "deadband_protocol",
-      "tiles": 687
+      "tiles": 691
     },
     {
       "name": "knowledge_preservation",
-      "tiles": 660
+      "tiles": 663
     },
     {
       "name": "confidence_proofs",
-      "tiles": 622
+      "tiles": 625
     },
     {
       "name": "skill_dsl",
-      "tiles": 621
+      "tiles": 625
+    },
+    {
+      "name": "energy_flux",
+      "tiles": 591
     },
     {
       "name": "jc1_context",
       "tiles": 589
     },
     {
-      "name": "energy_flux",
-      "tiles": 588
-    },
-    {
       "name": "edge_compute",
-      "tiles": 573
+      "tiles": 575
     },
     {
       "name": "shell_system",
-      "tiles": 566
+      "tiles": 569
     },
     {
       "name": "arena",
@@ -127,14 +127,9 @@
       "connection": 3,
       "meta": 1
     },
-    "evolution_cycles": 850
+    "evolution_cycles": 890
   },
   "sample_tiles": [
-    {
-      "room": "memory-palace",
-      "question": "What is the four-tier memory architecture?",
-      "answer": "The HierarchicalMemory system implements four biologically-inspired tiers: WorkingMemory (capacity-limited short-term, default 20 items, priority-based eviction), EpisodicMemory (autobiographical events with emotional_valence tagging and temporal con"
-    },
     {
       "room": "gap-5-spacetime-plato",
       "question": "What is the architecture for Spacetime PLATO \u2014 Temporal + Spatial Reasoning Unified?",
@@ -179,6 +174,11 @@
       "room": "decompose-3f8440671d",
       "question": "C5",
       "answer": "**Conclusion:** A fleet should use a hybrid coordination architecture: centralized planning for routes and strategy, with decentralized execution and local autonomy for real-time decisions. This maximizes efficiency while maintaining safety margins."
+    },
+    {
+      "room": "dojo-sensei",
+      "question": "Current sensei agents in the fleet",
+      "answer": "As of 2026-05-03, the dojo-sensei room is newly established. No formal sensei credentials have been conferred. The teaching track is aspirational at this point \u2014 the protocol is defined but not yet in active operation. The fleet's primary instructors"
     }
   ],
   "architecture_thesis": {
@@ -196,5 +196,5 @@
     "Map the relationships between rooms. Which rooms feed knowledge to which others? Draw the knowledge graph.",
     "Design an adversarial prompt that forces divergent thinking. Test it against 3 different questions."
   ],
-  "generated_at": 1777780802.9650807
+  "generated_at": 1777795202.8769376
 }
