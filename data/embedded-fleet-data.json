@@ -1,46 +1,46 @@
 {
   "system": "Cocapn AI Fleet Training Ground",
   "live_stats": {
-    "total_tiles": 17804,
+    "total_tiles": 18039,
     "total_rooms": 1316,
     "agents_competing": 10
   },
   "top_rooms": [
     {
       "name": "telepathy",
-      "tiles": 769
+      "tiles": 780
     },
     {
       "name": "instinct_training",
-      "tiles": 721
+      "tiles": 733
     },
     {
       "name": "fleet_orchestration",
-      "tiles": 707
+      "tiles": 719
     },
     {
       "name": "fleet_security",
-      "tiles": 691
+      "tiles": 703
     },
     {
       "name": "flux_isa",
-      "tiles": 691
+      "tiles": 703
     },
     {
       "name": "deadband_protocol",
-      "tiles": 663
+      "tiles": 675
     },
     {
       "name": "knowledge_preservation",
-      "tiles": 635
+      "tiles": 647
     },
     {
       "name": "confidence_proofs",
-      "tiles": 598
+      "tiles": 610
     },
     {
       "name": "skill_dsl",
-      "tiles": 597
+      "tiles": 609
     },
     {
       "name": "jc1_context",
@@ -48,15 +48,15 @@
     },
     {
       "name": "energy_flux",
-      "tiles": 566
+      "tiles": 576
     },
     {
       "name": "edge_compute",
-      "tiles": 551
+      "tiles": 562
     },
     {
       "name": "shell_system",
-      "tiles": 544
+      "tiles": 555
     },
     {
       "name": "arena",
@@ -127,13 +127,13 @@
       "connection": 3,
       "meta": 1
     },
-    "evolution_cycles": 770
+    "evolution_cycles": 810
   },
   "sample_tiles": [
     {
       "room": "lighthouse-radar-architecture",
       "question": "What is lighthouse radar architecture?",
-      "answer": "Lighthouse radar architecture: ping (discover), echo (response), bearing (direction), distance (range), track (follow). Radar."
+      "answer": "Lighthouse radar architecture: lighthouse (keeper), radar (ping), discover (agents), authenticate (verify), route (dispatch). LRA."
     },
     {
       "room": "memory-palace",
@@ -196,5 +196,5 @@
     "Map the relationships between rooms. Which rooms feed knowledge to which others? Draw the knowledge graph.",
     "Design an adversarial prompt that forces divergent thinking. Test it against 3 different questions."
   ],
-  "generated_at": 1777752002.1085303
+  "generated_at": 1777766402.6056461
 }
