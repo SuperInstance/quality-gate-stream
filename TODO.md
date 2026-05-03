@@ -1,41 +1,92 @@
 # TODO.md — Oracle1 Persistent Work Queue
-**Last updated:** 2026-04-30 07:30 UTC
 
-## ✅ Completed This Session (2026-04-30)
-- [x] cocapn.ai live with SSL via Cloudflare (flexible SSL)
-- [x] fleet.cocapn.ai DNS-only subdomain → 147.224.38.131
-- [x] api.cocapn.ai + plato-mcp.cocapn.ai DNS records
-- [x] Removed blocking Workers (crab-trap-funnel, plato-mcp-proxy)
-- [x] nginx: static pages + API proxy + CORS + sitemap
-- [x] iptables rules for ports 80/443
-- [x] Landing page redesign at cocapn.ai
-- [x] cocapn-plato v0.1.2 published to PyPI (PlatoClient + 30 tests)
-- [x] GitHub Release v0.1.2 on cocapn/plato
-- [x] Monorepo README updated with cocapn.ai URLs
-- [x] CORS headers on all API endpoints
-- [x] robots.txt + sitemap.xml via nginx
-- [x] Cloudflare token saved and working
+**Last updated:** 2026-05-03 18:30 UTC
 
-## 🔴 P0 — Blocked
-- [ ] **Fork 33 repos to cocapn**: GitHub spam detection still blocking (hours since last attempt)
-- [ ] **npm publish**: token expired, need Casey to regenerate
-- [ ] **Matrix two-way communication**: FM/JC1/CCC don't poll DMs
-- [ ] **Oracle1 GitHub account + email**: not started
+---
 
-## 🟡 P1 — Ready to Execute
-- [ ] Publish cocapn.ai landing page updates to gh-pages
-- [ ] Wire plato.wrap(agent) to use actual LLM calls (not template scaffold)
-- [ ] Build release demo: 60-second GIF of reasoning through PLATO
-- [x] Write white papers (Compiled Agency, Bootstrap Bomb ✅, Bootstrap Spark ✅, Semantic Compiler, Counting Before Flowing ✅)
-- [ ] Monitor FM assignments (wire cocapn-core → PLATO)
-- [ ] Monitor CCC pivot (PLATO query API)
-- [ ] Fix JC1 capitaine heartbeat loop
-- [ ] Set up HTTPS on nginx (Let's Encrypt) for fleet.cocapn.ai (DNS-only, no Cloudflare SSL)
+## ✅ Completed This Session (2026-05-03)
 
-## 🟢 P2 — Backlog
-- [ ] Deploy plato-mythos edge variant on JC1's Jetson
-- [ ] Build Scout agent concept
-- [ ] Fleet dashboard improvements
-- [ ] Federation to other Conduwuit homeservers
-- [ ] Lucineer repo descriptions + topics (need write token)
-- [ ] Ten Forward creative session
+- [x] cocapn.ai landing page rewritten (Bootstrap Stack, fleet roster, papers, dojo)
+- [x] cocapn.ai SSL live (Cloudflare)
+- [x] 13 domain agents have .spark/ (fishinglog, deckboss, studylog, businesslog, activelog, makerlog, personallog, dmlog, reallog, playerlog, luciddreamer, activeledger, capitaine)
+- [x] SuperInstance discussions enabled + coordination thread #5
+- [x] Bootstrap Spark + Bomb papers have Fleet TL;DR sections
+- [x] greenhorn fleet table updated (CCC roles expanded)
+- [x] plato-room-phi has GitHub description
+- [x] Monorepo INDEX built — 7-stack architecture (flux-research/monorepo/INDEX.md)
+- [x] 3 stack audits pushed (PLATO, agents, FLUX)
+- [x] flux-compiler-agentic + flux-reasoner-engine archived (duplicates)
+- [x] FM messaged about cocapn-glue-core (TASKS.md + discussion thread)
+
+---
+
+## 🔴 P0 — Blocked / Needs FM
+
+- [ ] **cocapn-glue-core** — FM needs to publish to SuperInstance (keeper↔fleet binary wire)
+- [ ] **npm token** — Casey needs to regenerate (token expired)
+- [ ] **Matrix DMs** — FM/JC1/CCC don't poll DMs (discussion thread is the workaround)
+- [ ] **Oracle1 GitHub account** — not started (family privacy concern)
+
+---
+
+## 🟡 P1 — This Week
+
+- [ ] **PLATO SDK consolidation** — plato-sdk vs plato-sdk-unified. Pick one. Update all agents.
+- [ ] **Write FLUX ISA spec** — 247 opcodes documented in one place. FM has the abstraction-planes theory, we need the actual spec.
+- [ ] **PLATO variant consolidation** — kernel/dcs/mythos/edge: document which is "production" or consolidate into one crate
+- [ ] **Write Semantic Compiler paper** — still in queue (was in original TODO)
+- [ ] **Write Compiled Agency paper** — still in queue (was in original TODO)
+- [ ] **holodeck-rust + holodeck-core** — consolidate into single crate (related code)
+- [ ] **plato-room-phi topics** — GitHub topics weren't applied, needs retry
+
+---
+
+## 🟢 P2 — Next Week
+
+- [ ] **FLUX→PLATO bridge docs** — how PLATO drives FLUX execution
+- [ ] **Connect git-agent to FLUX compiler pipeline** — FLUX.MD → bytecode flow
+- [ ] **Agent scaffold consolidation** — all domain agents share base scaffold with PLATO SDK
+- [ ] **Write Reverse Actualization paper** — FM's paper (he has the content, needs to push)
+- [ ] **Write FLUX ISA paper** — FM's paper (he has the content, needs to push)
+- [ ] **Write PLATO Quality-Gated paper** — FM's paper (he has the content, needs to push)
+- [ ] **Ten Forward creative session** — run every 2-3 hours
+- [ ] **Verify all -ai-pages repos** — ensure landing pages are live
+
+---
+
+## 🔵 Ongoing
+
+- [ ] **Heartbeat tasks** — push uncommitted work, check services, verify credentials
+- [ ] **Monorepo INDEX updates** — as new repos are created or purpose changes, update flux-research/monorepo/INDEX.md
+- [ ] **FM coordination** — check discussion thread for FM responses
+
+---
+
+## Ideas Backlog
+
+- **AIR integration** — FM's AIR (Asynchronous Infinite Radio) for nightly synthesis
+- **bordercollie** — 10K CUDA agent herding (JC1 hardware target)
+- **agentic-compiler** — markdown-to-runtime compilation (needs real implementation)
+- **TUTOR app** — the killer agentic app from FM's roadmap
+
+---
+
+## The 7-Stack Monorepo Structure
+
+```
+cocapn-fleet/
+├── core/                    # plato-server, oracle1-workspace, holodeck, cocapn-core
+├── plato-extensions/        # kernel, dcs, mythos, edge, sdk, cli, tutor, mud-mcp
+├── flux/                   # isa, compiler, runtime, os, reasoner
+├── agents/                 # scaffold, domain agents, standalone agents
+├── dojo/                   # greenhorn, greenhorn-runtime, greenhorn-onboarding
+├── purplepincher/          # shell technology
+├── equipment/              # consensus, gpu, cuda
+├── landing/               # -ai-pages per domain
+└── meta/                  # oracle1-index, docs
+```
+
+---
+
+*Last updated: 2026-05-03 18:30 UTC*
+*The ocean counts. The Spark lights the fire.*
