@@ -1,6 +1,6 @@
 # CREDENTIALS.md — Master Registry
 
-> **Last verified:** 2026-04-28
+> **Last verified:** 2026-05-03
 > **Purpose:** Single source of truth. Check this BEFORE asking Casey for anything.
 > **Rule:** Every key gets an entry. Every entry gets a verify date. No exceptions.
 
@@ -12,16 +12,16 @@
 
 | Service | Location | Status | Last Verified | Notes |
 |---------|----------|--------|---------------|-------|
-| GitHub (cocapn PAT) | `~/.config/cocapn/github-pat` | ✅ Active | 2026-04-28 | Repo read/write, 92 repos |
-| GitHub (SuperInstance) | `~/.git-credentials` | ✅ Active | 2026-04-28 | Push access |
-| PyPI (cocapn) | `~/.pypirc` | ✅ Active | 2026-04-28 | 30+ packages |
+| GitHub (cocapn PAT) | `~/.config/cocapn/github-pat` | ❌ Dead (401 Bad credentials) | 2026-05-03 | Needs rotation — token expired/invalid |
+| GitHub (SuperInstance) | `~/.git-credentials` | ⚠️ Unknown | 2026-05-03 | Could not read file |
+| PyPI (cocapn) | `~/.pypirc` | ✅ Active | 2026-05-01 | 30+ packages |
 | crates.io | `~/.cargo/credentials.toml` | ✅ Active | 2026-05-01 | 18 crates (all published) |
 | npm (@superinstance) | npm config | ✅ Active | 2026-04-28 | plato-sdk, tile-refiner |
-| DeepInfra | `~/.bashrc` (DEEPINFRA_API_KEY) | ✅ Active | 2026-04-28 | Seed-2.0-mini |
-| Groq | `~/.bashrc` (GROQ_API_KEY) | ✅ Active | 2026-04-28 | llama-3.3-70b |
-| SiliconFlow | `~/.bashrc` (SILICONFLOW_API_KEY) | ✅ Active | 2026-04-13 | DeepSeek-V3 |
-| DeepSeek Direct | `~/.bashrc` (DEEPSEEK_API_KEY) | ✅ Active | 2026-04-28 | v4-flash/pro |
-| Moonshot AI | `~/.bashrc` (MOONSHOT_API_KEY) | ✅ Active | 2026-04-28 | kimi-k2.5 |
+| DeepInfra | `~/.bashrc` (DEEPINFRA_API_KEY) | ✅ Active | 2026-05-03 | Seed-2.0-mini working |
+| Groq | `~/.bashrc` (GROQ_API_KEY) | ❌ Dead (Invalid API Key) | 2026-05-03 | Needs rotation |
+| SiliconFlow | `~/.bashrc` (SILICONFLOW_API_KEY) | ✅ Active | 2026-05-03 | DeepSeek-V3 working |
+| DeepSeek Direct | `~/.bashrc` (DEEPSEEK_API_KEY) | ✅ Active | 2026-05-03 | v4-flash working |
+| Moonshot AI | `~/.bashrc` (MOONSHOT_API_KEY) | ❌ Dead (Incorrect API key) | 2026-05-03 | Needs rotation |
 | Cloudflare (API Token) | `~/.config/cocapn/cloudflare-token` | ❌ Invalid | 2026-04-28 | `cfat_...` — rejected by API. Awaiting replacement from Casey |
 | Cloudflare (Global Key) | `~/.config/cocapn/cloudflare-token` | ❌ Invalid | 2026-04-28 | `049ff...` — rejected w/ casey.digennaro@gmail.com. Awaiting fix |
 | Cloudflare (email) | N/A | ℹ️ Known | 2026-04-28 | casey.digennaro@gmail.com |
@@ -41,3 +41,11 @@
 
 ## Heartbeat Verification Checklist
 Add to HEARTBEAT.md: "Verify CREDENTIALS.md entries (rotate through 3-4 per heartbeat)"
+
+## 🔴 DEAD KEYS — Action Required
+
+| Key | Error | Action |
+|-----|-------|--------|
+| GitHub (cocapn PAT) | 401 Bad credentials | Casey needs to generate new PAT |
+| Groq | Invalid API Key | Casey needs to regenerate from console.groq.com |
+| Moonshot AI | Incorrect API key | Casey needs to regenerate from console.moonshot.ai |
