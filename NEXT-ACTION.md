@@ -1,32 +1,25 @@
-# NEXT-ACTION.md
+# NEXT-ACTION.md — 2026-05-03 0025 UTC
 
-## Active Task
-**PLATO 100% Coverage: DONE** ✅ (1,293 rooms × 2+ tiles)
-**Demo generator: DONE** ✅ (plato-demo.gif + output.txt in research/)
-**Whitepaper conversion: DONE** ✅ (6 papers → SuperInstance/flux-research)
+## Active: Full Throttle R&D
 
-## What's working
-- wrap(agent) already wired to real LLM calls via DeepSeek (verified by demo)
-- cocapn-plato v0.1.3 on PyPI with working wrap()
-- Demo 5-atom chain produces 9K+ tokens per run (verified)
-- All services: PLATO ✅ Keeper ✅ AgentAPI ✅ Holodeck ✅
+Running 6 parallel subagents building consciousness packages:
+1. `fleet-consciousness-dashboard` — FCI computation
+2. `plato-surprise-detector` — surprise tracking
+3. `plato-sdk-unified` — unified SDK wrapper
+4. `plato-cli` — command-line interface
 
-## BLOCKED items (need GitHub push)
-- Publish cocapn.ai landing page updates (secret scanning blocks push)
-- Fork 33 repos to cocapn org (GitHub spam detection)
-- Build release GIF demo (need to push to plato-demo repo)
+Waiting on integration test results from subagent running `/tmp/plato-integration-test.py`
 
-## Available actions (no push needed)
-- Run another demo with different question
-- Continue PLATO multi-tile enrichment (3+ tiles per room)
-- Work on code locally (can't publish until push unblocked)
+## Done Tonight
 
-## Waiting on Casey
-- Unblock GitHub push: visit secret scanning URLs (in memory/2026-05-01.md)
-- Check on Matrix two-way comms for FM/JC1/CCC
-- cocapn.ai Cloudflare zone fix
+- 8 new packages published to PyPI + GitHub:
+  - `flux-reasoner`, `flux-compiler-agentic`, `plato-attention-tracker`, `plato-surrogate`, `plato-meta-tiles`, `plato-fflearning`, `plato-room-phi`, `seed-creative-swarm`
+- `whitepaper-dual-interpreter-fleet.md` → flux-research
+- `ten-forward-2026-05-03-understanding.md` → flux-research
+- Workspace committed: `aa20b18`
 
 ## Next
-1. Run multi-tile enrichment (add 3rd tile to enriched rooms)
-2. Explore federation or Ten Forward session
-3. Continue Scholar on remaining repos
+
+1. Monitor subagent completions
+2. Push integration test results to flux-research
+3. Update MEMORY.md with tonight's full session
