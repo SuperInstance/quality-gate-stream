@@ -9,6 +9,8 @@ LOG="$WORKSPACE/data/zeroclaw/loop.log"
 
 mkdir -p "$WORKSPACE/data/zeroclaw/logs"
 
+source ~/.credentials_vault 2>/dev/null
+
 while true; do
     python3 "$SCRIPT" >> "$LOG" 2>&1
     sleep 28800

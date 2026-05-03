@@ -152,7 +152,7 @@ RESEARCH_QUESTIONS = {
 def get_groq_response(prompt: str, max_tokens: int = 500) -> str:
     """Call Groq API for agent thinking."""
     import urllib.request
-    api_key = os.environ.get("GROQ_API_KEY", "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")
+    api_key = os.environ.get("GROQ_API_KEY", "")
     url = "https://api.groq.com/openai/v1/chat/completions"
     data = json.dumps({
         "model": "llama-3.3-70b-versatile",
