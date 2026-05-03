@@ -43,6 +43,12 @@ Skills define _how_ tools work. This file is for _your_ specifics — the stuff 
 - **Aider** v0.86.2 → `aider` (DeepSeek API)
 - All at `/home/ubuntu/.local/bin/` or `/home/ubuntu/.npm-global/bin/`
 
+## Model Routing (updated 2026-05-03)
+- **minimax/MiniMax-M2.7** — OpenClaw agent default (current)
+- **Moonshot** — kimi-cli only (not direct API)
+- **z.ai** — Claude Code and Crush only (not direct API)
+- **SiliconFlow** — DEPRECATED / revoked
+
 ## z.ai Models (max coding plan)
 - `glm-5.1` — expert (me)
 - `glm-5-turbo` — runner, daily driver
@@ -145,6 +151,7 @@ sudo docker run --rm -v /tmp/workspace:/workspace fleet-sandbox cargo test --man
 - **Also**: `kimi-k2-thinking`, `kimi-k2-turbo-preview`, `moonshot-v1-auto`
 - **Use for**: deep research, swarm analysis, creative+reasoning combined
 - **Note**: kimi-k2.5 returns empty `content` when `max_tokens` is too low for both reasoning and content. Use 4000+ tokens.
+- **⚠️ Routing**: Moonshot is routed through kimi-cli only. NOT direct API access.
 
 ## kimi-cli (Kimi Agent Runtime)
 - **Binary**: `/home/ubuntu/.local/bin/kimi-cli` v1.37.0

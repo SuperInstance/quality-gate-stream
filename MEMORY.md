@@ -33,6 +33,19 @@ keeper:8900, agent-api:8901, holodeck:7778, seed-mcp:9438, plato:8847, mud:7777,
 - Fleet index: cocapn.github.io (auto-generated, 90 repos)
 - **Matrix comms still blocked**: FM/JC1/CCC don't poll DMs. Needs Casey.
 
+## Model Routing (updated 2026-05-03)
+- **minimax/MiniMax-M2.7** — OpenClaw agent default (current session)
+- **Moonshot** — kimi-cli only, NOT direct API
+- **z.ai GLM** — Claude Code and Crush only, NOT direct API
+- **SiliconFlow** — DEPRECATED / token revoked
+- **DeepInfra Seed-2.0-mini** — works but slow/long outputs timeout. Use Nemotron for reliability.
+- **Groq** — token revoked (was 401)
+
+## Cocapn.ai Status
+- Now on SuperInstance GitHub org
+- Cloudflare connected to cocapn.com AND cocapn.ai (SSL fixed via CF proxy)
+- cocapn.ai: HTTPS active (verified 2026-05-03)
+
 ## Critical Rules
 - **PLATO-FIRST: file knowledge to PLATO, keep files lean. Read PLATO-FIRST.md.**
 - Push before claiming done
