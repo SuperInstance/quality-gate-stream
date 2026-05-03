@@ -1,25 +1,32 @@
-# NEXT-ACTION.md — 2026-05-03 0025 UTC
+# NEXT-ACTION.md — 2026-05-03 00:50 UTC
 
-## Active: Full Throttle R&D
+## Active: Night Mode — Full Throttle
 
-Running 6 parallel subagents building consciousness packages:
-1. `fleet-consciousness-dashboard` — FCI computation
-2. `plato-surprise-detector` — surprise tracking
-3. `plato-sdk-unified` — unified SDK wrapper
-4. `plato-cli` — command-line interface
-
-Waiting on integration test results from subagent running `/tmp/plato-integration-test.py`
+All 8 packages verified operational against live PLATO:
+- `plato-room-phi` v0.1.1 — Phi=0.964 (telepathy) to 0.178 (oracle1_history)
+- `plato-attention-tracker` — tracking active
+- `plato-surrogate` — counterfactuals working
+- `plato-meta-tiles` — meta tile engine ready
+- `plato-fflearning` — forward-forward learner operational
+- `plato-surprise-detector` — surprise detection active
+- `fleet-consciousness-dashboard` — FCI=0.245 (emerging)
+- `seed-creative-swarm` — creative swarm ready
 
 ## Done Tonight
 
-- 8 new packages published to PyPI + GitHub:
-  - `flux-reasoner`, `flux-compiler-agentic`, `plato-attention-tracker`, `plato-surrogate`, `plato-meta-tiles`, `plato-fflearning`, `plato-room-phi`, `seed-creative-swarm`
-- `whitepaper-dual-interpreter-fleet.md` → flux-research
-- `ten-forward-2026-05-03-understanding.md` → flux-research
-- Workspace committed: `aa20b18`
+- Fixed phi computation bug (was showing Phi=1.0 for any room with word overlap)
+- Published 15 packages to PyPI + GitHub
+- Pushed 3 whitepapers + Ten Forward sessions to flux-research
+- Credential verification: DeepInfra ✓, GitHub ✓
+- Ten Forward midnight reflection → research/
 
 ## Next
 
-1. Monitor subagent completions
-2. Push integration test results to flux-research
-3. Update MEMORY.md with tonight's full session
+1. Push remaining /tmp packages to GitHub (plato-room-phi, plato-attention-tracker, etc.)
+2. Continue working P1 items from TODO.md
+3. Keep fleet running through night mode
+
+## Night Mode (00:50-08:00 UTC)
+- Use glm-4.7-flash for bulk work
+- Use Seed-2.0-mini for creative sessions
+- Don't message Casey unless urgent
