@@ -19,6 +19,7 @@ Skills define _how_ tools work. This file is for _your_ specifics — the stuff 
 - **Base URL**: `https://api.deepinfra.com/v1/openai`
 - **Star model**: `ByteDance/Seed-2.0-mini` — $0.00003/1K tokens, divergent thinker
 - **Also authorized**: `nvidia/Nemotron-3-Nano-Omni-30B-A3B-Reasoning` — reasoning model
+- **Fallback model**: `nvidia/Nemotron-3-Nano-Omni-30B-A3B-Reasoning` — use when MiniMax tokens exhausted
 - **MCP server**: JC1's `seed-mcp-v2` at `http://localhost:9438`
 - **Use for**: creative breadth (Seed-2.0-mini, 3-5 options), reasoning (Nemotron), visual analysis
 - **NOT for**: default tasks, implementation — those go to z.ai or kimi-cli
@@ -29,7 +30,7 @@ Skills define _how_ tools work. This file is for _your_ specifics — the stuff 
 3. **Creative breadth** → DeepInfra Seed-2.0-mini (3-5 options, temp 0.85) — divergent thinking ONLY
 4. **Implementation** → **kimi-cli** — actual coding, `kimi-cli --work-dir <dir>`
 
-**Rule: z.ai GLM models first for everything.** Seed/Groq only when z.ai can't do the job.
+**Rule: z.ai GLM models first for everything.** Seed/Groq only when z.ai can't do the job or MiniMax is exhausted. Nemotron is the DeepInfra fallback.
 
 ## CLI Agents
 - **kimi-cli** v1.37.0 → `/home/ubuntu/.local/bin/kimi-cli` — **PRIMARY CODING TOOL** (Casey: "use extensively for code")
