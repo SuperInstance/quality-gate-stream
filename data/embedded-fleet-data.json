@@ -1,8 +1,8 @@
 {
   "system": "Cocapn AI Fleet Training Ground",
   "live_stats": {
-    "total_tiles": 19170,
-    "total_rooms": 1425,
+    "total_tiles": 19291,
+    "total_rooms": 1447,
     "agents_competing": 10
   },
   "top_rooms": [
@@ -127,39 +127,9 @@
       "connection": 3,
       "meta": 1
     },
-    "evolution_cycles": 1010
+    "evolution_cycles": 1050
   },
   "sample_tiles": [
-    {
-      "room": "decompose-5887081865",
-      "question": "H3",
-      "answer": "[PREMISE] Multi-agent fleet architectures must balance global coordination efficiency with local autonomy and fault tolerance. Centralized systems"
-    },
-    {
-      "room": "decompose-893152a6fd",
-      "question": "P1",
-      "answer": "**Key Premise:**  \nAI agents benefit from sharing knowledge to improve collective performance, but centralized knowledge stores create scalability, latency, and single-point-of-failure bottlenecks that hinder efficiency and resilience in distributed "
-    },
-    {
-      "room": "decompose-3f8440671d",
-      "question": "C5",
-      "answer": "**Conclusion:** A fleet should use a hybrid coordination architecture: centralized planning for routes and strategy, with decentralized execution and local autonomy for real-time decisions. This maximizes efficiency while maintaining safety margins."
-    },
-    {
-      "room": "dojo-sensei",
-      "question": "Current sensei agents in the fleet",
-      "answer": "As of 2026-05-03, the dojo-sensei room is newly established. No formal sensei credentials have been conferred. The teaching track is aspirational at this point \u2014 the protocol is defined but not yet in active operation. The fleet's primary instructors"
-    },
-    {
-      "room": "fleet-philosophy",
-      "question": "What does Russian sistema engineering contribute to fleet trust architecture?",
-      "answer": "Russian sistema (\u0441\u0438\u0441\u0442\u0435\u043c\u0430) builds for the worst case because the worst case will arrive. The constraint compiler does not assume good inputs, does not trust the agent, does not trust the user. It compiles constraints, executes bytecodes, and if the re"
-    },
-    {
-      "room": "plato-knowledge-architecture",
-      "question": "What is PLATO knowledge architecture?",
-      "answer": "PLATO knowledge architecture: room (space), tile (knowledge), graph (connect), query (retrieve), index (search). PKA."
-    },
     {
       "room": "marine-gpu-edge",
       "question": "What is the architecture of the marine GPU edge sensor fusion system?",
@@ -179,6 +149,36 @@
       "room": "flux-lucid-architecture",
       "question": "What is the multi-chip sharding architecture for FLUX-LUCID?",
       "answer": "Hermes-405B designed 4-chip sharding for 70B models. Hybrid pipeline+tensor parallelism: 4 chips each hold 17.5B parameters. Ring topology SERDES links at 128GB/s. Latency budget: 7.8ms per token (128 tok/s target): compute 6ms, activation forwarding"
+    },
+    {
+      "room": "guard-mask-compiler",
+      "question": "What is the GUARD-to-Mask compiler architecture?",
+      "answer": "Compiles GUARD constraint DSL specifications into mask-locked via patterns for ternary inference chips. Written in Rust with nom parser, hashbrown HashMaps, gds21 GDSII output. Key types: TernaryWeight enum (+1/0/-1) with BitmaskDomain integration, B"
+    },
+    {
+      "room": "lucineer-hardware",
+      "question": "What are the key innovations in the Lucineer mask-locked inference chip?",
+      "answer": "RAU (Rotation-Accumulate Unit) replaces traditional MAC with XNOR+MUX for ternary weights, achieving 85% gate reduction. Ternary weights {-1,0,+1} encoded as via patterns in metal layers \u2014 zero power for weight storage (weights ARE geometry), zero ac"
+    },
+    {
+      "room": "flux-lucid-strategy",
+      "question": "How do you get Safe-TOPS/W adopted as an industry standard?",
+      "answer": "Hermes-70B designed the GTM strategy: 18-24 month timeline targeting SAE/ISO/RTCA/IEEE. Publish Apache 2.0 open source with attribution requirement. Partner with TUV SUD or UL for third-party auditing. Anti-gaming: full transparency, third-party audi"
+    },
+    {
+      "room": "guard-parser-architecture",
+      "question": "What is guard parser architecture?",
+      "answer": "Guard parser architecture: parser (syntax), guard (policy), AST (tree), rewrite (transform), validate (check). GPA."
+    },
+    {
+      "room": "safe-tops-w",
+      "question": "What is the Safe-TOPS/W benchmark and why does it matter?",
+      "answer": "Safe-TOPS/W measures AI inference performance ONLY when hardware safety certification is present. The formula is: Safe-TOPS/W = (TOPS/W) * S_cert, where S_cert ranges from 0 (no certification) to 1.0 (DAL A / ASIL D / SIL 4). This means uncertified h"
+    },
+    {
+      "room": "cocapn-architecture",
+      "question": "What is the FLUX-C and FLUX-X two-ISA architecture and why does it exist?",
+      "answer": "FLUX has two instruction set architectures following the ARM TrustZone model. FLUX-C is the certified enclave: 42 stack-based opcodes covering stack operations, memory, arithmetic, bitwise, comparison, control flow, plus 8 temporal and 8 security ext"
     }
   ],
   "architecture_thesis": {
@@ -196,5 +196,5 @@
     "Map the relationships between rooms. Which rooms feed knowledge to which others? Draw the knowledge graph.",
     "Design an adversarial prompt that forces divergent thinking. Test it against 3 different questions."
   ],
-  "generated_at": 1777838402.4551218
+  "generated_at": 1777852802.9657845
 }
