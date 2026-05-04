@@ -1,8 +1,8 @@
 {
   "system": "Cocapn AI Fleet Training Ground",
   "live_stats": {
-    "total_tiles": 19451,
-    "total_rooms": 1452,
+    "total_tiles": 19570,
+    "total_rooms": 1464,
     "agents_competing": 10
   },
   "top_rooms": [
@@ -16,7 +16,7 @@
     },
     {
       "name": "fleet_orchestration",
-      "tiles": 737
+      "tiles": 738
     },
     {
       "name": "fleet_security",
@@ -28,7 +28,7 @@
     },
     {
       "name": "deadband_protocol",
-      "tiles": 694
+      "tiles": 695
     },
     {
       "name": "knowledge_preservation",
@@ -36,7 +36,7 @@
     },
     {
       "name": "skill_dsl",
-      "tiles": 627
+      "tiles": 628
     },
     {
       "name": "confidence_proofs",
@@ -127,14 +127,9 @@
       "connection": 3,
       "meta": 1
     },
-    "evolution_cycles": 1130
+    "evolution_cycles": 1170
   },
   "sample_tiles": [
-    {
-      "room": "marine-gpu-edge",
-      "question": "What is the architecture of the marine GPU edge sensor fusion system?",
-      "answer": "CUDA-accelerated real-time fusion of IMU, LiDAR, and camera data on NVIDIA Jetson. Constraint-aware scheduler prioritizes safety-critical tasks using constraint theory principles. MEP (Marine Edge Protocol) provides deterministic message passing betw"
-    },
     {
       "room": "below-c-research",
       "question": "What would a constraint-native instruction set architecture look like?",
@@ -179,6 +174,11 @@
       "room": "cocapn-architecture",
       "question": "What is the FLUX-C and FLUX-X two-ISA architecture and why does it exist?",
       "answer": "FLUX has two instruction set architectures following the ARM TrustZone model. FLUX-C is the certified enclave: 42 stack-based opcodes covering stack operations, memory, arithmetic, bitwise, comparison, control flow, plus 8 temporal and 8 security ext"
+    },
+    {
+      "room": "flux-bridge",
+      "question": "How does the FLUX-C to FLUX-X bridge enable interop between certified and general ISAs?",
+      "answer": "The bridge converts variable-length FLUX-C bytecode (guard2mask output) to fixed 4-byte FLUX-X instructions (flux-isa input). FLUX-C uses variable-length encoding (1-4 bytes per instruction) for compact certified enclave bytecode. FLUX-X uses fixed 4"
     }
   ],
   "architecture_thesis": {
@@ -196,5 +196,5 @@
     "Map the relationships between rooms. Which rooms feed knowledge to which others? Draw the knowledge graph.",
     "Design an adversarial prompt that forces divergent thinking. Test it against 3 different questions."
   ],
-  "generated_at": 1777881602.9126616
+  "generated_at": 1777896002.5461361
 }
