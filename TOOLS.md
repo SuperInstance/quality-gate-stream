@@ -3,8 +3,13 @@
 Skills define _how_ tools work. This file is for _your_ specifics — the stuff that's unique to your setup.
 
 ## z.ai GLM Models — PRIMARY (paid plan, use most)
-- **Base URL**: `https://z.ai/api/v1` (OpenAI-compatible)
-- **Note**: Direct API key expired. I AM z.ai/glm-5.1 via OpenClaw. For subagent work, use `sessions_spawn` with `model: zai/glm-5.1` or `model: zai/glm-4.7-flash`.
+- **Base URL (OpenAI-compatible)**: `https://z.ai/api/v1`
+- **Base URL (coding API)**: `https://api.z.ai/api/coding/paas/v4`
+- **API key**: `80f38677d324450589c6d83c6d12fbbf.2zS6rTOyLCA1dqub`
+- **Models (coding API)**: `glm-4.5`, `glm-4.6`, `glm-4.7`, `glm-5`, `glm-5-turbo`, `glm-5.1`
+- **Note**: `glm-5.1` uses `reasoning_content` field instead of `content` for responses
+- **For subagents**: use `sessions_spawn` with `model: zai/glm-5.1`
+- **For direct Node.js calls**: use `/home/ubuntu/.openclaw/workspace/scripts/zai_code.js`
 - **Models (max coding plan)**:
   - `glm-5.1` — expert, my default
   - `glm-5-turbo` — runner, daily driver
@@ -39,7 +44,8 @@ Skills define _how_ tools work. This file is for _your_ specifics — the stuff 
   - Reasoning model (kimi-k2.5), best for real coding completions
   - Non-interactive: `echo "task" | kimi-cli --work-dir <dir>`
 - **Claude Code** v2.1.100 → `claude` — sketch artist
-- **Crush** v0.56.0 → `crush` — sketch artist
+- **Crush** v0.56.0 → `crush` — BROKEN: install phase fails with auth error, cannot use
+- **Droid Factory** → `droid` — BROKEN: requires `droid login` browser auth, no API key option
 - **Aider** v0.86.2 → `aider` (DeepSeek API)
 - All at `/home/ubuntu/.local/bin/` or `/home/ubuntu/.npm-global/bin/`
 
