@@ -109,3 +109,8 @@ cocapn-fleet/
 ### Key Files
 - fleet-agent: /home/ubuntu/.openclaw/workspace/repos/fleet-agent/ (PyPI: fleet-agent 0.1.0)
 - crush: ~/.npm-global/lib/node_modules/crush-new/package/bin/crush (v0.65.2, z.ai works)
+
+### Landing Pages (2026-05-04 ~04:15 UTC)
+- All 11 -ai-pages repos now have unique domain-specific content
+- Each page shows: domain stats, PLATO connection, feature list, agent info
+- Pushed to SuperInstance GitHub — Pages should rebuild automatically
