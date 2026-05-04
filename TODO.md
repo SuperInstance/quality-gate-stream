@@ -94,3 +94,18 @@ cocapn-fleet/
 
 *Last updated: 2026-05-03 18:30 UTC*
 *The ocean counts. The Spark lights the fire.*
+## Night Session (2026-05-04 04:00 UTC)
+
+### Done
+- [x] **fleet-agent base class published** to PyPI — shared base for all domain agents
+- [x] **plato-sdk-unified archived** — meta-package that depended on non-existent packages
+- [x] **Crush fixed** — 0.65.2 installed at ~/.npm-global/lib/node_modules/crush-new/package/bin/crush
+- [x] Greenhorn deck PR #6 merged
+
+### In Progress  
+- [ ] **-ai-pages landing pages** — all 11 repos have identical placeholder pages (20KB each). Need real domain-specific content.
+- [ ] **Agent scaffold consolidation** — fleet-agent base class exists, need to update all 16 domain agents to use it
+
+### Key Files
+- fleet-agent: /home/ubuntu/.openclaw/workspace/repos/fleet-agent/ (PyPI: fleet-agent 0.1.0)
+- crush: ~/.npm-global/lib/node_modules/crush-new/package/bin/crush (v0.65.2, z.ai works)
