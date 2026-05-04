@@ -36,7 +36,7 @@ Key discoveries from two independent research groups converging:
 
 ## PLATO (the workshop)
 - Room Server: localhost:8847
-- **1,485 rooms** (updated 2026-05-04), ~9K+ tiles
+- **PLATO rooms** (live): 1,485+, room server at `:8847`
 - Key rooms: oracle1_history, oracle1_lessons, fleet_communication, fleet_scale, competitive_landscape, oracle1_infrastructure
 
 ## Services (all on systemd)
