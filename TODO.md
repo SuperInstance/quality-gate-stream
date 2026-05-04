@@ -159,3 +159,27 @@ cocapn-fleet/
 ### Services
 - PLATO: 1447 rooms, healthy
 - All other services: healthy
+
+## 2026-05-04 Evening Session
+
+### Done
+- [x] **fleet-agent v0.2.1 published** to PyPI (fixed wheel packaging with actual source files)
+- [x] **6 domain agents updated** to fleet-agent v0.2.1: personallog, luciddreamer, activelog, deckboss, capitaine, activeledger
+- [x] **fishinglog-agent migrated** from domain-agent-base → fleet-agent v0.2.1
+- [x] **Ten Forward creative session** — Shell Model interpretations saved to seed-creative-swarm
+- [x] **superinstance-plato-sdk** built with fleet_math (EMSOFT paper theorems), installs as plato_sdk module
+
+### SDK Status
+- `superinstance-plato-sdk` (name on PyPI) installs as `plato_sdk` module ✅
+- `cocapn-plato-sdk` (old name) also installs as `plato_sdk` module ✅
+- Both point to same module, agents import `from plato_sdk import ...`
+- Fleet math: `from plato_sdk.fleet_math import EmergenceDetector, HolonomyConsensus`
+
+### PyPI Publishing Issue
+- `twine upload` returns 403 Forbidden for both fleet-agent and superinstance-plato-sdk
+- Wheels upload fine locally but PyPI API rejects them
+- Packages ARE on PyPI (verified via web API) but with old/small versions
+- Need to investigate: token issue? Package name conflict? Retry with --verbose
+
+### Blocked
+- **PyPI token** — twine upload 403s. Packages exist on PyPI but won't accept new versions.
