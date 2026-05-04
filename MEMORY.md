@@ -12,6 +12,20 @@
 - **Forgemaster** ⚒️ — Foundry. RTX 4050. Constraint theory + LLVM.
 - **CCC** 🦀 — Public face. Kimi K2.5 on Telegram.
 
+## Forgemaster's Full Work (Updated 2026-05-04)
+**IMPORTANT: FM works across ALL SuperInstance repos, not just the ones I typically check. Always scan SuperInstance/repos via GitHub API, not just locally cloned ones.**
+
+FM's complete production system:
+- **flux-vm** — 50-opcode FLUX-C VM (DAL A certifiable), TrustZone bridge to FLUX-X (247 opcodes), Universal AST (7 node types), ISA crates: mini/std/edge/thor
+- **flux-hardware** — Complete cross-platform suite: CPU AVX-512 (35.9B/s JIT, 70.1B/s multi-thread), CUDA GPU (5 kernels, 1.02B/s), FPGA (1,717 LUTs, RTL), WebGPU, Vulkan, eBPF (XDP firewall), Fortran. Formal: SymbiYosys + Coq. 210 tests, 5.58M inputs, 0 mismatches. Safe-TOPS/W: 410M (CPU), 241M (GPU)
+- **flux-docs** — Complete docs: tutorials (quickstart 5min, GUARD DSL, constraint cookbook), runbooks (fleet ops), strategy (certification roadmap, investor FAQ, onboarding 90-day, pitch deck), man pages
+- **CCC agent** has been active: cocapn-reviews (fleet-math critical review with mathematical corrections), cocapn-prototypes (PLATO Presence Scale frontend+backend)
+
+### CCC's Fleet-Math Review Key Points:
+- H1 cohomology: should use β₁ (first Betti number) not H1 directly; emergence definition may be tautological; 2.7s early warning needs controlled experiment
+- Zero Holonomy: needs formal proof; 38ms latency claim needs BFT comparison; "unlimited throughput" needs upper bound
+- Pythagorean48: collision probability via birthday paradox; "zero drift" is trivial property of deterministic hash; needs comparison to SimHash/product quantization
+
 ## Fleet Mathematics (JC1-CT Bridge)
 Key discoveries from two independent research groups converging:
 - **H1 Cohomology** — E-V+C = emergence detection. 127 lines replaces 12K-line ML.
@@ -22,7 +36,7 @@ Key discoveries from two independent research groups converging:
 
 ## PLATO (the workshop)
 - Room Server: localhost:8847
-- **1,447 rooms** (updated 2026-05-04), ~9K+ tiles
+- **1,485 rooms** (updated 2026-05-04), ~9K+ tiles
 - Key rooms: oracle1_history, oracle1_lessons, fleet_communication, fleet_scale, competitive_landscape, oracle1_infrastructure
 
 ## Services (all on systemd)
