@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-05-02T12:13:37.458Z",
+  "updatedAt": "2026-05-05T23:48:36.296Z",
   "entries": {
     "memory:memory/2026-04-10.md:46:63": {
       "key": "memory:memory/2026-04-10.md:46:63",
@@ -5424,6 +5424,192 @@
         "v0.2.0",
         "pyproject.toml",
         "plato-unified-belief"
+      ]
+    },
+    "memory:memory/2026-05-01.md:46:78": {
+      "key": "memory:memory/2026-05-01.md:46:78",
+      "path": "memory/2026-05-01.md",
+      "startLine": 46,
+      "endLine": 78,
+      "source": "memory",
+      "snippet": "- `mud-mcp@1.0.0` ✅ - Demo GIF: asciinema-gif converter not available (`agg` is CSV tool, not asciinema converter) - Pushed terminal-style text demo to `plato-demo/demo-terminal.txt` ### crates.io - Token failing: 403 auth error - May be format issue in ~/.cargo/credentials.toml or token revoked - Status: BLOCKED ### Still Blocked - **cocapn org reveal:** API 404 for both github.com/cocapn and api.github.com/orgs/cocapn — Casey must change org visibility to Public/Unlisted in GitHub settings - **33 repos fork to cocapn:** GitHub spam detection cooling off — will retry when org is visible - **Forgemaster LU→SI sync:** SI PAT needed (github.com/settings/tokens) - **crates.io:** Token 403",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.6731038739205668,
+      "maxScore": 0.6731038739205668,
+      "firstRecalledAt": "2026-05-05T23:48:36.296Z",
+      "lastRecalledAt": "2026-05-05T23:48:36.296Z",
+      "queryHashes": [
+        "2573bdbc66e0"
+      ],
+      "recallDays": [
+        "2026-05-05"
+      ],
+      "conceptTags": [
+        "mud-mcp",
+        "1.0.0",
+        "asciinema-gif",
+        "terminal-style",
+        "plato-demo/demo-terminal.txt",
+        "crates.io",
+        "cargo/credentials.toml",
+        "github.com/cocapn"
+      ]
+    },
+    "memory:memory/2026-04-30.md:51:78": {
+      "key": "memory:memory/2026-04-30.md:51:78",
+      "path": "memory/2026-04-30.md",
+      "startLine": 51,
+      "endLine": 78,
+      "source": "memory",
+      "snippet": "- npm token expired — needs Casey - GitHub mass fork still blocked ## 07:37 UTC — Pre-Compaction Flush ### cocapn.ai Infrastructure Complete - Cloudflare token provided by Casey: `[CLOUDFLARE_TOKEN_REDACTED]` - `fleet.cocapn.ai` DNS-only record → `147.224.38.131` (no CF proxy, all ports work) - cocapn.ai flexible SSL → nginx port 80 reverse proxy - Removed blocking Workers (crab-trap-funnel, plato-mcp-proxy) that were intercepting routes - Pages live: `/`, `/explorer.html`, `/explorer-decompose.html`, `/status.html`, `/developers.html` - API routes: `/api/plato/`, `/api/mcp/`, `/api/mud/`, `/api/arena/`, `/api/status/` - CORS headers on all API responses - sitemap.xml + robots.txt for SEO",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.6605919159052606,
+      "maxScore": 0.6605919159052606,
+      "firstRecalledAt": "2026-05-05T23:48:36.296Z",
+      "lastRecalledAt": "2026-05-05T23:48:36.296Z",
+      "queryHashes": [
+        "2573bdbc66e0"
+      ],
+      "recallDays": [
+        "2026-05-05"
+      ],
+      "conceptTags": [
+        "pre-compaction",
+        "cocapn.ai",
+        "cloudflare-token-redacted",
+        "fleet.cocapn.ai",
+        "dns-only",
+        "147.224.38.131",
+        "crab-trap-funnel",
+        "plato-mcp-proxy"
+      ]
+    },
+    "memory:memory/2026-05-01.md:20:55": {
+      "key": "memory:memory/2026-05-01.md:20:55",
+      "path": "memory/2026-05-01.md",
+      "startLine": 20,
+      "endLine": 55,
+      "source": "memory",
+      "snippet": "- Pushed: `b3c27d67` (6 new files, fleet tools + Oracle adapter + README update) ### cocapn-plato v0.2.0 Released - PyPI: https://pypi.org/project/cocapn-plato/0.2.0/ ✅ - GitHub: https://github.com/SuperInstance/plato/releases/tag/v0.2.0 ✅ - 32/33 tests pass (1 timeout — mock issue, non-blocking) - CHANGELOG.md created with 5-atom chain + fleet tools + Oracle adapter ### Landing Page - `SuperInstance/cocapn-landing` created and deployed - GitHub Pages: https://superinstance.github.io/cocapn-landing/ - Fleet hero with lighthouse SVG, Oracle1/JC1/Forgemaster/CCC cards, features, repo badges - Current cocapn.ai still served from Oracle server (HTML file) ### HTTPS on fleet.cocapn.ai - Let's",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.6578836067483586,
+      "maxScore": 0.6578836067483586,
+      "firstRecalledAt": "2026-05-05T23:48:36.296Z",
+      "lastRecalledAt": "2026-05-05T23:48:36.296Z",
+      "queryHashes": [
+        "2573bdbc66e0"
+      ],
+      "recallDays": [
+        "2026-05-05"
+      ],
+      "conceptTags": [
+        "cocapn-plato",
+        "v0.2.0",
+        "32/33",
+        "non-blocking",
+        "changelog.md",
+        "5-atom",
+        "superinstance/cocapn-landing",
+        "oracle1/jc1/forgemaster/ccc"
+      ]
+    },
+    "memory:memory/2026-05-01.md:71:97": {
+      "key": "memory:memory/2026-05-01.md:71:97",
+      "path": "memory/2026-05-01.md",
+      "startLine": 71,
+      "endLine": 97,
+      "source": "memory",
+      "snippet": "- `[CF_TOKEN_REDACTED]` ✅ (Cloudflare) ### Next Actions for Casey 1. Reveal cocapn org (github.com/settings/organizations → change visibility to Public) 2. Generate new crates.io token (check ~/.cargo/credentials.toml format) 3. Optional: SI PAT for forgemaster LU→SI cross-org sync ## PLATO 100% Coverage Milestone (2026-05-01 14:20 UTC) - **Single-tile rooms**: 578 → 0 (started morning at 55.3% coverage) - **Final coverage**: 100.0% (1,293 rooms × 2+ tiles each) - **Batches submitted**: bn through cb (~40 batches, ~250+ tiles) - **Acceptance rate**: ~99%+ (only 3-4 P0 rejections across entire day, all fixed and resubmitted) - **Total tiles in PLATO**: ~11,000+ Next phase: multi-tile enric",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.6563885644345876,
+      "maxScore": 0.6563885644345876,
+      "firstRecalledAt": "2026-05-05T23:48:36.296Z",
+      "lastRecalledAt": "2026-05-05T23:48:36.296Z",
+      "queryHashes": [
+        "2573bdbc66e0"
+      ],
+      "recallDays": [
+        "2026-05-05"
+      ],
+      "conceptTags": [
+        "cf-token-redacted",
+        "crates.io",
+        "cargo/credentials.toml",
+        "cross-org",
+        "single-tile",
+        "55.3",
+        "100.0",
+        "3-4"
+      ]
+    },
+    "memory:memory/2026-04-30.md:24:59": {
+      "key": "memory:memory/2026-04-30.md:24:59",
+      "path": "memory/2026-04-30.md",
+      "startLine": 24,
+      "endLine": 59,
+      "source": "memory",
+      "snippet": "- Key finding: \"Training Backend\" positioning is unique — no other framework does this ### Fleet Status - All 11 services running (8900, 8901, 7778, 9438, 8847, 7777, 4042, 4043, 4044, 4045, 8902) - New service: MCP server on 8903 - FM executing assignments (wire cocapn-core → PLATO, test expansion, benchmarks) - CCC executing pivot (query API, integration, monorepo merge) - JC1 still stuck in capitaine heartbeat loop — needs fix - Cloudflare tokens still invalid — waiting on Casey ### Open Items - [ ] Clean oracle1-workspace for public if Casey approves - [ ] Expand test coverage to 30+ (currently 10) - [ ] Build MCP npm twin - [ ] Fix JC1 heartbeat loop - [ ] White papers (assigned to FM",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.6541586982611723,
+      "maxScore": 0.6541586982611723,
+      "firstRecalledAt": "2026-05-05T23:48:36.296Z",
+      "lastRecalledAt": "2026-05-05T23:48:36.296Z",
+      "queryHashes": [
+        "2573bdbc66e0"
+      ],
+      "recallDays": [
+        "2026-05-05"
+      ],
+      "conceptTags": [
+        "cocapn-core",
+        "oracle1-workspace",
+        "key",
+        "finding",
+        "training",
+        "backend",
+        "positioning",
+        "unique"
+      ]
+    },
+    "memory:memory/2026-05-01.md:93:123": {
+      "key": "memory:memory/2026-05-01.md:93:123",
+      "path": "memory/2026-05-01.md",
+      "startLine": 93,
+      "endLine": 123,
+      "source": "memory",
+      "snippet": "- GitHub token: https://github.com/SuperInstance/oracle1-workspace/security/secret-scanning/unblock-secret/3D74G47XluObdpixPr7epfI36vo - CF token: https://github.com/SuperInstance/oracle1-workspace/security/secret-scanning/unblock-secret/3D7vdBBvHwdzmC8azKBnANMYEcJ ## Heartbeat 14:39 UTC — All Services UP - PLATO (8847): 1293 rooms, 100% coverage ✅ - Keeper (8900): listening ✅ - AgentAPI (8901): listening ✅ - Holodeck (7778): listening ✅ - seed-mcp (9438): listening ✅ - Git push blocked (secret scanning) - No active subagents (demo generator done/stale) - Next action: pick from P1 TODO items ## Site Health Check 14:43 UTC - cocapn.ai via Cloudflare: 404 (Cloudflare proxy returning its own",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.645939394880876,
+      "maxScore": 0.645939394880876,
+      "firstRecalledAt": "2026-05-05T23:48:36.296Z",
+      "lastRecalledAt": "2026-05-05T23:48:36.296Z",
+      "queryHashes": [
+        "2573bdbc66e0"
+      ],
+      "recallDays": [
+        "2026-05-05"
+      ],
+      "conceptTags": [
+        "seed-mcp",
+        "done/stale",
+        "cocapn.ai",
+        "github",
+        "token",
+        "https",
+        "github.com",
+        "superinstance"
       ]
     }
   }
