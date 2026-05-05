@@ -30,6 +30,7 @@ Every agent in the fleet follows this. No exceptions.
 
 ## Daily Ritual: File & Prune
 1. After every major task: submit key knowledge as PLATO tile
+**HTTP POST fields: `domain` (room name), `question`, `answer`, `tags` (optional)
 2. At session end: file today's daily log into PLATO, prune the file
 3. Before baton handoff: ensure nothing important lives only in files
 4. MEMORY.md never exceeds 50 lines — if it does, file excess to PLATO
