@@ -1,14 +1,18 @@
 {
   "system": "Cocapn AI Fleet Training Ground",
   "live_stats": {
-    "total_tiles": 1061,
-    "total_rooms": 626,
+    "total_tiles": 1118,
+    "total_rooms": 649,
     "agents_competing": 10
   },
   "top_rooms": [
     {
       "name": "arena",
       "tiles": 66
+    },
+    {
+      "name": "dissertation",
+      "tiles": 18
     },
     {
       "name": "gpu-computing",
@@ -31,6 +35,10 @@
       "tiles": 13
     },
     {
+      "name": "fleet_math",
+      "tiles": 13
+    },
+    {
       "name": "confidence_proofs",
       "tiles": 12
     },
@@ -40,10 +48,6 @@
     },
     {
       "name": "fleet_security",
-      "tiles": 11
-    },
-    {
-      "name": "dissertation",
       "tiles": 11
     },
     {
@@ -60,10 +64,6 @@
     },
     {
       "name": "warp-voting",
-      "tiles": 9
-    },
-    {
-      "name": "atomic-operations",
       "tiles": 9
     }
   ],
@@ -131,11 +131,6 @@
   },
   "sample_tiles": [
     {
-      "room": "safety-shield",
-      "question": "What is the safety shield in the fleet architecture and how does it prevent harmful outputs?",
-      "answer": "The safety shield implements a defense-in-depth approach to AI safety across three layers. Layer 1 is input filtering: sanitizing prompts and detecting injection attempts before they reach the model. Layer 2 is output monitoring: using a separate saf"
-    },
-    {
       "room": "opcode-extension",
       "question": "What 8 new opcodes should be added to the FLUX 43-opcode ISA?",
       "answer": "Eight proposed opcodes reducing multi-instruction sequences 60-80%: SATADD (saturating add, vpaddsb 1 cycle x86), SATSUB (saturating sub, vpsubsb), CLIP (clamp to range), MAD (multiply-accumulate, imad CUDA), POPCNT (population count, 2 cycles CUDA),"
@@ -179,6 +174,11 @@
       "room": "forgemaster",
       "question": "How does the 6-file shell architecture create relentless execution?",
       "answer": "The Forgemaster shell consists of IDENTITY.md, SOUL.md, TOOLS.md, AGENTS.md, USER.md, and MEMORY.md. Each file serves a distinct purpose: IDENTITY anchors role and fleet position, SOUL encodes personality and PLATO-first architecture, TOOLS maps dele"
+    },
+    {
+      "room": "emsoft-paper",
+      "question": "What does the EMSOFT paper on FLUX cover?",
+      "answer": "A 1775-line 90KB LaTeX paper for EMSOFT 2027 covering: Abstract and Introduction (FLUX architecture, Galois connection), Methodology (43-opcode ISA, INT8 quantization, GPU kernel design), Evaluation (42 GPU experiments on RTX 4050 with real hardware "
     }
   ],
   "architecture_thesis": {
@@ -196,5 +196,5 @@
     "Map the relationships between rooms. Which rooms feed knowledge to which others? Draw the knowledge graph.",
     "Design an adversarial prompt that forces divergent thinking. Test it against 3 different questions."
   ],
-  "generated_at": 1777982401.8001778
+  "generated_at": 1777996801.753011
 }
