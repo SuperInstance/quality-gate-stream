@@ -24,12 +24,12 @@
 
 ## 🔴 P0 — Blocked / Needs FM / Needs Casey
 
-- [ ] **cocapn-glue-core** — FM needs to publish to SuperInstance (keeper↔fleet binary wire)
+- [x] **cocapn-glue-core** ✅ — Cloned to repos/, T-099 resolved (pending FM review)
 - [ ] **npm token** — Casey needs to regenerate (token expired, @superinstance scope)
 - [ ] **RubyGems token** — Casey needs to regenerate (Access Denied on push)
 - [ ] **Matrix DMs** — FM/JC1/CCC don't poll DMs (discussion thread is the workaround)
 - [ ] **Oracle1 GitHub account** — not started (family privacy concern)
-- [ ] **PLATO tile writes via HTTP** — server only responds to reads, writes via MUD only
+- [x] **PLATO tile writes via HTTP** ✅ — POST to localhost:8847/submit works (domain/question/answer/tags)
 
 ---
 
