@@ -38,8 +38,8 @@
 - [x] **PLATO SDK consolidation** ✅ — superinstance-plato-sdk is canonical (v2.0.0, installs as plato_sdk). plato-sdk-unified archived.
 - [x] **Write FLUX ISA spec** — 247 opcodes in one place ✅ RESOLVED: flux-isa-v3.md + Section 0 + Section 12
 - [x] **PLATO variant consolidation** ✅ RESOLVED: all 4 variants kept (different deployment contexts)
-- [ ] **Write Semantic Compiler paper** — still in queue (was in original TODO)
-- [ ] **Write Compiled Agency paper** — still in queue (was in original TODO)
+- [x] **Write Semantic Compiler paper** ✅ v5 (2026-05-05) — NL→GUARD→FLUX-C→Z3, 195 lines
+- [x] **Write Compiled Agency paper** ✅ v5 (2026-05-05) — agents as artifacts, 188 lines
 - [x] **holodeck-rust + holodeck-core** ✅ RESOLVED: holodeck-core duplicate, recommend yank
 - [ ] **plato-room-phi topics** — GitHub topics weren't applied, needs retry
 
