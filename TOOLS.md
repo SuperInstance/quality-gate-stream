@@ -19,6 +19,16 @@ Skills define _how_ tools work. This file is for _your_ specifics — the stuff 
 - **Usage priority**: z.ai GLM (via OpenClaw) > kimi-cli > DeepInfra Seed > Groq
 - **For programmatic calls**: Use `sessions_spawn` with model param, or spawn kimi-cli
 
+## DeepSeek API (heavy lifting + iterative reasoning)
+- **API key**: `sk-f742b70fc40849eda4181afcf3d68b0c`
+- **Base URL**: `https://api.deepseek.com/v1` (OpenAI-compatible)
+- **Models**:
+  - `deepseek-reasoner` — heavy reasoning, mathematical proofs, formal verification (thinking enabled)
+  - `deepseek-chat` (aka v4-flash) — iterative reasoning, fast analysis, code review
+- **Best for**: deep FLUX ISA research, Coq proofs, constraint theory formalization, architectural decisions
+- **Not for**: quick one-liners (use glm-4.7-flash)
+- **Usage**: direct curl or spawn subagent with model=deepseek-reasoner
+
 ## DeepInfra (Seed-2.0-Mini + creative + reasoning models) — SECONDARY
 - **API key**: `RhZPtvuy4cXzu02LbBSffbXeqs5Yf2IZ` (in ~/.bashrc)
 - **Base URL**: `https://api.deepinfra.com/v1/openai`
