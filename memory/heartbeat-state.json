@@ -3,12 +3,13 @@
     "email": null,
     "calendar": null,
     "weather": null,
-    "dissertation": 1777957500,
+    "dissertation": 1777958100,
+    "repos": 1777957500,
     "credential_rotation": 1777954200
   },
-  "lastHeartbeat": 1777957500,
-  "dissertationStatus": "4,922 lines, Ch3 expanded, Ch4 API fixed, Ch9-14 swarm, 5 appendices",
-  "servicesStatus": "All 4 main services + PLATO + MUD + zeroclaw: HEALTHY",
-  "notes": "DeepInfra returning 404 at 05:00 UTC - monitor",
-  "cocapn_glue_core": "Cloned to repos/ from SuperInstance GitHub"
+  "lastHeartbeat": 1777958200,
+  "dissertationStatus": "4,993 lines, Ch1 expanded, Ch3 expanded, Ch4 API fixed, all 15 chapters + 5 appendices",
+  "servicesStatus": "keeper:8900✅ agent-api:8901✅ holodeck:7778✅ seed-mcp:9438✅ PLATO:804 tiles✅ MUD:7777✅ zeroclaw:running✅",
+  "deepInfraStatus": "404 at 05:00 UTC - may be model deprecation",
+  "cocapn_glue_core": "Cloned + integration test written, pushed to SuperInstance"
 }
