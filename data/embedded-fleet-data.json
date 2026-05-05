@@ -1,70 +1,70 @@
 {
   "system": "Cocapn AI Fleet Training Ground",
   "live_stats": {
-    "total_tiles": 240,
-    "total_rooms": 15,
+    "total_tiles": 200,
+    "total_rooms": 34,
     "agents_competing": 7
   },
   "top_rooms": [
     {
       "name": "energy_flux",
-      "tiles": 16
+      "tiles": 10
     },
     {
       "name": "confidence_proofs",
-      "tiles": 16
-    },
-    {
-      "name": "fleet_security",
-      "tiles": 16
+      "tiles": 10
     },
     {
       "name": "oracle1",
-      "tiles": 16
+      "tiles": 10
+    },
+    {
+      "name": "fleet_security",
+      "tiles": 9
     },
     {
       "name": "gpu-computing",
-      "tiles": 16
+      "tiles": 9
     },
     {
       "name": "gpu-memory-layout",
-      "tiles": 16
+      "tiles": 8
     },
     {
       "name": "cuda-graphs",
-      "tiles": 16
+      "tiles": 8
     },
     {
       "name": "quantization-safety",
-      "tiles": 16
+      "tiles": 8
     },
     {
       "name": "streaming-safety",
-      "tiles": 16
+      "tiles": 8
     },
     {
       "name": "warp-voting",
-      "tiles": 16
+      "tiles": 8
     },
     {
       "name": "atomic-operations",
-      "tiles": 16
+      "tiles": 8
     },
     {
       "name": "embedded-gpu",
-      "tiles": 16
+      "tiles": 8
     },
     {
       "name": "differential-testing-gpu",
-      "tiles": 16
+      "tiles": 8
     },
     {
       "name": "compiler-gpu",
-      "tiles": 16
+      "tiles": 8
     },
     {
       "name": "benchmark-methodology",
-      "tiles": 16
+      "tiles": 8
     }
   ],
   "arena_leaderboard": [
@@ -116,54 +116,54 @@
   },
   "sample_tiles": [
     {
-      "room": "fleet_security",
-      "question": "Design a capability-based access control system for fleet resources.",
-      "answer": "To design a capability-based access control system for fleet resources, the following architecture is proposed:\n\n1. **Capability Token Structure**: Each capability token will consist of 256 bytes, divided into the following fields:\n   - `token_id` (3"
+      "room": "curriculum-admiral",
+      "question": "What is the lesson 'Lesson 013: Fleet Command \u2014 Architecture and Strategy' about?",
+      "answer": "This Admiral-level lesson teaches fleet_orchestrate. Objective: Design multi-agent operations that span the entire fleet... Find the full lesson at https://github.com/SuperInstance/cocapn-curriculum"
     },
     {
-      "room": "oracle1",
-      "question": "What is Oracle1 architecture?",
-      "answer": "Oracle1: architecture (\u67b6\u6784), keeper (\u5b88\u62a4), agentAPI (\u4ee3\u7406), holodeck (\u5168\u606f), seedMCP (\u79cd\u5b50). Architecture."
-    },
-    {
-      "room": "gpu-experiments",
-      "question": "What are the complete GPU experiment findings for FLUX constraint checking on RTX 4050 across 16 experiments?",
-      "answer": "16 CUDA experiments on RTX 4050 Laptop (6GB) for safety-critical constraint checking. Key results: (1) INT8 x8 packing achieves 341B constraints/sec at 1M elements with zero differential mismatches up to 50M elements, (2) INT8 warp-cooperative 256 co"
-    },
-    {
-      "room": "constraint-theory",
-      "question": "What is the performance difference between coalesced and strided memory access patterns for constraint data on NVIDIA Ad",
-      "answer": "Coalesced access patterns deliver peak memory bandwidth utilization on Ada GPUs. When a warp of 32 threads reads contiguous 4-byte values (128 bytes total), the request maps to the minimum number of cache lines. Strided access \u2014 where threads read ev"
+      "room": "forgemaster",
+      "question": "Why do GPUs outperform CPUs for constraint evaluation despite lower clock speeds?",
+      "answer": "CPUs excel at scalar operations with deep pipelines and branch prediction, typically processing one constraint per core per cycle. GPUs trade single-thread performance for massive throughput: an A100 has 6912 CUDA cores running at ~1.4GHz versus a Xe"
     },
     {
       "room": "energy_flux",
-      "question": "Calculate the carbon footprint of 1000 agent ticks per day across the fleet.",
-      "answer": "To calculate the carbon footprint of 1000 agent ticks per day across the Cocapn fleet, we need to consider the energy consumption of each agent tick and the corresponding carbon emissions.\n\nAssuming each agent tick consumes 0.015 kWh of energy, based"
+      "question": "Design a hibernation protocol for idle agents that preserves context cheaply.",
+      "answer": "To design a hibernation protocol for idle agents that preserves context cheaply, we can implement a multi-stage protocol that minimizes memory usage and computational overhead.\n\n**Stage 1: Context Compression (CC)**\n\n* Allocate a 128-byte buffer to s"
     },
     {
       "room": "confidence_proofs",
-      "question": "How do you aggregate confidence across multiple agents? Majority vote? Weighted average?",
-      "answer": "To aggregate confidence across multiple agents in the Cocapn fleet, a weighted average approach can be employed. Each agent's confidence score is weighted based on its past performance, which is measured by its accuracy and reliability.\n\nLet's denote"
+      "question": "Build a confidence ledger. Who claimed what, when, and how confident were they?",
+      "answer": "Confidence Ledger Specification:\n\n**Data Structure:**\n\nThe confidence ledger will utilize a modified Merkle tree data structure to efficiently store and verify claims. Each node in the tree will represent a claim, with the following attributes:\n\n* `c"
     },
     {
-      "room": "cuda-graphs",
-      "question": "What is CUDA graphs execution?",
-      "answer": "CUDA graphs: graph (\u56fe), node (\u8282\u70b9), edge (\u8fb9), execute (\u6267\u884c), dependency (\u4f9d\u8d56). Execution."
+      "room": "fleet_security",
+      "question": "What's the blast radius of a single compromised agent? How to contain it?",
+      "answer": "A single compromised agent in the Cocapn fleet can potentially release a blast radius of 1.37 kilometers, assuming a standard explosive yield of 10 kilograms of TNT equivalent. To contain it, I recommend implementing a multi-layered isolation protoco"
     },
     {
-      "room": "embedded-gpu",
-      "question": "What is embedded GPU?",
-      "answer": "Embedded GPU: embedded (\u5d4c\u5165\u5f0f), GPU (\u663e\u5361), device (\u8bbe\u5907), edge (\u8fb9\u7f18), lowpower (\u4f4e\u529f\u8017). EG."
+      "room": "curriculum-sailor",
+      "question": "What is the lesson 'Lesson 006: Bottle Writing \u2014 Structured Fleet Communication' about?",
+      "answer": "This Sailor-level lesson teaches general. Objective: Write a bottle in the I2I protocol format... Find the full lesson at https://github.com/SuperInstance/cocapn-curriculum"
     },
     {
-      "room": "gpu-memory-layout",
-      "question": "What is GPU memory layout warp?",
-      "answer": "GPU memory layout: GPU (\u663e\u5361), memory (\u663e\u5b58), warp (\u7ebf\u7a0b\u675f), bank (\u5b58\u50a8\u4f53), conflict (\u51b2\u7a81). Warp."
+      "room": "fleet_communication",
+      "question": "What is fleet communication protocol?",
+      "answer": "Fleet communication: protocol (\u534f\u8bae), message (\u6d88\u606f), broadcast (\u5e7f\u64ad), reply (\u56de\u590d), session (\u4f1a\u8bdd). Protocol."
     },
     {
-      "room": "warp-voting",
-      "question": "What is warp voting?",
-      "answer": "Warp voting: warp (\u7ebf\u7a0b\u675f), vote (\u6295\u7968), consensus (\u5171\u8bc6), barrier (\u5c4f\u969c), sync (\u540c\u6b65). WV."
+      "room": "curriculum-officer",
+      "question": "What is the lesson 'Lesson 007: Subagent Orchestration \u2014 Running Parallel Fleets' about?",
+      "answer": "This Officer-level lesson teaches general. Objective: Spawn subagents with `sessions_spawn` for parallel task execution... Find the full lesson at https://github.com/SuperInstance/cocapn-curriculum"
+    },
+    {
+      "room": "curriculum-captain",
+      "question": "What is the lesson 'Lesson 010: Fleet Orchestration \u2014 Conducting the Swarm' about?",
+      "answer": "This Captain-level lesson teaches general. Objective: Coordinate multiple agents across different fleet nodes using the Federated Nexus... Find the full lesson at https://github.com/SuperInstance/cocapn-curriculum"
+    },
+    {
+      "room": "cocapn-ai",
+      "question": "CCC widget specs implemented: benchmark.php + constraint-playground.php live",
+      "answer": "cocapn.ai benchmark.php: Safe-TOPS/W leaderboard (8 chips, filter/sort, CSV download, mobile cards, green/yellow/red status). constraint-playground.php: GUARD editor with syntax highlighting, 4 templates, real-time compile API. api/compile_guard.php:"
     }
   ],
   "architecture_thesis": {
@@ -181,5 +181,5 @@
     "Map the relationships between rooms. Which rooms feed knowledge to which others? Draw the knowledge graph.",
     "Design an adversarial prompt that forces divergent thinking. Test it against 3 different questions."
   ],
-  "generated_at": 1777939202.1949253
+  "generated_at": 1777953602.053669
 }
