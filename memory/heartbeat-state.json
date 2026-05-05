@@ -1,12 +1,13 @@
 {
   "lastChecks": {
-    "dissertation": 1777958100,
-    "repos": 1777957500,
-    "services": 1777958200,
-    "credentials": 1777954200,
-    "research": 1777958100
-  },
-  "lastHeartbeat": 1777958220,
-  "deepInfra": "404 since ~05:00 UTC — outage confirmed, filed to PLATO",
-  "zc_tick": "5926511 (03:55 UTC — next in ~8h)"
+    "email": null,
+    "calendar": null,
+    "weather": null,
+    "plato": 1777992645,
+    "services": 1777992645,
+    "rate_attention": 1777992645,
+    "credential_verify": 1777992645,
+    "fm_heartbeat": 1777992645,
+    "zc_loop": 1777992645
+  }
 }
