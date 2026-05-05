@@ -49,7 +49,7 @@
 
 - [ ] **FLUX→PLATO bridge docs** — how PLATO drives FLUX execution
 - [ ] **Connect git-agent to FLUX compiler pipeline** — FLUX.MD → bytecode flow
-- [ ] **Agent scaffold consolidation** — all domain agents share base scaffold with PLATO SDK
+- [x] **Agent scaffold consolidation** ✅ — 14/14 domain agents using fleet-agent base class
 - [ ] **Write Reverse Actualization paper** — FM's paper (he has the content, needs to push)
 - [ ] **Write FLUX ISA paper** — FM's paper (he has the content, needs to push)
 - [ ] **Write PLATO Quality-Gated paper** — FM's paper (he has the content, needs to push)
