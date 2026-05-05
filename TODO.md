@@ -35,7 +35,7 @@
 
 ## 🟡 P1 — This Week
 
-- [ ] **PLATO SDK consolidation** — plato-sdk vs plato-sdk-unified. Pick one. Update all agents.
+- [x] **PLATO SDK consolidation** ✅ — superinstance-plato-sdk is canonical (v2.0.0, installs as plato_sdk). plato-sdk-unified archived.
 - [x] **Write FLUX ISA spec** — 247 opcodes in one place ✅ RESOLVED: flux-isa-v3.md + Section 0 + Section 12
 - [x] **PLATO variant consolidation** ✅ RESOLVED: all 4 variants kept (different deployment contexts)
 - [ ] **Write Semantic Compiler paper** — still in queue (was in original TODO)
