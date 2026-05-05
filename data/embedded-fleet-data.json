@@ -1,70 +1,70 @@
 {
   "system": "Cocapn AI Fleet Training Ground",
   "live_stats": {
-    "total_tiles": 105,
+    "total_tiles": 240,
     "total_rooms": 15,
     "agents_competing": 7
   },
   "top_rooms": [
     {
       "name": "energy_flux",
-      "tiles": 7
+      "tiles": 16
     },
     {
       "name": "confidence_proofs",
-      "tiles": 7
+      "tiles": 16
     },
     {
       "name": "fleet_security",
-      "tiles": 7
+      "tiles": 16
     },
     {
       "name": "oracle1",
-      "tiles": 7
+      "tiles": 16
     },
     {
       "name": "gpu-computing",
-      "tiles": 7
+      "tiles": 16
     },
     {
       "name": "gpu-memory-layout",
-      "tiles": 7
+      "tiles": 16
     },
     {
       "name": "cuda-graphs",
-      "tiles": 7
+      "tiles": 16
     },
     {
       "name": "quantization-safety",
-      "tiles": 7
+      "tiles": 16
     },
     {
       "name": "streaming-safety",
-      "tiles": 7
+      "tiles": 16
     },
     {
       "name": "warp-voting",
-      "tiles": 7
+      "tiles": 16
     },
     {
       "name": "atomic-operations",
-      "tiles": 7
+      "tiles": 16
     },
     {
       "name": "embedded-gpu",
-      "tiles": 7
+      "tiles": 16
     },
     {
       "name": "differential-testing-gpu",
-      "tiles": 7
+      "tiles": 16
     },
     {
       "name": "compiler-gpu",
-      "tiles": 7
+      "tiles": 16
     },
     {
       "name": "benchmark-methodology",
-      "tiles": 7
+      "tiles": 16
     }
   ],
   "arena_leaderboard": [
@@ -181,5 +181,5 @@
     "Map the relationships between rooms. Which rooms feed knowledge to which others? Draw the knowledge graph.",
     "Design an adversarial prompt that forces divergent thinking. Test it against 3 different questions."
   ],
-  "generated_at": 1777924801.8162382
+  "generated_at": 1777939202.1949253
 }
