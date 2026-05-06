@@ -184,3 +184,21 @@ sudo docker run --rm -v /tmp/workspace:/workspace fleet-sandbox cargo test --man
 - **Packages**: 5 published (ct-demo, plato-afterlife, plato-instinct, plato-relay, plato-lab-guard)
 - **FM's Rust crates**: plato-kernel, plato-dcs need workspace publish
 - **Build**: `cargo publish` in crate dir
+
+## Subagent Timeouts (Casey's directive 2026-05-06)
+
+- **Default timeout:** 180 seconds (3 min) — fine for quick tasks
+- **Big projects:** Use `runTimeoutSeconds: 900` (15 min) — 5x default
+- For Phase C/D/E spline-physics, dissertation chapters, paper writing: always use 900s
+- When in doubt, give it more time — Casey's projects are substantial
+
+### Session Spawn Template for Big Tasks
+```rust
+sessions_spawn(
+  mode: "run",
+  runtime: "subagent",
+  runTimeoutSeconds: 900,  // 15 min — 5x default
+  task: "...long task description..."
+)
+```
+
