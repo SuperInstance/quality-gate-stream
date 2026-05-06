@@ -993,7 +993,7 @@ class PlatoHandler(BaseHTTPRequestHandler):
             return
         elif self.path.startswith("/room/"):
             parts = self.path.split("/room/")[1].split("?")
-            name = parts[0]
+            name = parts[0].split("/")[0]  # strip any /tiles suffix
             room = rooms.get_room(name)
             # Optional min_energy filter
             if len(parts) > 1 and "min_energy=" in parts[1]:
