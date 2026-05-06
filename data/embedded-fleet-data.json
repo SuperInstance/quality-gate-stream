@@ -1,7 +1,7 @@
 {
   "system": "Cocapn AI Fleet Training Ground",
   "live_stats": {
-    "total_tiles": 1148,
+    "total_tiles": 1154,
     "total_rooms": 653,
     "agents_competing": 10
   },
@@ -12,7 +12,7 @@
     },
     {
       "name": "constraint_theory",
-      "tiles": 24
+      "tiles": 30
     },
     {
       "name": "dissertation",
@@ -196,5 +196,5 @@
     "Map the relationships between rooms. Which rooms feed knowledge to which others? Draw the knowledge graph.",
     "Design an adversarial prompt that forces divergent thinking. Test it against 3 different questions."
   ],
-  "generated_at": 1778040002.0763965
+  "generated_at": 1778054401.9118192
 }
