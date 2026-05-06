@@ -1036,18 +1036,6 @@ class PlatoHandler(BaseHTTPRequestHandler):
                 except:
                     pass
             self._send_json(room)
-            # Optional min_energy filter
-            if len(parts) > 1 and "min_energy=" in parts[1]:
-                try:
-                    from urllib.parse import parse_qs
-                    params = parse_qs(parts[1])
-                    min_e = float(params.get("min_energy", ["0"])[0])
-                    if "tiles" in room:
-                        room["tiles"] = [t for t in room["tiles"] if t.get("energy", 1.0) >= min_e]
-                        room["tile_count"] = len(room["tiles"])
-                except:
-                    pass
-            self._send_json(room)
         elif self.path == "/provenance/chain":
             self._send_json({"chain_length": chain.size})
         elif self.path == "/provenance/trust":
