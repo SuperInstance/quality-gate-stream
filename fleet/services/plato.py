@@ -991,10 +991,51 @@ class PlatoHandler(BaseHTTPRequestHandler):
         elif self.path == "/export/dcs":
             self.handle_export_dcs()
             return
+        elif self.path.startswith("/room/") and self.path.endswith("/submit"):
+            # Direct room tile submission (whisper-sync and external tools)
+            room_name = self.path.split("/room/")[1].replace("/submit", "")
+            try:
+                tile = self._read_body()
+                tile["domain"] = room_name
+                tile["source"] = tile.get("source", tile.get("agent", "unknown"))
+            except:
+                self._send_json({"error": "Invalid JSON"}, 400)
+                return
+            trace = ExplainTrace(agent_id=tile.get("source", "unknown"), task=f"room_submit:{room_name}")
+            traces.append(trace)
+            passed, reason = gate.validate(tile)
+            if not passed:
+                trace.outcome = f"rejected: {reason}"
+                self._send_json({"status": "rejected", "reason": reason, "room": room_name}, 403)
+                return
+            signed = signer.create_tile(domain=tile.get("domain", ""), question=tile.get("question", tile.get("content", "")[:50]), answer=tile.get("answer", tile.get("content", "")), confidence=tile.get("confidence", 0.5))
+            signed = signer.sign(signed)
+            signed_tiles[signed.tile_id] = signed
+            tile["provenance"] = {"tile_id": signed.tile_id, "agent_id": tile.get("source", "unknown"), "room": room_name, "timestamp": time.time(), "chain_size": chain.size}
+            chain.add_tile(signed)
+            trust_mgr.record_submission(tile.get("source", "unknown"), accepted=True, quality=tile.get("confidence", 0.5))
+            hash_file = TILES_DIR / "hashes.txt"
+            with open(hash_file, "a") as f:
+                f.write(tile["_hash"] + "\n")
+            rooms.add_tile(room_name, tile)
+            trace.outcome = "accepted"
+            self._send_json({"status": "accepted", "room": room_name, "tile_hash": tile["_hash"]})
         elif self.path.startswith("/room/"):
             parts = self.path.split("/room/")[1].split("?")
             name = parts[0].split("/")[0]  # strip any /tiles suffix
             room = rooms.get_room(name)
+            # Optional min_energy filter
+            if len(parts) > 1 and "min_energy=" in parts[1]:
+                try:
+                    from urllib.parse import parse_qs
+                    params = parse_qs(parts[1])
+                    min_e = float(params.get("min_energy", ["0"])[0])
+                    if "tiles" in room:
+                        room["tiles"] = [t for t in room["tiles"] if t.get("energy", 1.0) >= min_e]
+                        room["tile_count"] = len(room["tiles"])
+                except:
+                    pass
+            self._send_json(room)
             # Optional min_energy filter
             if len(parts) > 1 and "min_energy=" in parts[1]:
                 try:
@@ -1135,6 +1176,65 @@ class PlatoHandler(BaseHTTPRequestHandler):
             body = self._read_body()
             oversight.review(body.get("trace_id", ""), body.get("approved", True))
             self._send_json({"status": "reviewed"})
+        elif self.path.startswith("/room/") and self.path.endswith("/submit"):
+            # Direct room tile submission (whisper-sync / external tools)
+            room_name = self.path.split("/room/")[1].replace("/submit", "")
+            try:
+                raw = self._read_body()
+            except:
+                self._send_json({"error": "Invalid JSON"}, 400)
+                return
+            # Normalize whisper-sync format (content → answer, derive question)
+            answer = raw.get("answer", raw.get("content", ""))
+            question = raw.get("question", "")
+            if not question:
+                # Extract whisper type from content JSON for question derivation
+                import json as _json
+                try:
+                    content_data = _json.loads(raw.get("content", "{}"))
+                    wt = content_data.get("whisper_type", {})
+                    wt_variant = list(wt.keys())[0] if wt else "whisper"
+                    question = f"whisper: {wt_variant}"
+                except:
+                    question = "whisper tile"
+            tile = {
+                "domain": room_name,
+                "question": question,
+                "answer": answer,
+                "tags": raw.get("tags", []),
+                "source": raw.get("source", raw.get("agent", "unknown")),
+                "confidence": raw.get("confidence", 0.5),
+            }
+            trace = ExplainTrace(agent_id=tile["source"], task=f"room_submit:{room_name}")
+            traces.append(trace)
+            passed, reason = gate.validate(tile)
+            if not passed:
+                trace.outcome = f"rejected: {reason}"
+                self._send_json({"status": "rejected", "reason": reason, "room": room_name}, 403)
+                return
+            signed = signer.create_tile(
+                domain=tile["domain"],
+                question=tile["question"],
+                answer=tile["answer"],
+                confidence=tile["confidence"],
+            )
+            signed = signer.sign(signed)
+            signed_tiles[signed.tile_id] = signed
+            tile["provenance"] = {
+                "tile_id": signed.tile_id,
+                "agent_id": tile["source"],
+                "room": room_name,
+                "timestamp": time.time(),
+                "chain_size": chain.size,
+            }
+            chain.add_tile(signed)
+            trust_mgr.record_submission(tile["source"], accepted=True, quality=tile["confidence"])
+            hash_file = TILES_DIR / "hashes.txt"
+            with open(hash_file, "a") as f:
+                f.write(tile["_hash"] + "\n")
+            rooms.add_tile(room_name, tile)
+            trace.outcome = "accepted"
+            self._send_json({"status": "accepted", "room": room_name, "tile_hash": tile["_hash"]})
         else:
             self._send_json({"error": "Not found"}, 404)
     
