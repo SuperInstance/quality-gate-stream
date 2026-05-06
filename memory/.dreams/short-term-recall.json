@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-05-05T23:48:36.296Z",
+  "updatedAt": "2026-05-06T19:01:59.112Z",
   "entries": {
     "memory:memory/2026-04-10.md:46:63": {
       "key": "memory:memory/2026-04-10.md:46:63",
@@ -5610,6 +5610,192 @@
         "https",
         "github.com",
         "superinstance"
+      ]
+    },
+    "memory:memory/2026-05-05.md:144:166": {
+      "key": "memory:memory/2026-05-05.md:144:166",
+      "path": "memory/2026-05-05.md",
+      "startLine": 144,
+      "endLine": 166,
+      "source": "memory",
+      "snippet": "- Saved to research/ten-forward-marine-patterns-2026-05-05.md - Key insight: all ideas share edge-capture → PLATO accumulation → constraint inference → fleet action pipeline ### superinstance/README.md (03:45-03:48 UTC) - Fleet table: added Archetype column with oracle1-workspace, forgemaster, jetsonclaw1-vessel links - Crab traps table: all 11 category links + 11 lure file links (commit ec478c1) - Added Try It Right Now section with copy-paste lure for DeepSeek/Kimi/Grok/ChatGPT/Claude - Note: IoT/thor ESP32 archtype link not available — repos don't exist yet for thor-vessel/esp32-firmware ### Dissertation Extension (04:00-04:15 UTC) - Unpacked Kimi swarm zip: PLATO-Fleet-Math-Extension.",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.7984330266503944,
+      "maxScore": 0.7984330266503944,
+      "firstRecalledAt": "2026-05-06T19:01:59.112Z",
+      "lastRecalledAt": "2026-05-06T19:01:59.112Z",
+      "queryHashes": [
+        "d1d4729c1209"
+      ],
+      "recallDays": [
+        "2026-05-06"
+      ],
+      "conceptTags": [
+        "gpt",
+        "edge-capture",
+        "superinstance/readme.md",
+        "45-03",
+        "oracle1-workspace",
+        "jetsonclaw1-vessel",
+        "copy-paste",
+        "iot/thor"
+      ]
+    },
+    "memory:memory/2026-05-05.md:1:30": {
+      "key": "memory:memory/2026-05-05.md:1:30",
+      "path": "memory/2026-05-05.md",
+      "startLine": 1,
+      "endLine": 30,
+      "source": "memory",
+      "snippet": "# Memory Log — 2026-05-05 (UTC) ## Session Start (02:18 UTC) ### Fleet Status - All services healthy: PLATO:8847 ✅, keeper:8900 ✅, agent-api:8901 ✅, holodeck:7778 ✅, MUD:7777 ✅, seed-mcp:9438 ✅ - Zeroclaw loop running - FM heartbeat active (Discussion #5) ### Pre-Compaction State (from 2026-05-04 21:01 → 2026-05-05 02:18) Casey forwarded Kimi Agent PLATO Dissertation Review Extension ZIP from CCC's Kimi swarm. Key deliverable: `PLATO-Fleet-Math-Review-COMPLETE.md` (1,786 lines, rigorous mathematical corrections). ### Dissertation Corrections Applied - **3D Bearing Rigidity** (Zhao et al. 2017) replaces planar Laman's theorem in Ch3, Ch8, Ch10, Ch14 - Planar Laman (2V-3 edges) only gives",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.7812194296080598,
+      "maxScore": 0.7812194296080598,
+      "firstRecalledAt": "2026-05-06T19:01:59.112Z",
+      "lastRecalledAt": "2026-05-06T19:01:59.112Z",
+      "queryHashes": [
+        "d1d4729c1209"
+      ],
+      "recallDays": [
+        "2026-05-06"
+      ],
+      "conceptTags": [
+        "agent-api",
+        "seed-mcp",
+        "pre-compaction",
+        "2v-3",
+        "log",
+        "utc",
+        "start",
+        "fleet"
+      ]
+    },
+    "memory:memory/2026-05-04.md:106:146": {
+      "key": "memory:memory/2026-05-04.md:106:146",
+      "path": "memory/2026-05-04.md",
+      "startLine": 106,
+      "endLine": 146,
+      "source": "memory",
+      "snippet": "- All 8 chapters written (1,843 lines) - All hypotheses confirmed (H1-H4) - Posted to Discussion #5 ## Agent Scaffold Consolidation - 3 agents updated to fleet-agent v0.2.0 (fishinglog, studylog, businesslog) - Subagent spawned for 10 remaining agents - holonomy-consensus repo: https://github.com/SuperInstance/holonomy-consensus ## Tile Quantizer Built + Posted to Discussion #5 (08:00 UTC) - Python reference: plato-hdc-bridge/plato_hdc_bridge/tile_quantizer.py (277 lines) - Unified 128-bit tile format (type, room_hash, timestamp, confidence, vector) - Integrates: PLATO → HDC bloom → AVX-512 → holonomy consensus - Posted to Discussion #5 for FM ## Services All Running - PLATO: 1447 rooms h",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.7786932371216861,
+      "maxScore": 0.7786932371216861,
+      "firstRecalledAt": "2026-05-06T19:01:59.112Z",
+      "lastRecalledAt": "2026-05-06T19:01:59.112Z",
+      "queryHashes": [
+        "d1d4729c1209"
+      ],
+      "recallDays": [
+        "2026-05-06"
+      ],
+      "conceptTags": [
+        "h1-h4",
+        "fleet-agent",
+        "v0.2.0",
+        "holonomy-consensus",
+        "128-bit",
+        "room-hash",
+        "avx-512",
+        "all"
+      ]
+    },
+    "memory:memory/2026-05-05.md:494:513": {
+      "key": "memory:memory/2026-05-05.md:494:513",
+      "path": "memory/2026-05-05.md",
+      "startLine": 494,
+      "endLine": 513,
+      "source": "memory",
+      "snippet": "**Chapter 3** (ch03-flux-c-bytecode.md): FLUX-C Bytecode — 43 opcodes, Turing-incomplete = guaranteed terminating, AVX-512 35.9GB/s, Safe-TOPS/W. **Chapter 5** (ch05-safety-critical.md): Safety-Critical Applications — DO-254 DAL A, ISO 26262 ASIL-D, IEC 61508 SIL 3, certification workflow, $10K pilot. **Still pending:** ch02 (GUARD DSL — subagent running), ch04 (formal verification), ch06 (fleet math ZHC/H1/Pythagorean48), ch07 (getting started). **Initial push:** b95b1c4 — SPEC + README + ch00 + ch01 + ch03 + ch05 (5,000+ lines across files) **Subagent running:** ch02-guard-dsl.md — reading flux-isa-v3.md for GUARD DSL specs. ## Constraint Theory Ecosystem — COMPLETE (19:48 UTC) ### Al",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.7756679840353118,
+      "maxScore": 0.7756679840353118,
+      "firstRecalledAt": "2026-05-06T19:01:59.112Z",
+      "lastRecalledAt": "2026-05-06T19:01:59.112Z",
+      "queryHashes": [
+        "d1d4729c1209"
+      ],
+      "recallDays": [
+        "2026-05-06"
+      ],
+      "conceptTags": [
+        "ch03-flux-c-bytecode.md",
+        "flux-c",
+        "turing-incomplete",
+        "avx-512",
+        "35.9gb/s",
+        "safe-tops/w",
+        "ch05-safety-critical.md",
+        "safety-critical"
+      ]
+    },
+    "memory:memory/2026-05-05.md:379:413": {
+      "key": "memory:memory/2026-05-05.md:379:413",
+      "path": "memory/2026-05-05.md",
+      "startLine": 379,
+      "endLine": 413,
+      "source": "memory",
+      "snippet": "- Spark Protocol (378) — fleet deliberation, 48h bounded consensus ### PLATO Seeded - fleet_math: 4 theorems (fluxc_terminates, ZHC, Pythagorean48, H1 cohomology) - dissertation: 6 key findings - Now: 626 rooms, 1,055+ tiles ### constraint-theory-llvm - README merged to main (222 lines, architecture + usage + benchmarks) - CI workflow merged (cargo build + cargo test) - dead_code warning fixed (#[allow(dead_code)] on config field) ### Revenue-Critical Path - cocapn.ai/certify is live — most direct revenue path - Next: write case study (\"6 weeks → 4 hours GPU safety verification\") - Target: embedded automotive (ISO 26262 ASIL-D), marine (IEC 60945, DNV, ABS) - First paying customer pipelin",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.7752286518459649,
+      "maxScore": 0.7752286518459649,
+      "firstRecalledAt": "2026-05-06T19:01:59.112Z",
+      "lastRecalledAt": "2026-05-06T19:01:59.112Z",
+      "queryHashes": [
+        "d1d4729c1209"
+      ],
+      "recallDays": [
+        "2026-05-06"
+      ],
+      "conceptTags": [
+        "fleet-math",
+        "fluxc-terminates",
+        "constraint-theory-llvm",
+        "dead-code",
+        "revenue-critical",
+        "cocapn.ai/certify",
+        "asil-d",
+        "spark"
+      ]
+    },
+    "memory:memory/2026-05-05.md:334:367": {
+      "key": "memory:memory/2026-05-05.md:334:367",
+      "path": "memory/2026-05-05.md",
+      "startLine": 334,
+      "endLine": 367,
+      "source": "memory",
+      "snippet": "- Shell Lifecycle (303 lines) — hermit crab model, 94.2% context survival, <5min migration - Spark Protocol (378 lines) — fleet decision-making, 48h bounded deliberation ### PLATO Seeded - fleet_math room: 4 key theorems (fluxc_terminates, ZHC, Pythagorean48, H1 cohomology) - dissertation room: 6 key findings seeded - 626 rooms, 1,055 total tiles ### constraint-theory-llvm: README + CI merged to main - Comprehensive README (222 lines) with architecture, usage, benchmarks - CI workflow merged from ci/add-workflows branch - dead_code warning fixed with #[allow(dead_code)] on config field ## Session Continuation (08:00 → 14:04 UTC) ### Casey's Directive: \"Work in Parallel, You Can Parallel",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.7723123424669688,
+      "maxScore": 0.7723123424669688,
+      "firstRecalledAt": "2026-05-06T19:01:59.112Z",
+      "lastRecalledAt": "2026-05-06T19:01:59.112Z",
+      "queryHashes": [
+        "d1d4729c1209"
+      ],
+      "recallDays": [
+        "2026-05-06"
+      ],
+      "conceptTags": [
+        "94.2",
+        "decision-making",
+        "fleet-math",
+        "fluxc-terminates",
+        "constraint-theory-llvm",
+        "ci/add-workflows",
+        "dead-code",
+        "shell"
       ]
     }
   }
