@@ -86,3 +86,9 @@ keeper:8900, agent-api:8901, holodeck:7778, seed-mcp:9438, plato:8847, mud:7777,
 - Laman rigid (E=2V-3) ⟺ H1 β1=V-2 ⟺ exactly self-coordinating
 - H1 β1>V-2 ⟺ E>2V-3 ⟺ over-constrained ⟺ emergence
 - DeepSeek unifying framework: discrete flat principal bundle
+
+## New Repos (2026-05-06)
+- `SuperInstance/fleet-murmur` — 5 strategies × 6 theorems, PLATO tile output, quality gate
+- `SuperInstance/fleet-spread` — 5 specialist dimensions, synthesis layer, no PLATO write
+- `SuperInstance/murmur-plato-bridge` — Thought tensor ↔ PLATO tile bridge (unidirectional)
+- `SuperInstance/whisper-sync` — Ambient protocol for agent whispers, per-type TTL
