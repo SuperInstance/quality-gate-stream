@@ -73,3 +73,16 @@ keeper:8900, agent-api:8901, holodeck:7778, seed-mcp:9438, plato:8847, mud:7777,
 ## Brand — Cocapn
 - Lighthouse + radar rings. Hermit crab: agents are crabs, repos are shells.
 - "Prompting Is All You Need" paper
+## New Repos (2026-05-06 — 6 NEW in one afternoon)
+**Casey's directive: "make new repos more than changing old ones"**
+- `fleet-coordinate` — ZHC + Laman + H1 + beam + Pythagorean48 + tile. 22 tests.
+- `pythagorean48-codes` — shared 48-dir trust encoding. 2 tests.
+- `fleet-manifest` — fleet inventory, trust vectors, Laman check. 4 tests.
+- `fleet-topology` — topology visualization, rigidity report. 3 tests.
+- `fleet-homology` — H1 algebraic cycle space, Betti numbers. 4 tests.
+- `holonomy-48-bridge` — ZHC + Pythagorean48 algebra, trust closure. 6 tests.
+
+**Mathematical stack (connected graphs):**
+- Laman rigid (E=2V-3) ⟺ H1 β1=V-2 ⟺ exactly self-coordinating
+- H1 β1>V-2 ⟺ E>2V-3 ⟺ over-constrained ⟺ emergence
+- DeepSeek unifying framework: discrete flat principal bundle
