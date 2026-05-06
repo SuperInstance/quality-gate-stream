@@ -1,8 +1,8 @@
 {
   "system": "Cocapn AI Fleet Training Ground",
   "live_stats": {
-    "total_tiles": 1157,
-    "total_rooms": 653,
+    "total_tiles": 1162,
+    "total_rooms": 658,
     "agents_competing": 10
   },
   "top_rooms": [
@@ -131,11 +131,6 @@
   },
   "sample_tiles": [
     {
-      "room": "opcode-extension",
-      "question": "What 8 new opcodes should be added to the FLUX 43-opcode ISA?",
-      "answer": "Eight proposed opcodes reducing multi-instruction sequences 60-80%: SATADD (saturating add, vpaddsb 1 cycle x86), SATSUB (saturating sub, vpsubsb), CLIP (clamp to range), MAD (multiply-accumulate, imad CUDA), POPCNT (population count, 2 cycles CUDA),"
-    },
-    {
       "room": "constraint-theory",
       "question": "What is the FLUX ISA extension from 43 to 51 opcodes?",
       "answer": "Eight new opcodes eliminate 60-80 percent of multi-instruction sequences on safety-critical workloads: SATADD saturating add (1 cycle x86 vpaddsb), SATSUB saturating sub (1 cycle vpsubsb), CLIP clamp to range (eliminates 5-instruction min/max chain),"
@@ -179,6 +174,11 @@
       "room": "emsoft-paper",
       "question": "What does the EMSOFT paper on FLUX cover?",
       "answer": "A 1775-line 90KB LaTeX paper for EMSOFT 2027 covering: Abstract and Introduction (FLUX architecture, Galois connection), Methodology (43-opcode ISA, INT8 quantization, GPU kernel design), Evaluation (42 GPU experiments on RTX 4050 with real hardware "
+    },
+    {
+      "room": "iec_61508",
+      "question": "IEC 61508 SIL 3 architectural constraints for FPGA constraint verification",
+      "answer": "SIL 3 architectural constraints: HFT=1 for SFF>90%% (1001D architecture), or HFT=0 with additional measures. FLUX Certify constraint proofs support SIL 3 architectural verification for FPGA safety functions. Proof chain documents architectural constr"
     }
   ],
   "architecture_thesis": {
@@ -196,5 +196,5 @@
     "Map the relationships between rooms. Which rooms feed knowledge to which others? Draw the knowledge graph.",
     "Design an adversarial prompt that forces divergent thinking. Test it against 3 different questions."
   ],
-  "generated_at": 1778068801.335436
+  "generated_at": 1778083202.3703766
 }
