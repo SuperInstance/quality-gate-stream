@@ -1,11 +1,13 @@
 {
   "lastChecks": {
-    "plato": 1749175500,
-    "service_guard": 1749175500,
-    "rate_attention": 1749175500,
-    "fm_heartbeat": 1749174900,
-    "research": 1749174900
+    "plato": 1749176640,
+    "service_guard": 1749176640,
+    "rate_attention": 1749176640,
+    "fm_heartbeat": 1749176640,
+    "research": 1749176640,
+    "deepseek_verified": 1749176640,
+    "fleet_spread_tests": 1749176640
   },
-  "lastHeartbeat": "2026-05-06T22:05:00Z",
-  "notes": "All dissertation chapters cleaned + Ch8 rewritten (101 lines). 4 rewrite subagents running on Ch2, Ch3, Ch6, Ch7. 1 spline resonance tomography subagent running. Waiting on subagent completions."
+  "lastHeartbeat": "2026-05-07T03:24:00Z",
+  "notes": "fleet-spread v3: all_with_signal() added, 89 tests passing. captain now checks is_stable() before inquiry. PLATO attention all NORMAL. DeepSeek API verified working. Zeroclaw loop running."
 }
