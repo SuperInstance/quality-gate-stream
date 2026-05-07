@@ -1,0 +1,36 @@
+{
+  "name": "@cocapn/fleet-coordinate-js",
+  "version": "0.1.0",
+  "description": "Fleet coordinate geometric math in pure TypeScript — Laman rigidity, H¹, ZHC, Pythagorean48. No WASM.",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "test": "tsc --noEmit"
+  },
+  "keywords": [
+    "fleet",
+    "coordinate",
+    "laman",
+    "h1",
+    "zhc",
+    "pythagorean",
+    "cocapn"
+  ],
+  "engines": {
+    "node": ">=18.0"
+  },
+  "devDependencies": {
+    "typescript": "^6.0.3"
+  }
+}
