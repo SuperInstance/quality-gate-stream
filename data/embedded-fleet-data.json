@@ -1,8 +1,8 @@
 {
   "system": "Cocapn AI Fleet Training Ground",
   "live_stats": {
-    "total_tiles": 1192,
-    "total_rooms": 663,
+    "total_tiles": 1196,
+    "total_rooms": 664,
     "agents_competing": 10
   },
   "top_rooms": [
@@ -15,20 +15,20 @@
       "tiles": 30
     },
     {
+      "name": "energy_flux",
+      "tiles": 19
+    },
+    {
       "name": "dissertation",
       "tiles": 18
     },
     {
-      "name": "energy_flux",
-      "tiles": 18
-    },
-    {
       "name": "confidence_proofs",
-      "tiles": 16
+      "tiles": 17
     },
     {
       "name": "fleet_security",
-      "tiles": 15
+      "tiles": 16
     },
     {
       "name": "fleet_math",
@@ -132,8 +132,8 @@
   "sample_tiles": [
     {
       "room": "shell-gallery",
-      "question": "What are agent shells in the Cocapn Fleet, and how does the gallery demonstrate their specialization?",
-      "answer": "The shell gallery exhibits the principle of prompt-driven specialization \u2014 the same underlying model, configured through different prompting strategies, produces radically different agent behaviors. Specimen 1 is Oracle1 (lighthouse keeper): a schola"
+      "question": "How does prompt-driven specialization enable rapid fleet reconfiguration without retraining?",
+      "answer": "The shell gallery demonstrates that agent capability emerges from prompt configuration, not just model weights. Oracle1 uses analytical framing to coordinate fleet architecture. Forgemaster uses safety-constraint framing for verification tasks. Jetso"
     },
     {
       "room": "constraint-theory",
@@ -196,5 +196,5 @@
     "Map the relationships between rooms. Which rooms feed knowledge to which others? Draw the knowledge graph.",
     "Design an adversarial prompt that forces divergent thinking. Test it against 3 different questions."
   ],
-  "generated_at": 1778112001.4693496
+  "generated_at": 1778126401.8494444
 }
