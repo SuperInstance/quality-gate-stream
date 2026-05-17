@@ -1,8 +1,8 @@
 # quality-gate-stream — Tile Quality Scoring
 
-Oracle1's quality gate service. 1590 auto-commits from beachcomb cycles.
+Oracle1's workspace. Contains the quality gate service alongside other fleet components.
 
-## What It Does
+## Quality Gate Service
 
 Scores PLATO tiles on four dimensions before they reach the fleet:
 
