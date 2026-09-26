@@ -1,7 +1,7 @@
 [project]
-name = "quartermaster-gc"
-version = "0.1.0"
-description = "A tile garbage collector for PLATO agent rooms"
+name = "quality-gate-stream"
+version = "0.1.1"
+description = "Streaming quality gates — continuous quality scoring for data streams, agent outputs, and pipeline results"
 readme = "README.md"
 license = { text = "MIT" }
 authors = [
@@ -19,7 +19,7 @@ build-backend = "setuptools.build_meta"
 
 [tool.setuptools.packages.find]
 where = ["."]
-include = ["quartermaster_gc*"]
+include = ["quality_gate*", "quartermaster_gc*"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
