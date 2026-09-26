@@ -12,6 +12,7 @@ class StreamItemResult:
     """The result of running one item through the entire stream."""
 
     item_index: int
+    item: Any = None  # the original item, carried for routing/partitioning
     gate_results: List[GateResult] = field(default_factory=list)
     final_outcome: GateOutcome = GateOutcome.PASS
     stopped_at: Optional[str] = None  # gate name where processing stopped (fail-fast)
@@ -40,7 +41,7 @@ class GateStream:
 
     def process_item(self, item: Any) -> StreamItemResult:
         """Run a single item through all gates."""
-        result = StreamItemResult(item_index=0)
+        result = StreamItemResult(item_index=0, item=item)
 
         for gate in self.gates:
             gr = gate.evaluate(item)
@@ -74,3 +75,19 @@ class GateStream:
         """Process items and return a summary GateReport."""
         results = self.process(items)
         return GateReport.from_stream_results(self, results)
+
+    def partition(self, items: Sequence[Any]) -> Dict[GateOutcome, List[tuple]]:
+        """Route items by final outcome — the README's routing promise made real.
+
+        Returns a dict keyed by GateOutcome; each value is a list of
+        ``(item_index, item)`` pairs in input order. Consume each bucket
+        however the pipeline needs: retry queues, dead-letter sinks,
+        promotion paths.
+        """
+        results = self.process(items)
+        buckets: Dict[GateOutcome, List[tuple]] = {
+            outcome: [] for outcome in GateOutcome
+        }
+        for r in results:
+            buckets[r.final_outcome].append((r.item_index, r.item))
+        return buckets

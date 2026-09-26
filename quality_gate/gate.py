@@ -41,14 +41,41 @@ class QualityGate:
         checks: Optional[Sequence[Check]] = None,
         weights: Optional[Dict[str, float]] = None,
         threshold: Optional[ThresholdConfig] = None,
+        strict: bool = False,
     ) -> None:
         self.name = name
         self.checks: List[Check] = list(checks or [])
+        self._assert_distinct_names()
         self.weights: Dict[str, float] = weights or {}
         self.threshold = threshold or ThresholdConfig()
+        # strict=True: any hard-failed check fails the gate outright, no
+        # dilution by passing checks. Default False preserves the weighted
+        # aggregate behavior (one hard failure can be outweighed).
+        self.strict = strict
+
+    def _assert_distinct_names(self) -> None:
+        seen: set = set()
+        for c in self.checks:
+            if c.name in seen:
+                raise ValueError(
+                    f"duplicate check name '{c.name}' in gate '{self.name}': "
+                    "same-named checks clobber weights and details — "
+                    "rename one, or wrap both in a single check"
+                )
+            seen.add(c.name)
 
     def add_check(self, check: Check, weight: float = 1.0) -> "QualityGate":
-        """Add a check to this gate. Returns self for chaining."""
+        """Add a check to this gate. Returns self for chaining.
+
+        Raises ValueError on a duplicate check name — silent collisions
+        corrupt weights, details, and the aggregate score.
+        """
+        if any(c.name == check.name for c in self.checks):
+            raise ValueError(
+                f"duplicate check name '{check.name}' in gate '{self.name}': "
+                "same-named checks clobber weights and details — "
+                "rename one, or wrap both in a single check"
+            )
         self.checks.append(check)
         self.weights.setdefault(check.name, weight)
         return self
@@ -86,7 +113,6 @@ class QualityGate:
 
         aggregate = weighted_sum / total_weight if total_weight > 0 else 1.0
         outcome = self._resolve_outcome(aggregate, failures)
-
         return GateResult(
             gate_name=self.name,
             outcome=outcome,
@@ -97,6 +123,8 @@ class QualityGate:
         )
 
     def _resolve_outcome(self, score: float, failures: List[str]) -> GateOutcome:
+        if self.strict and failures:
+            return GateOutcome.FAIL
         if score >= self.threshold.pass_threshold:
             return GateOutcome.PASS
         if score >= self.threshold.warn_threshold:

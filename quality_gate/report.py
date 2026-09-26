@@ -22,6 +22,7 @@ class GateReport:
     gate_names: List[str] = field(default_factory=list)
     items_stopped_early: int = 0
     per_gate_scores: Dict[str, List[float]] = field(default_factory=dict)
+    outcomes: List[GateOutcome] = field(default_factory=list)  # in input order
 
     @property
     def pass_rate(self) -> float:
@@ -53,6 +54,7 @@ class GateReport:
         per_gate: Dict[str, List[float]] = {g.name: [] for g in stream.gates}
 
         for r in results:
+            report.outcomes.append(r.final_outcome)
             if r.final_outcome == GateOutcome.PASS:
                 report.passed += 1
             elif r.final_outcome == GateOutcome.WARN:
@@ -69,3 +71,18 @@ class GateReport:
 
         report.per_gate_scores = per_gate
         return report
+
+    def rolling_pass_rate(self, window: int) -> List[float]:
+        """Rolling pass-rate over a sliding window of the last *window* items.
+
+        One entry per item: the fraction of PASS outcomes among the trailing
+        window (clipped at the start). ``window`` must be >= 1.
+        """
+        if window < 1:
+            raise ValueError(f"window must be >= 1, got {window}")
+        rates: List[float] = []
+        for i in range(len(self.outcomes)):
+            lo = max(0, i - window + 1)
+            span = self.outcomes[lo:i + 1]
+            rates.append(sum(1 for o in span if o == GateOutcome.PASS) / len(span))
+        return rates
