@@ -1,4 +1,1 @@
-{
-  "tests/test_quartermaster_gc.py::TestRetentionPolicy": true,
-  "tests/test_quartermaster_gc.py::TestGCSchedule": true
-}
+{}
